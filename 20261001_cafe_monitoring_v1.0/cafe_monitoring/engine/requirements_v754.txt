@@ -1,0 +1,6 @@
+pywin32==312; sys_platform == "win32"
+playwright==1.62.0
+openai==2.54.0
+pydantic==2.13.5
+httpx==0.28.1
+truststore==0.10.4; sys_platform == "win32"

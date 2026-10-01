@@ -1,0 +1,24 @@
+{
+  "cafe_id": "20179506",
+  "cafe_slug": "iroid",
+  "target_url": "https://cafe.naver.com/f-e/cafes/20179506/articles/4528140",
+  "browser": "chrome",
+  "profile_dir": "data/browser_profile_chrome",
+  "output_dir": "output_v5",
+  "history_db": "data/history_v5.sqlite3",
+  "import_dirs": [],
+  "keywords": [
+    "불량",
+    "고장"
+  ],
+  "initial_count": 10,
+  "overlap_days": 1,
+  "max_pages_per_keyword_per_run": 20,
+  "max_search_page": 500,
+  "max_collect_per_run": 100,
+  "retry_after_minutes": 60,
+  "max_attempts": 3,
+  "request_interval_seconds": 2,
+  "timeout_seconds": 40,
+  "schedule_time": "09:00"
+}

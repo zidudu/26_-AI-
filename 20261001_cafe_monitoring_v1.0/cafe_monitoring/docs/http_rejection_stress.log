@@ -1,0 +1,1 @@
+Linux / Python 3.12: 50 repetitions, 100 rejected HTTP POST requests; all returned expected HTTP 403 and JSON error. No retries or skipped failures. Windows WinError 10053 was not reproduced on this OS.

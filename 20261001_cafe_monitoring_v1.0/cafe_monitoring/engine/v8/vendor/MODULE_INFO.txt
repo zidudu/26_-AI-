@@ -1,0 +1,14 @@
+Outlook Mail Module v1
+
+Validated environment:
+- Windows company PC
+- Classic Outlook
+- Windows PowerShell
+- Outlook COM
+- Fasoo DRM environment
+
+Main entry:
+    from outlook_mail import send_outlook_mail
+
+Designed for:
+    crawler -> analysis -> PPT export -> mail

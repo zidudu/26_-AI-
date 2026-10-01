@@ -1,0 +1,4 @@
+# V9.6 direct dependencies; existing requirement files are unchanged.
+-r requirements_v754.txt
+jsonschema==4.26.0
+Pillow==12.3.0

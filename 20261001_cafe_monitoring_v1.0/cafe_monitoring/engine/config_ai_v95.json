@@ -1,0 +1,13 @@
+{
+  "version": "9.5.0",
+  "provider": "codex",
+  "codex": {
+    "model": "gpt-5.5",
+    "reasoning_effort": "medium",
+    "timeout_seconds": 120,
+    "max_parallel": 3,
+    "command": "codex",
+    "credentials_store": "auto",
+    "acknowledge_cli_differences": true
+  }
+}

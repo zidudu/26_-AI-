@@ -1,0 +1,752 @@
+{
+  "provenance": {
+    "collect": {
+      "filename": "collect_20260917_153950_360555_741ae313.zip",
+      "sha256": "92dee45c9fdc66709edc12a8d2a69fa05f5c8ce6150ec41fe30aef7df85c3295"
+    },
+    "export": {
+      "filename": "export_20260917_154138_305665_ed67cdb5.zip",
+      "sha256": "600389b9c9323c520601e76770e745ddc335923e005c3bf0f6bd95d8239b6e8a"
+    }
+  },
+  "note": "사용자 제공 JSON에서 필요한 필드만 추출. 캡처/COM/API 실물 실행을 나타내지 않음.",
+  "articles": [
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5490132",
+        "title": "더뉴싼타페 스마트크루즈 같은 증상이신분 계신가요?",
+        "body": "크루즈를 켜고 속도조절 레버를 누르면 크루즈가 꺼지는게 아닌 크루즈 모드가 회색으로 변화며 일시정지가 되었고 다시 한번 누르면 활성화가 되었는데 그 기능이 안됩니다.\n\n버튼을 꾹 누르고 있으면 크루즈가 해제되었다는 문구와 일시정지가 되고 다시 꾹 누르고 있으면 점검하라고 나옵니다.\n\n센터를 가야하는걸까요?",
+        "written_at": "2026-09-03T08:29:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5490132",
+        "media": {
+          "image_count": 0,
+          "loaded_image_count": 0,
+          "video_count": 1
+        },
+        "collected_at": "2026-09-17T15:40:18.778225+09:00"
+      },
+      "candidate": {
+        "document_type": "question_information",
+        "document_type_evidence_ids": [
+          "T0001",
+          "B0005"
+        ],
+        "vehicle": {
+          "model": {
+            "value": "더뉴싼타페",
+            "evidence_ids": [
+              "T0001"
+            ]
+          },
+          "model_year": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "reported",
+          "label": "스마트크루즈 일시정지/점검 문구",
+          "evidence_ids": [
+            "B0001",
+            "B0003"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 더뉴싼타페에서 스마트크루즈를 켠 뒤 속도조절 레버를 누르면 크루즈가 꺼지지 않고 회색으로 바뀐 채 일시정지되며, 다시 누르면 활성화되던 기능이 지금은 작동하지 않는다고 했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          {
+            "text": "작성자는 버튼을 꾹 누를 때 크루즈가 해제되었다는 문구와 일시정지가 표시되고, 다시 꾹 누르면 점검하라는 문구가 나온다고 전했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0003"
+            ]
+          },
+          {
+            "text": "작성자는 이런 경우 센터를 가야 하는지 질문했습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0005"
+            ]
+          }
+        ],
+        "actions": [],
+        "review_reasons": [
+          "차량 연식과 주행거리는 원문에 없어 확인할 수 없습니다.",
+          "‘센터를 가야하는걸까요?’는 질문이므로 실제 정비 예약이나 방문 조치로 단정할 수 없습니다."
+        ]
+      },
+      "capture_sizes": []
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5492288",
+        "title": "크루즈 깜박이 반대로 차선변경이 되네요",
+        "body": "크루즈모드에서 자동으로 차선 변경해주는 거\n\n깜박이 반대 방향으로 차선을 바꾸네요 ㄷㄷ\n\n결함인가요??\n\n검색해보니 23년도 글이 나오던데\n\n23년도 결함이 아직도 안고쳐진건가요? ㅠ",
+        "written_at": "2026-09-06T01:02:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5492288",
+        "media": {
+          "image_count": 0,
+          "loaded_image_count": 0,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:14.063037+09:00"
+      },
+      "candidate": {
+        "document_type": "question_information",
+        "document_type_evidence_ids": [
+          "T0001",
+          "B0003",
+          "B0006"
+        ],
+        "vehicle": {
+          "model": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "model_year": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "reported",
+          "label": "반대 방향 차선변경",
+          "evidence_ids": [
+            "T0001",
+            "B0002"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 크루즈모드에서 자동 차선 변경 기능이 깜박이와 반대 방향으로 차선을 바꾼다고 관찰했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0001",
+              "B0002"
+            ]
+          },
+          {
+            "text": "작성자는 이런 현상이 결함인지 질문했습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0003"
+            ]
+          },
+          {
+            "text": "작성자는 검색해 보니 2023년도 관련 글이 보인다며, 해당 결함이 아직도 고쳐지지 않은 것인지 물었습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0005",
+              "B0006"
+            ]
+          }
+        ],
+        "actions": [],
+        "review_reasons": [
+          "차선변경 방향 이상이 실제 기능 오작동인지, 작성자의 해석인지 본문만으로는 확정하기 어렵습니다.",
+          "차량 모델·연식·주행거리가 제시되지 않았습니다."
+        ]
+      },
+      "capture_sizes": [
+        [
+          800,
+          259
+        ]
+      ]
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5492772",
+        "title": "계기판에 라이트표시가 계속 들어와있는데..",
+        "body": "계기판 디스플레이 상단에 라이트 표시가 계속 들어와있는데..\n\n원래 이런게 정상인가요?\n\n라이트를 켜야 표시되는게 아닌지…\n\nOff로 해도 켜져있어요\n\n딜러한테 물어보니 안전때문에 자동으로 켜진다고 정차상태에서 사이드브레이크 걸면 꺼진다고 해서 그렇게도 해봤는데 안꺼지네요",
+        "written_at": "2026-09-06T22:23:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5492772",
+        "media": {
+          "image_count": 1,
+          "loaded_image_count": 1,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:56.137677+09:00"
+      },
+      "candidate": {
+        "document_type": "question_information",
+        "document_type_evidence_ids": [
+          "B0003",
+          "B0005",
+          "B0007"
+        ],
+        "vehicle": {
+          "model": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "model_year": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "reported",
+          "label": "계기판 라이트 표시",
+          "evidence_ids": [
+            "B0001",
+            "B0006"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 계기판 디스플레이 상단의 라이트 표시가 계속 켜져 있는 것이 정상인지 질문했습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0001",
+              "B0003",
+              "B0005",
+              "B0006"
+            ]
+          },
+          {
+            "text": "작성자는 라이트를 Off로 해도 표시가 계속 켜져 있다고 적었습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0006"
+            ]
+          },
+          {
+            "text": "작성자는 딜러에게 문의했고, 안전 때문에 자동으로 켜지는 것이라고 안내받았다고 전했습니다.",
+            "kind": "reported_statement",
+            "evidence_ids": [
+              "B0007"
+            ]
+          },
+          {
+            "text": "작성자는 정차 상태에서 사이드브레이크를 걸면 꺼진다는 안내를 따라 해봤지만 꺼지지 않았다고 적었습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0007"
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "description": "딜러한테 물어봤다",
+            "status": "completed",
+            "evidence_ids": [
+              "B0007"
+            ]
+          },
+          {
+            "description": "정차 상태에서 사이드브레이크를 걸어봤다",
+            "status": "completed",
+            "evidence_ids": [
+              "B0007"
+            ]
+          }
+        ],
+        "review_reasons": [
+          "계기판의 라이트 표시가 어떤 기능을 뜻하는지 원문만으로는 확정하기 어렵습니다.",
+          "딜러 안내가 실제 고장 여부나 정상 여부를 검증한 사실로 보기는 어렵습니다."
+        ]
+      },
+      "capture_sizes": [
+        [
+          800,
+          1200
+        ],
+        [
+          800,
+          183
+        ]
+      ]
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5495607",
+        "title": "19년식 tm 계기판 엔진경고등.. 머가문제일까요?",
+        "body": "",
+        "written_at": "2026-09-09T17:00:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5495607",
+        "media": {
+          "image_count": 1,
+          "loaded_image_count": 1,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:50.936258+09:00"
+      },
+      "candidate": null,
+      "capture_sizes": [
+        [
+          800,
+          1200
+        ],
+        [
+          800,
+          1
+        ]
+      ]
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5498307",
+        "title": "계기판 주행거리 정상 맞나요.??",
+        "body": "8만원 주유후 주행거리 744 떴는대요\n\n아래와같이 28키로가 더 먹었는대\n\n이렇게 차이나는 분들 계신가요???",
+        "written_at": "2026-09-12T14:16:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5498307",
+        "media": {
+          "image_count": 1,
+          "loaded_image_count": 1,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:45.866760+09:00"
+      },
+      "candidate": {
+        "document_type": "question_information",
+        "document_type_evidence_ids": [
+          "T0001",
+          "B0001",
+          "B0003"
+        ],
+        "vehicle": {
+          "model": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "model_year": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "unclear",
+          "label": null,
+          "evidence_ids": [
+            "B0001",
+            "B0002",
+            "B0003"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 8만원 주유 후 계기판에 주행거리 744가 표시된 점을 언급했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          {
+            "text": "작성자는 아래 표시와 28km 차이가 나는 이유가 정상인지 질문했습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0002",
+              "B0003",
+              "T0001"
+            ]
+          }
+        ],
+        "actions": [],
+        "review_reasons": [
+          "계기판 주행거리와 실제 주행 가능 거리의 의미가 원문만으로 확정되지 않습니다.",
+          "차종·연식 정보가 없어 관련 표시의 정상 여부를 판단할 수 없습니다."
+        ]
+      },
+      "capture_sizes": [
+        [
+          800,
+          605
+        ]
+      ]
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5499363",
+        "title": "텔레스코픽 스티어링휠 초기화하니 계기판이 다보이네요",
+        "body": "25년 2월 출고후 시트포지션을 어떻게 세팅을 해야 계기판이 다보일까 시트세팅만 수십번하다가 카페내에서 검색을 통해 텔레스코픽 초기화로 계기판 시야가 확 트였다는 글을 보고 바로 블루핸즈 오픈타임에 도착후 해당사항 정비요청드렸더니 즉시 해주셔서 정비 완료했습니다.\n\n좋은 정보 공유해주셔서 감사합니다.",
+        "written_at": "2026-09-14T10:13:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5499363",
+        "media": {
+          "image_count": 0,
+          "loaded_image_count": 0,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:40.645019+09:00"
+      },
+      "candidate": {
+        "document_type": "repair_review",
+        "document_type_evidence_ids": [
+          "B0001",
+          "B0003"
+        ],
+        "vehicle": {
+          "model": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "model_year": {
+            "value": "25년 2월 출고",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "reported",
+          "label": "계기판 시야",
+          "evidence_ids": [
+            "T0001",
+            "B0001"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 25년 2월 출고 후 시트 포지션을 여러 번 조정했지만 계기판이 잘 보이지 않았다고 말했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          {
+            "text": "작성자는 카페 글을 보고 텔레스코픽 초기화가 계기판 시야를 넓힌다고 보고 블루핸즈에 정비를 요청했습니다.",
+            "kind": "reported_statement",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          {
+            "text": "블루핸즈가 해당 사항을 즉시 처리해 정비가 완료되었다고 작성자가 전했습니다.",
+            "kind": "action",
+            "evidence_ids": [
+              "B0001"
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "description": "블루핸즈 오픈타임에 방문해 텔레스코픽 초기화 관련 정비를 요청함",
+            "status": "completed",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          {
+            "description": "블루핸즈에서 즉시 처리해 정비 완료됨",
+            "status": "completed",
+            "evidence_ids": [
+              "B0001"
+            ]
+          }
+        ],
+        "review_reasons": [
+          "원문에 차량 모델명이 없어 차종은 특정할 수 없습니다.",
+          "'텔레스코픽 초기화'의 구체적 의미나 수리 내용은 원문만으로 확정하기 어렵습니다."
+        ]
+      },
+      "capture_sizes": [
+        [
+          800,
+          259
+        ]
+      ]
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5499593",
+        "title": "계기판변경문의",
+        "body": "사진처럼 계기판변경 어떻게하는거에요? 저는 숫자만나오는데 아무리 찾아도 바늘모양나오게하는걸 못찾겠습니다ㅜ\n\n26년식 하이브리드입니다",
+        "written_at": "2026-09-14T13:03:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5499593",
+        "media": {
+          "image_count": 1,
+          "loaded_image_count": 1,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:33.343700+09:00"
+      },
+      "candidate": {
+        "document_type": "question_information",
+        "document_type_evidence_ids": [
+          "T0001",
+          "B0001",
+          "B0002",
+          "B0003"
+        ],
+        "vehicle": {
+          "model": {
+            "value": "하이브리드",
+            "evidence_ids": [
+              "B0003"
+            ]
+          },
+          "model_year": {
+            "value": "26년식",
+            "evidence_ids": [
+              "B0003"
+            ]
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "reported",
+          "label": "계기판 숫자만 표시",
+          "evidence_ids": [
+            "B0002"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 사진처럼 계기판 변경 방법을 질문했습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          {
+            "text": "작성자는 현재 계기판이 숫자만 나오고 바늘 모양으로 바꾸는 방법을 찾지 못했다고 말했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0002"
+            ]
+          },
+          {
+            "text": "작성자는 26년식 하이브리드라고 밝혔습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0003"
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "description": "계기판 표시 변경 방법을 문의했습니다.",
+            "status": "completed",
+            "evidence_ids": [
+              "B0001",
+              "B0002"
+            ]
+          }
+        ],
+        "review_reasons": [
+          "사진 내용은 원문에 없어 계기판 형태는 일부만 확인됩니다."
+        ]
+      },
+      "capture_sizes": [
+        [
+          800,
+          1200
+        ],
+        [
+          800,
+          130
+        ]
+      ]
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5500144",
+        "title": "크루즈 30km 주행중 액셀먹통, 가속패달 작동안함",
+        "body": "크루즈 컨트롤 30km 설정,\n\n시내 주행중 가속패달이 작동하지 않는 증상 발생\n\n잠깐동안 2~3회 경고음도 났습니다.\n\n기어 변속이 안되는듯 했어요\n\n다만 설정된 30km 속도로는 가는듯 했어요\n\n잠시지만 황당한 경험에 불안했어요\n\n혹시나 급발진하지는안을까 하구요...",
+        "written_at": "2026-09-14T20:48:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5500144",
+        "media": {
+          "image_count": 0,
+          "loaded_image_count": 0,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:08.959625+09:00"
+      },
+      "candidate": {
+        "document_type": "issue_experience",
+        "document_type_evidence_ids": [
+          "T0001",
+          "B0002",
+          "B0003",
+          "B0005",
+          "B0006",
+          "B0008"
+        ],
+        "vehicle": {
+          "model": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "model_year": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "reported",
+          "label": "가속패달 작동안함",
+          "evidence_ids": [
+            "T0001",
+            "B0002"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 크루즈 컨트롤을 30km로 설정한 상태에서 시내 주행 중 가속패달이 작동하지 않는 증상을 겪었다고 했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0001",
+              "B0002"
+            ]
+          },
+          {
+            "text": "잠깐 동안 2~3회 경고음이 났고, 기어 변속이 안 되는 듯했다고 적었습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0003",
+              "B0005"
+            ]
+          },
+          {
+            "text": "다만 설정된 30km 속도로는 가는 듯했다고 했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0006"
+            ]
+          },
+          {
+            "text": "작성자는 이런 상황이 황당하고 불안했고, 급발진이 아닐지 걱정했다고 했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0007",
+              "B0008"
+            ]
+          }
+        ],
+        "actions": [],
+        "review_reasons": [
+          "'기어 변속이 안되는듯'은 실제 고장인지 작성자 추정인지 불명확합니다.",
+          "'급발진하지는안을까'는 우려 표현으로 실제 급발진 여부는 확인되지 않습니다."
+        ]
+      },
+      "capture_sizes": [
+        [
+          800,
+          367
+        ]
+      ]
+    },
+    {
+      "source": {
+        "cafe_id": "20179506",
+        "article_id": "5503639",
+        "title": "계기판 그래픽 질문",
+        "body": "다른분들도 운행중 실선이 점선으로 바꿔지는 궁긍합니다\n\n회사 차량이 26년 3월에 구매한 스타리아인데 점선도로 가면 점선으로 바뀌고 실선으로 가면 실선으로 그래픽이 바뀌는데 제차는 계속 실선 그래픽으로만 표시되네요 다른분들도 실선으로 계속 표시되나요?",
+        "written_at": "2026-09-17T09:43:00+09:00",
+        "url": "https://cafe.naver.com/f-e/cafes/20179506/articles/5503639",
+        "media": {
+          "image_count": 1,
+          "loaded_image_count": 1,
+          "video_count": 0
+        },
+        "collected_at": "2026-09-17T15:40:28.398141+09:00"
+      },
+      "candidate": {
+        "document_type": "question_information",
+        "document_type_evidence_ids": [
+          "T0001",
+          "B0001",
+          "B0002"
+        ],
+        "vehicle": {
+          "model": {
+            "value": "스타리아",
+            "evidence_ids": [
+              "B0002"
+            ]
+          },
+          "model_year": {
+            "value": null,
+            "evidence_ids": []
+          },
+          "mileage": {
+            "value": null,
+            "evidence_ids": []
+          }
+        },
+        "complaint": {
+          "status": "reported",
+          "label": "계기판 그래픽 표시",
+          "evidence_ids": [
+            "B0001",
+            "B0002"
+          ]
+        },
+        "summary_claims": [
+          {
+            "text": "작성자는 운행 중 도로 표시가 실선에서 점선으로 바뀌는지 궁금하다고 질문했습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0001"
+            ]
+          },
+          {
+            "text": "작성자는 2026년 3월에 구매한 회사 차량 스타리아에서 점선도로에서는 점선, 실선도로에서는 실선으로 그래픽이 바뀌는데 자신의 차량은 계속 실선으로만 표시된다고 말했습니다.",
+            "kind": "observation",
+            "evidence_ids": [
+              "B0002"
+            ]
+          },
+          {
+            "text": "작성자는 다른 차량도 실선으로 계속 표시되는지 확인을 요청했습니다.",
+            "kind": "question",
+            "evidence_ids": [
+              "B0002"
+            ]
+          }
+        ],
+        "actions": [],
+        "review_reasons": [
+          "계기판 그래픽이 정상 동작인지 불량인지 원문만으로는 확정하기 어렵습니다.",
+          "'26년 3월에 구매한' 표현은 구매 시점으로 보여 연식으로 단정하지 않았습니다."
+        ]
+      },
+      "capture_sizes": [
+        [
+          800,
+          835
+        ]
+      ]
+    }
+  ]
+}

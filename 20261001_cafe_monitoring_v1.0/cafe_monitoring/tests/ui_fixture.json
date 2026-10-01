@@ -1,0 +1,412 @@
+{
+  "version": "10.0.0",
+  "settings": {
+    "schemaVersion": 3,
+    "catalog": {
+      "cafes": [
+        {
+          "id": "cafe:bestcm",
+          "naverCafeId": null,
+          "code": "GN7",
+          "name": "그랜저 GN7 · bestcm",
+          "url": "https://cafe.naver.com/bestcm",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:iroid",
+          "naverCafeId": null,
+          "code": "MX5",
+          "name": "싼타페 MX5 · iroid",
+          "url": "https://cafe.naver.com/iroid",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:cafeclip",
+          "naverCafeId": null,
+          "code": "ME",
+          "name": "아이오닉 · cafeclip",
+          "url": "https://cafe.naver.com/cafeclip",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:newgenesisdh",
+          "naverCafeId": null,
+          "code": "제클",
+          "name": "제네시스 전차종 · newgenesisdh",
+          "url": "https://cafe.naver.com/newgenesisdh",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:fam100",
+          "naverCafeId": null,
+          "code": "RG3",
+          "name": "G80 · fam100",
+          "url": "https://cafe.naver.com/fam100",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:gruu",
+          "naverCafeId": null,
+          "code": "JX1",
+          "name": "GV80 · gruu",
+          "url": "https://cafe.naver.com/gruu",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:ite",
+          "naverCafeId": null,
+          "code": "GL3",
+          "name": "K8 · ite",
+          "url": "https://cafe.naver.com/ite",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:story77",
+          "naverCafeId": null,
+          "code": "KA4",
+          "name": "카니발 · story77",
+          "url": "https://cafe.naver.com/story77",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "cafe:englishenglish",
+          "naverCafeId": null,
+          "code": "MQ4",
+          "name": "쏘렌토 · englishenglish",
+          "url": "https://cafe.naver.com/englishenglish",
+          "active": true,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        }
+      ],
+      "keywords": [
+        {
+          "id": "keyword:scc",
+          "name": "SCC",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%A0%84%EB%B0%A9%EC%B9%B4%EB%A9%94%EB%9D%BC",
+          "name": "전방카메라",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EA%B2%BD%EA%B3%A0%EB%93%B1",
+          "name": "경고등",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%ED%9B%84%EB%B0%A9",
+          "name": "후방",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%9A%B0%EC%B8%A1",
+          "name": "우측",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%A0%9C%EB%8F%99",
+          "name": "제동",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%8F%A0%EB%A6%BC",
+          "name": "쏠림",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%A0%84%EB%B0%A9%20%EC%B9%B4%EB%A9%94%EB%9D%BC",
+          "name": "전방 카메라",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%9A%B4%EC%A0%84%EC%9E%90%20%EB%B3%B4%EC%A1%B0",
+          "name": "운전자 보조",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%ED%81%AC%EB%A3%A8%EC%A6%88",
+          "name": "크루즈",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%A2%8C%EC%B8%A1",
+          "name": "좌측",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EA%B8%B4%EA%B8%89",
+          "name": "긴급",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%9E%90%EC%9C%A8%20%EC%A3%BC%ED%96%89",
+          "name": "자율 주행",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EB%A0%88%EC%9D%B4%EB%8D%94",
+          "name": "레이더",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%A0%84%EB%B0%A9",
+          "name": "전방",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EC%BB%A8%ED%8A%B8%EB%A1%A4",
+          "name": "컨트롤",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EA%B3%84%EA%B8%B0%ED%8C%90",
+          "name": "계기판",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        },
+        {
+          "id": "keyword:%EB%B3%B4%EC%A1%B0",
+          "name": "보조",
+          "active": true,
+          "deleted": false,
+          "createdAt": "2026-09-30T11:20:07+09:00"
+        }
+      ]
+    },
+    "keywords": [
+      "SCC",
+      "전방카메라",
+      "경고등",
+      "후방",
+      "우측",
+      "제동",
+      "쏠림",
+      "전방 카메라",
+      "운전자 보조",
+      "크루즈",
+      "좌측",
+      "긴급",
+      "자율 주행",
+      "레이더",
+      "전방",
+      "컨트롤",
+      "계기판",
+      "보조"
+    ],
+    "keywordIds": [
+      "keyword:scc",
+      "keyword:%EC%A0%84%EB%B0%A9%EC%B9%B4%EB%A9%94%EB%9D%BC",
+      "keyword:%EA%B2%BD%EA%B3%A0%EB%93%B1",
+      "keyword:%ED%9B%84%EB%B0%A9",
+      "keyword:%EC%9A%B0%EC%B8%A1",
+      "keyword:%EC%A0%9C%EB%8F%99",
+      "keyword:%EC%8F%A0%EB%A6%BC",
+      "keyword:%EC%A0%84%EB%B0%A9%20%EC%B9%B4%EB%A9%94%EB%9D%BC",
+      "keyword:%EC%9A%B4%EC%A0%84%EC%9E%90%20%EB%B3%B4%EC%A1%B0",
+      "keyword:%ED%81%AC%EB%A3%A8%EC%A6%88",
+      "keyword:%EC%A2%8C%EC%B8%A1",
+      "keyword:%EA%B8%B4%EA%B8%89",
+      "keyword:%EC%9E%90%EC%9C%A8%20%EC%A3%BC%ED%96%89",
+      "keyword:%EB%A0%88%EC%9D%B4%EB%8D%94",
+      "keyword:%EC%A0%84%EB%B0%A9",
+      "keyword:%EC%BB%A8%ED%8A%B8%EB%A1%A4",
+      "keyword:%EA%B3%84%EA%B8%B0%ED%8C%90",
+      "keyword:%EB%B3%B4%EC%A1%B0"
+    ],
+    "selectedCafeIds": [
+      "cafe:bestcm",
+      "cafe:iroid",
+      "cafe:cafeclip",
+      "cafe:newgenesisdh",
+      "cafe:fam100",
+      "cafe:gruu",
+      "cafe:ite",
+      "cafe:story77",
+      "cafe:englishenglish"
+    ],
+    "selectedCafes": [
+      "GN7",
+      "MX5",
+      "ME",
+      "제클",
+      "RG3",
+      "JX1",
+      "GL3",
+      "KA4",
+      "MQ4"
+    ],
+    "summaryCafes": [
+      {
+        "id": "cafe:bestcm",
+        "code": "GN7",
+        "name": "그랜저 GN7 · bestcm",
+        "url": "https://cafe.naver.com/bestcm",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:iroid",
+        "code": "MX5",
+        "name": "싼타페 MX5 · iroid",
+        "url": "https://cafe.naver.com/iroid",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:cafeclip",
+        "code": "ME",
+        "name": "아이오닉 · cafeclip",
+        "url": "https://cafe.naver.com/cafeclip",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:newgenesisdh",
+        "code": "제클",
+        "name": "제네시스 전차종 · newgenesisdh",
+        "url": "https://cafe.naver.com/newgenesisdh",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:fam100",
+        "code": "RG3",
+        "name": "G80 · fam100",
+        "url": "https://cafe.naver.com/fam100",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:gruu",
+        "code": "JX1",
+        "name": "GV80 · gruu",
+        "url": "https://cafe.naver.com/gruu",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:ite",
+        "code": "GL3",
+        "name": "K8 · ite",
+        "url": "https://cafe.naver.com/ite",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:story77",
+        "code": "KA4",
+        "name": "카니발 · story77",
+        "url": "https://cafe.naver.com/story77",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      },
+      {
+        "id": "cafe:englishenglish",
+        "code": "MQ4",
+        "name": "쏘렌토 · englishenglish",
+        "url": "https://cafe.naver.com/englishenglish",
+        "active": true,
+        "naverCafeId": null,
+        "createdAt": "2026-09-30T11:20:07+09:00"
+      }
+    ],
+    "range": "최근 24시간",
+    "periodStart": "",
+    "periodEnd": "",
+    "periodDedupeEnabled": true,
+    "parallel": "3",
+    "overlap": "1",
+    "scheduleEnabled": false,
+    "scheduleTime": "01:25",
+    "weekdaysOnly": true,
+    "provider": "codex",
+    "ppi": "125",
+    "summarySlide": true,
+    "rawNote": true,
+    "sendMail": false,
+    "mailTo": "",
+    "mailCc": "",
+    "mailSubject": "자동차 동호회 모니터링 결과",
+    "mailScope": "full",
+    "outputPath": "output_v10",
+    "stepCollect": true,
+    "stepAnalyze": false,
+    "stepPpt": false,
+    "sourceRun": "",
+    "evidence": true,
+    "humanReview": true
+  },
+  "settingsSaved": false,
+  "settingsRevision": 0,
+  "sequence": 0,
+  "activeRun": null,
+  "runs": [],
+  "cursors": {},
+  "nextRun": null,
+  "schedulerMessage": "설정을 저장하면 예약이 활성화됩니다.",
+  "naverAuth": {
+    "state": "unverified",
+    "checkedAt": null
+  },
+  "outlookSender": "",
+  "counts": {
+    "posts": 0,
+    "post_versions": 0,
+    "runs": 0,
+    "analyses": 0,
+    "reviews": 0,
+    "artifacts": 0
+  },
+  "platform": "linux",
+  "legacyRoot": ""
+}

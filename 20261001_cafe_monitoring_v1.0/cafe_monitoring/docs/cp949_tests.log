@@ -1,0 +1,48 @@
+Linux / Python 3.12: default text-file encoding emulated as CP949; not a Windows OS test.
+test_legacy_invalid_request_interval_is_rejected (test_engine_adapter.EngineAdapterTests.test_legacy_invalid_request_interval_is_rejected) ... ok
+test_legacy_optional_interval_defaults_without_editing_original (test_engine_adapter.EngineAdapterTests.test_legacy_optional_interval_defaults_without_editing_original) ... ok
+test_real_adapter_initializes_from_bundled_settings (test_engine_adapter.EngineAdapterTests.test_real_adapter_initializes_from_bundled_settings) ... ok
+test_saved_collection_passes_real_adapter_source_checks (test_engine_adapter.EngineAdapterTests.test_saved_collection_passes_real_adapter_source_checks) ... ok
+test_hash_changed_source_is_excluded_not_promoted_to_verified (test_migration.MigrationTests.test_hash_changed_source_is_excluded_not_promoted_to_verified) ... ok
+test_later_edit_creates_new_immutable_import_snapshot (test_migration.MigrationTests.test_later_edit_creates_new_immutable_import_snapshot) ... ok
+test_missing_source_is_explicit_and_source_run_not_reusable (test_migration.MigrationTests.test_missing_source_is_explicit_and_source_run_not_reusable) ... ok
+test_valid_moved_sources_import_once_and_keep_original_bytes (test_migration.MigrationTests.test_valid_moved_sources_import_once_and_keep_original_bytes) ... ok
+test_changed_linked_ppt_is_rejected_before_os_open (test_runtime.HttpTests.test_changed_linked_ppt_is_rejected_before_os_open) ... ok
+test_key_is_memory_only_and_not_returned_in_state (test_runtime.HttpTests.test_key_is_memory_only_and_not_returned_in_state) ... ok
+test_loopback_check_does_not_use_system_proxy_discovery (test_runtime.HttpTests.test_loopback_check_does_not_use_system_proxy_discovery) ... ok
+test_manually_linked_ppt_can_be_opened (test_runtime.HttpTests.test_manually_linked_ppt_can_be_opened) ... ok
+test_post_requires_token_and_same_origin (test_runtime.HttpTests.test_post_requires_token_and_same_origin) ... ok
+test_real_http_run_state_review_and_stats (test_runtime.HttpTests.test_real_http_run_state_review_and_stats) ... ok
+test_rejected_incomplete_body_has_bounded_wait (test_runtime.HttpTests.test_rejected_incomplete_body_has_bounded_wait) ... ok
+test_rejected_post_waits_for_split_body (test_runtime.HttpTests.test_rejected_post_waits_for_split_body) ... ok
+test_untrusted_host_and_path_traversal_are_rejected (test_runtime.HttpTests.test_untrusted_host_and_path_traversal_are_rejected) ... ok
+test_artifact_modified_or_removed_cannot_be_opened (test_runtime.RuntimeTests.test_artifact_modified_or_removed_cannot_be_opened) ... ok
+test_backup_closes_connections_on_failure (test_runtime.RuntimeTests.test_backup_closes_connections_on_failure) ... ok
+test_backup_closes_connections_on_success (test_runtime.RuntimeTests.test_backup_closes_connections_on_success) ... ok
+test_calendar_scheduler_weekend_and_one_daily_execution (test_runtime.RuntimeTests.test_calendar_scheduler_weekend_and_one_daily_execution) ... ok
+test_closed_server_does_not_replay_missed_schedule (test_runtime.RuntimeTests.test_closed_server_does_not_replay_missed_schedule) ... ok
+test_composite_article_identity_and_keyword_counts (test_runtime.RuntimeTests.test_composite_article_identity_and_keyword_counts) ... ok
+test_concurrent_clicks_create_only_one_run (test_runtime.RuntimeTests.test_concurrent_clicks_create_only_one_run) ... ok
+test_cursors_per_cafe_and_custom_range_does_not_advance (test_runtime.RuntimeTests.test_cursors_per_cafe_and_custom_range_does_not_advance) ... ok
+test_database_backup_is_readable (test_runtime.RuntimeTests.test_database_backup_is_readable) ... ok
+test_db_created_empty_no_sample_posts (test_runtime.RuntimeTests.test_db_created_empty_no_sample_posts) ... ok
+test_dedupe_adds_matches_and_changed_body_creates_version (test_runtime.RuntimeTests.test_dedupe_adds_matches_and_changed_body_creates_version) ... ok
+test_dynamic_dashboard_and_summary_toggle (test_runtime.RuntimeTests.test_dynamic_dashboard_and_summary_toggle) ... ok
+test_full_pipeline_preserves_pre_render_snapshot (test_runtime.RuntimeTests.test_full_pipeline_preserves_pre_render_snapshot) ... ok
+test_immutable_settings_snapshot_and_optimistic_edit (test_runtime.RuntimeTests.test_immutable_settings_snapshot_and_optimistic_edit) ... ok
+test_mail_uncertainty_is_not_automatically_replayed (test_runtime.RuntimeTests.test_mail_uncertainty_is_not_automatically_replayed) ... ok
+test_old_import_cannot_replace_newer_version (test_runtime.RuntimeTests.test_old_import_cannot_replace_newer_version) ... ok
+test_one_worker_and_idempotent_run_request (test_runtime.RuntimeTests.test_one_worker_and_idempotent_run_request) ... ok
+test_partial_cafe_failure_retains_successful_cursor (test_runtime.RuntimeTests.test_partial_cafe_failure_retains_successful_cursor) ... ok
+test_ppt_only_reuses_exact_run_and_never_calls_analysis_or_mail (test_runtime.RuntimeTests.test_ppt_only_reuses_exact_run_and_never_calls_analysis_or_mail) ... ok
+test_review_is_analysis_specific_persistent_and_visible_in_stats (test_runtime.RuntimeTests.test_review_is_analysis_specific_persistent_and_visible_in_stats) ... ok
+test_server_restart_recovers_interrupted_run (test_runtime.RuntimeTests.test_server_restart_recovers_interrupted_run) ... ok
+test_settings_fixed_policies_validation_and_normalization (test_runtime.RuntimeTests.test_settings_fixed_policies_validation_and_normalization) ... ok
+test_since_previous_requires_initial_per_cafe_cursor (test_runtime.RuntimeTests.test_since_previous_requires_initial_per_cafe_cursor) ... ok
+test_stop_preserves_completed_collection (test_runtime.RuntimeTests.test_stop_preserves_completed_collection) ... ok
+test_unsaved_execution_catalog_does_not_replace_saved_catalog (test_runtime.RuntimeTests.test_unsaved_execution_catalog_does_not_replace_saved_catalog) ... ok
+
+----------------------------------------------------------------------
+Ran 42 tests in 5.123s
+
+OK

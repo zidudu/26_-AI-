@@ -1,0 +1,25 @@
+{
+  "cafe_id": "20179506",
+  "input_dirs": [
+    "output_v5",
+    "output_v4",
+    "output_v3",
+    "output_v2",
+    "output"
+  ],
+  "output_dir": "output_v6",
+  "model": "gpt-5.4-mini",
+  "reasoning_effort": "low",
+  "default_count": 5,
+  "max_output_tokens": 6000,
+  "timeout_seconds": 120,
+  "max_body_chars": 20000,
+  "focus_topics": [
+    "전방 카메라",
+    "후방·측방 카메라",
+    "레이더",
+    "운전자 보조 기능",
+    "제동",
+    "조향"
+  ]
+}

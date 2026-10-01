@@ -1,0 +1,242 @@
+{
+  "pages": [
+    {
+      "board": "전체 게시판",
+      "current_page": "1",
+      "document_url": "https://cafe.naver.com/f-e/cafes/20179506/menus/0?q=%EB%B6%88%EB%9F%89&ta=SUBJECT&page=1&od=LATEST",
+      "empty": false,
+      "next_group": true,
+      "page_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "pagination_present": true,
+      "period": "전체기간",
+      "query_values": [
+        "불량",
+        "불량"
+      ],
+      "rows": [
+        {
+          "date": "16:59",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5497665",
+          "number": "5497665",
+          "title": "조립불량 유상"
+        },
+        {
+          "date": "14:28",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5497463",
+          "number": "5497463",
+          "title": "대전 블루핸즈 도장불량 판별가능한곳"
+        },
+        {
+          "date": "10:22",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5497069",
+          "number": "5497069",
+          "title": "웨더스트립 불량으로 보이시나요?"
+        },
+        {
+          "date": "2026.09.10.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5496829",
+          "number": "5496829",
+          "title": "신차 출고 후 시트 불량 발견"
+        },
+        {
+          "date": "2026.09.07.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5492956",
+          "number": "5492956",
+          "title": "신차 인수후 도장불량"
+        },
+        {
+          "date": "2026.09.04.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5491748",
+          "number": "5491748",
+          "title": "누유 및 디스크 불량?.. 보증 가능한가요?"
+        },
+        {
+          "date": "2026.09.03.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5490814",
+          "number": "5490814",
+          "title": "생산불량 범퍼 때문에 짜증이.."
+        },
+        {
+          "date": "2026.09.02.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5489343",
+          "number": "5489343",
+          "title": "이정도 마감불량도 불량인가요?"
+        },
+        {
+          "date": "2026.09.01.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5488956",
+          "number": "5488956",
+          "title": "Tm 조수석 사이드미러 상하조절 불량"
+        },
+        {
+          "date": "2026.08.30.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5487151",
+          "number": "5487151",
+          "title": "출고 a필러쪽 불량"
+        },
+        {
+          "date": "2026.08.22.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5480288",
+          "number": "5480288",
+          "title": "사이드미러 폴딩 및 모션 작동불량"
+        },
+        {
+          "date": "2026.08.16.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5475444",
+          "number": "5475444",
+          "title": "조립불량"
+        },
+        {
+          "date": "2026.08.14.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5474245",
+          "number": "5474245",
+          "title": "싼타페 tm 본네트 도장 작업 불량인데..."
+        },
+        {
+          "date": "2026.08.05.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5468165",
+          "number": "5468165",
+          "title": "스피커 간헐적 출력 불량 ???"
+        },
+        {
+          "date": "2026.08.04.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5467613",
+          "number": "5467613",
+          "title": "출고된 차량 표면 상태불량"
+        }
+      ],
+      "scope": "제목만",
+      "sort": "최신순"
+    },
+    {
+      "board": "전체 게시판",
+      "current_page": "2",
+      "document_url": "https://cafe.naver.com/f-e/cafes/20179506/menus/0?q=%EB%B6%88%EB%9F%89&ta=SUBJECT&page=2&od=LATEST",
+      "empty": false,
+      "next_group": true,
+      "page_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "pagination_present": true,
+      "period": "전체기간",
+      "query_values": [
+        "불량",
+        "불량"
+      ],
+      "rows": [
+        {
+          "date": "2026.07.30.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5464781",
+          "number": "5464781",
+          "title": "트렁크 도어 내부 도장 불량"
+        },
+        {
+          "date": "2026.07.27.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5463458",
+          "number": "5463458",
+          "title": "브이쿨vk 썬팅 시공 불량일까요?"
+        },
+        {
+          "date": "2026.07.26.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5462790",
+          "number": "5462790",
+          "title": "찜통 더위에 1열 열선,통풍시트 작동 불량, 조수석 먹통"
+        },
+        {
+          "date": "2026.07.25.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5462377",
+          "number": "5462377",
+          "title": "고질병 클락션( 혼 불량)"
+        },
+        {
+          "date": "2026.07.25.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5462333",
+          "number": "5462333",
+          "title": "루프렉 불량"
+        },
+        {
+          "date": "2026.07.19.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5459343",
+          "number": "5459343",
+          "title": "요거 조립불량?인가요"
+        },
+        {
+          "date": "2026.07.18.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5458895",
+          "number": "5458895",
+          "title": "빌트인캠2 녹화시간 불량"
+        },
+        {
+          "date": "2026.07.16.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5458361",
+          "number": "5458361",
+          "title": "6개월된 신차 본네트 도장불량상태좀 봐주세요"
+        },
+        {
+          "date": "2026.07.16.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5458340",
+          "number": "5458340",
+          "title": "스피커조립불량 해결방법"
+        },
+        {
+          "date": "2026.07.15.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5457764",
+          "number": "5457764",
+          "title": "헤드라이트 도장불량 이런 결함 있으신분 또 있으신가요?"
+        },
+        {
+          "date": "2026.07.14.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5457618",
+          "number": "5457618",
+          "title": "전조등 불량으로 보증수리 받았습니다"
+        },
+        {
+          "date": "2026.07.14.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5457568",
+          "number": "5457568",
+          "title": "정비후 불량?"
+        },
+        {
+          "date": "2026.07.13.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5456720",
+          "number": "5456720",
+          "title": "썬팅 시공 불량?"
+        },
+        {
+          "date": "2026.07.12.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5456647",
+          "number": "5456647",
+          "title": "워셔액 넣다가 마감불량?? 인거같은데 문제 없나용??"
+        },
+        {
+          "date": "2026.07.11.",
+          "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5456283",
+          "number": "5456283",
+          "title": "2열 자동 폴딩 사고 불량"
+        }
+      ],
+      "scope": "제목만",
+      "sort": "최신순"
+    }
+  ]
+}

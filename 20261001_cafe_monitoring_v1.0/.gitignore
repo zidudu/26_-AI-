@@ -1,0 +1,15 @@
+# Local Python environments and caches
+cafe_monitoring/.venv/
+cafe_monitoring/.venv_*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated databases, login sessions and output files
+cafe_monitoring/data_v10/
+cafe_monitoring/engine/data/
+cafe_monitoring/engine/output_*/
+
+# Local secrets
+.env
+.env.*

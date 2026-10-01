@@ -1,0 +1,121 @@
+{
+  "found": {
+    "board": "전체 게시판",
+    "current_page": "1",
+    "document_url": "https://cafe.naver.com/f-e/cafes/20179506/menus/0?q=%EA%B3%A0%EC%9E%A5&ta=SUBJECT&page=1&od=LATEST",
+    "empty": false,
+    "period": "전체기간",
+    "query_values": [
+      "고장",
+      "고장"
+    ],
+    "rows": [
+      {
+        "date": "15:01",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5497499",
+        "number": "5497499",
+        "title": "더뉴(tm) 클락션 고장"
+      },
+      {
+        "date": "2026.09.09.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5495715",
+        "number": "5495715",
+        "title": "실내무등 고장일까요?"
+      },
+      {
+        "date": "2026.09.07.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5493565",
+        "number": "5493565",
+        "title": "에어컨 고장 같은 증상이신분들 도와주세요"
+      },
+      {
+        "date": "2026.09.06.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5492791",
+        "number": "5492791",
+        "title": "Mx5 방향지시등 카메라 고장..."
+      },
+      {
+        "date": "2026.09.04.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5491156",
+        "number": "5491156",
+        "title": "에어컨 고장??? 미지근한 바람"
+      },
+      {
+        "date": "2026.09.03.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5490239",
+        "number": "5490239",
+        "title": "싼타페TM EOP고장"
+      },
+      {
+        "date": "2026.08.31.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5488061",
+        "number": "5488061",
+        "title": "센타페시아 램프?고장 문의입니다"
+      },
+      {
+        "date": "2026.08.27.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5484557",
+        "number": "5484557",
+        "title": "TM2018 실내안테나1 이상 고장코드"
+      },
+      {
+        "date": "2026.08.26.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5483722",
+        "number": "5483722",
+        "title": "더뉴싼타페(TM)하이브리드 클락션(혼) 고장"
+      },
+      {
+        "date": "2026.08.24.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5481731",
+        "number": "5481731",
+        "title": "엔진오일 교환 시 주입량과 터보 고장?"
+      },
+      {
+        "date": "2026.08.23.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5481189",
+        "number": "5481189",
+        "title": "이건 결함일까요 고장일까요"
+      },
+      {
+        "date": "2026.08.21.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5479968",
+        "number": "5479968",
+        "title": "싼타페TM 전동트렁크 고장 증상 문의"
+      },
+      {
+        "date": "2026.08.20.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5478741",
+        "number": "5478741",
+        "title": "실내 무드 조명 고장"
+      },
+      {
+        "date": "2026.08.20.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5478561",
+        "number": "5478561",
+        "title": "크락션 고장인거 같은디 소리가 이상합니다"
+      },
+      {
+        "date": "2026.08.18.",
+        "href": "https://cafe.naver.com/f-e/cafes/20179506/articles/5477019",
+        "number": "5477019",
+        "title": "고장났는데 부품수급불가 ㅡㅡ"
+      }
+    ],
+    "scope": "제목만",
+    "sort": "최신순"
+  },
+  "empty": {
+    "board": "전체 게시판",
+    "current_page": "1",
+    "document_url": "https://cafe.naver.com/f-e/cafes/20179506/menus/0?q=v2_no_result_7f39c0b4&ta=SUBJECT&page=1&od=LATEST",
+    "empty": true,
+    "period": "전체기간",
+    "query_values": [
+      "v2_no_result_7f39c0b4",
+      "v2_no_result_7f39c0b4"
+    ],
+    "rows": [],
+    "scope": "제목만",
+    "sort": "최신순"
+  }
+}

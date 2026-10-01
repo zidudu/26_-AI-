@@ -1,0 +1,10 @@
+{
+  "cafe_id": "20179506",
+  "cafe_slug": "iroid",
+  "keyword": "불량",
+  "target_url": "https://cafe.naver.com/f-e/cafes/20179506/articles/4528140",
+  "browser": "chromium",
+  "profile_dir": "data/browser_profile",
+  "output_dir": "output_v2",
+  "timeout_seconds": 40
+}
