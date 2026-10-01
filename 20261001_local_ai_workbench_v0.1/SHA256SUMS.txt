@@ -1,2 +1,2 @@
-36b795b0c0cd25cb3b0392ad4c90a2dc3872a5b508c92c491b59bc5b59947437  local-ai-workbench-share-2026-10-01.zip
+54eec313ca2cd97f3708d2b0acaa7ce8ed20cc994a82429694d92752177fd103  local-ai-workbench-share-2026-10-01.zip
 

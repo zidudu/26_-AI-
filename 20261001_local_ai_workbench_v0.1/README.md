@@ -37,27 +37,23 @@ Ollama 모델로 일반 대화, 두 모델 비교, 로컬 문서 질문을 할 �
 ```mermaid
 flowchart TB
     U["사용자"] --> W["React 웹 화면"]
-    W --> API["FastAPI · 127.0.0.1:8768"]
+    W --> API["FastAPI"]
 
-    API --> C["일반 대화·모델 비교"]
-    API --> F["폴더 색인·문서 질문"]
-    API --> L["작업 상태·실행 로그 조회"]
+    API --> C["대화·비교 API"]
+    API --> F["색인·질문 API"]
+    API --> L["상태·로그 API"]
 
-    C -->|대화·비교 추론| ML["model_lock"]
-    F -->|문서 답변 추론| ML
-    ML --> CM["Ollama 대화 모델<br/>Gemma 4 · Qwen 3.6 · 선택적 Qwen 3 8B"]
+    C --> ML["대화 모델 잠금"]
+    F --> ML
+    ML --> CM["Ollama 대화 모델"]
 
-    F -->|색인·질문 벡터| EM["Ollama 임베딩 모델<br/>Qwen 3 Embedding"]
-    F -->|원본 읽기| DOC["사용자가 지정한 문서 폴더"]
-    F -->|색인 쓰기·읽기| IDX[("SQLite 문서 색인")]
-    C -->|비교 결과 저장| HIS[("SQLite 비교 기록")]
-
-    C -.->|진행 단계| ACT["서버 메모리<br/>작업 상태·최근 로그"]
-    F -.->|진행 단계| ACT
-    L -->|조회| ACT
+    F --> EM["Ollama 임베딩 모델"]
+    F --> IDX[("SQLite 문서 색인")]
+    C --> HIS[("SQLite 비교 기록")]
+    L --> ACT["서버 메모리의 작업 상태·로그"]
 ```
 
-웹 서버와 Ollama는 이 PC의 루프백 주소에서 동작합니다. `model_lock`은 대화·비교·문서 답변의 대화 모델 호출을 직렬화합니다. 색인과 비교 기록은 `%LOCALAPPDATA%\LocalAIWorkbench`에 저장되고, 작업 상태와 최근 500건의 로그는 서버 메모리에만 남습니다.
+웹 서버(`127.0.0.1:8768`)와 Ollama(`127.0.0.1:11434`)는 이 PC에서 동작합니다. 대화 모델은 Gemma 4·Qwen 3.6·선택적 Qwen 3 8B이고, 임베딩 모델은 Qwen 3 Embedding입니다. `model_lock`은 대화·비교·문서 답변의 대화 모델 호출을 직렬화합니다. 색인과 비교 기록은 `%LOCALAPPDATA%\LocalAIWorkbench`에 저장되고, 작업 상태와 최근 500건의 로그는 서버 메모리에만 남습니다.
 
 ### 2. 모델 비교: 추론·화면 갱신·기록의 분기
 
