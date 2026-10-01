@@ -21,6 +21,40 @@
 - 실행 이력 조회, 저장된 자료로 PPT 재생성, 데이터 조회·통계·Excel 내보내기
 - PowerPoint 보고서와 미리보기 생성, Classic Outlook을 통한 메일 발송
 
+## 시스템 구조
+
+웹 운영 화면은 로컬 Python API 서버를 통해 설정과 실행 이력을 조회합니다. 실행 관리자는 별도 워커 프로세스를 실행하며, 워커가 기존 엔진을 연결해 수집·분석·PPT·메일 처리를 수행합니다.
+
+```mermaid
+flowchart TD
+    UI["웹 운영 화면 · 설정 / 실행 이력 / 데이터 분석"]
+    API["로컬 Python API 서버 · 127.0.0.1:8766"]
+    JOB["실행 관리자 · 중복 실행 방지 / 중지 / KST 예약"]
+    WORKER["별도 Python 워커 · V9.6.7 엔진 연결"]
+    DB[("SQLite · 설정 / 실행 / 원문 버전 / 분석 / 검토 / 산출물 기록")]
+    FILES["결과 파일 · 원문 JSON / 캡처 / 분석 / PPT / 미리보기"]
+
+    subgraph PIPE["선택한 단계 실행 · 전체 실행의 기본 처리 순서"]
+        COLLECT["네이버 카페 수집 · Playwright + Chrome"]
+        AI["AI 분석 · Codex CLI 또는 OpenAI API"]
+        PPT["보고서 생성 · 데스크톱 PowerPoint"]
+        MAIL["PPT 첨부 메일 발송 · Classic Outlook"]
+        COLLECT --> AI --> PPT --> MAIL
+    end
+
+    UI <-->|"설정 / 요청 / 상태 / 이력"| API
+    API <-->|"조회 / 저장"| DB
+    API --> JOB --> WORKER
+    WORKER -->|"처리 단계 제어"| COLLECT
+    WORKER -->|"실행 상태 / 로그 / 결과 기록"| DB
+    COLLECT -->|"원문 / 캡처"| FILES
+    AI -->|"분석 결과"| FILES
+    PPT -->|"PPT / 미리보기"| FILES
+    API -->|"등록 파일의 존재 / 해시 확인 후 제공"| FILES
+```
+
+수집·AI·PPT·메일 단계는 실행 설정에 따라 선택합니다. **PPT만 재생성**하는 경우에는 저장된 실행의 원문·분석을 재사용하며, 새 수집·AI 분석·메일 발송은 수행하지 않습니다. 실제 수집과 Office 연동은 Windows PC에서 실행합니다.
+
 ## 실행 방법
 
 Windows에서 Python 3.11 이상(`py` 실행기 포함)과 Chrome을 준비합니다. Codex 분석에는 Codex CLI와 본인 ChatGPT 로그인이, PPT 생성에는 데스크톱 PowerPoint가, 메일 발송에는 Classic Outlook과 계정 설정이 필요합니다. 네이버 대상 카페 접근 권한도 필요합니다.
