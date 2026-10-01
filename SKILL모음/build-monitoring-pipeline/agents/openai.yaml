@@ -1,0 +1,13 @@
+interface:
+  display_name: 범용 모니터링 자동화 설계
+  short_description: 수집부터 분석·보고·이력까지 재사용 가능한 자동화 흐름을 설계합니다.
+  default_prompt: $build-monitoring-pipeline으로 내 반복 모니터링 업무를 자동화하는 구조를 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

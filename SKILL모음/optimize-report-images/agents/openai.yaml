@@ -1,0 +1,13 @@
+interface:
+  display_name: 보고서 이미지 용량 최적화
+  short_description: 원본을 보존하면서 실제 배치 크기에 맞춰 이미지 해상도를 줄입니다.
+  default_prompt: $optimize-report-images 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,13 @@
+interface:
+  display_name: 원문·버전·실행 이력 보존
+  short_description: 원문과 변경 버전을 보존하고 실행 이력·백업·가져오기를 설계합니다.
+  default_prompt: $preserve-versioned-records 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

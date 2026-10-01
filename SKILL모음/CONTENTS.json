@@ -1,0 +1,257 @@
+{
+  "skill_count": 11,
+  "script_count": 6,
+  "scope": "Extracted skill files only; README, manifest, checksums and download ZIP excluded",
+  "files": [
+    {
+      "path": "analyze-evidence-records/SKILL.md",
+      "size": 1920,
+      "sha256": "91b01240b788a928e0d125e0f2e390449013f9a10c8045a51db2f429b666e6ed"
+    },
+    {
+      "path": "analyze-evidence-records/agents/openai.yaml",
+      "size": 431,
+      "sha256": "ced11e285c0a02a3ea7f963d1b98466f649bde7836e2de1209bbe83efd0b28b9"
+    },
+    {
+      "path": "analyze-evidence-records/assets/icon.svg",
+      "size": 420,
+      "sha256": "e9301497fa98ef56aaca7ede0857b9a18dc06c34040f0679c609a6bf49b1d38b"
+    },
+    {
+      "path": "analyze-evidence-records/references/contracts.md",
+      "size": 2120,
+      "sha256": "73d064e5c59ffce043318655432f1b04868217cf3ec9d8e1b5ad132ab87d7d55"
+    },
+    {
+      "path": "analyze-evidence-records/scripts/validate_evidence.py",
+      "size": 2337,
+      "sha256": "2a0b0300de603487014757a36178fbe405ea910a8250fff00ad103ade8318e7b"
+    },
+    {
+      "path": "build-local-automation-console/SKILL.md",
+      "size": 1978,
+      "sha256": "0208a4670ba58ef7812c9487258ecf7b9e96fd3c9446be013911e3ed114f7a68"
+    },
+    {
+      "path": "build-local-automation-console/agents/openai.yaml",
+      "size": 451,
+      "sha256": "745b33fc9aad3724e7fa6501cb7850487f4e045689a82cbcb1a71f9671a4fe82"
+    },
+    {
+      "path": "build-local-automation-console/assets/icon.svg",
+      "size": 2922,
+      "sha256": "fbb6c7314886573cd56c3f86884a65afe3b5f4ce4bf1ee6baeeeb1fa50aea7a4"
+    },
+    {
+      "path": "build-local-automation-console/references/contracts.md",
+      "size": 1989,
+      "sha256": "561b9400d23ed155195b8e308ac61d4cce278ec9c281b4dc5cf560a296e6850f"
+    },
+    {
+      "path": "build-monitoring-pipeline/SKILL.md",
+      "size": 2713,
+      "sha256": "94befe009eb7548788650621bf6f77cc417db896084e26e432364e91feee0f73"
+    },
+    {
+      "path": "build-monitoring-pipeline/agents/openai.yaml",
+      "size": 470,
+      "sha256": "d904d86cd7a1518d6692b0d396e5745bb803a7f7c25758cd9b188cc2b3ef2a89"
+    },
+    {
+      "path": "build-monitoring-pipeline/assets/icon.svg",
+      "size": 786,
+      "sha256": "72343cc4b66256ae7de8474c7cad14e711ad84a94c473732a44f96a56124c42d"
+    },
+    {
+      "path": "build-monitoring-pipeline/references/contracts.md",
+      "size": 1915,
+      "sha256": "b6f3fce540f11ad9853e501a5e108f0c8b7474fae89a5b3181803495fb26d4c5"
+    },
+    {
+      "path": "collect-incremental-web/SKILL.md",
+      "size": 2064,
+      "sha256": "c983207495e8450dbb5f69c61eb34548b9490ef4bbd162fad98b69bebe6d9f06"
+    },
+    {
+      "path": "collect-incremental-web/agents/openai.yaml",
+      "size": 443,
+      "sha256": "999a195ed5fb6fabc073a54c99f24676e08166d8758f1d57756ecb5200ca381f"
+    },
+    {
+      "path": "collect-incremental-web/assets/icon.svg",
+      "size": 843,
+      "sha256": "0cdb7990dea3ad89ead04743eeac2dc58c119fb0b8b4a01499a21237f155bc1a"
+    },
+    {
+      "path": "collect-incremental-web/references/contracts.md",
+      "size": 2234,
+      "sha256": "6894cfce6df8d2c4ec51c0a633b3b2d4681b2d9240b3a72d6ee1bae215164131"
+    },
+    {
+      "path": "collect-incremental-web/scripts/plan_window.py",
+      "size": 2463,
+      "sha256": "69231a843520994f79a38a3945b1597aca9b11671970dc3dc35c09180c363110"
+    },
+    {
+      "path": "create-evidence-ppt/SKILL.md",
+      "size": 2082,
+      "sha256": "55bbab9c71d9d7d0531ca80760ccd3c4224422827f90046318b29b84d96f2671"
+    },
+    {
+      "path": "create-evidence-ppt/agents/openai.yaml",
+      "size": 436,
+      "sha256": "e9cee535cf91fe5908b6211e4d8ba336e13d0930f57b950d9c82a6da39699919"
+    },
+    {
+      "path": "create-evidence-ppt/assets/icon.svg",
+      "size": 420,
+      "sha256": "e9301497fa98ef56aaca7ede0857b9a18dc06c34040f0679c609a6bf49b1d38b"
+    },
+    {
+      "path": "create-evidence-ppt/references/contracts.md",
+      "size": 1771,
+      "sha256": "711772fb015d275f72c812d653c79828331e275435700cda27e7aeca053c1460"
+    },
+    {
+      "path": "deliver-outlook-reports/SKILL.md",
+      "size": 1950,
+      "sha256": "77e9d650f18c443087b4b418e58725e22d68d8281023d7d9d29d6178d5c59ec2"
+    },
+    {
+      "path": "deliver-outlook-reports/agents/openai.yaml",
+      "size": 438,
+      "sha256": "51fd2d5ffcc8e857fd8d2d8caf2ad1ceda1e5af62835b9988122dc08b4497311"
+    },
+    {
+      "path": "deliver-outlook-reports/assets/icon.svg",
+      "size": 2922,
+      "sha256": "fbb6c7314886573cd56c3f86884a65afe3b5f4ce4bf1ee6baeeeb1fa50aea7a4"
+    },
+    {
+      "path": "deliver-outlook-reports/references/contracts.md",
+      "size": 1690,
+      "sha256": "9b7d03243c48580d052901f7cea1e4a2dbbae43d899ba35d8e4eeb96cdc5e1de"
+    },
+    {
+      "path": "export-monitoring-analytics/SKILL.md",
+      "size": 1826,
+      "sha256": "fd2a644ee50980cea0df4b23ee07d7244d3b9f57ad907c59092f0750972d7288"
+    },
+    {
+      "path": "export-monitoring-analytics/agents/openai.yaml",
+      "size": 450,
+      "sha256": "db3d11d8b691841d1d76bb7772a22178481ef805e6baaa383c2f41c0f733b85c"
+    },
+    {
+      "path": "export-monitoring-analytics/assets/icon.svg",
+      "size": 420,
+      "sha256": "e9301497fa98ef56aaca7ede0857b9a18dc06c34040f0679c609a6bf49b1d38b"
+    },
+    {
+      "path": "export-monitoring-analytics/references/contracts.md",
+      "size": 1812,
+      "sha256": "2a795802ef1bd221d3600c731d0e60643919e6740bbcb8358a5f430c4aa35ae1"
+    },
+    {
+      "path": "export-monitoring-analytics/scripts/export_records.py",
+      "size": 4266,
+      "sha256": "a8cc03084c145545d68666698c458a06677a532f4b1c3464e227ea79b510c482"
+    },
+    {
+      "path": "integrate-cli-ai/SKILL.md",
+      "size": 2251,
+      "sha256": "de0262617ea9ffbd88e11e26c15db157960ca0d2157239ffb3e54a1610ca163e"
+    },
+    {
+      "path": "integrate-cli-ai/agents/openai.yaml",
+      "size": 421,
+      "sha256": "789165ba6d828113bde404058d9613cd4550c12f834b0e1ac910365949e85ff2"
+    },
+    {
+      "path": "integrate-cli-ai/assets/icon.svg",
+      "size": 1738,
+      "sha256": "8936b24f674a1250d999e2c2b5901374fb4240426f32bd1ae340c352a90d617d"
+    },
+    {
+      "path": "integrate-cli-ai/references/contracts.md",
+      "size": 1705,
+      "sha256": "b361c5488f9983d3bf03ad02a41efd9896cec5e09b1fffafd85f72079c513e75"
+    },
+    {
+      "path": "optimize-report-images/SKILL.md",
+      "size": 1678,
+      "sha256": "13479fd7cae2ced059680ad4bdeed5d483d7c39312bf48ad950a2031fb355dd9"
+    },
+    {
+      "path": "optimize-report-images/agents/openai.yaml",
+      "size": 443,
+      "sha256": "69b769d75d30110d9e19be01458ebea8f92d5ffcecdfa342baf4c4455017a39d"
+    },
+    {
+      "path": "optimize-report-images/assets/icon.svg",
+      "size": 2922,
+      "sha256": "fbb6c7314886573cd56c3f86884a65afe3b5f4ce4bf1ee6baeeeb1fa50aea7a4"
+    },
+    {
+      "path": "optimize-report-images/references/contracts.md",
+      "size": 1420,
+      "sha256": "4204bf078c4f8fd25d94e78e95e826d69106e64fc5f881338a7185356f562f88"
+    },
+    {
+      "path": "optimize-report-images/scripts/optimize_image.py",
+      "size": 2312,
+      "sha256": "b45e872436b923c5b2a3b44847ed81559a7a2e7d9ab5fde5fd1c978511aa1889"
+    },
+    {
+      "path": "package-windows-automation/SKILL.md",
+      "size": 2102,
+      "sha256": "3f882afb021ed6e85df977d8f03c71f2eccf218ff321541d9d1ff2918c7af252"
+    },
+    {
+      "path": "package-windows-automation/agents/openai.yaml",
+      "size": 444,
+      "sha256": "2285eea81b1d1fb56f5e11ef60918f23e1dae499457c25f05fefe793b04f0c44"
+    },
+    {
+      "path": "package-windows-automation/assets/icon.svg",
+      "size": 1738,
+      "sha256": "8936b24f674a1250d999e2c2b5901374fb4240426f32bd1ae340c352a90d617d"
+    },
+    {
+      "path": "package-windows-automation/references/contracts.md",
+      "size": 2003,
+      "sha256": "e99f3ce5efa6678e91b2721f0966c45c99b97f70b80320a8a20911431a36cbe6"
+    },
+    {
+      "path": "package-windows-automation/scripts/verify_zip.py",
+      "size": 2852,
+      "sha256": "382d92b118942efaa35483953ab930744da92807826f13ff8fc66e4ae6d6221b"
+    },
+    {
+      "path": "preserve-versioned-records/SKILL.md",
+      "size": 1936,
+      "sha256": "0a71ddd82bc320bb56b8ba40e9358421acb60631e915c723c57a80c649646324"
+    },
+    {
+      "path": "preserve-versioned-records/agents/openai.yaml",
+      "size": 449,
+      "sha256": "2ad46d78757ea3226cc4ca8ea76330dc4dce7150d3026e162e200e7c504f119e"
+    },
+    {
+      "path": "preserve-versioned-records/assets/icon.svg",
+      "size": 420,
+      "sha256": "e9301497fa98ef56aaca7ede0857b9a18dc06c34040f0679c609a6bf49b1d38b"
+    },
+    {
+      "path": "preserve-versioned-records/references/contracts.md",
+      "size": 2002,
+      "sha256": "604b369debde7ed309eebe68501c1812f7ba0d6db29d95a05cae1012a302fd96"
+    },
+    {
+      "path": "preserve-versioned-records/scripts/version_store.py",
+      "size": 4417,
+      "sha256": "e84c705312cbb05d631f25a846d62c21a6014900ebfed70d1903e5a2ec3eeac2"
+    }
+  ]
+}
