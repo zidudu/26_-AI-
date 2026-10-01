@@ -1,1 +1,2 @@
 6c9b2084554f1da56bce7f9696089ebed277c7c9201b2b66a3357439039364b7  Pin_Archive_1.0.1_stabilized.zip
+61b883a35bf8fd0892388060dcdf467b837cb3133b8098f59b22ab03887e25ba  Pin_Archive_1.0.1_chatgpt_gallery.zip
