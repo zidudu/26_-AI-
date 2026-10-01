@@ -4,7 +4,7 @@
 
 ## 다운로드
 
-- [공유 ZIP](releases/arca-archive-2.2.1-share-20261001.zip)
+- [공유 ZIP](releases/arca-archive-2.2.1-share-20261002.zip)
 - [SHA-256 검사값](SHA256SUMS.txt)
 - ZIP을 풀고 `install.bat`를 실행한 뒤 `start.bat`로 서버를 시작합니다. Python 3.11 이상과 Chrome이 필요합니다.
 
@@ -30,17 +30,17 @@ flowchart LR
 
 ## 실제 실행 화면
 
-2026-10-01 로컬 서버(2.2.1)에서 촬영했습니다. 화면의 집계와 상태는 촬영 시점 값입니다.
+2026-10-02 격리된 테스트 인스턴스(2.2.1)에서 촬영했습니다. **가상 게시글 12개와 코드로 만든 도형 이미지**만 사용했습니다. 운영 DB·실제 게시글·원본 미디어는 화면과 ZIP에 포함하지 않았습니다. 화면의 집계는 테스트 데이터의 값입니다.
 
 | 상태 화면 | 채널 관리 |
 | --- | --- |
-| ![상태 화면](screenshots/01-dashboard.png) | ![채널 관리](screenshots/02-channels.png) |
-| 실행 기록 | 대기 진단 |
-| ![실행 기록](screenshots/03-runs.png) | ![대기 진단](screenshots/06-backlog.png) |
-| 디시인사이드 미디어 | 디시인사이드 게시글 |
-| ![디시인사이드 미디어](screenshots/07-dc-media.png) | ![디시인사이드 게시글](screenshots/08-dc-articles.png) |
-
-이미지에는 실제 화면의 공개 게시글 제목과 썸네일이 포함될 수 있습니다. 수집 사이트의 콘텐츠 권리는 각 원저작자에게 있습니다.
+| ![테스트 상태 화면](screenshots/01-demo-dashboard.png) | ![테스트 채널 관리](screenshots/02-demo-channels.png) |
+| 게시글 목록 | 게시글 상세 |
+| ![가상 게시글 목록](screenshots/03-demo-articles.png) | ![가상 게시글 상세](screenshots/08-demo-article-detail.png) |
+| 미디어 | 북마크 |
+| ![도형 이미지만 표시한 미디어](screenshots/04-demo-media.png) | ![도형 이미지만 표시한 북마크](screenshots/05-demo-bookmarks.png) |
+| 대기 진단 | 실행 기록 |
+| ![가상 대기 항목](screenshots/06-demo-backlog.png) | ![가상 실행 기록](screenshots/07-demo-runs.png) |
 
 ## 배포 범위
 
