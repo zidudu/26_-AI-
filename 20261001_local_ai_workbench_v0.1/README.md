@@ -28,60 +28,82 @@ Ollama 모델로 일반 대화, 두 모델 비교, 로컬 문서 질문을 할 �
 
 설치된 Ollama 모델로 일반 대화를 하거나, 두 모델을 같은 질문으로 비교하고, 선택한 폴더의 문서를 검색해 출처와 함께 질문할 수 있는 로컬 웹 앱입니다.
 
-## 구성과 데이터 흐름
+## 시스템 구조
 
-### 1. 실행 구성
+화살표는 기능 사이의 호출·데이터 의존 관계를 나타냅니다. 아래 세 그림은 작업 순서 한 줄이 아니라, **여러 기능이 같은 모델과 저장소를 공유하는 구조**를 보여 줍니다.
 
-```mermaid
-flowchart TB
-    U["사용자"]
-    B["브라우저: React 화면"]
-    A["FastAPI: 화면 제공과 요청 처리<br/>127.0.0.1:8768"]
-    R["기능별 API<br/>일반 대화 · 모델 비교 · 폴더 색인 · 폴더 질문"]
-    O["로컬 Ollama API<br/>127.0.0.1:11434"]
-    M["대화 모델 또는 검색용 임베딩 모델"]
-
-    U --> B --> A --> R --> O --> M
-```
-
-웹 화면과 Ollama는 이 PC의 루프백 주소에서 동작합니다. FastAPI는 작업 상태와 최근 500건의 진행 로그를 서버 메모리에 두고, 브라우저는 `/api/activity`를 주기적으로 조회합니다.
-
-### 2. 두 모델 비교
+### 1. 전체 구성 요소
 
 ```mermaid
 flowchart TB
-    Q["사용자가 같은 질문 입력"]
-    J["/api/compare/start<br/>작업 생성"]
-    L["모델 실행 잠금<br/>두 대형 모델 동시 실행 방지"]
-    G["Ollama: Gemma 4 답변 생성"]
-    W["/api/compare/job<br/>첫 답변을 화면에 먼저 표시"]
-    C["Ollama: Qwen 3.6 답변 생성"]
-    H["결과와 속도 저장<br/>로컬 비교 기록"]
-    V["브라우저: 두 답변과 측정치 표시"]
+    U["사용자"] --> W["React 웹 화면"]
+    W --> API["FastAPI · 127.0.0.1:8768"]
 
-    Q --> J --> L --> G --> W --> C --> H --> V
+    API --> C["일반 대화·모델 비교"]
+    API --> F["폴더 색인·문서 질문"]
+    API --> L["작업 상태·실행 로그 조회"]
+
+    C -->|대화·비교 추론| ML["model_lock"]
+    F -->|문서 답변 추론| ML
+    ML --> CM["Ollama 대화 모델<br/>Gemma 4 · Qwen 3.6 · 선택적 Qwen 3 8B"]
+
+    F -->|색인·질문 벡터| EM["Ollama 임베딩 모델<br/>Qwen 3 Embedding"]
+    F -->|원본 읽기| DOC["사용자가 지정한 문서 폴더"]
+    F -->|색인 쓰기·읽기| IDX[("SQLite 문서 색인")]
+    C -->|비교 결과 저장| HIS[("SQLite 비교 기록")]
+
+    C -.->|진행 단계| ACT["서버 메모리<br/>작업 상태·최근 로그"]
+    F -.->|진행 단계| ACT
+    L -->|조회| ACT
 ```
 
-비교 기록은 `%LOCALAPPDATA%\LocalAIWorkbench`에 저장됩니다. 비교 화면의 GPU 적재 비율은 Ollama가 해당 모델에 대해 보고한 값입니다.
+웹 서버와 Ollama는 이 PC의 루프백 주소에서 동작합니다. `model_lock`은 대화·비교·문서 답변의 대화 모델 호출을 직렬화합니다. 색인과 비교 기록은 `%LOCALAPPDATA%\LocalAIWorkbench`에 저장되고, 작업 상태와 최근 500건의 로그는 서버 메모리에만 남습니다.
 
-### 3. 폴더 문서 검색과 답변
+### 2. 모델 비교: 추론·화면 갱신·기록의 분기
 
 ```mermaid
 flowchart TB
-    F["사용자가 지정한 문서 폴더"]
-    X["/api/index<br/>텍스트 추출과 문서 분할"]
-    E["Qwen 3 Embedding<br/>각 구간을 검색용 벡터로 변환"]
-    D[("로컬 SQLite 색인<br/>원문 발췌와 벡터 저장")]
-    Q["/api/ask<br/>질문도 벡터로 변환"]
-    S["유사도 검색과 키워드 보정<br/>관련 구간 최대 5개 선택"]
-    P["질문과 검색 발췌문을 답변 모델에 전달"]
-    A["Gemma 4 또는 Qwen 3.6<br/>답변 생성"]
-    B["브라우저: 답변과 원문 출처 표시"]
+    Q["같은 질문"] --> START["/api/compare/start"]
+    START --> WORK["비동기 비교 작업"]
+    START --> JOBS["메모리의 작업 상태"]
 
-    F --> X --> E --> D --> Q --> S --> P --> A --> B
+    WORK --> LOCK["model_lock"]
+    LOCK --> GEM["Gemma 4 추론"]
+    GEM --> QWEN["Qwen 3.6 추론"]
+
+    GEM -.->|첫 답변| JOBS
+    QWEN -.->|두 번째 답변| JOBS
+    JOBS --> POLL["/api/compare/job 조회"] --> VIEW["두 답변·속도 표시"]
+
+    QWEN --> HIST[("SQLite 비교 기록")]
+    GEM -.->|진행 로그| EVENTS["메모리 로그"]
+    QWEN -.->|진행 로그| EVENTS
+    EVENTS --> LOGVIEW["화면의 실행 로그"]
 ```
 
-원본 문서는 읽기만 하며 색인은 프로젝트 폴더 밖의 `%LOCALAPPDATA%\LocalAIWorkbench`에 저장됩니다. 진행 로그에는 질문 문장과 문서 본문을 싣지 않습니다.
+두 모델은 메모리 사용량을 고려해 순서대로 실행하지만, 브라우저의 작업 상태 조회와 로그 표시는 별도로 진행됩니다. 비교 화면의 GPU 적재 비율은 Ollama가 해당 모델에 대해 보고한 값입니다.
+
+### 3. 문서 질문: 색인 경로와 질문 경로의 합류
+
+```mermaid
+flowchart TB
+    DOCS["사용자가 지정한 문서 폴더"] --> EXTRACT["/api/index<br/>텍스트 추출·구간 분할"]
+    EXTRACT --> DV["문서 구간 임베딩<br/>Qwen 3 Embedding"]
+    DV --> DB[("SQLite 색인<br/>원문 발췌·벡터")]
+
+    QUESTION["사용자 질문"] --> QV["질문 임베딩<br/>Qwen 3 Embedding"]
+    QV --> SEARCH["유사도 검색<br/>키워드 보정"]
+    DB -->|저장된 구간| SEARCH
+
+    SEARCH --> SOURCES["관련 원문 최대 5구간"]
+    SOURCES --> PROMPT["질문 + 검색 발췌문"]
+    QUESTION --> PROMPT
+    PROMPT --> ANSWER["Gemma 4 또는 Qwen 3.6<br/>답변 생성"]
+    ANSWER --> RESULT["브라우저의 답변·출처"]
+    SOURCES --> RESULT
+```
+
+색인 경로는 원본 문서를 읽어 로컬 SQLite에 저장합니다. 질문 경로는 같은 임베딩 모델로 질문을 변환한 뒤 색인과 합류합니다. 답변 모델은 검색된 발췌문을 근거로 답하고, 화면에는 원문 출처도 따로 표시합니다. 진행 로그에는 질문 문장과 문서 본문을 싣지 않습니다.
 
 ## 공유본 준비 사항
 
