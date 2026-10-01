@@ -90,7 +90,7 @@ flowchart TB
     Manager --> Worker
     Worker -->|extract| Extract
     Extract --> Online
-    Online -->|다운로드·자막| FFmpeg
+    Online -->|영상·음원| FFmpeg
     Extract -->|자막·정보 직접 저장| Files
     FFmpeg --> Files
     Worker -->|import / rescan| Import
