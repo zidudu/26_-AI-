@@ -10,7 +10,7 @@
 
 ## 화면과 주요 기능
 
-아래는 Version 1.0의 새 DB로 실행한 운영 화면입니다. 실행 기록이 없는 초기 상태이며, 실제 수집 성과를 표시한 화면은 아닙니다. 기존 Windows 검증 캡처를 포함한 18장의 화면은 [전체 화면 안내](docs/SCREENSHOTS.md)에 모았습니다.
+README에서 **운영·설정·이력·분석 화면과 Windows 수집 결과까지 총 15장**을 바로 볼 수 있습니다. 아래 운영 화면은 Version 1.0의 새 DB로 실행한 초기 상태입니다. 촬영 시점과 기존 개발 화면을 포함한 전체 18장은 [전체 화면 안내](docs/SCREENSHOTS.md)에도 정리했습니다.
 
 ![Version 1.0 운영 화면 — 새 DB의 초기 상태](screenshots/05-version-1-operation.png)
 
@@ -29,6 +29,94 @@
 | 예약 실행 | 저장한 설정을 한국 시간 기준으로 실행하며 주말 제외를 지원합니다. 프로그램 서버와 PC가 켜져 있어야 합니다. |
 
 AI 분석은 고객이 보고한 문제를 정리하는 자료입니다. 게시글이나 분석 결과만으로 특정 부품의 불량·원인을 확정하지 않으며, 담당자가 원문과 근거를 검토합니다.
+
+## 기능별 화면
+
+아래 13장은 위 운영 화면과 같은 **Version 1.0 초기 DB 화면**입니다. 각 기능을 펼친 모습이며, 실제 수집·AI·PPT·메일 작업의 완료 결과는 아닙니다.
+
+### 카페 관리
+
+수집할 카페를 추가하고 이름·구분명·주소와 사용 여부를 관리합니다.
+
+![카페 관리](screenshots/06-cafe-manager.png)
+
+### 키워드 관리
+
+검색 키워드를 추가하고 필요한 키워드만 사용하도록 설정합니다.
+
+![키워드 관리](screenshots/07-keyword-manager.png)
+
+### 수집 기간 지정
+
+최근 24/48시간, 이전 실행 이후 또는 시작·종료 시각 직접 지정을 선택합니다.
+
+![수집 기간 지정](screenshots/08-collection-period.png)
+
+### 예약 실행 설정
+
+한국 시간 기준 실행 시각과 주말 제외를 설정합니다. 프로그램 서버와 PC가 켜져 있어야 동작합니다.
+
+![예약 실행 설정](screenshots/09-schedule-help.png)
+
+### AI 공급자와 OpenAI API 설정
+
+Codex 또는 OpenAI API를 선택합니다. 아래는 API 입력란을 연 화면이며 실제 키는 입력하지 않았습니다.
+
+![AI 공급자와 OpenAI API 설정](screenshots/10-openai-api-settings.png)
+
+### PPT 구성과 Outlook 발송 설정
+
+캡처 이미지 PPI, 카페별 요약, 원문 노트, 수신자와 전체·요약 보고서 발송 범위를 지정합니다. 주소 입력란은 예시 문구입니다.
+
+![PPT 구성과 Outlook 발송 설정](screenshots/11-ppt-mail-settings.png)
+
+### 실행할 단계 선택
+
+웹 수집·AI 분석·PPT 생성 단계를 선택합니다. 새 수집 결과로 PPT를 만들 때는 AI 분석도 함께 켭니다.
+
+![실행할 단계 선택](screenshots/18-pipeline-step-settings.png)
+
+### 전체 실행 확인
+
+선택한 작업과 발송 범위를 확인하는 창입니다. 이 캡처에서는 실제 작업을 시작하지 않았습니다.
+
+![전체 실행 확인](screenshots/17-execution-confirmation.png)
+
+### 실행 이력
+
+과거 실행을 검색하고 당시 설정·진행 결과·산출물을 확인합니다. 아래는 실행 기록이 없는 초기 상태입니다.
+
+![실행 이력](screenshots/13-run-history.png)
+
+### 데이터 분석
+
+카페별 게시글 수, 키워드 매칭 수, 기간별 추이와 게시글 상세를 확인합니다. 새 DB이므로 집계는 0건입니다.
+
+![데이터 분석](screenshots/14-data-analysis.png)
+
+### 분석 기간과 조회 조건
+
+기간·카페·키워드 조건을 지정하고 조회에 적용합니다. 통계의 날짜 기준은 최초 수집일(KST)입니다.
+
+![분석 기간과 조회 조건](screenshots/15-analysis-date-filter.png)
+
+### Excel 내보내기
+
+상세 데이터와 집계를 함께 저장하거나 집계값만 저장하는 방식을 선택합니다.
+
+![Excel 내보내기](screenshots/16-excel-export-menu.png)
+
+### DB 관리와 기존 자료 이관
+
+DB 건수, 백업, 기존 V9 자료 이관과 Outlook 발신 계정 확인 기능을 제공합니다. 신규 사용자는 이관을 건너뜁니다.
+
+![DB 관리와 기존 자료 이관](screenshots/12-database-manager.png)
+
+### 실제 Windows 수집 완료 화면
+
+개발 당시 Windows에서 **9개 카페·게시글 14건**을 수집한 화면입니다. 이 실행은 웹 수집만 수행했으며, 아래 검증 표의 **16건·PPT 30장 통합 실행과는 별도 기록**입니다. 화면에는 당시 내부 개발명 V10이 표시됩니다.
+
+![Windows 웹 수집 완료 — 9개 카페·14건](screenshots/03-collection-result.png)
 
 ## 사용자가 진행하는 작업
 
