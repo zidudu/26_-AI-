@@ -1,1058 +1,177 @@
 # 자동차 동호회 모니터링 · Version 1.0
 
-네이버 자동차 동호회의 게시글을 자동으로 수집하고, 품질 관련 내용을 AI로 구조화 분석한 뒤 PowerPoint 보고서를 생성하여 Outlook으로 전달하는 **Windows 기반 로컬 모니터링 프로그램**입니다.
+네이버 자동차 동호회 게시글을 수집하고, AI로 품질 관련 내용을 분석한 뒤 **PowerPoint 보고서 생성과 Outlook 메일 발송까지 연결하는 Windows용 로컬 프로그램**입니다. 여러 카페에서 차량 이상 증상을 찾고 원문을 캡처해 보고서를 만드는 반복 업무를 줄이기 위해 개발했습니다.
 
-이 프로젝트의 목적은 단순한 웹 크롤링이 아닙니다.
+사용자는 브라우저에서 카페·키워드·기간과 실행 옵션을 설정하고, 진행 상태·게시글·AI 분석·실행 이력을 확인합니다. Python 서버와 실제 작업은 사용자 PC에서 실행하며, 네이버 접속과 AI 분석에는 외부 서비스 연결을 사용합니다.
 
-**게시글 수집 → 원문 보존 → AI 분석 → 검증 → 보고서 생성 → 메일 전달 → 실행 이력 관리**를 하나의 운영 흐름으로 연결하여, 반복적으로 발생하는 커뮤니티 모니터링 업무를 자동화하는 것이 핵심입니다.
+**Version 1.0은 내부 개발 버전 V10을 배포용으로 정리한 이름입니다.** 내부 모듈과 실행 파일의 `v10`, 내부 버전 `10.0.0`은 유지합니다. 필요한 엔진이 포함되어 있어 신규 설치에 예전 `naver_cafe_v5` 폴더는 필요하지 않습니다.
 
-> Version 1.0은 내부 개발 버전 V10을 기준으로 배포한 첫 운영 버전입니다.
+[배포 ZIP 다운로드](releases/cafe_monitoring_1.0_20260930.zip?raw=true) · [압축 해제된 프로그램](cafe_monitoring/) · [실행 순서 이미지](cafe_monitoring/00_실행순서.png) · [전체 화면 안내](docs/SCREENSHOTS.md)
 
----
+## 화면과 주요 기능
 
-## 실제 사용 화면
+아래는 Version 1.0의 새 DB로 실행한 운영 화면입니다. 실행 기록이 없는 초기 상태이며, 실제 수집 성과를 표시한 화면은 아닙니다. 기존 Windows 검증 캡처를 포함한 18장의 화면은 [전체 화면 안내](docs/SCREENSHOTS.md)에 모았습니다.
 
-주요 탭·설정·관리 창을 **총 18장**으로 소개합니다. 이미지를 클릭하면 원본 크기로 볼 수 있습니다.
+![Version 1.0 운영 화면 — 새 DB의 초기 상태](screenshots/05-version-1-operation.png)
 
-**아래 14장**은 2026년 10월 1일 저장소와 동일한 Version 1.0 배포 소스를 로컬 서버에서 실행하고, 각 탭과 창을 직접 열어 촬영한 기능 화면입니다. 새 DB를 사용했으므로 게시글·실행 이력·통계·PPT는 초기 상태이며, 실제 운영 실적을 나타내지 않습니다. 수집·AI 요청·Office 작업·메일 발송은 실행하지 않았습니다. 운영 화면의 실제 결과는 이어지는 **기존 Windows 캡처 4장**에서 확인할 수 있습니다.
-
-| 기능 영역 | 포함 화면 |
+| 기능 | 실제 동작 |
 | --- | --- |
-| 운영·대상 관리 | 운영 탭, 카페 관리, 키워드 관리 |
-| 수집·자동 실행 | 기간 지정, 예약 도움말, 작업 단계 선택, 실행 확인 |
-| AI·보고·전달 | OpenAI 설정, PPT 구성, Outlook 발송 범위 |
-| 데이터 관리 | DB 관리와 V9 이관, 실행 이력 |
-| 누적 데이터 분석 | 분석 탭, 기간 필터, Excel 내보내기 |
+| 카페·키워드 관리 | 기본 9개 카페·18개 키워드에서 시작하며, 대상을 추가하거나 사용을 중단할 수 있습니다. 실행 당시 목록은 이력에 별도로 보존합니다. |
+| 웹 수집 | 카페의 **제목 키워드 검색**으로 글을 찾고, 해당 게시글의 본문·메타데이터·캡처를 수집합니다. 카페 동시 처리 수는 1~3개로 설정합니다. |
+| 수집 기간 | 최근 24시간·48시간, 이전 실행 이후, 시작·종료 시각 직접 지정을 지원합니다. |
+| AI 분석 | Codex CLI 또는 OpenAI API로 게시글을 분류하고, 차량 정보·증상·조치·보고된 원인·결과 등을 구조화하며 원문 근거를 연결합니다. |
+| 원문과 검토 | 게시글과 원문 버전을 구분하고, 분석별 검토 기록을 저장합니다. 새 원문 버전에 이전 검토 완료 상태를 자동 승계하지 않습니다. |
+| PPT 보고서 | 전체 요약, 선택한 카페별 요약, 게시글별 분석·캡처를 구성합니다. 원문 노트 옵션을 켜면 기존 검토 정보 뒤에 `[원문 본문]`을 추가합니다. |
+| PPT만 재생성 | 선택한 과거 실행의 저장 원문·분석을 재사용합니다. 이 전용 기능은 재수집·새 AI 분석·메일 발송 없이 동작합니다. |
+| Outlook 발송 | 전체 보고서 또는 요약 슬라이드만 첨부하고 To·CC 수신자에게 전송을 요청합니다. |
+| 실행 이력 | 실행 ID, 당시 설정과 기간, 카페별 결과, 단계·로그·산출물·메일 상태를 조회하고 JSON으로 내보냅니다. |
+| 데이터 분석·Excel | 누적 게시글을 카페·키워드·기간으로 조회하고, 상세 데이터와 집계 또는 집계값만 `.xlsx`로 내보냅니다. |
+| 예약 실행 | 저장한 설정을 한국 시간 기준으로 실행하며 주말 제외를 지원합니다. 프로그램 서버와 PC가 켜져 있어야 합니다. |
 
-### 운영 탭 · Version 1.0
+AI 분석은 고객이 보고한 문제를 정리하는 자료입니다. 게시글이나 분석 결과만으로 특정 부품의 불량·원인을 확정하지 않으며, 담당자가 원문과 근거를 검토합니다.
 
-대상 카페·검색 키워드·실행 설정을 왼쪽에서 관리하고, 오른쪽에서 실행 상태·처리 단계·PPT 미리보기·게시글 검토 영역을 확인합니다.
+## 사용자가 진행하는 작업
 
-![운영 탭 · Version 1.0](screenshots/05-version-1-operation.png)
-
-### 카페 관리 창
-
-카페 이름·구분명·메인 주소로 대상을 추가하고, 등록 카페의 표시 이름을 수정하거나 수집을 중단합니다. 과거 수집 데이터는 유지합니다.
-
-![카페 관리 창](screenshots/06-cafe-manager.png)
-
-### 키워드 관리 창
-
-검색 키워드를 추가·검색하고, 등록된 키워드의 사용 여부를 관리합니다. 검색 중단 후에도 기존 게시글과 실행 이력의 기록은 보존합니다.
-
-![키워드 관리 창](screenshots/07-keyword-manager.png)
-
-### 수집 기간 지정
-
-최근 24·48시간 또는 이전 실행 이후 방식과 별도로 시작·종료 시각을 직접 지정할 수 있습니다. 오른쪽에는 현재 설정에 따른 수집 범위를 표시합니다.
-
-![수집 기간 지정](screenshots/08-collection-period.png)
-
-### 예약 실행과 도움말
-
-예약 사용 여부, 한국 시간 기준 실행 시각, 주말 제외를 설정합니다. 도움말에서 서버 실행 창과 PC가 켜져 있어야 예약이 동작한다는 조건을 확인할 수 있습니다.
-
-![예약 실행과 도움말](screenshots/09-schedule-help.png)
-
-### AI 공급자 · OpenAI API 설정
-
-Codex 또는 OpenAI API 방식을 선택합니다. 이 화면은 OpenAI API 입력란을 표시한 상태이며, 키는 입력하지 않았습니다.
-
-![AI 공급자 · OpenAI API 설정](screenshots/10-openai-api-settings.png)
-
-### PPT 구성과 Outlook 발송 옵션
-
-캡처 이미지 PPI, 카페별 요약 슬라이드, 원문 본문 노트 저장을 설정합니다. 메일은 전체 보고서 또는 요약 슬라이드만 첨부하도록 선택할 수 있으며, 화면의 주소는 빈 입력란에 표시되는 예시 문구입니다.
-
-![PPT 구성과 Outlook 발송 옵션](screenshots/11-ppt-mail-settings.png)
-
-### DB 관리 · 기존 자료 이관
-
-게시글·원문 버전·실행 건수를 확인하고, 기존 V9 자료 이관·DB 백업·Outlook 발신 계정 확인 기능에 접근합니다. 초기 DB이므로 표시 건수는 모두 0입니다.
-
-![DB 관리 · 기존 자료 이관](screenshots/12-database-manager.png)
-
-### 실행 이력 탭
-
-실행 ID·유형 검색과 달력으로 과거 실행을 찾는 화면입니다. 실행을 선택하면 당시 설정과 결과를 확인할 수 있습니다. 이 캡처는 실행 기록이 없는 초기 상태입니다.
-
-![실행 이력 탭](screenshots/13-run-history.png)
-
-### 데이터 분석 탭
-
-카페별 수집 게시글 수, 키워드별 매칭 수, 기간별 추이, 수집 데이터 목록과 게시글 상세 영역을 함께 제공합니다. 초기 DB의 화면이므로 집계는 0건입니다.
-
-![데이터 분석 탭](screenshots/14-data-analysis.png)
-
-### 분석 조회 조건 · 기간 직접 지정
-
-기간·카페·키워드 조건을 지정한 뒤 조회에 적용합니다. 달력 및 일별·주별·월별 추이 제어도 함께 배치되어 있습니다.
-
-![분석 조회 조건 · 기간 직접 지정](screenshots/15-analysis-date-filter.png)
-
-### Excel 내보내기 메뉴
-
-현재 조회 조건에 맞춘 전체 데이터와 집계를 함께 내보내거나, 게시글 수 등 집계값만 내보내는 방식을 선택합니다. 캡처에서는 메뉴만 열었습니다.
-
-![Excel 내보내기 메뉴](screenshots/16-excel-export-menu.png)
-
-### 전체 실행 확인 창
-
-전체 실행 전 확인 창을 표시합니다. 선택한 작업과 발송 범위를 확인한 뒤 실행할 수 있으며, 이 캡처에서는 취소하여 실제 작업을 시작하지 않았습니다.
-
-![전체 실행 확인 창](screenshots/17-execution-confirmation.png)
-
-### 처리 단계 선택과 원문·분석 검토 영역
-
-웹 수집·AI 분석·PPT 생성 단계를 선택하는 설정입니다. 오른쪽 아래에는 수집된 게시글의 원문과 AI 분석을 검토하는 영역이 배치되어 있으며, 초기 상태에서는 선택할 게시글이 없습니다.
-
-![처리 단계 선택과 원문·분석 검토 영역](screenshots/18-pipeline-step-settings.png)
-
----
-
-### 기존 Windows 운영·검증 캡처
-
-아래 이미지는 2026년 9월 30일 Windows 환경에서 프로그램을 실제 사용하며 캡처한 화면입니다. 내부 개발 명칭인 **V10**이 표시되어 있으며, 배포용 **Version 1.0**의 개발·검증 과정에서 촬영했습니다. 화면의 예약 시각, 키워드 및 실행 옵션은 당시 테스트 설정입니다.
-
-#### 운영 화면 · 다크 모드
-
-카페와 검색 키워드를 선택하고, 수집 범위·병렬 수·예약·AI·PPT·메일 옵션을 한 화면에서 설정합니다. 오른쪽에서는 실행 상태와 처리 단계를 확인할 수 있습니다.
-
-![다크 모드 운영 화면](screenshots/01-operation-dark.png)
-
-#### 운영 화면 · 라이트 모드
-
-동일한 운영 화면을 밝은 테마로 볼 수 있습니다. 수집 결과 목록과 게시글 원문·AI 분석 영역, 실시간 로그 영역이 함께 배치되어 있습니다. 이 캡처는 첫 실행 전 화면입니다.
-
-![라이트 모드 운영 화면](screenshots/02-operation-light.png)
-
-#### 실제 수집 완료와 실행 로그
-
-9개 카페에서 총 14건을 수집한 실행의 완료 화면입니다. 카페별 수집 로그와 완료 상태를 확인할 수 있습니다. 당시에는 웹 수집만 선택했으므로 AI 분석·PPT 생성·메일 발송은 수행하지 않았습니다.
-
-![웹 수집 완료 및 실시간 실행 로그](screenshots/03-collection-result.png)
-
-#### Codex 인증 안내
-
-AI 분석 설정에서 Codex 로그인 방식 안내를 확인하는 화면입니다. 이 캡처의 안내 문구는 촬영 당시 개발 빌드 기준이며, 최신 로그인 방법은 아래 설치·실행 안내 및 프로그램의 인증 버튼을 확인해 주세요.
-
-![Codex 인증 안내 화면](screenshots/04-codex-auth-help.png)
-
----
-
-## 1. 프로그램이 하는 일
-
-전체 흐름은 다음과 같습니다.
+처음에는 필요한 자료를 수집하고, 이후에는 실행 이력에 저장된 자료를 다시 활용합니다. 아래는 **전체 처리**와 **PPT만 재생성**의 차이입니다.
 
 ```mermaid
-flowchart LR
-    A["네이버 자동차 동호회"]
-    B["게시글 검색 및 수집"]
-    C["원문·캡처 저장"]
-    D["AI 구조화 분석"]
-    E["근거·검증 처리"]
-    F["PowerPoint 보고서 생성"]
-    G["Outlook 메일 발송"]
-    H["SQLite 실행 이력 저장"]
-    I["웹 운영 화면"]
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-
-    B --> H
-    C --> H
-    D --> H
-    E --> H
-    F --> H
-    G --> H
-
-    H <--> I
+flowchart TD
+    MODE{"어떤 작업을 할까요?"}
+    MODE -->|"전체 처리"| CONFIG["대상·기간·분석·발송 설정"]
+    MODE -->|"PPT만 재생성"| HISTORY["과거 실행 선택"]
+    CONFIG --> COLLECT["게시글 검색·원문·캡처 수집"]
+    COLLECT --> ANALYZE["AI 분석·검증 결과 저장"]
+    ANALYZE --> REPORT["새 보고서 생성"]
+    REPORT --> MAIL{"자동 발송 ON?"}
+    MAIL -->|"예"| SEND["Outlook 전송 요청"]
+    MAIL -->|"아니오"| OPEN["보고서 직접 확인"]
+    HISTORY --> REUSE["해당 실행의 저장 원문·분석 재사용"]
+    REUSE --> REBUILD["PPT 재생성·메일 발송 없음"]
 ```
 
-사용자는 웹 화면에서 대상 카페, 검색 키워드, 수집 기간, 병렬 처리 수, AI 분석 여부, PPT 생성 여부, 메일 발송 여부 등을 설정합니다.
+전체 처리 외에 **웹 수집만** 또는 **웹 수집 + AI 분석**도 선택할 수 있습니다. 새로 수집한 글의 PPT를 만들 때는 AI 분석을 함께 켜야 합니다. 모든 단계를 매번 다시 실행할 필요는 없습니다.
 
-실행이 시작되면 프로그램은 설정값을 하나의 실행 단위로 고정하고, 별도 Worker 프로세스가 실제 수집·분석·보고 작업을 수행합니다.
+## 내부 시스템 구조
 
----
-
-## 2. 전체 시스템 아키텍처
-
-Version 1.0은 단일 Python 스크립트가 아니라 여러 계층으로 구성되어 있습니다.
+웹 화면은 조작과 조회를 담당하고, Python 서버가 설정·예약·작업 시작을 관리합니다. 시간이 오래 걸리는 수집·분석·PPT·메일 작업은 별도 Python 프로세스가 실행합니다.
 
 ```mermaid
-flowchart TB
-    USER["사용자"]
-
-    subgraph WEB["Web UI"]
-        INDEX["web/index.html"]
-        BASE["web/base.js"]
-        INTEGRATION["web/integration.js"]
-    end
-
-    subgraph APP["V10 Application Layer"]
-        SERVER["v10/server.py<br/>Local HTTP API"]
-        SERVICE["v10/service.py<br/>Run / Scheduler 관리"]
-        SETTINGS["v10/settings.py<br/>설정 검증"]
-        AUTH["v10/codex_auth.py<br/>AI 인증"]
-        MIGRATE["v10/migrate.py<br/>기존 데이터 이관"]
-    end
-
-    subgraph EXEC["Execution Layer"]
-        WORKER["v10/worker.py<br/>Pipeline Orchestrator"]
-        ADAPTER["v10/engine.py<br/>Legacy Engine Adapter"]
-        SESSION["v10/naver_session.py<br/>Naver Session"]
-        OFFICE["v10/office.py<br/>PowerPoint / Outlook COM"]
-    end
-
-    subgraph LEGACY["검증된 기존 엔진"]
-        V9["engine/v9"]
-        V8["engine/v8"]
-        V754["engine/v754"]
-    end
-
-    subgraph STORAGE["Storage"]
-        DATABASE["v10/database.py"]
-        SQLITE[("SQLite<br/>monitoring.sqlite3")]
-        FILES["data_v10<br/>원문 / 분석 / 캡처 / PPT"]
-    end
-
-    subgraph EXT["External Systems"]
-        NAVER["Naver Cafe"]
-        AI["Codex / OpenAI"]
-        PPT["Microsoft PowerPoint"]
-        OUTLOOK["Classic Outlook"]
-    end
-
-    USER --> INDEX
-    INDEX --> BASE
-    BASE --> INTEGRATION
-    INTEGRATION <--> SERVER
-
-    SERVER --> SERVICE
-    SERVER --> SETTINGS
-    SERVER --> AUTH
-    SERVER --> MIGRATE
-
-    SERVICE --> DATABASE
-    SERVICE --> WORKER
-
-    WORKER --> DATABASE
-    WORKER --> ADAPTER
-    WORKER --> OFFICE
-
-    ADAPTER --> SESSION
-    ADAPTER --> V9
-
-    V9 --> V8
-    V9 --> V754
-
-    DATABASE <--> SQLITE
-    WORKER --> FILES
-
-    SESSION --> NAVER
-    V9 --> NAVER
-    V9 --> AI
-
+flowchart TD
+    UI["브라우저 화면"] <-->|"로컬 HTTP"| API["Python 서버·실행 관리자"]
+    API -->|"실행 시작"| WORKER["작업 프로세스"]
+    API <-->|"설정·이력 조회"| DB[("SQLite")]
+    WORKER -->|"단계·결과 기록"| DB
+    WORKER --> ENGINE["포함된 수집·AI·PPT 엔진"]
+    ENGINE --> NAVER["네이버 카페"]
+    ENGINE --> AI["Codex CLI 또는 OpenAI API"]
+    ENGINE --> PPT["설치된 PowerPoint"]
+    WORKER --> OFFICE["미리보기·메일 처리"]
     OFFICE --> PPT
-    OFFICE --> OUTLOOK
+    OFFICE --> OUTLOOK["설치된 Classic Outlook"]
+    WORKER --> FILES["원문·캡처·분석·보고서 파일"]
 ```
 
-### 구조의 핵심
+SQLite에는 실행·게시글·분석·파일 연결 정보를 저장하고, 캡처와 PPT 등 산출물은 파일로 보관합니다. 따라서 실행이 끝나도 당시 설정과 결과를 다시 확인할 수 있습니다. 웹 화면을 새로고침해도 진행 중인 작업 자체가 새로 시작되지는 않습니다.
 
-V10은 기존 V9 계열 코드를 전부 새로 작성한 엔진이 아닙니다.
+## 설치와 실행
 
-기존 버전에서 검증해 온 수집·AI 분석·PPT 처리 기능을 재사용하고, 그 위에 다음 기능을 추가한 **Application Layer**입니다.
+### 준비 사항
 
-- 웹 운영 화면
-- SQLite 영속 저장
-- 실행 이력
-- 설정 Snapshot
-- 예약 실행
-- 네이버 로그인 상태 관리
-- AI 로그인 관리
-- Worker 프로세스
-- 데이터 이관
-- PPT 재생성
-- 산출물 관리
-
-즉 기존 엔진을 버리는 대신, 검증된 기능을 운영 가능한 프로그램 구조 안에 넣는 방식으로 발전했습니다.
-
----
-
-## 3. 실행 과정
-
-사용자가 웹 화면에서 **전체 실행**을 누르면 내부에서는 다음 순서로 동작합니다.
-
-```mermaid
-sequenceDiagram
-    autonumber
-
-    actor USER as 사용자
-    participant UI as Web UI
-    participant API as server.py
-    participant SVC as service.py
-    participant DB as SQLite
-    participant W as Worker
-    participant ENG as Engine
-    participant NAVER as Naver Cafe
-    participant AI as AI
-    participant PPT as PowerPoint
-    participant MAIL as Outlook
-
-    USER->>UI: 실행 설정 후 전체 실행
-    UI->>API: POST /api/runs
-    API->>SVC: create_run()
-
-    SVC->>SVC: 설정 검증
-    SVC->>DB: 실행 설정 Snapshot 저장
-    SVC->>DB: Run = queued
-    SVC->>W: 별도 Worker 시작
-
-    W->>DB: Run = running
-
-    opt 수집 사용
-        W->>ENG: collect()
-        ENG->>NAVER: 카페·키워드 검색
-        NAVER-->>ENG: 게시글 목록
-        ENG->>NAVER: 본문 / 캡처 수집
-        NAVER-->>ENG: 원문 데이터
-        ENG-->>W: 수집 결과
-        W->>DB: 게시글 / 원문 버전 저장
-    end
-
-    opt AI 분석 사용
-        W->>ENG: analyze()
-        ENG->>AI: 구조화 분석 요청
-        AI-->>ENG: 분석 JSON
-        ENG->>ENG: Schema / Evidence / Semantic 검증
-        ENG-->>W: 검증된 분석 결과
-        W->>DB: Analysis 저장
-    end
-
-    opt PPT 사용
-        W->>ENG: render()
-        ENG->>PPT: 보고서 생성
-        PPT-->>ENG: PPTX
-        W->>DB: Artifact / Hash 등록
-    end
-
-    opt 메일 사용
-        W->>DB: 메일 발송 의도 선기록
-        W->>MAIL: PPT 첨부 후 Send
-        MAIL-->>W: 발송 요청 결과
-        W->>DB: 메일 상태 기록
-    end
-
-    W->>DB: completed / partial / failed
-
-    loop 실행 중 상태 확인
-        UI->>API: GET /api/state
-        API-->>UI: 실행 상태 / 단계 / 로그
-    end
-```
-
-웹 서버 자체와 실제 작업 Worker가 분리되어 있기 때문에 수집·AI 분석·PPT 생성이 오래 걸려도 실행 관리와 UI 상태 조회를 별도로 유지할 수 있습니다.
-
----
-
-## 4. 수집 구조
-
-수집 대상은 설정된 네이버 자동차 동호회와 검색 키워드입니다.
-
-수집 과정에서는 카페 단위 병렬 처리와 네이버 요청 제어를 동시에 사용합니다.
-
-```mermaid
-flowchart TD
-    START["선택된 카페 목록"]
-    SEM["Semaphore<br/>동시 카페 처리 수 제한"]
-
-    A["Cafe Task A"]
-    B["Cafe Task B"]
-    C["Cafe Task C"]
-    WAIT["나머지 Task 대기"]
-
-    GATE["Shared RequestGate<br/>요청 간격 / 중단 상태 공유"]
-    NAVER["Naver"]
-
-    CHECK{"로그인 만료 또는<br/>접근 제한 발생?"}
-    STOP["전체 신규 요청 차단"]
-    STORE["게시글 원문 / 캡처 저장"]
-
-    START --> SEM
-
-    SEM --> A
-    SEM --> B
-    SEM --> C
-    SEM --> WAIT
-
-    A --> GATE
-    B --> GATE
-    C --> GATE
-
-    GATE --> NAVER
-    NAVER --> CHECK
-
-    CHECK -- 정상 --> STORE
-    CHECK -- 제한 발생 --> STOP
-
-    STOP --> A
-    STOP --> B
-    STOP --> C
-    STOP --> WAIT
-```
-
-병렬 처리 수를 늘리더라도 실제 네이버 요청을 제한 없이 동시에 보내는 방식이 아닙니다.
-
-공유 RequestGate가 요청 간격과 접근 제한 상태를 관리하기 때문에 한 Task에서 로그인 만료나 접근 제한을 감지하면 다른 수집 Task에도 중단 상태를 공유합니다.
-
----
-
-## 5. 증분 수집과 중복 제거
-
-매 실행마다 모든 과거 글을 다시 긁는 것이 아니라, 카페별 마지막 정상 수집 지점을 기준으로 다음 검색 범위를 계산합니다.
-
-```mermaid
-flowchart LR
-    LAST["이전 정상 완료 Cursor"]
-    OVERLAP["일부 기간 겹쳐 검색"]
-    WINDOW["이번 검색 Window"]
-    FOUND["검색된 게시글"]
-    DEDUP["게시글 ID 기반 중복 제거"]
-    SAVE["신규 / 변경 데이터 저장"]
-    NEXT["새 Cursor 저장"]
-
-    LAST --> OVERLAP
-    OVERLAP --> WINDOW
-    WINDOW --> FOUND
-    FOUND --> DEDUP
-    DEDUP --> SAVE
-    SAVE --> NEXT
-```
-
-일부 기간을 겹쳐 검색하는 이유는 실행 시각 경계에서 게시글을 놓치는 가능성을 줄이기 위해서입니다.
-
-중복된 게시글은 DB에서 동일 게시글로 관리하고, 본문 내용이 달라졌을 때만 새로운 원문 버전을 생성합니다.
-
----
-
-## 6. 게시글과 원문 버전 관리
-
-Version 1.0에서는 게시글 자체와 게시글의 본문 버전을 분리합니다.
-
-```mermaid
-flowchart LR
-    POST["Post<br/>카페 ID + 게시글 ID"]
-
-    V1["Post Version 1<br/>최초 수집 원문"]
-    V2["Post Version 2<br/>수정된 원문"]
-    V3["Post Version 3<br/>추가 수정 원문"]
-
-    A1["Analysis 1"]
-    A2["Analysis 2"]
-    A3["Analysis 3"]
-
-    POST --> V1
-    POST --> V2
-    POST --> V3
-
-    V1 --> A1
-    V2 --> A2
-    V3 --> A3
-```
-
-같은 게시글이라도 작성자가 내용을 수정하면 Fingerprint가 달라지고 새로운 `post_version`으로 저장됩니다.
-
-이 구조를 사용하면 다음 질문에 답할 수 있습니다.
-
-> 특정 AI 분석은 정확히 어떤 시점의 어떤 원문을 기준으로 생성되었는가?
-
-따라서 단순 최신 데이터 저장보다 추적성과 재현성이 높습니다.
-
----
-
-## 7. 데이터 모델
-
-주요 DB 관계는 다음과 같습니다.
-
-```mermaid
-erDiagram
-    CAFES ||--o{ POSTS : contains
-    POSTS ||--o{ POST_VERSIONS : has
-
-    POSTS ||--o{ POST_KEYWORDS : matched
-    KEYWORDS ||--o{ POST_KEYWORDS : identifies
-
-    RUNS ||--o{ RUN_CAFES : targets
-    CAFES ||--o{ RUN_CAFES : included
-
-    RUNS ||--o{ RUN_POSTS : contains
-    POSTS ||--o{ RUN_POSTS : referenced
-    POST_VERSIONS ||--o{ RUN_POSTS : uses
-
-    POST_VERSIONS ||--o{ ANALYSES : analyzed
-    RUNS ||--o{ ANALYSES : produces
-
-    ANALYSES ||--o{ REVIEWS : reviewed
-
-    RUNS ||--o{ ARTIFACTS : creates
-    RUNS ||--o| MAIL_LOGS : sends
-    RUNS ||--o{ LOGS : records
-
-    CAFES ||--o| CURSORS : tracks
-```
-
-핵심 개념은 다음과 같습니다.
-
-| 데이터 | 역할 |
+| 구성 | 필요한 용도 |
 | --- | --- |
-| `posts` | 네이버 게시글 자체 |
-| `post_versions` | 본문 변경 이력 |
-| `keywords` / `post_keywords` | 어떤 키워드로 발견됐는지 |
-| `runs` | 한 번의 프로그램 실행 |
-| `run_posts` | 해당 실행에서 사용된 게시글 |
-| `analyses` | AI 구조화 분석 |
-| `reviews` | 사람 검토 상태 |
-| `artifacts` | PPT·미리보기 등 산출물 |
-| `mail_logs` | Outlook 발송 상태 |
-| `cursors` | 증분 수집 기준점 |
-| `logs` | 실행 로그 |
+| Windows, Python 3.11 이상 및 `py` 실행기 | 프로그램 실행과 가상환경 생성 |
+| 설치된 Chrome, 네이버 계정, 대상 카페 열람 권한 | 로그인·게시글 수집 |
+| Codex CLI와 본인 ChatGPT 로그인 | Codex 방식 AI 분석. 설치 BAT가 CLI를 설치하지는 않습니다. |
+| OpenAI API 키 | OpenAI 방식을 선택할 때 사용합니다. Codex 방식과 선택 관계입니다. |
+| 데스크톱 Microsoft PowerPoint | PPT 생성·미리보기·요약본 작성 |
+| Classic Outlook과 메일 계정 | 자동 메일 발송. New Outlook을 대상으로 한 구현이 아닙니다. |
 
----
+설치 시 Python 패키지 다운로드를 위한 인터넷 연결이 필요합니다. PowerPoint와 Outlook은 해당 단계를 사용할 때 필요하며, 웹 수집만 실행할 때는 Office를 호출하지 않습니다. Linux에서 웹 화면·오프라인 테스트를 확인할 수 있어도 실제 수집·AI·Office 통합 실행은 Windows용입니다.
 
-## 8. AI 분석 구조
+### 처음 사용하는 경우
 
-AI는 원문을 단순 요약하는 역할만 하지 않습니다.
+1. 위 **배포 ZIP**을 내려받아 모두 압축 해제합니다. 예: `C:\CafeMonitor\cafe_monitoring`. 저장소를 통째로 내려받았다면 `20261001_cafe_monitoring_v1.0\cafe_monitoring`이 같은 프로그램 폴더입니다.
+2. 그 폴더에서 **`01_setup_v10.bat`**를 실행합니다. `.venv`를 만들고 의존성을 설치한 뒤 Python 오프라인 검사 75개를 실행합니다.
+3. 설치가 끝나면 **`02_start_v10.bat`**를 실행합니다. 이후에도 이 파일로 시작합니다. 브라우저에서 `http://127.0.0.1:8766`이 열립니다. `web/index.html`을 직접 여는 방식이 아닙니다.
+4. 화면에서 **네이버 로그인**을 누릅니다. 전용 Chrome에서 로그인하고 그 창을 닫은 뒤, 안내창의 **로그인했습니다**를 누릅니다. 이미 로그인 상태라면 재로그인 여부를 먼저 묻습니다.
+5. AI 공급자를 선택합니다. Codex는 **Codex 로그인** 버튼으로 로그인하고 **상태 확인**으로 인증을 확인합니다. OpenAI는 환경변수 `OPENAI_API_KEY` 또는 화면 입력을 사용합니다. 화면에 입력한 키는 서버 메모리에 보관하므로 서버 재시작 후 다시 입력해야 합니다.
+6. 카페·키워드·기간·작업 단계·PPT·수신자를 확인하고 **설정 저장 → 전체 실행**을 누릅니다. 최초 사용자는 V9 자료 이관을 건너뜁니다.
 
-게시글에서 품질 관련 정보를 구조화하여 추출하고, 결과에 원문 근거를 연결하며, 프로그램 내부 검증을 추가로 수행합니다.
+**초기값은 예약과 Outlook 발송이 ON입니다.** 발송하지 않을 때는 Outlook 발송을 끄고, 예약을 원하지 않을 때는 예약도 끈 뒤 저장하세요. 발송을 켜면 To 수신자와 PPT 생성이 필요합니다. 예약은 설정을 저장한 이후 활성화됩니다.
 
-```mermaid
-flowchart TD
-    RAW["게시글 원문"]
-    ID["Source Identity / Hash"]
-    REQUEST["구조화 분석 Request"]
-    CACHE{"동일 분석 Cache?"}
-    MODEL["Codex / OpenAI"]
-    RESULT["AI JSON 결과"]
+검사만 다시 실행하려면 `03_verify_v10.bat`를 사용합니다. 이 BAT는 Python 오프라인 검사를 수행하며 JavaScript 검사는 별도입니다.
 
-    SCHEMA{"Schema 검증"}
-    EVIDENCE{"Evidence ID 검증"}
-    SEMANTIC{"Semantic Rule 검증"}
+## 사용 시 알아둘 동작
 
-    REVIEW["Human Review 필요"]
-    VALID["구조화 분석 결과"]
-    DB["SQLite analyses"]
+### 기간·중복·원문 버전
 
-    RAW --> ID
-    ID --> REQUEST
-    REQUEST --> CACHE
+- **최근 24/48시간**은 실행 시점에 계산한 범위를 수집합니다. **이전 실행 이후**를 선택했을 때만 카페별 마지막 정상 수집 완료 시각과 재확인 기간 0~2일로 시작점을 계산합니다. 처음 수집하는 카페는 최근 24/48시간으로 먼저 실행해야 합니다.
+- 자동 기간은 현재 진행 중인 분을 제외한 `[시작, 종료)` 범위입니다. 예를 들어 13:29:54에 실행하면 종료 경계는 13:29:00이며 그 시각은 포함하지 않습니다. 기간 직접 지정도 분 단위입니다.
+- 게시글은 카페 ID와 게시글 ID로 식별합니다. **기간 직접 지정 + 중복 제외 ON**일 때는 직전 저장 내용과 같은 글을 이번 결과에서 제외합니다. 모든 실행이 항상 신규 글만 처리하는 것은 아닙니다.
+- 원문 버전의 지문은 **제목·raw 본문·게시 시각·미디어 정보**로 계산합니다. 이 값이 달라진 글을 다시 수집하면 변경을 기록하고 기존 원문을 보존합니다. 동일 지문은 재사용하며, 과거의 모든 글을 상시 재방문해 수정을 감시하는 기능은 아닙니다.
+- 카페별 수집 완료 시각은 이후 AI·PPT·메일 실패와 분리해 유지합니다. 직접 지정한 기간의 실행은 정규 수집 완료 시각을 갱신하지 않습니다.
 
-    CACHE -- 있음 --> RESULT
-    CACHE -- 없음 --> MODEL
-    MODEL --> RESULT
+### 분석·보고·발송
 
-    RESULT --> SCHEMA
+- AI 결과에 형식·근거 연결·의미 규칙 검사를 적용합니다. 검사 통과는 모든 내용의 사실성을 보증하지 않습니다. 동일 원문·AI 공급자·모델·지침 등의 캐시 조건을 만족하면 저장 분석을 재사용합니다.
+- PPT는 **전체 요약 1장 + 선택 카페별 요약 + 게시글 상세**로 구성합니다. 카페별 요약을 끄면 전체 요약 1장은 유지합니다. 요약본 장수는 선택 카페 수와 설정에 따라 달라집니다.
+- 원문 노트는 기본 ON이며, **해당 실행의 분석에 연결된 수집 원문**을 요약 없이 보존합니다. PPT 이미지 PPI는 표시 크기를 기준으로 캡처 해상도를 조절하는 값으로, 기본값은 125입니다.
+- **검토 완료는 자동 발송의 필수 승인 단계가 아닙니다.** 발송을 켜면 처리 흐름에서 Outlook 전송을 요청합니다. 먼저 검토하려면 자동 발송을 끄고 실행하세요.
+- `Outlook 전송 요청 수락`은 `Send()` 호출이 성공했다는 뜻이며 수신자에게 배달됐다는 증명은 아닙니다. 발송 도중 종료 등으로 상태가 불확실하면 `메일 발송 확인 필요`로 남기고 자동 재발송하지 않습니다.
+- `완료(일부 확인 필요)`는 일부 카페 실패, 분석 검토 항목, 캡처 또는 미리보기 문제 등으로 표시될 수 있습니다. 실행 상세와 로그에서 실제 사유를 확인합니다.
 
-    SCHEMA -- 실패 --> REVIEW
-    SCHEMA -- 통과 --> EVIDENCE
+### 예약·통계·백업
 
-    EVIDENCE -- 실패 --> REVIEW
-    EVIDENCE -- 통과 --> SEMANTIC
+- V10 예약은 **로컬 서버 내부 예약 기능**입니다. 기존 V9의 Windows 작업 스케줄러 작업을 자동 수정하지 않습니다. 중복 예약 여부를 확인하세요.
+- PC가 깨어 있고 서버 실행 창이 열려 있어야 예약됩니다. 서버 시작 전 놓친 예약은 소급 실행하지 않으며, 예약 시각에 다른 작업이나 로그인이 진행 중이면 그 예약을 건너뜁니다.
+- 브라우저 탭을 닫아도 서버·작업 프로세스는 별개로 동작합니다. 중지는 저장 경계에서 처리하므로 현재 진행 중인 호출이 끝날 때까지 기다릴 수 있습니다.
+- 데이터 분석 탭과 Excel의 날짜 기준은 **최초 수집일(KST)**입니다. 게시 시각은 별도 항목입니다. 한 글이 여러 키워드에 해당할 수 있어 키워드 매칭 수의 합과 고유 게시글 수는 다릅니다.
+- 운영 자료는 기본적으로 `data_v10/`에 생성됩니다. DB는 `monitoring.sqlite3`, 결과는 `output_v10/실행ID/` 아래에 저장합니다. 화면의 DB 백업은 PPT·캡처 파일을 포함하지 않으므로 결과 폴더도 함께 보관하세요.
 
-    SEMANTIC -- 확인 필요 --> REVIEW
-    SEMANTIC -- 알려진 문제 없음 --> VALID
+## 저장소 구성과 기술
 
-    REVIEW --> VALID
-    VALID --> DB
-```
-
-검증 단계는 크게 다음을 구분합니다.
-
-- JSON / 필수 필드 구조가 올바른지
-- Evidence ID가 실제 입력 근거와 연결되는지
-- 내부 Semantic Rule에서 의심되는 결과가 있는지
-- 사람의 의미 검토가 아직 필요한지
-
-즉 Schema 검증 통과와 실제 의미의 정확성을 동일한 개념으로 취급하지 않습니다.
-
----
-
-## 9. PPT 보고 구조
-
-AI 분석 결과만 보여주는 것이 아니라 실제 게시글을 사람이 다시 확인할 수 있도록 보고서를 구성합니다.
-
-```mermaid
-flowchart LR
-    RAW["원문"]
-    SHOT["게시글 캡처"]
-    ANALYSIS["AI 분석"]
-    EVIDENCE["근거 연결"]
-
-    SUMMARY["PPT 요약 정보"]
-    SLIDE["게시글별 Slide"]
-    NOTES["Slide Notes<br/>원문 본문"]
-    REVIEW["담당자 검토"]
-
-    RAW --> ANALYSIS
-    RAW --> SHOT
-    ANALYSIS --> EVIDENCE
-
-    EVIDENCE --> SUMMARY
-    SUMMARY --> SLIDE
-    SHOT --> SLIDE
-    RAW --> NOTES
-
-    SLIDE --> REVIEW
-    NOTES --> REVIEW
-```
-
-각 게시글 슬라이드는 분석 결과와 캡처를 제공하고, 슬라이드 노트에는 수집 당시의 원문 본문을 보존합니다.
-
-따라서 담당자는 AI 요약만 보는 것이 아니라 필요할 경우 보고서 안에서 원문까지 다시 확인할 수 있습니다.
-
----
-
-## 10. 실행 상태 관리
-
-실행은 단순 성공/실패 두 상태가 아니라 여러 단계와 종료 상태를 가집니다.
-
-```mermaid
-stateDiagram-v2
-    [*] --> queued
-
-    queued --> running : Worker 시작
-
-    running --> running : prepare
-    running --> running : collect
-    running --> running : analyze
-    running --> running : report
-    running --> running : mail
-
-    running --> completed : 전체 완료
-    running --> partial : 일부 결과 확인 필요
-    running --> failed : 명확한 실패
-
-    running --> stopping : 중지 요청
-    stopping --> cancelled : 안전 경계에서 종료
-
-    running --> interrupted : 비정상 종료
-    running --> mail_unknown : 발송 상태 불확실
-
-    completed --> [*]
-    partial --> [*]
-    failed --> [*]
-    cancelled --> [*]
-    interrupted --> [*]
-    mail_unknown --> [*]
-```
-
-특히 Outlook 자동 발송에서는 중복메일을 방지하기 위해 발송 의도를 먼저 DB에 저장한 후 `Send()`를 호출합니다.
-
-프로그램이 발송 직후 비정상 종료되어 실제 발송 여부가 불명확한 경우 자동 재발송하지 않고 `mail_unknown` 상태로 남겨 사람이 확인하도록 설계되어 있습니다.
-
----
-
-## 11. 네이버 로그인
-
-네이버 세션은 일반 JSON 파일에 그대로 저장하지 않습니다.
-
-Windows 환경에서는 네이버 로그인 쿠키를 추출한 뒤 Windows DPAPI를 이용해 현재 Windows 사용자 계정에 종속된 형태로 저장합니다.
-
-```mermaid
-sequenceDiagram
-    actor USER as 사용자
-    participant UI as Web UI
-    participant CHROME as Chrome Profile
-    participant NAVER as Naver
-    participant SESSION as Session Manager
-    participant DPAPI as Windows DPAPI
-    participant WORKER as Collector
-
-    USER->>UI: 네이버 로그인 요청
-    UI->>CHROME: 로그인용 Chrome 실행
-    USER->>NAVER: 직접 로그인
-    NAVER-->>CHROME: Session Cookie
-
-    CHROME->>SESSION: Cookie 추출
-    SESSION->>SESSION: Naver Cookie 검증
-    SESSION->>DPAPI: 암호화
-    DPAPI-->>SESSION: 암호화 Session 저장
-
-    WORKER->>SESSION: 수집용 Session 요청
-    SESSION->>DPAPI: 복호화
-    DPAPI-->>SESSION: Cookie
-    SESSION-->>WORKER: 로그인 Session
-    WORKER->>NAVER: 카페 접근
-```
-
-실제 쿠키 값을 SQLite 실행 이력이나 일반 로그에 직접 저장하지 않는 것이 기본 구조입니다.
-
----
-
-## 12. 예약 실행
-
-예약 실행은 프로그램 서버 내부 Scheduler가 관리합니다.
-
-```mermaid
-flowchart TD
-    LOOP["Scheduler Loop"]
-    TIME["현재 시각 확인"]
-    CONFIG["예약 설정 확인"]
-    DUE{"예약 시각인가?"}
-    WEEK{"실행 가능한 요일인가?"}
-    DONE{"오늘 이미 처리했는가?"}
-    BUSY{"다른 실행이 진행 중인가?"}
-
-    RUN["새 Run 생성"]
-    SKIP["이번 예약 건너뜀"]
-    NEXT["다음 확인"]
-
-    LOOP --> TIME
-    TIME --> CONFIG
-    CONFIG --> DUE
-
-    DUE -- 아니오 --> NEXT
-    DUE -- 예 --> WEEK
-
-    WEEK -- 아니오 --> NEXT
-    WEEK -- 예 --> DONE
-
-    DONE -- 예 --> NEXT
-    DONE -- 아니오 --> BUSY
-
-    BUSY -- 예 --> SKIP
-    BUSY -- 아니오 --> RUN
-
-    RUN --> NEXT
-    SKIP --> NEXT
-    NEXT --> LOOP
-```
-
-예약 실행을 사용하려면 프로그램 서버와 PC가 실행 중이어야 합니다.
-
-서버가 예약 시각 이후에 실행되었다고 해서 과거 예약을 자동으로 소급 실행하지 않습니다.
-
----
-
-## 13. PPT만 다시 생성하기
-
-이미 수집과 AI 분석이 끝난 실행은 저장된 데이터를 이용해 PPT만 다시 만들 수 있습니다.
-
-```mermaid
-flowchart LR
-    OLD["기존 Run"]
-    RAW["저장 원문"]
-    ANALYSIS["저장 분석"]
-    NEW["PPT 재생성 Run"]
-    PPT["새 PPT"]
-
-    OLD --> RAW
-    OLD --> ANALYSIS
-
-    RAW --> NEW
-    ANALYSIS --> NEW
-    NEW --> PPT
-
-    X1["네이버 재수집 X"]
-    X2["AI 재호출 X"]
-    X3["메일 자동발송 X"]
-
-    NEW -.-> X1
-    NEW -.-> X2
-    NEW -.-> X3
-```
-
-PPT 레이아웃이나 출력 결과만 다시 확인할 때 웹 수집과 AI 비용을 반복해서 발생시키지 않기 위한 기능입니다.
-
----
-
-## 14. 주요 기술
-
-| 영역 | 기술 |
+| 위치 | 내용 |
 | --- | --- |
-| 언어 | Python, JavaScript, HTML/CSS |
-| 웹 수집 | Playwright + Chrome |
-| AI | Codex CLI / OpenAI API |
-| 데이터베이스 | SQLite |
-| 웹 UI | 로컬 HTML / JavaScript |
-| API | Python Local HTTP Server |
-| 병렬 처리 | asyncio / Semaphore / Thread Pool |
-| PPT | Microsoft PowerPoint COM |
-| 메일 | Classic Outlook COM |
-| 이미지 처리 | Pillow |
-| 인증 정보 보호 | Windows DPAPI |
-| 데이터 무결성 | SHA-256 / Content Fingerprint |
-| 운영 제어 | Worker Process / File Lock / Scheduler |
-
----
-
-## 15. 주요 설계 패턴
-
-### Incremental Crawling
-
-마지막 정상 완료 지점부터 다음 범위를 계산하여 수집합니다.
-
-### Idempotency
-
-같은 요청 ID로 실행 요청이 반복되더라도 동일 Run을 재사용하여 중복 실행을 방지합니다.
-
-### Content Fingerprinting
-
-게시글 ID가 같아도 본문이 변경되면 새로운 원문 버전으로 저장합니다.
-
-### Optimistic Concurrency
-
-두 브라우저에서 동시에 설정을 수정했을 때 오래된 설정이 최신 설정을 덮어쓰는 것을 방지합니다.
-
-### Bounded Concurrency
-
-수집과 AI 처리의 동시 실행 개수를 제한합니다.
-
-### Evidence-grounded AI
-
-AI 결과를 원문 Evidence와 연결하여 저장합니다.
-
-### Hash-verified Artifact
-
-PPT 등 생성 산출물에 SHA-256을 기록하여 이후 변경 여부를 확인할 수 있습니다.
-
-### Mail Send Intent Logging
-
-Outlook 발송 전에 발송 의도를 DB에 먼저 Commit하여 비정상 종료 후 중복발송 위험을 줄입니다.
-
----
-
-## 16. 디렉터리 구조
-
-```text
-20261001_cafe_monitoring_v1.0/
-├─ README.md
-├─ cafe_monitoring/
-│  ├─ 00_README_KO.md
-│  ├─ 00_실행순서.png
-│  ├─ 01_setup_v10.bat
-│  ├─ 02_start_v10.bat
-│  ├─ 03_verify_v10.bat
-│  ├─ requirements.txt
-│  ├─ package_manifest.json
-│  │
-│  ├─ v10/
-│  │  ├─ __main__.py
-│  │  ├─ server.py
-│  │  ├─ service.py
-│  │  ├─ worker.py
-│  │  ├─ database.py
-│  │  ├─ schema.sql
-│  │  ├─ settings.py
-│  │  ├─ engine.py
-│  │  ├─ naver_session.py
-│  │  ├─ codex_auth.py
-│  │  ├─ office.py
-│  │  └─ migrate.py
-│  │
-│  ├─ web/
-│  │  ├─ index.html
-│  │  ├─ base.js
-│  │  └─ integration.js
-│  │
-│  ├─ engine/
-│  │  ├─ v5/
-│  │  ├─ v6/
-│  │  ├─ v7/
-│  │  ├─ v754/
-│  │  ├─ v8/
-│  │  └─ v9/
-│  │
-│  ├─ tests/
-│  └─ docs/
-│
-├─ docs/
-└─ releases/
-```
-
-`v10/`은 현재 운영 Application Layer이며, `engine/`에는 이전 버전에서 발전해 온 검증된 엔진 코드가 포함되어 있습니다.
-
----
-
-## 17. 설치 및 실행
-
-### 요구 환경
-
-기본 운영 환경은 Windows입니다.
-
-필요한 구성은 다음과 같습니다.
-
-- Python 3.11 이상
-- Chrome
-- 네이버 계정 및 대상 카페 접근 권한
-- AI 분석 사용 시 Codex CLI 또는 OpenAI API 환경
-- PPT 생성 시 데스크톱 Microsoft PowerPoint
-- 메일 발송 시 Classic Outlook
-
-### 최초 설치
-
-`cafe_monitoring` 폴더에서:
-
-```text
-01_setup_v10.bat
-```
-
-을 실행합니다.
-
-이 과정에서 Python 가상환경과 필요한 패키지를 설치하고 기본 검증을 수행합니다.
-
-### 프로그램 실행
-
-설치 이후에는:
-
-```text
-02_start_v10.bat
-```
-
-를 실행합니다.
-
-브라우저에서 로컬 운영 화면이 열리면 다음 순서로 사용합니다.
-
-```mermaid
-flowchart LR
-    A["프로그램 시작"]
-    B["네이버 로그인"]
-    C["AI 로그인 / API 설정"]
-    D["카페 선택"]
-    E["키워드 설정"]
-    F["메일 / 실행 옵션 설정"]
-    G["설정 저장"]
-    H["전체 실행"]
-
-    A --> B --> C --> D --> E --> F --> G --> H
-```
-
-검증만 별도로 수행하려면:
-
-```text
-03_verify_v10.bat
-```
-
-을 사용할 수 있습니다.
-
----
-
-## 18. 운영 데이터
-
-프로그램 실행 후 생성되는 운영 데이터는 주로 `data_v10/` 아래에 저장됩니다.
-
-이 데이터에는 다음 정보가 포함될 수 있습니다.
-
-- SQLite DB
-- 네이버 로그인 Session
-- 실행 로그
-- 수집 원문
-- 게시글 캡처
-- AI 분석 결과
-- PowerPoint 결과물
-- PPT 미리보기
-
-프로그램을 다른 위치로 이동하거나 업데이트할 때는 코드뿐 아니라 운영 데이터의 보존 여부도 함께 확인해야 합니다.
-
----
-
-## 19. Version 1.0의 의미
-
-이 프로젝트는 처음부터 현재 구조로 시작한 것이 아닙니다.
-
-```mermaid
-flowchart LR
-    V1["V1<br/>게시글 1개 수집"]
-    V2["V2<br/>키워드 검색"]
-    V3["V3<br/>N개 / 페이지 처리"]
-    V4["V4<br/>다중 키워드 / 중복 제거"]
-    V5["V5<br/>증분 수집 / 예약 / 복구"]
-    V6["V6<br/>AI 구조화 분석"]
-    V7["V7<br/>PPT 자동화"]
-    V8["V8<br/>운영 안정화"]
-    V9["V9<br/>병렬화 / 성능 / 보고 자동화"]
-    V96["V9.5~V9.6<br/>원문 노트 / 용량 / 리팩터링"]
-    V10["V10 = Version 1.0<br/>운영 Application"]
-
-    V1 --> V2 --> V3 --> V4 --> V5 --> V6 --> V7 --> V8 --> V9 --> V96 --> V10
-```
-
-초기 버전의 중심 문제가 **“게시글을 어떻게 안정적으로 가져올 것인가”**였다면, Version 1.0에서는 다음 문제가 중심이 되었습니다.
-
-- 실행을 어떻게 재현할 것인가
-- 원문과 AI 분석을 어떻게 연결할 것인가
-- 데이터를 어떻게 누적하고 추적할 것인가
-- 사람이 어떻게 검토할 것인가
-- 보고서를 어떻게 자동 생성할 것인가
-- 중복 실행과 중복 메일을 어떻게 방지할 것인가
-- 기존 결과를 어떻게 재사용할 것인가
-- 장기 운영 시 프로그램 상태를 어떻게 관리할 것인가
-
-따라서 Version 1.0은 단순 크롤러의 완성 버전이라기보다, **장기 운영 가능한 모니터링 소프트웨어의 기준점**에 해당합니다.
-
----
-
-## 20. 검증
-
-Version 1.0 배포 소스에는 Python 및 JavaScript 테스트가 포함되어 있습니다.
-
-현재 코드 리뷰 시 확인한 범위:
-
-- V10 Python 테스트: **75개 중 74 PASS**
-- Windows DPAPI 전용 테스트: **1 SKIP**
-- 기존 V9 회귀 테스트: **54 / 54 PASS**
-- JavaScript API/UI 계약 테스트: **49 / 49 PASS**
-
-Windows 전용 기능인 PowerPoint COM, Outlook COM, Chrome 로그인 및 DPAPI 실동작은 실제 Windows 운영 환경에서 별도 확인이 필요합니다.
-
----
-
-## 21. 참고 문서
-
-- [프로그램 폴더](cafe_monitoring/)
-- [상세 사용 안내](cafe_monitoring/00_README_KO.md)
-- [실행 순서 이미지](cafe_monitoring/00_실행순서.png)
-- [프로그램 내부 문서](cafe_monitoring/docs/)
-- [결과보고서](docs/)
-- [배포 파일](releases/)
-
----
-
-## 22. 요약
-
-```mermaid
-flowchart LR
-    N["Naver Cafe"]
-    C["Collect"]
-    S["Store Raw Data"]
-    A["AI Analyze"]
-    V["Validate"]
-    P["PowerPoint"]
-    O["Outlook"]
-    D[("SQLite")]
-    U["Human Review"]
-
-    N --> C
-    C --> S
-    S --> A
-    A --> V
-    V --> P
-    P --> O
-
-    C --> D
-    S --> D
-    A --> D
-    V --> D
-    P --> D
-    O --> D
-
-    P --> U
-    S --> U
-```
-
-**자동화의 목적은 사람이 보지 않아도 되게 만드는 것이 아니라, 사람이 확인해야 할 정보를 더 빠르게 수집·정리·추적할 수 있게 만드는 것입니다.**
-
-Version 1.0은 이 전체 흐름을 하나의 웹 기반 로컬 운영 프로그램으로 통합한 첫 기준 버전입니다.
+| [`cafe_monitoring/`](cafe_monitoring/) | **배포 ZIP을 그대로 푼 프로그램 356개 파일**. 내부 폴더 재배치나 리팩터링 없이 공개합니다. |
+| [`releases/`](releases/) | 전달·신규 설치용 원본 ZIP |
+| [`screenshots/`](screenshots/) | Version 1.0 초기 화면 및 기존 Windows 검증 캡처 |
+| [`docs/`](docs/) | 결과보고서, 화면 안내, 이번 README 검토 기록 |
+| [`SHA256SUMS.txt`](SHA256SUMS.txt) | 원본 배포 ZIP의 SHA-256 체크섬 |
+
+2026-10-02 문서 검토 시 ZIP 내부 356개 파일과 `cafe_monitoring/`의 파일을 바이트 단위로 대조해 누락·내용 차이·추가 파일이 없음을 확인했습니다. ZIP과 압축 해제본 중 하나로 설치하면 됩니다.
+
+| 구성 | 구현과 역할 |
+| --- | --- |
+| 웹 화면 | HTML/CSS·JavaScript. 운영, 실행 이력, 데이터 분석 탭 |
+| 로컬 API·실행 관리 | Python 표준 라이브러리 HTTP 서버, 별도 작업 프로세스, 잠금·예약 관리 |
+| 저장 | SQLite에 이력·원문 버전·분석·검토·파일 정보를 기록하고 산출물은 파일로 보관 |
+| 수집 | Playwright + Chrome, asyncio 기반 카페 병렬 처리와 공통 요청 간격 제어 |
+| AI | Codex CLI / OpenAI API, 결과 검증과 캐시 |
+| Office·이미지 | PowerPoint COM, Classic Outlook COM, Pillow. COM은 설치된 Windows Office를 프로그램에서 제어하는 방식 |
+| 인증 | 네이버 세션 사본은 Windows DPAPI로 보호하고 Codex 인증은 CLI 저장소에서 관리 |
+
+`v10/`은 웹 화면과 DB를 기존 엔진에 연결하는 운영 코드입니다. `engine/`에는 V5~V9 계열에서 발전한 수집·분석·PPT 코드와 의존 모듈이 포함되어 있습니다. **현재 사용에 필요한 코드를 묶은 구성으로, 과거의 모든 배포 버전 전체를 보관한 것은 아닙니다.**
+
+개발자는 [구현 구조·DB·API 설명](cafe_monitoring/docs/ARCHITECTURE_KO.md), [`v10/`](cafe_monitoring/v10/), [`engine/`](cafe_monitoring/engine/)을 참고하세요. 서버는 기본적으로 `127.0.0.1`에만 연결하는 로컬 도구입니다.
+
+## 확인된 실행 결과와 검증 범위
+
+| 확인 구분 | 결과 | 범위 |
+| --- | --- | --- |
+| 2026-09-30 사용자 Windows 오프라인 검사 | RC1.7 Python **75개 통과** | 개발 당시 실행 로그와 배포 안내 기록 |
+| 같은 날 Windows 통합 실행 | **9개 카페 완료, 게시글 16건, PPT 30장, 30분 45초** | 실행 이력 화면과 같은 실행 ID의 PPT 첨부 메일을 Outlook 보낸 편지함에서 확인 |
+| 배포 전 Linux 검사 | Python **74개 통과·Windows DPAPI 1개 제외**, JavaScript **49개 통과** | 외부 수집·AI·Office 호출은 테스트 대역으로 검사 |
+| 2026-10-02 문서 정비 시 Linux 재검사 | Python **74개 통과·Windows 전용 1개 제외**, JavaScript **49개 통과** | 공개 소스에서 재실행. 실제 네이버·AI·Office 작업은 수행하지 않음 |
+| 초기 RC1 기존 엔진 회귀 검사 | **54개 통과** | 당시 기록. 이번 문서 수정에서 새로 실행한 검사 결과와 구분 |
+
+Windows 실사용 결과는 RC1.7 기준입니다. 정식 Version 1.0은 그 기능을 유지하고 제목·버전·배포 안내를 정리한 버전입니다. 당시 `완료(일부 확인 필요)`의 구체적인 사유, 전체 분석·PPT의 내용 품질, 새 PC 최초 설치와 장시간 예약은 별도 확인 대상입니다. 프로그램 검사를 통과했다는 사실과 모든 환경에서의 운영 검증을 구분합니다.
+
+## 관련 자료
+
+- [사용·업데이트·기존 V9 이관 상세 안내](cafe_monitoring/00_README_KO.md)
+- [전체 화면 안내 — 18장](docs/SCREENSHOTS.md)
+- [V10 결과보고서](docs/자동차동호회_모니터링_V10_결과보고서.docx)
+- [개발 당시 검증 기록](cafe_monitoring/docs/VALIDATION_KO.md)
+- [이번 README 검토·정정 기록](docs/README_REVIEW_20261002.md)
+
+Version 1.0은 수집부터 보고·전달까지를 실제로 연결한 첫 배포 기준점입니다. 이후 운영 결과와 사용자 피드백을 바탕으로 안정성과 분석 품질을 개선해 나갑니다.
