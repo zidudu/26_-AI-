@@ -4,6 +4,41 @@ Windows에서 YouTube 영상·음원·자막을 수집하고 태그·검색·재
 
 [공유 ZIP 다운로드](./youtube_media_library_v8_beta2_share_20261001.zip?raw=true) · [구글 드라이브](https://drive.google.com/file/d/137JBAKkslnAyF3WR0fbidHYgGM0LLibW/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt)
 
+
+## 실제 실행 화면
+
+아래는 **프로그램을 직접 실행해 캡처한 화면**입니다. 영상·제목·태그·자막에는 촬영용으로 만든 공개 샘플 자료를 사용했습니다. 촬영 날짜: 2026-10-01.
+
+### 영상·자막·저장된 파일을 함께 보기
+
+선택한 영상의 재생 화면, 타임스탬프, 태그와 상단 바로 다운로드를 한 화면에서 확인합니다.
+
+![영상·자막·다운로드 상세 화면](./screenshots/01_library_detail.png)
+
+### URL 수집 설정
+
+링크 입력, 저장 항목, 화질, 음원 형식, 자막 언어와 공통 태그를 설정합니다. **Enter로 대기열 추가 / Shift+Enter로 줄바꿈**합니다.
+
+![URL 수집 설정 창](./screenshots/02_url_collection.png)
+
+### 목록 너비 조절과 여러 열 표시
+
+목록과 상세 화면 사이 경계를 조절합니다. 캡처는 목록을 넓혀 실제로 2열이 된 상태입니다.
+
+![너비 조절 후 2열로 표시된 자료 목록](./screenshots/03_resizable_grid.png)
+
+### 사이드바와 패널 접기
+
+왼쪽 사이드바와 저장된 파일 패널을 접어 영상·자막을 볼 공간을 확보한 상태입니다.
+
+![사이드바와 파일 패널을 접은 화면](./screenshots/04_collapsible_panels.png)
+
+### 좁은 화면의 자료 목록
+
+브라우저에서 모바일 화면 크기를 재현한 캡처입니다. 자료 종류 필터와 하단 이동 메뉴를 확인할 수 있습니다.
+
+<img src="./screenshots/05_mobile_library.png" alt="모바일 크기로 재현한 자료 목록과 하단 이동 메뉴" width="300">
+
 ## 설치
 
 1. Python 3.10 이상을 설치합니다.
