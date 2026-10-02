@@ -6,1405 +6,1405 @@
       "name": "Presentations",
       "package": "skill://flora-skills/root/.codex/skills/builtins/presentations",
       "description": "Read, create or edit PowerPoint or Google Slides decks. Use for presentation, slide deck, PowerPoint, PPT, PPTX, or Google Slides requests.",
-      "path": "codex-current/Presentations"
+      "path": "codex-current/standalone/Presentations"
     },
     {
       "name": "Spreadsheets",
       "package": "skill://flora-skills/root/.codex/skills/builtins/spreadsheets",
       "description": "Use skill when user requests to create, modify, analyze, visualize, or work with spreadsheet files (`.xlsx`, `.xls`, `.csv`, `.tsv`) or Google Sheets with formulas, formatting, charts, tables, and recalculation.",
-      "path": "codex-current/Spreadsheets"
+      "path": "codex-current/standalone/Spreadsheets"
     },
     {
       "name": "analyze-evidence-records",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe870ce6a081919336ee3bbf37d4c9",
       "description": "문서·게시글·리뷰를 AI로 분류·요약하면서 각 판단을 원문 근거와 연결해야 할 때 사용한다. 구조화 출력, 원문 무결성, 근거 위치, 캐시 키, 실패·미검토 상태를 관리한다. 사실 확인이나 의미 정확성을 구조 검증만으로 보장하지 않는다.",
-      "path": "codex-current/analyze-evidence-records"
+      "path": "codex-current/standalone/analyze-evidence-records"
     },
     {
       "name": "analyze-web-workflow",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa13533b7ac8191a7695900e17f8381",
       "description": "Analyze a website's actual UI structure, input events, loading states, and permitted request/response evidence to explain workflows, build repeatable web automation, or repair unreliable macros. Use for requests such as “사이트 복호화”, “동작 원리 뜯어보기”, “다른 웹 업무도 자동화”, and failed search, selection, calendar, navigation, or save steps. Focus on functional workflow analysis; cryptographic decryption and visual site cloning are outside this skill.",
-      "path": "codex-current/analyze-web-workflow"
+      "path": "codex-current/standalone/analyze-web-workflow"
     },
     {
       "name": "answers-charts",
       "package": "skill://flora-skills/root/.codex/skills/oai/answers-charts",
       "description": "Use when a chart would communicate a categorical comparison, trend, composition, or numeric relationship more clearly than prose.",
-      "path": "codex-current/answers-charts"
+      "path": "codex-current/standalone/answers-charts"
     },
     {
       "name": "answers-images",
       "package": "skill://flora-skills/root/.codex/skills/oai/answers-images",
       "description": "Use when retrieved images would visually ground or meaningfully improve an answer.",
-      "path": "codex-current/answers-images"
+      "path": "codex-current/standalone/answers-images"
     },
     {
       "name": "answers-learning",
       "package": "skill://flora-skills/root/.codex/skills/oai/answers-learning",
       "description": "Use when the user explicitly requests an objective multiple-choice knowledge quiz or pronunciation help. Always use this skill for a short request of the form how do you say <source> in <target language>; render the pronunciation widget even when a prose answer would otherwise suffice.",
-      "path": "codex-current/answers-learning"
+      "path": "codex-current/standalone/answers-learning"
     },
     {
       "name": "atlas-review",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/visual-skills/runtime/skills/atlas-review",
       "description": "Use when atlas-check.mjs reports stale or ungrounded pages, or when the user asks to verify an existing visual atlas against current code. Reviews each stale page's own evidence, rewrites the smallest coherent current-truth account, re-renders, and independently stamps only reviewed pages.",
-      "path": "codex-current/atlas-review"
+      "path": "codex-current/standalone/atlas-review"
     },
     {
       "name": "build-local-automation-console",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe86c8a99c81918d2ac3e470b9228e",
       "description": "반복 자동화를 로컬 웹 화면에서 실행·중지·예약하고 상태와 로그를 조회하는 운영 도구를 만들 때 사용한다. 루프백 API, 실행 토큰, 단일 작업 제약, 워커 분리, 시간대·예약 누락 정책을 다룬다.",
-      "path": "codex-current/build-local-automation-console"
+      "path": "codex-current/standalone/build-local-automation-console"
     },
     {
       "name": "build-monitoring-pipeline",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe8673dc9881918faae831bb4009d6",
       "description": "지속적인 모니터링·수집·AI 분석·보고·발송을 연결하는 자동화를 설계하거나 기존 파이프라인을 분리할 때 사용한다. 실행 모드, 단계 계약, 부분 실패, 재실행과 산출물 추적을 정의한다. 단순 일회성 검색에는 사용하지 않는다.",
-      "path": "codex-current/build-monitoring-pipeline"
+      "path": "codex-current/standalone/build-monitoring-pipeline"
     },
     {
       "name": "cloud-browser-start",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aaa1c40eeb48191ad328700f93949cf",
       "description": "클라우드 브라우저 시작, 연결 확인, 브라우저로 사이트 열기 요청에서 현재 control-browser 지침과 실행 도구를 발견하고 실제 연결·접속을 검증한다. 도구 탐색 없이 사용 불가라고 판단하는 것을 방지한다. 일반 웹 정보 검색이나 로컬 Chrome 설정용은 아니다.",
-      "path": "codex-current/cloud-browser-start"
+      "path": "codex-current/standalone/cloud-browser-start"
     },
     {
       "name": "collect-incremental-web",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe86977124819188575a416b8aa9e4",
       "description": "웹사이트·게시판·뉴스의 반복 수집, 마지막 성공 이후 증분 수집, 로그인 세션 유지, 원문과 캡처 연결이 필요할 때 사용한다. 기간 경계, 사이트별 커서, 동시성·요청 간격, 인증 실패를 다룬다. 사이트별 접근 수단과 선택자는 별도로 확인한다.",
-      "path": "codex-current/collect-incremental-web"
+      "path": "codex-current/standalone/collect-incremental-web"
     },
     {
       "name": "crawl-web-content",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa13c436f208191b0486a6943b14671",
       "description": "Collect website and blog content into verifiable datasets or build and repair crawlers for that work. Use for 웹 크롤링, 블로그 글 수집, 본문 추출, 키워드별 게시글 수집, and missing or duplicate crawl results. Inspect actual list/detail behavior, preserve sources, handle pagination and resume, and export requested results. Includes evidence-based notes for Naver Blog, Tistory, Velog, and WordPress. Not for visual site cloning or automating business-record edits.",
-      "path": "codex-current/crawl-web-content"
+      "path": "codex-current/standalone/crawl-web-content"
     },
     {
       "name": "create-evidence-ppt",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe8728d3ec8191b0d75010200bb91b",
       "description": "수집 원문 캡처와 분석을 함께 담은 PowerPoint 보고서, 원문 발표자 노트, 요약본·미리보기 또는 이전 실행 기반 PPT 재생성이 필요할 때 사용한다. 생성된 이미지로 증거를 대체하지 않고 자료·슬라이드 관계를 검증한다.",
-      "path": "codex-current/create-evidence-ppt"
+      "path": "codex-current/standalone/create-evidence-ppt"
     },
     {
       "name": "deliver-outlook-reports",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe87adde108191ae51254d007dcd26",
       "description": "Windows Classic Outlook COM으로 보고서 메일 초안을 만들거나 사용자가 승인한 발송 자동화를 구현할 때 사용한다. 발송 의도 기록, 계정·수신자 확인, 첨부 검증, 전송 불확실성과 재시도 처리를 다룬다. 사용자 승인 없는 실제 전송에는 사용하지 않는다.",
-      "path": "codex-current/deliver-outlook-reports"
+      "path": "codex-current/standalone/deliver-outlook-reports"
     },
     {
       "name": "documents",
       "package": "skill://flora-skills/root/.codex/skills/builtins/documents",
       "description": "Create, edit, redline, and comment on `.docx`, Word, and Google Docs-targeted document artifacts inside the container, with a strict render-and-verify workflow. Use `render_docx.py` to generate page PNGs (and optional PDF) for visual QA, then iterate until layout is flawless before delivering the final document.",
-      "path": "codex-current/documents"
+      "path": "codex-current/standalone/documents"
     },
     {
       "name": "eli5",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/eli5",
       "description": "Explain complex topics or unfamiliar code with large diagrams and concise text in a visual HTML page. Use for ELI5, /eli5, 쉽게 설명, 그림으로 설명, or visual onboarding requests.",
-      "path": "codex-current/eli5"
+      "path": "codex-current/standalone/eli5"
     },
     {
       "name": "evidence-driven-debugging",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa626c5e7f481918caaad2a081df571",
       "description": "실제 실행 증거를 바탕으로 오류 원인을 단계적으로 추적하는 디버깅 스킬. 오류 원인 분석, 재현 테스트, 로그·입력·출력 비교, API 전달 내용 확인, AI 분석 결과 검증, \"추측하지 말고 테스트해\", \"검증 명령어 줘\" 요청에 사용한다. 대상 환경에 접근할 수 있으면 직접 검사하고, 접근할 수 없으면 사용자가 실행할 최소 명령을 제공한다. 실제 결과에 따라 가설을 갱신하고 다음 검사를 결정한다.",
-      "path": "codex-current/evidence-driven-debugging"
+      "path": "codex-current/standalone/evidence-driven-debugging"
     },
     {
       "name": "evidence-gate",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa4dbc64b348191a677d9d419f4556a",
       "description": "외부 정보, 웹 자료, GitHub 프로젝트, 코드, 라이브러리, 논문, 데이터셋, 모델, 프롬프트, 도구 또는 방법을 신뢰·추천·도입·통합하기 전에 출처, 실제 시험, 독립 검증, 재현성, 최신성 및 사용자 환경 적합성을 유연하게 확인한다. 사용자가 검증된 자료를 찾아 달라고 하거나 후보 비교, 신뢰도 판단, 도입 추천, 재사용 또는 통합을 요청할 때 사용한다. 근거 확인이 필요 없는 순수 창작이나 자유 발상에는 사용하지 않는다.",
-      "path": "codex-current/evidence-gate"
+      "path": "codex-current/standalone/evidence-gate"
     },
     {
       "name": "export-monitoring-analytics",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe8774d6f48191a1eac034856e51f6",
       "description": "수집 문서의 출처·키워드·기간별 통계, 추이, 상세 목록과 Excel 내보내기를 만들 때 사용한다. 고유 문서 수와 다중 매칭 수, 최초 수집일과 게시일, 현재 적용된 필터와 비교 집계 범위를 구분한다.",
-      "path": "codex-current/export-monitoring-analytics"
+      "path": "codex-current/standalone/export-monitoring-analytics"
     },
     {
       "name": "flexible-thinking",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa26534e7cc8191902730f3c63740b1",
       "description": "막히거나 지나치게 복잡해졌을 때, 기존 방식에 얽매이지 않고 더 나은 접근으로 전환하기 위한 스킬.",
-      "path": "codex-current/flexible-thinking"
+      "path": "codex-current/standalone/flexible-thinking"
     },
     {
       "name": "genius-thinking-formula",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa45012136081918d013c3ee57d8b59",
       "description": "사용자가 '천재적 사고', '천재적 사고 공식화', '천재적 사고 공식화 프롬프트', 'Genius Thinking Formula'를 요청할 때 사용한다. 원문의 10가지 사고법 중 두 가지를 혼합하여 1500자 이상 분석하고, 아이디어를 10개 이상 3000자 이상 출력한다.",
-      "path": "codex-current/genius-thinking-formula"
+      "path": "codex-current/standalone/genius-thinking-formula"
     },
     {
       "name": "github-deep-search",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa269d2b1b0819180e31d436c138992",
       "description": "GitHub를 중심으로 오픈소스 프로젝트, 코드, 구현 사례를 심층 탐색한다. 특정 기능의 구현 방법을 찾거나 기존 오픈소스를 참고·재사용하려는 작업에 사용한다. 필요하면 공식 문서, 웹 검색, Issues, Pull Requests, Commits 등으로 탐색 범위를 확장한다.",
-      "path": "codex-current/github-deep-search"
+      "path": "codex-current/standalone/github-deep-search"
     },
     {
       "name": "imagegen",
       "package": "skill://flora-skills/root/.codex/skills/.system/imagegen",
       "description": "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas.",
-      "path": "codex-current/imagegen"
+      "path": "codex-current/standalone/imagegen"
     },
     {
       "name": "integrate-cli-ai",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe86b107088191b8bd9b096bc9f459",
       "description": "Codex 등 CLI 기반 AI 도구를 Python·데스크톱 자동화에 연결하거나 로그인·프로세스 종료·JSON 응답 문제를 해결할 때 사용한다. 설치 버전과 지원 기능 확인, 비대화식 실행, 인증 상태, 타임아웃과 자식 프로세스 수명을 다룬다.",
-      "path": "codex-current/integrate-cli-ai"
+      "path": "codex-current/standalone/integrate-cli-ai"
     },
     {
       "name": "interview-me",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa3deb85e088191bea3a6e7d5aaa043",
       "description": "Extracts what the user actually wants instead of what they think they should want. Achieves this through one-question-at-a-time interview until ~95% confidence about the underlying intent. Use when an ask is underspecified (\"build me X\" without \"for whom\" or \"why now\"), when the user explicitly invokes (\"interview me\", \"grill me\", \"are we sure?\", \"stress-test my thinking\"), or when you catch yourself silently filling in ambiguous requirements before any plan, spec, or code exists.",
-      "path": "codex-current/interview-me"
+      "path": "codex-current/standalone/interview-me"
     },
     {
       "name": "mermaid-workflow-diagram",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abdcb9300a4819183217941abc8aad8",
       "description": "워크플로우, 흐름도, 에이전트 구조와 작업 경로를 ChatGPT에서 바로 렌더링되는 Mermaid 다이어그램으로 표현한다. 사용자가 '워크플로우 다이어그램', '흐름도', 'Mermaid로 그려줘', '에이전트 구조 그려줘'라고 요청하거나 제공한 구조를 같은 형태의 다이어그램으로 옮겨 달라고 할 때 사용한다. 기본 출력은 이미지 파일이 아닌 직접 렌더링되는 Mermaid 블록이다.",
-      "path": "codex-current/mermaid-workflow-diagram"
+      "path": "codex-current/standalone/mermaid-workflow-diagram"
     },
     {
       "name": "novelai-v5-image-production",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa68aa020948191b06d4d3d10af46de",
       "description": "NovelAI Diffusion V5 기준으로 이미지 요구를 분석하고, 프레임·해상도·가시성·구도·캐릭터별 위치·자연어·태그·텍스트 렌더링·UC·설정값·편집 루프를 상황에 맞게 설계하는 실전 이미지 제작 스킬. 캐릭터 디자인/재현, 장면/배경, 다중 캐릭터, 포스터·만화·이미지 내 텍스트, Alpha Transparency, Image2Image, Inpaint, Enhance, 결과 진단 및 반복 수정에 사용한다. 고정 프롬프트나 고정 설정값을 강제하지 않고, NovelAI V5의 현재 기능과 검증된 실전 노하우를 구분해 판단한다.",
-      "path": "codex-current/novelai-v5-image-production"
+      "path": "codex-current/standalone/novelai-v5-image-production"
     },
     {
       "name": "openai-docs",
       "package": "skill://flora-skills/root/.codex/skills/.system/openai-docs",
       "description": "Use for Codex models/pricing, scheduled tasks, skills, settings, setup, troubleshooting, customization, automations, and self-knowledge—including 'you,' 'your,' 'this app,' or 'this coding agent' when they refer to Codex—and for OpenAI APIs/products and ChatGPT Work. Also use for model choice/migration, prompting, SDKs, Responses, Realtime, agents, evals, and Chat/Work/Codex comparisons. Do not use for generic app/software tasks that merely mention Codex.",
-      "path": "codex-current/openai-docs"
+      "path": "codex-current/standalone/openai-docs"
     },
     {
       "name": "optimize-report-images",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe87594184819198fef2dba43f8b61",
       "description": "PowerPoint·문서에 넣을 긴 화면 캡처나 고해상도 이미지의 용량을 줄일 때 사용한다. 실제 전체 그림 배치 너비와 목표 PPI로 픽셀 크기를 계산하고 재사용 배치의 최대 크기·원본 해시·가독성을 확인한다.",
-      "path": "codex-current/optimize-report-images"
+      "path": "codex-current/standalone/optimize-report-images"
     },
     {
       "name": "package-windows-automation",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe87906ea88191992b1fe75481749a",
       "description": "Python·브라우저·Office를 사용하는 Windows 자동화 프로그램을 소스 폴더·ZIP으로 배포하거나 설치 안내를 정비할 때 사용한다. 의존성, 사전 점검, 깨끗한 패키징, ZIP 안전성·해시·내용 일치와 검증 수준을 다룬다.",
-      "path": "codex-current/package-windows-automation"
+      "path": "codex-current/standalone/package-windows-automation"
     },
     {
       "name": "pdf",
       "package": "skill://flora-skills/root/.codex/skills/builtins/pdf",
       "description": "Read, create, inspect, render, and verify PDF files where visual layout matters, including fillable AcroForms. Use Poppler rendering plus Python tools such as reportlab, pdfplumber, and pypdf for generation and extraction.",
-      "path": "codex-current/pdf"
+      "path": "codex-current/standalone/pdf"
     },
     {
       "name": "personal-context",
       "package": "skill://flora-skills/root/.codex/skills/oai/personal-context",
       "description": "Use this skill when either of the following situations are true. Continuity related: the user explicitly or implicitly refers to prior conversation state, shared work, an earlier artifact, decision, preference, constraint, attempt, or progress item, including elliptical phrases like continue, next, again, still, update it, compare it, same as before, my axes, or our plan. Decision related: a specific unseen prior preference, constraint, history item, or attempt would materially change a concrete choice, and not be a marginal improvement. Reading and tool discovery are only a check; after loading, discover and load Personal Context's full instructions, and call personal_context.search only if they apply. Use it before another tool when the prior state changes retrieval or judgment. Skip first-turn generic facts, generic personal-domain advice, visible-context-complete work, and current-source-only tasks.",
-      "path": "codex-current/personal-context"
+      "path": "codex-current/standalone/personal-context"
     },
     {
       "name": "pixel-art-rigging",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa6aaf12f048191b5243263910c0087",
       "description": "Create editable pixel-art character cutout rigs and looping animations from supplied layered sprites, transparent PNG parts, or an illustration that needs part preparation. Use for 도트 일러스트 리깅, 파츠 분리, 본 애니메이션, idle breathing, hair or cloth motion, and GIF/Aseprite exports. Covers preparation, pivots, motion curves, rendering, and validation; does not produce native Live2D or 3D rigs.",
-      "path": "codex-current/pixel-art-rigging"
+      "path": "codex-current/standalone/pixel-art-rigging"
     },
     {
       "name": "preserve-versioned-records",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6abe86f395dc819181b7050750a4b23f",
       "description": "수집 문서의 원문 보존, 변경 감지, SQLite 실행 이력, 검토 이력, 산출물 해시, 기존 데이터 가져오기와 백업이 필요할 때 사용한다. 원문·문서 버전·실행 관측을 분리하고 중복과 덮어쓰기를 방지한다.",
-      "path": "codex-current/preserve-versioned-records"
+      "path": "codex-current/standalone/preserve-versioned-records"
     },
     {
       "name": "procedural-motion-video",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa6830ddbc881919fa2a1cd87468c9b",
       "description": "Create and edit videos from local photos, illustrations, existing video clips, or procedural motion graphics using Remotion. Use for image slideshows, illustrated stories, product explainers, clip montages, and ORBIT-style animated shorts, including titles, camera moves, transitions, music, rendering and verification. Natural subject animation from a still image requires a separate generation model; this skill does not provide direct CapCut UI control.",
-      "path": "codex-current/procedural-motion-video"
+      "path": "codex-current/standalone/procedural-motion-video"
     },
     {
       "name": "quiz",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/visual-skills/runtime/skills/quiz",
       "description": "Use when the user asks to be quizzed on — or to verify their understanding of — a PR, commit, branch, diff, spec, plan, or a generated visual-skills doc. Generates a comprehension-check HTML quiz grounded in the real source, and optionally grades free-text answers live in the terminal.",
-      "path": "codex-current/quiz"
+      "path": "codex-current/standalone/quiz"
     },
     {
       "name": "resolve-recipients",
       "package": "skill://flora-skills/root/.codex/skills/oai/resolve-recipients",
       "description": "Resolve and verify the correct people before sending Slack messages, emails, invitations, meeting requests, calendar events, or other person-directed actions. Use whenever a request names, implies, or describes one or more recipients, especially with first names, duplicate names, nicknames, project groups, phrases such as “everyone,” or ambiguous references such as “the one I work with.” Search relevant communication and calendar history, compare candidate identities, and ask for clarification instead of silently guessing.",
-      "path": "codex-current/resolve-recipients"
+      "path": "codex-current/standalone/resolve-recipients"
     },
     {
       "name": "search-images",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa343c47c7881918d91c90aa49a8f93",
       "description": "Search the web for relevant images and display them directly in chat. Use when the user asks to find, show, collect, or visually reference images. Search intensity controls how broadly and repeatedly to search; when unspecified, use the default intensity.",
-      "path": "codex-current/search-images"
+      "path": "codex-current/standalone/search-images"
     },
     {
       "name": "skill-creator",
       "package": "skill://flora-skills/root/.codex/skills/oai/skill-creator",
       "description": "Guide for creating, installing, updating, uninstalling, and deleting effective skills. This skill should be used when users want to create a new skill (or install, add, update, uninstall, or permanently delete an existing one) that extends Codex's capabilities with specialized knowledge, workflows, or tool integrations. Always use this skill for any general questions about skills in ChatGPT (e.g., what skills are or how they work).",
-      "path": "codex-current/skill-creator"
+      "path": "codex-current/standalone/skill-creator"
     },
     {
       "name": "suno-v6-music-creation",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa6650bde48819188a86911a18883ef",
       "description": "SUNO v6 음악 제작과 기존 곡 수정을 돕는다. 게임 BGM, 캐릭터 테마, 보컬곡, Style Prompt, Lyrics, 설정값, Cover, Remix, Extend, 부분 편집, Remaster 요청에 사용한다. 입력 길이를 확인하고, 공식 정보와 실제 제작 결과에 따라 유연하게 판단한다.",
-      "path": "codex-current/suno-v6-music-creation"
+      "path": "codex-current/standalone/suno-v6-music-creation"
     },
     {
       "name": "text-box",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/skill-6aa367d07cd48191ad4a65c49cafd2a4",
       "description": "텍박, ㅌㅂ, 텍스트 박스, 텍스트박스, 텍스트상자 요청을 받으면 내용을 복사하기 쉬운 텍스트 박스 형식으로 출력한다.",
-      "path": "codex-current/text-box"
+      "path": "codex-current/standalone/text-box"
     },
     {
       "name": "understand-anything",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything",
       "description": "Analyze a repository with Understand Anything into a searchable interactive knowledge graph; explore architecture, launch its dashboard, explain code, inspect diff impact, create onboarding tours, or map business domains and knowledge bases. Use for Understand Anything and understand, understand-dashboard, understand-chat, understand-diff, understand-explain, understand-onboard, understand-domain, understand-knowledge requests.",
-      "path": "codex-current/understand-anything"
+      "path": "codex-current/plugins/understand-anything"
     },
     {
       "name": "understand-anything:understand",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand",
       "description": "Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships",
-      "path": "codex-current/understand-anything/understand"
+      "path": "codex-current/plugins/understand-anything/understand"
     },
     {
       "name": "understand-anything:understand-chat",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-chat",
       "description": "Use when you need to ask questions about a codebase or understand code using a knowledge graph",
-      "path": "codex-current/understand-anything/understand-chat"
+      "path": "codex-current/plugins/understand-anything/understand-chat"
     },
     {
       "name": "understand-anything:understand-dashboard",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-dashboard",
       "description": "Launch the interactive web dashboard to visualize a codebase's knowledge graph",
-      "path": "codex-current/understand-anything/understand-dashboard"
+      "path": "codex-current/plugins/understand-anything/understand-dashboard"
     },
     {
       "name": "understand-anything:understand-diff",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-diff",
       "description": "Use when you need to analyze git diffs or pull requests to understand what changed, affected components, and risks",
-      "path": "codex-current/understand-anything/understand-diff"
+      "path": "codex-current/plugins/understand-anything/understand-diff"
     },
     {
       "name": "understand-anything:understand-domain",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-domain",
       "description": "Extract business domain knowledge from a codebase and generate an interactive domain flow graph. Works standalone (lightweight scan) or derives from an existing /understand knowledge graph.",
-      "path": "codex-current/understand-anything/understand-domain"
+      "path": "codex-current/plugins/understand-anything/understand-domain"
     },
     {
       "name": "understand-anything:understand-explain",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-explain",
       "description": "Use when you need a deep-dive explanation of a specific file, function, or module in the codebase",
-      "path": "codex-current/understand-anything/understand-explain"
+      "path": "codex-current/plugins/understand-anything/understand-explain"
     },
     {
       "name": "understand-anything:understand-figma",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-figma",
       "description": "Analyze a Figma file via the Figma REST API and generate an interactive design knowledge graph (pages, screens, components, component sets, instances, design tokens) with a kind:\"design\" dashboard.",
-      "path": "codex-current/understand-anything/understand-figma"
+      "path": "codex-current/plugins/understand-anything/understand-figma"
     },
     {
       "name": "understand-anything:understand-knowledge",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-knowledge",
       "description": "Analyze a Karpathy-pattern LLM wiki knowledge base and generate an interactive knowledge graph with entity extraction, implicit relationships, and topic clustering.",
-      "path": "codex-current/understand-anything/understand-knowledge"
+      "path": "codex-current/plugins/understand-anything/understand-knowledge"
     },
     {
       "name": "understand-anything:understand-onboard",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/understand-anything/runtime/skills/understand-onboard",
       "description": "Use when you need to generate an onboarding guide for new team members joining a project",
-      "path": "codex-current/understand-anything/understand-onboard"
+      "path": "codex-current/plugins/understand-anything/understand-onboard"
     },
     {
       "name": "visual-atlas",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/visual-skills/runtime/skills/visual-atlas",
       "description": "Use when the user asks to map, document, or make sense of a whole codebase as a standing self-contained HTML atlas. Produces orientation-first system and domain pages plus recursive conceptual topics for focused technical depth.",
-      "path": "codex-current/visual-atlas"
+      "path": "codex-current/standalone/visual-atlas"
     },
     {
       "name": "visual-doc",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/visual-skills/runtime/skills/visual-doc",
       "description": "Use when the user asks to turn a spec, plan, or design markdown into a self-contained, visually readable HTML document grounded in the real codebase — with diagrams, a file tree, annotated code, and open questions. The general-purpose illustrated-doc renderer (for an approval-focused design spec use visual-spec; for a code change use visual-recap).",
-      "path": "codex-current/visual-doc"
+      "path": "codex-current/standalone/visual-doc"
     },
     {
       "name": "visual-recap",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/visual-skills/runtime/skills/visual-recap",
       "description": "Use when the user asks to visualize, render, recap, or \"make readable\" a pull request, commit, branch, or git diff as a self-contained HTML review document. Covers PR recaps, commit/branch reviews, and working-tree diffs grounded in the real repo.",
-      "path": "codex-current/visual-recap"
+      "path": "codex-current/standalone/visual-recap"
     },
     {
       "name": "visual-skills",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/visual-skills",
       "description": "Create visual-atlas code maps, atlas-review drift updates, visual-recap PR or commit walkthroughs, visual-spec design reviews, visual-doc illustrated HTML, and quiz comprehension checks. Use for those named workflows or requests to visualize a repository, diff, spec, plan, or document.",
-      "path": "codex-current/visual-skills"
+      "path": "codex-current/standalone/visual-skills"
     },
     {
       "name": "visual-spec",
       "package": "skill://flora-skills/root/.codex/skills/remote-skills/visual-skills/runtime/skills/visual-spec",
       "description": "Use when the user asks to visualize, render, or \"make readable\" a design spec / design doc / RFC / proposal as a self-contained HTML page — to get a reader up to speed fast and let them approve it. Covers design docs, RFCs, and spec markdowns (e.g. anything under a docs/ specs folder) grounded in the real document.",
-      "path": "codex-current/visual-spec"
+      "path": "codex-current/standalone/visual-spec"
     },
     {
       "name": "visualize",
       "package": "skill://flora-skills/root/.codex/skills/oai/visualize",
       "description": "Create visualizations and interactive tools directly in conversation. Proactively use to show how something works; explore 'what happens when', 'what changes', or 'help me understand'; compare or inspect; create simulations, maps, charts, graphs, and mockups. Use standard tools for static scientific figures.",
-      "path": "codex-current/visualize"
+      "path": "codex-current/standalone/visualize"
     },
     {
       "name": "writing-blocks",
       "package": "skill://flora-skills/root/.codex/skills/oai/writing-blocks",
       "description": "Present complete drafts of requested text in a writing block, including emails, messages, social posts, bios, blurbs, statements, and individual paragraphs. Prefer creating or editing a file for standalone documents or long-form content instead of a writing block.",
-      "path": "codex-current/writing-blocks"
+      "path": "codex-current/standalone/writing-blocks"
     },
     {
       "name": "build-web-apps:frontend-app-builder",
       "package": "skill://build-web-apps@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/build-web-apps/0.1.2/skills/frontend-app-builder",
       "description": "Use for new frontend applications, dashboards, games, creative websites, hero sections, and visually driven UI from scratch, or when the user explicitly asks for a redesign/restyle/modernization. Builds from clean, airy, high-taste, readable image-generated concept design with section-specific references, faithful implementation, and browser testing.",
-      "path": "codex-current/build-web-apps/frontend-app-builder"
+      "path": "codex-current/plugins/build-web-apps/frontend-app-builder"
     },
     {
       "name": "build-web-apps:frontend-testing-debugging",
       "package": "skill://build-web-apps@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/build-web-apps/0.1.2/skills/frontend-testing-debugging",
       "description": "Use when testing, debugging, or making targeted improvements to rendered frontend apps through the Build Web Apps or web dev plugin: local dev servers, UI regressions, interaction bugs, console errors, responsive layout, and visual QA. Check whether the Browser plugin is available and use it first when it is; otherwise use regular Playwright with the recorded reason.",
-      "path": "codex-current/build-web-apps/frontend-testing-debugging"
+      "path": "codex-current/plugins/build-web-apps/frontend-testing-debugging"
     },
     {
       "name": "build-web-apps:react-best-practices",
       "package": "skill://build-web-apps@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/build-web-apps/0.1.2/skills/react-best-practices",
       "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
-      "path": "codex-current/build-web-apps/react-best-practices"
+      "path": "codex-current/plugins/build-web-apps/react-best-practices"
     },
     {
       "name": "build-web-apps:shadcn",
       "package": "skill://build-web-apps@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/build-web-apps/0.1.2/skills/shadcn-best-practices",
       "description": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for \"shadcn init\", \"create an app with --preset\", or \"switch to --preset\".",
-      "path": "codex-current/build-web-apps/shadcn"
+      "path": "codex-current/plugins/build-web-apps/shadcn"
     },
     {
       "name": "build-web-apps:stripe-best-practices",
       "package": "skill://build-web-apps@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/build-web-apps/0.1.2/skills/stripe-best-practices",
       "description": "Guides Stripe integration decisions — API selection (Checkout Sessions vs PaymentIntents), Connect platform setup (Accounts v2, controller properties), billing/subscriptions, Treasury financial accounts, integration surfaces (Checkout, Payment Element), and migrating from deprecated Stripe APIs. Use when building, modifying, or reviewing any Stripe integration — including accepting payments, building marketplaces, integrating Stripe, processing payments, setting up subscriptions, or creating connected accounts.",
-      "path": "codex-current/build-web-apps/stripe-best-practices"
+      "path": "codex-current/plugins/build-web-apps/stripe-best-practices"
     },
     {
       "name": "build-web-apps:supabase-postgres-best-practices",
       "package": "skill://build-web-apps@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/build-web-apps/0.1.2/skills/supabase-best-practices",
       "description": "Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or optimizing Postgres queries, schema designs, or database configurations.",
-      "path": "codex-current/build-web-apps/supabase-postgres-best-practices"
+      "path": "codex-current/plugins/build-web-apps/supabase-postgres-best-practices"
     },
     {
       "name": "build-web-data-visualization:data-visualization",
       "package": "skill://build-web-data-visualization@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/build-web-data-visualization/0.1.21/skills/data-visualization",
       "description": "Route web data visualization work. Use when the user needs chart choice, visual critique, dashboards, maps or geospatial views, Gantt timelines, UML/software diagrams, scrollytelling, reports or exports, testing, accessibility, browser implementation, or concept-first visual design.",
-      "path": "codex-current/build-web-data-visualization/data-visualization"
+      "path": "codex-current/plugins/build-web-data-visualization/data-visualization"
     },
     {
       "name": "cloud-environment:cloud-environment-runtime",
       "package": "skill://cloud-environment@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/cloud-environment/0.1.2/skills/runtime",
       "description": "Read at the start of work in a managed cloud environment. Inspect network policy and configured credentials; build and run Docker containers with the session proxy and CA trust; use Tailscale VPN access, configure TCP forwarding, and diagnose access failures.",
-      "path": "codex-current/cloud-environment/cloud-environment-runtime"
+      "path": "codex-current/plugins/cloud-environment/cloud-environment-runtime"
     },
     {
       "name": "data-analytics:analyze-data-quality",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/analyze-data-quality",
       "description": "Investigate whether structured datasets and query results are trustworthy enough to use. Use for underlying data-quality risks such as freshness, grain, missingness, duplicates, broken joins, schema drift, and conflicting source results.",
-      "path": "codex-current/data-analytics/analyze-data-quality"
+      "path": "codex-current/plugins/data-analytics/analyze-data-quality"
     },
     {
       "name": "data-analytics:build-dashboard",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/build-dashboard",
       "description": "Build or update a source-backed interactive dashboard for monitoring, exploration, and operational decisions from connected data, uploaded spreadsheets, CSVs, or other structured sources.",
-      "path": "codex-current/data-analytics/build-dashboard"
+      "path": "codex-current/plugins/data-analytics/build-dashboard"
     },
     {
       "name": "data-analytics:build-report",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/build-report",
       "description": "Build polished analytical reports for executive, product, business, or technical audiences. Use when the task needs a durable narrative answer supported by inspectable evidence.",
-      "path": "codex-current/data-analytics/build-report"
+      "path": "codex-current/plugins/data-analytics/build-report"
     },
     {
       "name": "data-analytics:create-data-context",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/create-data-context",
       "description": "Create, update, or share reusable context for analysis, reports, and dashboards, including tool preferences, look and feel, analysis practices, and data definitions. Use when asked to remember a working instruction for future tasks, save conventions, or maintain existing context.",
-      "path": "codex-current/data-analytics/create-data-context"
+      "path": "codex-current/plugins/data-analytics/create-data-context"
     },
     {
       "name": "data-analytics:design-kpis",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/design-kpis",
       "description": "Design KPI frameworks, metric definitions, targets, guardrails, and measurement plans for product or business decisions. Use when success metrics, drivers, guardrails, targets, or the measurement approach need to be defined or improved.",
-      "path": "codex-current/data-analytics/design-kpis"
+      "path": "codex-current/plugins/data-analytics/design-kpis"
     },
     {
       "name": "data-analytics:gather-business-context",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/gather-business-context",
       "description": "Gather business context from connected or provided sources so downstream analysis starts with the right framing. Use when an analytical question depends on missing context, such as what a metric means, what changed recently, or which sources should be checked. If the same prompt asks for diagnosis, recommendation, or a deliverable, gather context first and continue to the focused skill.",
-      "path": "codex-current/data-analytics/gather-business-context"
+      "path": "codex-current/plugins/data-analytics/gather-business-context"
     },
     {
       "name": "data-analytics:index",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/index",
       "description": "Answer product and business questions with data and route data-related work to the right focused workflow. Use for requests involving data, metrics, trends, comparisons, drivers, KPIs, analysis, dashboards, reports, charts, tables, SQL, notebooks, spreadsheets, market sizing, data quality, reusable data context, data definitions, or working preferences, whether or not Data is at-mentioned. Dashboards can use uploaded spreadsheets, CSVs, or TSVs as source data without making the deliverable a spreadsheet. Do not use Data for general writing, editing, coding, or explanations that require none of these workflows.",
-      "path": "codex-current/data-analytics/index"
+      "path": "codex-current/plugins/data-analytics/index"
     },
     {
       "name": "data-analytics:jupyter-notebooks",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/jupyter-notebooks",
       "description": "Create, edit, or validate reproducible SQL or Python notebooks. Use for notebooks, SQL/Python scratchpads, reproducible exploration, audit trails, or runnable companions where the analysis should be reviewable or rerunnable.",
-      "path": "codex-current/data-analytics/jupyter-notebooks"
+      "path": "codex-current/plugins/data-analytics/jupyter-notebooks"
     },
     {
       "name": "data-analytics:kpi-reporting",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/kpi-reporting",
       "description": "Prepare KPI readouts, scorecards, WBR/MBR/QBR updates, and executive summaries from quantitative business or product metrics; use when the task is to report status, compare against targets, explain validated drivers, and state operating implications.",
-      "path": "codex-current/data-analytics/kpi-reporting"
+      "path": "codex-current/plugins/data-analytics/kpi-reporting"
     },
     {
       "name": "data-analytics:market-sizing",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/market-sizing",
       "description": "Estimate market, segment, or opportunity size with transparent assumptions and uncertainty. Use for TAM/SAM/SOM, sizing scenarios, or comparing the scale of possible opportunities.",
-      "path": "codex-current/data-analytics/market-sizing"
+      "path": "codex-current/plugins/data-analytics/market-sizing"
     },
     {
       "name": "data-analytics:metric-diagnostics",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/metric-diagnostics",
       "description": "Diagnose why a metric changed or differs from expectation. Use when the task is to identify likely drivers of a metric movement, anomaly, gap, or discrepancy.",
-      "path": "codex-current/data-analytics/metric-diagnostics"
+      "path": "codex-current/plugins/data-analytics/metric-diagnostics"
     },
     {
       "name": "data-analytics:product-business-analysis",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/product-business-analysis",
       "description": "Analyze product or business data to support a decision or recommendation. Use when a decision depends on metric-backed evidence, such as choosing a direction, prioritizing an opportunity, evaluating a change, segmenting users, sizing tradeoffs, or deciding what to do next.",
-      "path": "codex-current/data-analytics/product-business-analysis"
+      "path": "codex-current/plugins/data-analytics/product-business-analysis"
     },
     {
       "name": "data-analytics:publish-artifact-to-sites",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/publish-artifact-to-sites",
       "description": "Publish an existing Data report or dashboard to Sites, automatically for web/cloud tasks or when the user requests publication.",
-      "path": "codex-current/data-analytics/publish-artifact-to-sites"
+      "path": "codex-current/plugins/data-analytics/publish-artifact-to-sites"
     },
     {
       "name": "data-analytics:validate-data",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/validate-data",
       "description": "Validate analysis methodology, sources, calculations, visuals, and conclusions, including report and dashboard completeness, usability, and supported repairs.",
-      "path": "codex-current/data-analytics/validate-data"
+      "path": "codex-current/plugins/data-analytics/validate-data"
     },
     {
       "name": "data-analytics:visualize-data",
       "package": "skill://data-analytics@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/data-analytics/1.0.11/skills/visualize-data",
       "description": "Design, build, revise, and verify quantitative charts and figures while authoring reports, dashboards, notebooks, and other durable artifacts. Do not use for inline chat charts.",
-      "path": "codex-current/data-analytics/visualize-data"
+      "path": "codex-current/plugins/data-analytics/visualize-data"
     },
     {
       "name": "app-6a3c278c93ac8191b29768648d63a754:provision-droplet",
       "package": "skill://app-6a3c278c93ac8191b29768648d63a754@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/app-6a3c278c93ac8191b29768648d63a754/0.2.2/skills/provision-droplet",
       "description": "Use when the user wants to spin up / create / launch / provision a DigitalOcean droplet (or \"a remote dev box on DO\") and connect to it from Codex as a remote SSH workspace.",
-      "path": "codex-current/app-6a3c278c93ac8191b29768648d63a754/provision-droplet"
+      "path": "codex-current/plugins/app-6a3c278c93ac8191b29768648d63a754/provision-droplet"
     },
     {
       "name": "fal:character-design",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/character-design",
       "description": "Build consistent character designs and character media with fal.ai. Use for original characters, reference sheets, expression sheets, outfit variations, identity-preserving edits, and character-to-video workflows.",
-      "path": "codex-current/fal/character-design"
+      "path": "codex-current/plugins/fal/character-design"
     },
     {
       "name": "fal:cinematography",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/cinematography",
       "description": "Design cinematic image and video prompts for fal.ai. Use for shot language, camera movement, lighting, lens choices, color grade, scene blocking, film texture, and production-ready visual direction.",
-      "path": "codex-current/fal/cinematography"
+      "path": "codex-current/plugins/fal/cinematography"
     },
     {
       "name": "fal:commercial",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/commercial",
       "description": "Plan and produce commercial image or video assets with fal.ai. Use for product photography, ads, e-commerce batches, product reveals, lifestyle commercials, background replacement, platform crops, and brand-safe prompts.",
-      "path": "codex-current/fal/commercial"
+      "path": "codex-current/plugins/fal/commercial"
     },
     {
       "name": "fal:fal-gamedev",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fal-gamedev",
       "description": "Generate 2D game assets with fal.ai. Use for pixel-art characters, sprite sheets, walk cycles, RPG sprites, idle/attack/jump animations, transparent assets, parallax backgrounds, isometric maps, and game-ready visual packs.",
-      "path": "codex-current/fal/fal-gamedev"
+      "path": "codex-current/plugins/fal/fal-gamedev"
     },
     {
       "name": "fal:fal-media",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fal-media",
       "description": "Generate, edit, or process media through fal.ai. Use when the user names Fal or fal.ai, requests Fal model discovery, schema, pricing, or job handling, or asks to use a named media model available through Fal such as MiniMax H3 Max. Do not activate when the user explicitly chooses another provider.",
-      "path": "codex-current/fal/fal-media"
+      "path": "codex-current/plugins/fal/fal-media"
     },
     {
       "name": "fal:fal-models-catalog",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fal-models-catalog",
       "description": "Navigate fal.ai model families by media modality and production role. Use when the user asks which model, endpoint, or model family is appropriate for image, video, audio, 3D, editing, training, restoration, try-on, or analysis.",
-      "path": "codex-current/fal/fal-models-catalog"
+      "path": "codex-current/plugins/fal/fal-models-catalog"
     },
     {
       "name": "fal:fal-prompting",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fal-prompting",
       "description": "Apply model-family-specific prompting for fal.ai endpoints after an endpoint has been selected. Use for GPT Image 2, Kling, Happy Horse, Seedance, product prompts, exact text, multi-prompt video, and prompt debugging.",
-      "path": "codex-current/fal/fal-prompting"
+      "path": "codex-current/plugins/fal/fal-prompting"
     },
     {
       "name": "fal:fal-recipes",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fal-recipes",
       "description": "Use-case-driven fal.ai production recipes. Trigger for commercials, product photography, cinematic shots, character design, storyboards, talking heads, lip sync, virtual try-on, restoration, video with audio, realism, and other multi-step media outcomes.",
-      "path": "codex-current/fal/fal-recipes"
+      "path": "codex-current/plugins/fal/fal-recipes"
     },
     {
       "name": "fal:fal-regenerate-3d",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fal-regenerate-3d",
       "description": "Build a polished 3D character-selector experience with fal.ai assets. Use for stylized characters, GLB generation, companion objects, PBR floor textures, video backgrounds, palette systems, and Three.js presentation.",
-      "path": "codex-current/fal/fal-regenerate-3d"
+      "path": "codex-current/plugins/fal/fal-regenerate-3d"
     },
     {
       "name": "fal:fal-workflow",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fal-workflow",
       "description": "Design multi-step fal.ai media workflows for MCP execution. Use when the user wants model chaining, batch generation, fan-out/fan-in, frame bridging, narrated video, dataset creation, reusable pipeline logic, or workflow JSON.",
-      "path": "codex-current/fal/fal-workflow"
+      "path": "codex-current/plugins/fal/fal-workflow"
     },
     {
       "name": "fal:fan-cam",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/fan-cam",
       "description": "Create personalized live sports broadcast fan-cam videos with fal.ai. Use for realistic spectator cutaways, stadium crowd reactions, broadcast-style screenshots, scoreboard overlays, TV bugs, and identity-preserving fan reaction videos from a user photo.",
-      "path": "codex-current/fal/fan-cam"
+      "path": "codex-current/plugins/fal/fan-cam"
     },
     {
       "name": "fal:marketing",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/marketing",
       "description": "Plan campaign-level marketing asset production with fal.ai. Use for launch kits, campaign matrices, paid social variants, landing-page visuals, email and banner imagery, hook/proof/conversion assets, and creator ad packages.",
-      "path": "codex-current/fal/marketing"
+      "path": "codex-current/plugins/fal/marketing"
     },
     {
       "name": "fal:model-routing",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/model-routing",
       "description": "Choose production-ready fal.ai endpoint IDs for MCP media workflows. Use with commercial, marketing, ugc, character-design, cinematography, storytelling, fal-recipes, and fal-workflow when the user has not named a specific model or asks which model to use.",
-      "path": "codex-current/fal/model-routing"
+      "path": "codex-current/plugins/fal/model-routing"
     },
     {
       "name": "fal:storytelling",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/storytelling",
       "description": "Build multi-shot narrative image, video, and audio workflows with fal.ai. Use for storyboards, shot lists, multi-prompt video, first-frame/last-frame pipelines, social stories, brand films, and sequence continuity.",
-      "path": "codex-current/fal/storytelling"
+      "path": "codex-current/plugins/fal/storytelling"
     },
     {
       "name": "fal:ugc",
       "package": "skill://fal@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/fal/1.1.0/skills/ugc",
       "description": "Plan and produce UGC-style creator ads and social videos with fal.ai. Use for direct-to-camera creator scripts, talking-head ads, product demos, testimonials, founder clips, unboxing, reactions, before-after, faceless voiceover, and short vertical social videos.",
-      "path": "codex-current/fal/ugc"
+      "path": "codex-current/plugins/fal/ugc"
     },
     {
       "name": "figma:figma-code-connect",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-code-connect",
       "description": "Creates and maintains Figma Code Connect template files that map Figma components to code snippets. Use when the user mentions Code Connect, Figma component mapping, design-to-code translation, or asks to create/update .figma.ts or .figma.js files.",
-      "path": "codex-current/figma/figma-code-connect"
+      "path": "codex-current/plugins/figma/figma-code-connect"
     },
     {
       "name": "figma:figma-create-new-file",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-create-new-file",
       "description": "Always use this skill when the user wants to create a new Figma Design, FigJam, or Slides file. You MUST invoke this skill BEFORE every `create_new_file` tool call.",
-      "path": "codex-current/figma/figma-create-new-file"
+      "path": "codex-current/plugins/figma/figma-create-new-file"
     },
     {
       "name": "figma:figma-design-to-code",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-design-to-code",
       "description": "**MANDATORY prerequisite** — you MUST invoke this skill BEFORE calling the `get_design_context` Figma MCP tool. You MUST trigger this skill whenever the user wants to implement, build, port, or code up a Figma design as code. Example prompts (not exhaustive) are 'implement this Figma design', 'build this screen from Figma', 'turn this Figma into code', 'design to code'. This skill provides critical instructions and steps to the agent on how to correctly implement Figma designs in code and must NOT be skipped.",
-      "path": "codex-current/figma/figma-design-to-code"
+      "path": "codex-current/plugins/figma/figma-design-to-code"
     },
     {
       "name": "figma:figma-generate-design",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-generate-design",
       "description": "Use this skill alongside figma-use when the task involves translating an application page, view, or multi-section layout into Figma. Triggers: 'write to Figma', 'create in Figma from code', 'push page to Figma', 'take this app/page and build it in Figma', 'create a screen', 'build a landing page in Figma', 'update the Figma screen to match code', 'convert this modal/dialog/drawer/panel to Figma'. This is the preferred workflow skill whenever the user wants to build or update a full page, modal, dialog, drawer, sidebar, panel, or any composed multi-section view in Figma from code or a description. Discovers design system components, variables, and styles from Code Connect files, existing screens, and library search, then imports them and assembles views incrementally section-by-section using design system tokens instead of hardcoded values.",
-      "path": "codex-current/figma/figma-generate-design"
+      "path": "codex-current/plugins/figma/figma-generate-design"
     },
     {
       "name": "figma:figma-generate-diagram",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-generate-diagram",
       "description": "MANDATORY prerequisite — load this skill BEFORE every `generate_diagram` tool call. NEVER call `generate_diagram` directly without loading this skill first. Trigger whenever the user asks to create, generate, draw, render, sketch, or build a diagram — flowchart, architecture diagram, sequence diagram, ERD or entity-relationship diagram, state diagram or state machine, gantt chart, or timeline. Also trigger when the user mentions Mermaid syntax or wants a system architecture, decision tree, dependency graph, API call flow, auth handshake, schema, or pipeline visualized in FigJam. Routes to type-specific guidance, sets universal Mermaid constraints, and tells you when to use a different diagram type or skip the tool entirely (mindmaps, pie charts, class diagrams, etc.).",
-      "path": "codex-current/figma/figma-generate-diagram"
+      "path": "codex-current/plugins/figma/figma-generate-diagram"
     },
     {
       "name": "figma:figma-generate-library",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-generate-library",
       "description": "Build or update a professional-grade design system in Figma from a codebase. Use when the user wants to create variables/tokens, build component libraries, create individual components with proper variant sets and variable bindings, set up theming (light/dark modes), document foundations, or reconcile gaps between code and Figma. Also use when the user asks to create or generate any component in Figma — even a single one — since components require proper variable foundations, variant states, and design token bindings to be production-quality. This skill teaches WHAT to build and in WHAT ORDER — it complements the `figma-use` skill which teaches HOW to call the Plugin API. Both skills should be loaded together.",
-      "path": "codex-current/figma/figma-generate-library"
+      "path": "codex-current/plugins/figma/figma-generate-library"
     },
     {
       "name": "figma:figma-generative-plugins",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-generative-plugins",
       "description": "**MANDATORY prerequisite** — load this skill before calling `create_generative_plugin` or `update_generative_plugin`. Use when the user asks to create, author, change, fix, or extend a reusable generative Figma plugin.",
-      "path": "codex-current/figma/figma-generative-plugins"
+      "path": "codex-current/plugins/figma/figma-generative-plugins"
     },
     {
       "name": "figma:figma-implement-motion",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-implement-motion",
       "description": "Translates Figma motion and animations into production-ready application code. Use when implementing animation/motion from a Figma design — user mentions \"implement this motion\", \"add animation from Figma\", \"animate this component\", provides a Figma URL whose node is animated, or when `get_design_context` returns motion data or instructs you to call `get_motion_context`.",
-      "path": "codex-current/figma/figma-implement-motion"
+      "path": "codex-current/plugins/figma/figma-implement-motion"
     },
     {
       "name": "figma:figma-shaders",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-shaders",
       "description": "**MANDATORY prerequisite** — load this skill before calling `create_shader` or `update_shader`. Use when the user asks to create, author, change, fix, or iterate on a shader effect, shader fill, custom effect, custom fill, or procedural shader in Figma.",
-      "path": "codex-current/figma/figma-shaders"
+      "path": "codex-current/plugins/figma/figma-shaders"
     },
     {
       "name": "figma:figma-swiftui",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-swiftui",
       "description": "SwiftUI ↔ Figma translation. Use whenever the user mentions Swift, SwiftUI, iOS, iPhone, or iPad — in EITHER direction — translating a Figma design into SwiftUI (design → code), or pushing SwiftUI views / screens / tokens back into a Figma file (code → design). Triggers on phrases like 'implement this Figma design in SwiftUI', 'build this screen in Swift', 'push this SwiftUI view to Figma', 'mirror my Swift code in a Figma file', or whenever a Figma URL appears alongside `.swift` files / an `.xcodeproj`. Routes to a direction-specific reference doc; loads alongside `figma-use` for the code → design path.",
-      "path": "codex-current/figma/figma-swiftui"
+      "path": "codex-current/plugins/figma/figma-swiftui"
     },
     {
       "name": "figma:figma-use",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-use",
       "description": "**MANDATORY prerequisite** — you MUST invoke this skill BEFORE every `use_figma` tool call. NEVER call `use_figma` directly without loading this skill first. Skipping it causes common, hard-to-debug failures. Trigger whenever the user wants to perform a write action or a unique read action that requires JavaScript execution in the Figma file context — e.g. create/edit/delete nodes, set up variables or tokens, build components and variants, modify auto-layout or fills, bind variables to properties, or inspect file structure programmatically.",
-      "path": "codex-current/figma/figma-use"
+      "path": "codex-current/plugins/figma/figma-use"
     },
     {
       "name": "figma:figma-use-figjam",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-use-figjam",
       "description": "This skill helps agents use Figma's use_figma MCP tool in the FigJam context. Can be used alongside figma-use which has foundational context for using the use_figma tool.",
-      "path": "codex-current/figma/figma-use-figjam"
+      "path": "codex-current/plugins/figma/figma-use-figjam"
     },
     {
       "name": "figma:figma-use-motion",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-use-motion",
       "description": "Motion / animation context for the `use_figma` MCP tool — animating Figma nodes via manual keyframes, animation styles, easing, and timeline duration. Load alongside figma-use whenever a task involves adding, editing, or inspecting animation on a node.",
-      "path": "codex-current/figma/figma-use-motion"
+      "path": "codex-current/plugins/figma/figma-use-motion"
     },
     {
       "name": "figma:figma-use-slides",
       "package": "skill://figma@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/figma/15.0.0/skills/figma-use-slides",
       "description": "This skill helps agents use Figma's use_figma MCP tool in the Slides context. Can be used alongside figma-use which has foundational context for using the use_figma tool.",
-      "path": "codex-current/figma/figma-use-slides"
+      "path": "codex-current/plugins/figma/figma-use-slides"
     },
     {
       "name": "game-studio:game-playtest",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/game-playtest",
       "description": "Run browser-game playtests and frontend QA. Use when the user asks for smoke tests, screenshot-based verification, browser automation, HUD or overlay review, or structured issue-finding in a browser game.",
-      "path": "codex-current/game-studio/game-playtest"
+      "path": "codex-current/plugins/game-studio/game-playtest"
     },
     {
       "name": "game-studio:game-studio",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/game-studio",
       "description": "Route early browser-game work. Use when the user needs stack selection and workflow planning across design, implementation, assets, and playtesting before moving to a specialist skill.",
-      "path": "codex-current/game-studio/game-studio"
+      "path": "codex-current/plugins/game-studio/game-studio"
     },
     {
       "name": "game-studio:game-ui-frontend",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/game-ui-frontend",
       "description": "Design UI surfaces for browser games. Use when the user asks for HUDs, menus, overlays, responsive layouts, or visual direction that must protect the playfield.",
-      "path": "codex-current/game-studio/game-ui-frontend"
+      "path": "codex-current/plugins/game-studio/game-ui-frontend"
     },
     {
       "name": "game-studio:phaser-2d-game",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/phaser-2d-game",
       "description": "Implement 2D browser games with Phaser. Use when the user wants a Phaser, TypeScript, and Vite stack for scenes, gameplay systems, cameras, sprite animation, and DOM-overlay HUD patterns.",
-      "path": "codex-current/game-studio/phaser-2d-game"
+      "path": "codex-current/plugins/game-studio/phaser-2d-game"
     },
     {
       "name": "game-studio:react-three-fiber-game",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/react-three-fiber-game",
       "description": "Build React-hosted 3D browser games with React Three Fiber. Use when the user wants pmndrs-based scene composition, shared React state, and 3D HUD integration inside a React app.",
-      "path": "codex-current/game-studio/react-three-fiber-game"
+      "path": "codex-current/plugins/game-studio/react-three-fiber-game"
     },
     {
       "name": "game-studio:sprite-pipeline",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/sprite-pipeline",
       "description": "Generate and normalize 2D sprite animations. Use when the user asks for full-strip generation from approved source frames, consistent anchor and scale normalization, or preview assets for browser-game animation.",
-      "path": "codex-current/game-studio/sprite-pipeline"
+      "path": "codex-current/plugins/game-studio/sprite-pipeline"
     },
     {
       "name": "game-studio:three-webgl-game",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/three-webgl-game",
       "description": "Implement browser-game runtimes with plain Three.js. Use when the user wants imperative scene control in TypeScript or Vite with GLB assets, loaders, physics, and low-level WebGL debugging.",
-      "path": "codex-current/game-studio/three-webgl-game"
+      "path": "codex-current/plugins/game-studio/three-webgl-game"
     },
     {
       "name": "game-studio:web-3d-asset-pipeline",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/web-3d-asset-pipeline",
       "description": "Prepare and optimize browser-game 3D assets. Use when the user asks for GLB or glTF shipping work, including Blender cleanup and export, collision or LOD setup, compression, texture packaging, and runtime validation.",
-      "path": "codex-current/game-studio/web-3d-asset-pipeline"
+      "path": "codex-current/plugins/game-studio/web-3d-asset-pipeline"
     },
     {
       "name": "game-studio:web-game-foundations",
       "package": "skill://game-studio@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/game-studio/0.1.2/skills/web-game-foundations",
       "description": "Set browser-game architecture before implementation. Use when the user needs engine choice, simulation and render boundaries, input model, asset organization, or save/debug/performance strategy.",
-      "path": "codex-current/game-studio/web-game-foundations"
+      "path": "codex-current/plugins/game-studio/web-game-foundations"
     },
     {
       "name": "google-drive:google-docs",
       "package": "skill://google-drive@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/google-drive/0.1.16/skills/google-docs",
       "description": "Prompt- and template-complete Google Docs creation and editing with explicit-instruction-authoritative structural preservation, including semantic roles, relationships, comparison dimensions, and instructed extensions; full-topology native-copy routing; source-grounded per-tab adaptation for past/example references; style-preserving hyperlink and table edits; canonical smart-chip-first authoring for dates and relevant supported people or Google resources; a file-backed advisory trusted read before existing-document writes; automatic protected-control awareness; direct connector APIs by default; DOCX-first import only when no supplied Google Doc template/reference constrains the output; and checked-in code mode only for exact native dropdown mutation. Use when Codex must create, edit, fill, adapt, redesign, or verify Google Docs without overriding explicit user/template instructions, adding unrequested document scope, or carrying stale reference facts into a new deliverable.",
-      "path": "codex-current/google-drive/google-docs"
+      "path": "codex-current/plugins/google-drive/google-docs"
     },
     {
       "name": "google-drive:google-drive",
       "package": "skill://google-drive@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/google-drive/0.1.16/skills/google-drive",
       "description": "Use connected Google Drive as the single entrypoint for Drive, Docs, Sheets, and Slides work. Use when the user wants to find, fetch, organize, share, export, copy, or delete Drive files, or summarize and edit Google Docs, Google Sheets, and Google Slides through one unified Google Drive plugin.",
-      "path": "codex-current/google-drive/google-drive"
+      "path": "codex-current/plugins/google-drive/google-drive"
     },
     {
       "name": "google-drive:google-drive-comments",
       "package": "skill://google-drive@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/google-drive/0.1.16/skills/google-drive-comments",
       "description": "Write, reply to, and resolve Google Drive comments on Docs, Sheets, Slides, and Drive files with evidence-backed location context. Use when the user asks to leave comments, review a file with comments, respond to comment threads, or resolve Drive comments.",
-      "path": "codex-current/google-drive/google-drive-comments"
+      "path": "codex-current/plugins/google-drive/google-drive-comments"
     },
     {
       "name": "google-drive:google-sheets",
       "package": "skill://google-drive@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/google-drive/0.1.16/skills/google-sheets",
       "description": "Analyze and edit connected Google Sheets with range precision. Use when the user wants to create Google Sheets, find a spreadsheet, inspect tabs or ranges, search rows, plan formulas, create or repair charts, clean or restructure tables, write concise summaries, or make explicit cell-range updates.",
-      "path": "codex-current/google-drive/google-sheets"
+      "path": "codex-current/plugins/google-drive/google-sheets"
     },
     {
       "name": "google-drive:google-slides",
       "package": "skill://google-drive@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/google-drive/0.1.16/skills/google-slides",
       "description": "Route Google Slides authoring requests and derive a design system from a native template or reference deck. Use this skill when the user provides an existing native Google Slides deck as a template, reference, or prior-period source, or asks to edit, update, repair, restyle, or clean up an existing native Google Slides deck. Use the Presentations skill instead for net-new presentation creation when no existing native Google Slides deck must be followed.",
-      "path": "codex-current/google-drive/google-slides"
+      "path": "codex-current/plugins/google-drive/google-slides"
     },
     {
       "name": "life-science-research:alphafold-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/alphafold-skill",
       "description": "Submit compact AlphaFold Protein Structure Database API requests for prediction, UniProt summary, sequence summary, and annotation lookups. Use when a user wants AlphaFold metadata or concise structure summaries",
-      "path": "codex-current/life-science-research/alphafold-skill"
+      "path": "codex-current/plugins/life-science-research/alphafold-skill"
     },
     {
       "name": "life-science-research:bgee-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/bgee-skill",
       "description": "Submit compact Bgee SPARQL requests for healthy wild-type expression metadata and ontology-aware lookup patterns. Use when a user wants concise Bgee summaries; save raw results only on request.",
-      "path": "codex-current/life-science-research/bgee-skill"
+      "path": "codex-current/plugins/life-science-research/bgee-skill"
     },
     {
       "name": "life-science-research:bindingdb-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/bindingdb-skill",
       "description": "Submit compact BindingDB REST API requests for ligand-target binding lookups by PDB, UniProt, or similarity search. Use when a user wants concise BindingDB summaries; save raw payloads only on request.",
-      "path": "codex-current/life-science-research/bindingdb-skill"
+      "path": "codex-current/plugins/life-science-research/bindingdb-skill"
     },
     {
       "name": "life-science-research:biobankjapan-phewas-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/biobankjapan-phewas-skill",
       "description": "Fetch compact BioBank Japan PheWAS summaries for single variants by accepting rsID, GRCh38, or GRCh37 input and resolving to the required GRCh37 query. Use when a user wants concise BBJ association results for one variant",
-      "path": "codex-current/life-science-research/biobankjapan-phewas-skill"
+      "path": "codex-current/plugins/life-science-research/biobankjapan-phewas-skill"
     },
     {
       "name": "life-science-research:biorxiv-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/biorxiv-skill",
       "description": "Submit compact bioRxiv and medRxiv API requests for details, publication-linkage, and DOI lookups. Use when a user wants concise preprint metadata summaries",
-      "path": "codex-current/life-science-research/biorxiv-skill"
+      "path": "codex-current/plugins/life-science-research/biorxiv-skill"
     },
     {
       "name": "life-science-research:biostudies-arrayexpress-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/biostudies-arrayexpress-skill",
       "description": "Submit compact BioStudies and ArrayExpress API requests for free-text search and accession-based study retrieval. Use when a user wants concise BioStudies summaries",
-      "path": "codex-current/life-science-research/biostudies-arrayexpress-skill"
+      "path": "codex-current/plugins/life-science-research/biostudies-arrayexpress-skill"
     },
     {
       "name": "life-science-research:cbioportal-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/cbioportal-skill",
       "description": "Submit compact cBioPortal API requests for studies, molecular profiles, mutations, clinical data, and samples. Use when a user wants concise cBioPortal summaries",
-      "path": "codex-current/life-science-research/cbioportal-skill"
+      "path": "codex-current/plugins/life-science-research/cbioportal-skill"
     },
     {
       "name": "life-science-research:cellxgene-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/cellxgene-skill",
       "description": "Submit compact CELLxGENE Discover API requests for public collection and dataset metadata. Use when a user wants concise single-cell collection summaries",
-      "path": "codex-current/life-science-research/cellxgene-skill"
+      "path": "codex-current/plugins/life-science-research/cellxgene-skill"
     },
     {
       "name": "life-science-research:chebi-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/chebi-skill",
       "description": "Submit compact ChEBI 2.0 API requests for chemical search, compound lookup, ontology traversal, and structure metadata. Use when a user wants concise ChEBI summaries",
-      "path": "codex-current/life-science-research/chebi-skill"
+      "path": "codex-current/plugins/life-science-research/chebi-skill"
     },
     {
       "name": "life-science-research:chembl-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/chembl-skill",
       "description": "Submit compact ChEMBL API requests for activity, molecule, target, mechanism, and text-search endpoints. Use when a user wants concise ChEMBL summaries",
-      "path": "codex-current/life-science-research/chembl-skill"
+      "path": "codex-current/plugins/life-science-research/chembl-skill"
     },
     {
       "name": "life-science-research:civic-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/civic-skill",
       "description": "Submit compact CIViC GraphQL requests for cancer variant interpretation schema inspection and targeted evidence retrieval. Use when a user wants concise CIViC summaries",
-      "path": "codex-current/life-science-research/civic-skill"
+      "path": "codex-current/plugins/life-science-research/civic-skill"
     },
     {
       "name": "life-science-research:clinicaltrials-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/clinicaltrials-skill",
       "description": "Submit compact ClinicalTrials.gov API v2 requests for study search, metadata, enums, search areas, and field statistics. Use when a user wants concise ClinicalTrials.gov summaries",
-      "path": "codex-current/life-science-research/clinicaltrials-skill"
+      "path": "codex-current/plugins/life-science-research/clinicaltrials-skill"
     },
     {
       "name": "life-science-research:clinvar-variation-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/clinvar-variation-skill",
       "description": "Submit compact ClinVar Clinical Tables and NCBI Variation requests for search, VCV, RCV, SCV, and RefSNP lookups. Use when a user wants variant-level summaries or identifier mapping",
-      "path": "codex-current/life-science-research/clinvar-variation-skill"
+      "path": "codex-current/plugins/life-science-research/clinvar-variation-skill"
     },
     {
       "name": "life-science-research:efo-ontology-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/efo-ontology-skill",
       "description": "Submit compact EFO OLS4 requests for search, term lookup, children, and descendants. Use when a user wants concise EFO resolution or ontology-expansion summaries",
-      "path": "codex-current/life-science-research/efo-ontology-skill"
+      "path": "codex-current/plugins/life-science-research/efo-ontology-skill"
     },
     {
       "name": "life-science-research:encode-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/encode-skill",
       "description": "Submit compact ENCODE REST API requests for object lookups, portal-style search, and metadata retrieval. Use when a user wants concise ENCODE summaries",
-      "path": "codex-current/life-science-research/encode-skill"
+      "path": "codex-current/plugins/life-science-research/encode-skill"
     },
     {
       "name": "life-science-research:ensembl-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ensembl-skill",
       "description": "Submit compact Ensembl REST API requests for lookup, overlap, cross-reference, and variation endpoints. Use when a user wants concise Ensembl summaries",
-      "path": "codex-current/life-science-research/ensembl-skill"
+      "path": "codex-current/plugins/life-science-research/ensembl-skill"
     },
     {
       "name": "life-science-research:epigraphdb-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/epigraphdb-skill",
       "description": "Submit compact EpiGraphDB API requests for ontology, literature, MR, gene-drug, and support-path evidence. Use when a user wants concise EpiGraphDB summaries",
-      "path": "codex-current/life-science-research/epigraphdb-skill"
+      "path": "codex-current/plugins/life-science-research/epigraphdb-skill"
     },
     {
       "name": "life-science-research:eqtl-catalogue-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/eqtl-catalogue-skill",
       "description": "Submit compact eQTL Catalogue API requests for association retrieval and documented metadata endpoints. Use when a user wants concise public eQTL Catalogue summaries",
-      "path": "codex-current/life-science-research/eqtl-catalogue-skill"
+      "path": "codex-current/plugins/life-science-research/eqtl-catalogue-skill"
     },
     {
       "name": "life-science-research:eva-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/eva-skill",
       "description": "Submit compact EVA REST requests for species metadata and archived variant lookups. Use when a user wants concise European Variation Archive summaries",
-      "path": "codex-current/life-science-research/eva-skill"
+      "path": "codex-current/plugins/life-science-research/eva-skill"
     },
     {
       "name": "life-science-research:finngen-phewas-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/finngen-phewas-skill",
       "description": "Fetch compact FinnGen PheWAS summaries for single variants by accepting rsID, GRCh37, or GRCh38 input and resolving to the required GRCh38 query. Use when a user wants concise FinnGen association results for one variant",
-      "path": "codex-current/life-science-research/finngen-phewas-skill"
+      "path": "codex-current/plugins/life-science-research/finngen-phewas-skill"
     },
     {
       "name": "life-science-research:genebass-gene-burden-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/genebass-gene-burden-skill",
       "description": "Submit compact Genebass gene burden requests for one Ensembl gene ID and one burden set. Use when a user wants concise Genebass PheWAS summaries",
-      "path": "codex-current/life-science-research/genebass-gene-burden-skill"
+      "path": "codex-current/plugins/life-science-research/genebass-gene-burden-skill"
     },
     {
       "name": "life-science-research:gnomad-graphql-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/gnomad-graphql-skill",
       "description": "Submit compact gnomAD GraphQL requests for frequency, gene constraint, and variant context queries. Use when a user wants concise gnomAD summaries",
-      "path": "codex-current/life-science-research/gnomad-graphql-skill"
+      "path": "codex-current/plugins/life-science-research/gnomad-graphql-skill"
     },
     {
       "name": "life-science-research:gtex-eqtl-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/gtex-eqtl-skill",
       "description": "Fetch GTEx single-tissue eQTL associations from one variant input by accepting rsID, GRCh37, or GRCh38 input and resolving to the required GRCh38 query for the GTEx v2 API. Use when a user wants eQTL associations returned as JSON.",
-      "path": "codex-current/life-science-research/gtex-eqtl-skill"
+      "path": "codex-current/plugins/life-science-research/gtex-eqtl-skill"
     },
     {
       "name": "life-science-research:gwas-catalog-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/gwas-catalog-skill",
       "description": "Submit compact GWAS Catalog REST API v2 requests for studies, associations, SNPs, EFO traits, genes, publications, loci, and metadata. Use when a user wants concise GWAS Catalog summaries",
-      "path": "codex-current/life-science-research/gwas-catalog-skill"
+      "path": "codex-current/plugins/life-science-research/gwas-catalog-skill"
     },
     {
       "name": "life-science-research:hmdb-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/hmdb-skill",
       "description": "Submit compact HMDB search requests for metabolites, proteins, diseases, and pathways. Use when a user wants concise HMDB summaries",
-      "path": "codex-current/life-science-research/hmdb-skill"
+      "path": "codex-current/plugins/life-science-research/hmdb-skill"
     },
     {
       "name": "life-science-research:human-protein-atlas-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/human-protein-atlas-skill",
       "description": "Submit compact Human Protein Atlas requests for gene JSON, search downloads, and page-level tissue or cell-line lookups. Use when a user wants concise Human Protein Atlas summaries; save raw JSON or HTML only on request.",
-      "path": "codex-current/life-science-research/human-protein-atlas-skill"
+      "path": "codex-current/plugins/life-science-research/human-protein-atlas-skill"
     },
     {
       "name": "life-science-research:ipd-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ipd-skill",
       "description": "Submit compact IPD REST requests for HLA allele and cell-level metadata using the public IPD query API. Use when a user wants concise IPD summaries; save raw JSON or text only on request.",
-      "path": "codex-current/life-science-research/ipd-skill"
+      "path": "codex-current/plugins/life-science-research/ipd-skill"
     },
     {
       "name": "life-science-research:locus-to-gene-mapper-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/locus-to-gene-mapper-skill",
       "description": "Map GWAS loci to ranked candidate genes using a deterministic multi-skill chain (EFO -> GWAS -> coordinates -> Open Targets L2G/coloc -> eQTL -> burden/coding context), with reproducible tables and optional figures. Use when a user provides a trait/EFO term and/or lead variants and needs locus-to-gene prioritization for downstream biology decisions.",
-      "path": "codex-current/life-science-research/locus-to-gene-mapper-skill"
+      "path": "codex-current/plugins/life-science-research/locus-to-gene-mapper-skill"
     },
     {
       "name": "life-science-research:metabolights-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/metabolights-skill",
       "description": "Submit compact MetaboLights requests for study discovery and study-level metabolomics metadata. Use when a user wants concise MetaboLights summaries",
-      "path": "codex-current/life-science-research/metabolights-skill"
+      "path": "codex-current/plugins/life-science-research/metabolights-skill"
     },
     {
       "name": "life-science-research:mgnify-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/mgnify-skill",
       "description": "Submit compact MGnify API requests for microbiome studies, samples, and biome metadata. Use when a user wants concise MGnify summaries",
-      "path": "codex-current/life-science-research/mgnify-skill"
+      "path": "codex-current/plugins/life-science-research/mgnify-skill"
     },
     {
       "name": "life-science-research:ncbi-blast-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ncbi-blast-skill",
       "description": "Submit, poll, and summarize NCBI BLAST Common URL API jobs (Blast.cgi) for nucleotide or protein sequences. Use when a user wants RID status, BLAST results, or compact top-hit summaries; fetch raw Text/JSON2 only on request.",
-      "path": "codex-current/life-science-research/ncbi-blast-skill"
+      "path": "codex-current/plugins/life-science-research/ncbi-blast-skill"
     },
     {
       "name": "life-science-research:ncbi-clinicaltables-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ncbi-clinicaltables-skill",
       "description": "Submit compact Clinical Tables NCBI Gene requests for human gene lookup, pagination, and field selection. Use when a user wants concise autocomplete-style human gene search results",
-      "path": "codex-current/life-science-research/ncbi-clinicaltables-skill"
+      "path": "codex-current/plugins/life-science-research/ncbi-clinicaltables-skill"
     },
     {
       "name": "life-science-research:ncbi-datasets-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ncbi-datasets-skill",
       "description": "Submit compact NCBI Datasets v2 requests for assembly, genome, taxonomy, and related metadata endpoints. Use when a user wants concise NCBI Datasets summaries; save raw JSON or text only on request.",
-      "path": "codex-current/life-science-research/ncbi-datasets-skill"
+      "path": "codex-current/plugins/life-science-research/ncbi-datasets-skill"
     },
     {
       "name": "life-science-research:ncbi-entrez-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ncbi-entrez-skill",
       "description": "Submit compact NCBI Entrez E-Utilities requests for PubMed, Gene, Protein, Nucleotide, PMC metadata, and GEO metadata workflows. Use when a user wants concise Entrez search, fetch, summary, or link results; save raw JSON or XML only on request.",
-      "path": "codex-current/life-science-research/ncbi-entrez-skill"
+      "path": "codex-current/plugins/life-science-research/ncbi-entrez-skill"
     },
     {
       "name": "life-science-research:ncbi-pmc-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ncbi-pmc-skill",
       "description": "Submit compact NCBI PMC Open Access requests for article/file availability metadata. Use when a user wants concise PMC Open Access summaries; save raw XML only on request.",
-      "path": "codex-current/life-science-research/ncbi-pmc-skill"
+      "path": "codex-current/plugins/life-science-research/ncbi-pmc-skill"
     },
     {
       "name": "life-science-research:opentargets-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/opentargets-skill",
       "description": "Submit compact Open Targets Platform GraphQL requests for target, disease, drug, variant, study, and search data, including associated-disease datasource heatmap matrices. Use when a user wants concise Open Targets summaries or per-datasource evidence context",
-      "path": "codex-current/life-science-research/opentargets-skill"
+      "path": "codex-current/plugins/life-science-research/opentargets-skill"
     },
     {
       "name": "life-science-research:pharmgkb-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/pharmgkb-skill",
       "description": "Submit compact PharmGKB API requests for genes, variants, clinical annotations, dosing guidelines, and search. Use when a user wants concise PharmGKB summaries",
-      "path": "codex-current/life-science-research/pharmgkb-skill"
+      "path": "codex-current/plugins/life-science-research/pharmgkb-skill"
     },
     {
       "name": "life-science-research:pride-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/pride-skill",
       "description": "Submit compact PRIDE Archive API requests for proteomics project discovery and project-level metadata. Use when a user wants concise PRIDE summaries",
-      "path": "codex-current/life-science-research/pride-skill"
+      "path": "codex-current/plugins/life-science-research/pride-skill"
     },
     {
       "name": "life-science-research:proteomexchange-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/proteomexchange-skill",
       "description": "Submit compact ProteomeXchange PROXI requests for datasets, libraries, peptidoforms, proteins, PSMs, spectra, and USI examples. Use when a user wants concise PROXI summaries",
-      "path": "codex-current/life-science-research/proteomexchange-skill"
+      "path": "codex-current/plugins/life-science-research/proteomexchange-skill"
     },
     {
       "name": "life-science-research:pubchem-pug-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/pubchem-pug-skill",
       "description": "Submit compact PubChem PUG REST requests for compound properties, descriptions, assay summaries, and substance metadata. Use when a user wants concise PubChem summaries",
-      "path": "codex-current/life-science-research/pubchem-pug-skill"
+      "path": "codex-current/plugins/life-science-research/pubchem-pug-skill"
     },
     {
       "name": "life-science-research:quickgo-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/quickgo-skill",
       "description": "Submit compact QuickGO requests for GO terms, annotations, and ontology traversal. Use when a user wants concise QuickGO summaries",
-      "path": "codex-current/life-science-research/quickgo-skill"
+      "path": "codex-current/plugins/life-science-research/quickgo-skill"
     },
     {
       "name": "life-science-research:rcsb-pdb-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/rcsb-pdb-skill",
       "description": "Submit compact RCSB PDB requests for core metadata, Search API queries, and FASTA downloads. Use when a user wants concise RCSB summaries; save raw JSON or FASTA only on request.",
-      "path": "codex-current/life-science-research/rcsb-pdb-skill"
+      "path": "codex-current/plugins/life-science-research/rcsb-pdb-skill"
     },
     {
       "name": "life-science-research:reactome-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/reactome-skill",
       "description": "Submit compact Reactome ContentService requests for pathway, event, participant, search, and diagram-related data. Use when a user wants concise Reactome summaries",
-      "path": "codex-current/life-science-research/reactome-skill"
+      "path": "codex-current/plugins/life-science-research/reactome-skill"
     },
     {
       "name": "life-science-research:research-router-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/research-router-skill",
       "description": "Route broad or ambiguous life-sciences research requests to the right skills, normalize core entities, optionally parallelize independent evidence gathering with subagents when available, and synthesize a concise evidence-backed answer. Use when a user asks a general life-sciences question that could span multiple sources or analysis types.",
-      "path": "codex-current/life-science-research/research-router-skill"
+      "path": "codex-current/plugins/life-science-research/research-router-skill"
     },
     {
       "name": "life-science-research:rhea-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/rhea-skill",
       "description": "Submit compact Rhea reaction search requests for biochemical reactions and reaction IDs. Use when a user wants concise Rhea summaries",
-      "path": "codex-current/life-science-research/rhea-skill"
+      "path": "codex-current/plugins/life-science-research/rhea-skill"
     },
     {
       "name": "life-science-research:rnacentral-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/rnacentral-skill",
       "description": "Submit compact RNAcentral API requests for RNA entry browsing, single-entry lookup, and cross-reference retrieval. Use when a user wants concise RNAcentral summaries",
-      "path": "codex-current/life-science-research/rnacentral-skill"
+      "path": "codex-current/plugins/life-science-research/rnacentral-skill"
     },
     {
       "name": "life-science-research:string-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/string-skill",
       "description": "Submit compact STRING API requests for network, interaction partner, and enrichment endpoints. Use when a user wants concise STRING summaries",
-      "path": "codex-current/life-science-research/string-skill"
+      "path": "codex-current/plugins/life-science-research/string-skill"
     },
     {
       "name": "life-science-research:tpmi-phewas-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/tpmi-phewas-skill",
       "description": "Fetch compact TPMI PheWAS summaries for single variants by accepting rsID, GRCh37, or GRCh38 input and resolving to the required GRCh38 query. Use when a user wants concise TPMI association results for one variant",
-      "path": "codex-current/life-science-research/tpmi-phewas-skill"
+      "path": "codex-current/plugins/life-science-research/tpmi-phewas-skill"
     },
     {
       "name": "life-science-research:ukb-topmed-phewas-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/ukb-topmed-phewas-skill",
       "description": "Fetch compact UKB-TOPMed PheWAS summaries for single variants by accepting rsID, GRCh37, or GRCh38 input and resolving to the required GRCh38 query. Use when a user wants concise UKB-TOPMed association results for one variant",
-      "path": "codex-current/life-science-research/ukb-topmed-phewas-skill"
+      "path": "codex-current/plugins/life-science-research/ukb-topmed-phewas-skill"
     },
     {
       "name": "life-science-research:uniprot-skill",
       "package": "skill://life-science-research@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/life-science-research/1.0.3/skills/uniprot-skill",
       "description": "Submit compact UniProt REST API requests for UniProtKB, UniRef, UniParc, and FASTA stream endpoints. Use when a user wants concise UniProt summaries; save raw JSON or FASTA only on request.",
-      "path": "codex-current/life-science-research/uniprot-skill"
+      "path": "codex-current/plugins/life-science-research/uniprot-skill"
     },
     {
       "name": "notion:notion-knowledge-capture",
       "package": "skill://notion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/notion/0.1.8/skills/notion-knowledge-capture",
       "description": "Capture conversations and decisions into structured Notion pages; use when turning chats/notes into wiki entries, how-tos, decisions, or FAQs with proper linking.",
-      "path": "codex-current/notion/notion-knowledge-capture"
+      "path": "codex-current/plugins/notion/notion-knowledge-capture"
     },
     {
       "name": "notion:notion-meeting-intelligence",
       "package": "skill://notion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/notion/0.1.8/skills/notion-meeting-intelligence",
       "description": "Prepare meeting materials with Notion context and supplemental research; use when gathering context, drafting agendas/pre-reads, and tailoring materials to attendees.",
-      "path": "codex-current/notion/notion-meeting-intelligence"
+      "path": "codex-current/plugins/notion/notion-meeting-intelligence"
     },
     {
       "name": "notion:notion-research-documentation",
       "package": "skill://notion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/notion/0.1.8/skills/notion-research-documentation",
       "description": "Research across Notion and synthesize into structured documentation; use when gathering info from multiple Notion sources to produce briefs, comparisons, or reports with citations.",
-      "path": "codex-current/notion/notion-research-documentation"
+      "path": "codex-current/plugins/notion/notion-research-documentation"
     },
     {
       "name": "notion:notion-spec-to-implementation",
       "package": "skill://notion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/notion/0.1.8/skills/notion-spec-to-implementation",
       "description": "Turn Notion specs into implementation plans, tasks, and progress tracking; use when implementing PRDs/feature specs and creating Notion plans + tasks from them.",
-      "path": "codex-current/notion/notion-spec-to-implementation"
+      "path": "codex-current/plugins/notion/notion-spec-to-implementation"
     },
     {
       "name": "openai-developers:agents",
       "package": "skill://openai-developers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/openai-developers/1.3.6/skills/agents",
       "description": "Build agent apps with the Agents API or Agents SDK. Use when adding tools, sessions, sandboxes, handoffs, guardrails, evals, or deployment.",
-      "path": "codex-current/openai-developers/agents"
+      "path": "codex-current/plugins/openai-developers/agents"
     },
     {
       "name": "openai-developers:devday-guide",
       "package": "skill://openai-developers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/openai-developers/1.3.6/skills/devday-guide",
       "description": "Help with OpenAI DevDay attendance, onsite logistics, session schedules, personal plans, livestreams, recordings, and DevDay Exchanges. Use for DevDay-specific questions, not general OpenAI API or app development.",
-      "path": "codex-current/openai-developers/devday-guide"
+      "path": "codex-current/plugins/openai-developers/devday-guide"
     },
     {
       "name": "openai-developers:openai-api-troubleshooting",
       "package": "skill://openai-developers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/openai-developers/1.3.6/skills/openai-api-troubleshooting",
       "description": "Use when an OpenAI API request fails and Codex needs to classify the likely cause, explain the next step, and route to the right follow-up. Covers common runtime failures such as blocked outbound network access, invalid credentials, exhausted API quota or credits, rate limits, and model, project, or organization access issues; delegate key provisioning to openai-platform-api-key and current documentation lookups to openai-docs.",
-      "path": "codex-current/openai-developers/openai-api-troubleshooting"
+      "path": "codex-current/plugins/openai-developers/openai-api-troubleshooting"
     },
     {
       "name": "openai-developers:openai-platform-api-key",
       "package": "skill://openai-developers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/openai-developers/1.3.6/skills/openai-platform-api-key",
       "description": "Use when Codex is asked to build, run, test, debug, or configure an OpenAI-backed or provider-unspecified AI app, UI, script, CLI, generator, or tool, especially requests phrased only as \"using AI\" or generators driven by forms/user input; also use for OPENAI_API_KEY or sk-proj setup. Treat this as the credential gate: inspect safely, ask reuse-vs-new before API work, and never expose plaintext.",
-      "path": "codex-current/openai-developers/openai-platform-api-key"
+      "path": "codex-current/plugins/openai-developers/openai-platform-api-key"
     },
     {
       "name": "pages:maintain-space",
       "package": "skill://pages@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/pages/0.1.18/skills/maintain-space",
       "description": "Reconcile new evidence into existing ChatGPT Pages or a Space when the user requests upkeep. For a direct text correction, use write-page. Do not use for ordinary chat drafts, writing, or advice, or treat a selected Page as a request to save. Schedule future upkeep only when requested.",
-      "path": "codex-current/pages/maintain-space"
+      "path": "codex-current/plugins/pages/maintain-space"
     },
     {
       "name": "pages:manage-schedules",
       "package": "skill://pages@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/pages/0.1.18/skills/manage-schedules",
       "description": "Review a ChatGPT Space page and its schedules, recommend useful recurring work, and create, update, or remove scheduled automations.",
-      "path": "codex-current/pages/manage-schedules"
+      "path": "codex-current/plugins/pages/manage-schedules"
     },
     {
       "name": "pages:organize-space",
       "package": "skill://pages@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/pages/0.1.18/skills/organize-space",
       "description": "Organize existing ChatGPT Pages and Space structure when the user requests changes to that structure. Do not use for ordinary chat drafts or advice; a selected Page alone does not authorize reorganization. A narrow text edit does not need this workflow.",
-      "path": "codex-current/pages/organize-space"
+      "path": "codex-current/plugins/pages/organize-space"
     },
     {
       "name": "pages:write-page",
       "package": "skill://pages@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/pages/0.1.18/skills/write-page",
       "description": "Create or edit requested Page/Space content, or use for prose you have already decided to save as a standalone Markdown file, only if the user did not explicitly request a Markdown file. Honor established formats, destinations, and repository documentation. A selected Page alone does not authorize a write.",
-      "path": "codex-current/pages/write-page"
+      "path": "codex-current/plugins/pages/write-page"
     },
     {
       "name": "work-pets:create-pet",
       "package": "skill://work-pets@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/create-pet",
       "description": "Create, repair, validate, preview, upload, or activate an animated v2 pet in ChatGPT Work mode from a character idea, brand cue, or reference image. Use for new ChatGPT Pets, custom mascots, non-pixel styles, and unattached sprite sheets requiring nine animation states plus sixteen look directions. Preserve Library artifacts and Pets MCP lifecycle behavior. Exclude real pets, standalone images, and other-app pets; clarify before invoking.",
-      "path": "codex-current/work-pets/create-pet"
+      "path": "codex-current/plugins/work-pets/create-pet"
     },
     {
       "name": "work-pets:pets",
       "package": "skill://work-pets@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/pets",
       "description": "List, inspect, select, download, or delete animated pets in ChatGPT Work mode. Use for an explicit pet in ChatGPT or established ChatGPT Pets context. Exclude real-world and other-app pets; clarify before invoking.",
-      "path": "codex-current/work-pets/pets"
+      "path": "codex-current/plugins/work-pets/pets"
     },
     {
       "name": "work-pets:update-pet",
       "package": "skill://work-pets@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/update-pet",
       "description": "Inspect, validate, preview, repair, or update a custom pet in ChatGPT Work mode, including its name, description, or sprite sheet. Use for a pet in ChatGPT or established ChatGPT Pets context. Exclude real-world and other-app pets; clarify before invoking.",
-      "path": "codex-current/work-pets/update-pet"
+      "path": "codex-current/plugins/work-pets/update-pet"
     },
     {
       "name": "plugin-management:plugin-management",
       "package": "skill://plugin-management@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/plugin-management/0.1.0/skills/plugin-management",
       "description": "Discover and suggest relevant plugins, inspect app permissions and dependencies, and manage plugin connections or removal. Use when the user asks about plugins or when a task would materially benefit from an external app, account, service, or data source that available tools cannot access.",
-      "path": "codex-current/plugin-management/plugin-management"
+      "path": "codex-current/plugins/plugin-management/plugin-management"
     },
     {
       "name": "product-design:audit",
       "package": "skill://product-design@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/product-design/0.1.56/skills/audit",
       "description": "Audit or critique a product flow, journey, workflow, funnel, onboarding path, checkout path, settings path, screen, or multi-step product experience by capturing screenshots first, then reporting UX, design, and accessibility findings from that evidence. Default to an inline report; use a canvas for a visual walkthrough when requested or clearly implied by the ongoing task. Use when the user asks to audit, review, critique, inspect, assess, analyze, evaluate, or give feedback on a product experience.",
-      "path": "codex-current/product-design/audit"
+      "path": "codex-current/plugins/product-design/audit"
     },
     {
       "name": "product-design:ideate",
       "package": "skill://product-design@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/product-design/0.1.56/skills/ideate",
       "description": "Generate image-based alternatives, remixes, or new design directions from a Product Design brief. Use when the user asks for design variants, visual exploration, remixes, or image-generated approaches from provided context.",
-      "path": "codex-current/product-design/ideate"
+      "path": "codex-current/plugins/product-design/ideate"
     },
     {
       "name": "product-design:image-to-code",
       "package": "skill://product-design@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/product-design/0.1.56/skills/image-to-code",
       "description": "Implement a selected image, screenshot, mockup, or Image Gen reference as a faithful, responsive frontend.",
-      "path": "codex-current/product-design/image-to-code"
+      "path": "codex-current/plugins/product-design/image-to-code"
     },
     {
       "name": "product-design:index",
       "package": "skill://product-design@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/product-design/0.1.56/skills/index",
       "description": "Use when Product Design is explicitly invoked, or when the user's main goal is to explore a design, research UX, audit or critique a flow, faithfully clone a visual source, check a built design, or share a prototype. Do not use Product Design for ordinary implementation unless the user explicitly asks for it.",
-      "path": "codex-current/product-design/index"
+      "path": "codex-current/plugins/product-design/index"
     },
     {
       "name": "product-design:url-to-code",
       "package": "skill://product-design@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/product-design/0.1.56/skills/url-to-code",
       "description": "Clone a live URL as a runnable frontend-only local app.",
-      "path": "codex-current/product-design/url-to-code"
+      "path": "codex-current/plugins/product-design/url-to-code"
     },
     {
       "name": "remotion:remotion-best-practices",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-best-practices",
       "description": "Router for all Remotion skills",
-      "path": "codex-current/remotion/remotion-best-practices"
+      "path": "codex-current/plugins/remotion/remotion-best-practices"
     },
     {
       "name": "remotion:remotion-captions",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-captions",
       "description": "Transcribing, displaying and animating captions",
-      "path": "codex-current/remotion/remotion-captions"
+      "path": "codex-current/plugins/remotion/remotion-captions"
     },
     {
       "name": "remotion:remotion-create",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-create",
       "description": "Create a new Remotion video",
-      "path": "codex-current/remotion/remotion-create"
+      "path": "codex-current/plugins/remotion/remotion-create"
     },
     {
       "name": "remotion:remotion-docs",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-docs",
       "description": "Search Remotion documentation",
-      "path": "codex-current/remotion/remotion-docs"
+      "path": "codex-current/plugins/remotion/remotion-docs"
     },
     {
       "name": "remotion:remotion-interactivity",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-interactivity",
       "description": "Structure Remotion markup for interactivity",
-      "path": "codex-current/remotion/remotion-interactivity"
+      "path": "codex-current/plugins/remotion/remotion-interactivity"
     },
     {
       "name": "remotion:remotion-maps",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-maps",
       "description": "Remotion Map animation knowledge",
-      "path": "codex-current/remotion/remotion-maps"
+      "path": "codex-current/plugins/remotion/remotion-maps"
     },
     {
       "name": "remotion:remotion-markup",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-markup",
       "description": "Content, animation and effects best practices",
-      "path": "codex-current/remotion/remotion-markup"
+      "path": "codex-current/plugins/remotion/remotion-markup"
     },
     {
       "name": "remotion:remotion-multimedia",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-multimedia",
       "description": "Interacting with Mediabunny",
-      "path": "codex-current/remotion/remotion-multimedia"
+      "path": "codex-current/plugins/remotion/remotion-multimedia"
     },
     {
       "name": "remotion:remotion-render",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-render",
       "description": "Export a Remotion video",
-      "path": "codex-current/remotion/remotion-render"
+      "path": "codex-current/plugins/remotion/remotion-render"
     },
     {
       "name": "remotion:remotion-saas",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-saas",
       "description": "Build an app with Remotion",
-      "path": "codex-current/remotion/remotion-saas"
+      "path": "codex-current/plugins/remotion/remotion-saas"
     },
     {
       "name": "remotion:remotion-studio",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-studio",
       "description": "Preview a Remotion video",
-      "path": "codex-current/remotion/remotion-studio"
+      "path": "codex-current/plugins/remotion/remotion-studio"
     },
     {
       "name": "remotion:remotion-upgrade",
       "package": "skill://remotion@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/remotion/4.0.530/skills/remotion-upgrade",
       "description": "Upgrade Remotion, and related packages",
-      "path": "codex-current/remotion/remotion-upgrade"
+      "path": "codex-current/plugins/remotion/remotion-upgrade"
     },
     {
       "name": "sites:sites-building",
       "package": "skill://sites@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/sites/0.1.75/skills/sites-building",
       "description": "Use Sites when the user wants a complete website built for them, such as a landing page, portfolio, dashboard, portal, tracker, hub, or internal tool, or wants to modify a website built with Sites. Do not use for development work in other web projects unless the user explicitly requests Sites.",
-      "path": "codex-current/sites/sites-building"
+      "path": "codex-current/plugins/sites/sites-building"
     },
     {
       "name": "sites:sites-hosting",
       "package": "skill://sites@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/sites/0.1.75/skills/sites-hosting",
       "description": "Host websites with Sites. Use after `sites-building` to publish new sites and edits, for requested website publishing or deployment, or for hosting management. A project containing `.openai/hosting.json` uses Sites hosting only when the current request concerns that Site. Publishing an npm package or standalone asset is not website publishing. Honor an explicit request to use another hosting provider.",
-      "path": "codex-current/sites/sites-hosting"
+      "path": "codex-current/plugins/sites/sites-hosting"
     },
     {
       "name": "sites:sites-mcp",
       "package": "skill://sites@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/sites/0.1.75/skills/sites-mcp",
       "description": "Build or update a Site-hosted MCP server and help users access its tools through the Site's plugin in ChatGPT or Codex.",
-      "path": "codex-current/sites/sites-mcp"
+      "path": "codex-current/plugins/sites/sites-mcp"
     },
     {
       "name": "sites:sites-preview-troubleshooting",
       "package": "skill://sites@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/sites/0.1.75/skills/sites-preview-troubleshooting",
       "description": "Diagnose and recover failed supervised sites-preview sessions after sites-building. Applies only to the managed-linux execution profile, not portable previews.",
-      "path": "codex-current/sites/sites-preview-troubleshooting"
+      "path": "codex-current/plugins/sites/sites-preview-troubleshooting"
     },
     {
       "name": "superpowers:brainstorming",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/brainstorming",
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "path": "codex-current/superpowers/brainstorming"
+      "path": "codex-current/plugins/superpowers/brainstorming"
     },
     {
       "name": "superpowers:diagnosing-superpowers",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/diagnosing-superpowers",
       "description": "Use when a superpowers session went wrong and your human partner wants to know why — repeated work, ignored plans, stumbles, poor results, a skill that didn't fire, \"it took too long\", \"why is it so expensive\", \"what is it doing\" — or wants to build a bug report for the superpowers maintainers, for the current session or a past one identified by id or path, on any harness.",
-      "path": "codex-current/superpowers/diagnosing-superpowers"
+      "path": "codex-current/plugins/superpowers/diagnosing-superpowers"
     },
     {
       "name": "superpowers:dispatching-parallel-agents",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/dispatching-parallel-agents",
       "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-      "path": "codex-current/superpowers/dispatching-parallel-agents"
+      "path": "codex-current/plugins/superpowers/dispatching-parallel-agents"
     },
     {
       "name": "superpowers:executing-plans",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/executing-plans",
       "description": "Use when executing an implementation plan in the current session as the implementer yourself — your human partner chose inline execution, or no subagent tool is available",
-      "path": "codex-current/superpowers/executing-plans"
+      "path": "codex-current/plugins/superpowers/executing-plans"
     },
     {
       "name": "superpowers:finishing-a-development-branch",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/finishing-a-development-branch",
       "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work",
-      "path": "codex-current/superpowers/finishing-a-development-branch"
+      "path": "codex-current/plugins/superpowers/finishing-a-development-branch"
     },
     {
       "name": "superpowers:receiving-code-review",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/receiving-code-review",
       "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
-      "path": "codex-current/superpowers/receiving-code-review"
+      "path": "codex-current/plugins/superpowers/receiving-code-review"
     },
     {
       "name": "superpowers:requesting-code-review",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/requesting-code-review",
       "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-      "path": "codex-current/superpowers/requesting-code-review"
+      "path": "codex-current/plugins/superpowers/requesting-code-review"
     },
     {
       "name": "superpowers:subagent-driven-development",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/subagent-driven-development",
       "description": "Use when executing implementation plans with independent tasks in the current session",
-      "path": "codex-current/superpowers/subagent-driven-development"
+      "path": "codex-current/plugins/superpowers/subagent-driven-development"
     },
     {
       "name": "superpowers:systematic-debugging",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/systematic-debugging",
       "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-      "path": "codex-current/superpowers/systematic-debugging"
+      "path": "codex-current/plugins/superpowers/systematic-debugging"
     },
     {
       "name": "superpowers:test-driven-development",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/test-driven-development",
       "description": "Use when implementing any feature or bugfix, before writing implementation code",
-      "path": "codex-current/superpowers/test-driven-development"
+      "path": "codex-current/plugins/superpowers/test-driven-development"
     },
     {
       "name": "superpowers:using-git-worktrees",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/using-git-worktrees",
       "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-      "path": "codex-current/superpowers/using-git-worktrees"
+      "path": "codex-current/plugins/superpowers/using-git-worktrees"
     },
     {
       "name": "superpowers:using-superpowers",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/using-superpowers",
       "description": "Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
-      "path": "codex-current/superpowers/using-superpowers"
+      "path": "codex-current/plugins/superpowers/using-superpowers"
     },
     {
       "name": "superpowers:verification-before-completion",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/verification-before-completion",
       "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
-      "path": "codex-current/superpowers/verification-before-completion"
+      "path": "codex-current/plugins/superpowers/verification-before-completion"
     },
     {
       "name": "superpowers:writing-plans",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/writing-plans",
       "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
-      "path": "codex-current/superpowers/writing-plans"
+      "path": "codex-current/plugins/superpowers/writing-plans"
     },
     {
       "name": "superpowers:writing-skills",
       "package": "skill://superpowers@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/superpowers/6.4.2/skills/writing-skills",
       "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-      "path": "codex-current/superpowers/writing-skills"
+      "path": "codex-current/plugins/superpowers/writing-skills"
     },
     {
       "name": "write-like-me:write-like-me",
       "package": "skill://write-like-me@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/write-like-me/0.1.1/skills/write-like-me",
       "description": "Use when creating documents, emails, reports, proposals, presentations, or messages on the user's behalf to ensure they match the user's writing style. Skip minor edits and requests that explicitly do not want style matching.",
-      "path": "codex-current/write-like-me/write-like-me"
+      "path": "codex-current/plugins/write-like-me/write-like-me"
     },
     {
       "name": "defense-factory:open-defense-factory",
       "package": "skill://defense-factory@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/defense-factory/0.1.1/skills/open-defense-factory",
       "description": "Open Codex Security Cloud for cloud security findings, scans, and continuous repository monitoring.",
-      "path": "codex-current/defense-factory/open-defense-factory"
+      "path": "codex-current/plugins/defense-factory/open-defense-factory"
     },
     {
       "name": "demos:answers-ask-user-input",
       "package": "skill://demos@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/demos/0.1.22/skills/answers-ask-user-input",
       "description": "Use when a small amount of missing context would materially improve the answer and tappable options plus a free-text answer can gather it efficiently.",
-      "path": "codex-current/demos/answers-ask-user-input"
+      "path": "codex-current/plugins/demos/answers-ask-user-input"
     },
     {
       "name": "demos:onboarding-setup-pet",
       "package": "skill://demos@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/demos/0.1.22/skills/onboarding-setup-pet",
       "description": "Run a short, visual onboarding flow to choose a built-in ChatGPT Work pet or create a personalized custom pet. Use when helping someone set up a pet.",
-      "path": "codex-current/demos/onboarding-setup-pet"
+      "path": "codex-current/plugins/demos/onboarding-setup-pet"
     },
     {
       "name": "openai-library:library",
       "package": "skill://openai-library@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/openai-library/0.1.60/skills/library",
       "description": "Use ChatGPT Library when the user mentions their Library, asks to find or work with a Library-backed file, Site, or named file that may be in the Library, or wants to organize Library folders, restore a previous version, or share a native Library file or folder.",
-      "path": "codex-current/openai-library/library"
+      "path": "codex-current/plugins/openai-library/library"
     },
     {
       "name": "template-creator:template-creator",
       "package": "skill://template-creator@openai-curated-remote/root/.codex/plugins/cache/openai-curated-remote/template-creator/0.2.6/skills/template-creator",
       "description": "Create or update an installable personal ChatGPT artifact-template skill from a reference document, presentation, spreadsheet, Google Docs, Slides, or Sheets link, ImageGen or Product Design image, email, Slack message, or Site project.",
-      "path": "codex-current/template-creator/template-creator"
+      "path": "codex-current/plugins/template-creator/template-creator"
     }
   ],
   "uploaded_zip_skill_dirs": [

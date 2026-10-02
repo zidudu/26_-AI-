@@ -7,7 +7,7 @@ Codex에서 확인한 스킬 자료와 사용자가 올린 `skills.zip`의 압�
 | 위치 | 내용 | 규모 |
 |---|---|---:|
 | [`monitoring-automation/`](monitoring-automation/) | 기존에 보관하던 모니터링·자동화 스킬 묶음. 기존 파일을 그대로 유지했습니다. | 11개 스킬 |
-| [`codex-current/`](codex-current/) | 2026-10-02에 현재 세션의 스킬 카탈로그에서 수집한 스냅샷. 각 항목의 전체 폴더와 함께 복사했습니다. | 카탈로그 234개 항목, `SKILL.md` 파일 249개 |
+| [`codex-current/`](codex-current/) | 2026-10-02에 현재 세션의 스킬 카탈로그에서 수집한 스냅샷. 각 항목의 전체 폴더와 함께 복사했고, `plugins/`(플러그인별)와 `standalone/`(단독 항목)으로 나눠 두었습니다. | 카탈로그 234개 항목, `SKILL.md` 파일 249개 |
 | [`codex-export/`](codex-export/) | 이번 대화에서 받은 `skills.zip`을 풀어 둔 자료. `SKILL.md`가 있는 개별 스킬 폴더를 모두 보존했습니다. | 16개 스킬 폴더 |
 | [`CATALOG.json`](CATALOG.json) | 현재 카탈로그 항목의 표시 이름, 설명, 원래 패키지 경로, 이 모음 안의 경로와 ZIP 스킬 폴더 목록 | JSON 색인 |
 | [`CATALOG_SHA256SUMS.txt`](CATALOG_SHA256SUMS.txt) | `codex-current/`, `codex-export/`, `CATALOG.json` 파일의 무결성 확인용 SHA-256 목록 | 파일별 해시 |
@@ -22,11 +22,22 @@ Codex에서 확인한 스킬 자료와 사용자가 올린 `skills.zip`의 압�
 
 ### `codex-current/`
 
-현재 세션에서 조회된 스킬 카탈로그 234개 항목의 스냅샷입니다. 이름에 `패키지:` 접두어가 붙은 플러그인 스킬은 `플러그인/스킬이름/` 형태로 저장했습니다. 접두어가 없는 항목은 이름에 해당하는 폴더에 저장했습니다. 자세한 원래 이름과 패키지 URI, 저장 경로는 [`CATALOG.json`](CATALOG.json)의 `current_skills` 배열에서 찾을 수 있습니다.
+현재 세션에서 조회된 스킬 카탈로그 234개 항목의 스냅샷입니다. 찾기 쉽도록 두 갈래로 나눠 저장했습니다.
+
+```text
+codex-current/
+├── plugins/      ← 플러그인이 제공한 스킬. plugins/<플러그인>/<스킬>/ (25개 플러그인)
+└── standalone/   ← 플러그인 접두어가 없는 독립 항목 49개 폴더 (standalone/<스킬>/)
+```
+
+- 이름에 `패키지:` 접두어가 붙은 항목은 `plugins/<패키지>/<스킬이름>/`에 있습니다. 예: `figma:…` → `plugins/figma/…`
+- 접두어가 없는 항목은 `standalone/<이름>/`에 있습니다. 단, `understand-anything`은 자체 `SKILL.md`와 하위 스킬 9개가 한 폴더에 함께 있어 `plugins/understand-anything/`에 두었습니다.
+- 원래 이름, 패키지 URI, 저장 경로는 [`CATALOG.json`](CATALOG.json)의 `current_skills` 배열에서 찾을 수 있습니다. 경로는 모두 이 구조를 기준으로 갱신되어 있습니다.
+- `standalone/` 안의 모니터링·자동화 스킬 11개(`analyze-evidence-records` 등)는 [`monitoring-automation/`](monitoring-automation/)의 같은 이름 폴더와 **내용이 동일한 사본**입니다(차이 비교로 확인). 카탈로그 스냅샷의 완전성을 위해 그대로 남겨 두었습니다.
 
 이 목록은 당시 로드된 카탈로그의 스냅샷입니다. 개인이 직접 작성한 스킬만을 의미하지 않으며, 기본·시스템 스킬과 플러그인 제공 스킬도 포함합니다. 카탈로그가 갱신되면 이 스냅샷의 수와 현재 UI의 목록이 달라질 수 있습니다.
 
-카탈로그의 플러그인별 항목 수는 다음과 같습니다. 플러그인 접두어가 없는 독립 항목 50개도 별도로 포함됩니다.
+카탈로그의 플러그인별 항목 수는 다음과 같습니다. 접두어가 없는 카탈로그 항목은 50개이며, 이 중 `understand-anything` 1개는 위 설명대로 `plugins/`에 있습니다.
 
 | 카탈로그 접두어 | 항목 수 |
 |---|---:|

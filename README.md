@@ -74,6 +74,8 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
     ├── README.md · CATALOG.json · CATALOG_SHA256SUMS.txt
     ├── monitoring-automation/                 ← 모니터링·업무 자동화 스킬 11개 + ZIP
     ├── codex-current/                         ← 2026-10-02 카탈로그 스냅샷(234개 항목)
+    │   ├── plugins/                           ← 플러그인 제공 스킬 (25개 플러그인)
+    │   └── standalone/                        ← 독립 항목 (49개 폴더)
     └── codex-export/                          ← 업로드한 skills.zip 해제본(16개 스킬 폴더)
 ```
 
@@ -211,7 +213,7 @@ flowchart LR
 | 폴더 | 내용 | 규모(직접 확인) |
 | --- | --- | --- |
 | [`monitoring-automation/`](SKILL모음/monitoring-automation/) | 수집·분석·보고·발송 등 모니터링 업무 자동화 스킬 묶음 + ZIP | `SKILL.md` 11개 |
-| [`codex-current/`](SKILL모음/codex-current/) | 2026-10-02 카탈로그 스냅샷(시스템·플러그인 제공 스킬 포함) | 최상위 스킬 폴더 74개, `SKILL.md` 249개 (카탈로그 항목 234개) |
+| [`codex-current/`](SKILL모음/codex-current/) | 2026-10-02 카탈로그 스냅샷(시스템·플러그인 제공 스킬 포함). `plugins/`(플러그인 25개)와 `standalone/`(독립 항목 49개 폴더)로 분류 | `SKILL.md` 249개 (카탈로그 항목 234개) |
 | [`codex-export/`](SKILL모음/codex-export/) | 업로드한 `skills.zip` 해제본 | `SKILL.md` 16개 |
 | [`CATALOG.json`](SKILL모음/CATALOG.json) | 스킬 이름·설명·원 패키지 경로·저장 경로 색인 | JSON |
 
