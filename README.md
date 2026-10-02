@@ -37,6 +37,7 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 ```text
 26_-AI-/
 ├── README.md                                  ← 이 문서
+├── .claude/skills/                            ← Claude Code 프로젝트 스킬 19개 (SKILL모음에서 선별)
 │
 ├── 20261001_cafe_monitoring_v1.0/             ← 자동차 동호회 모니터링 1.0
 │   ├── README.md · SHA256SUMS.txt
@@ -93,7 +94,8 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
     ├── codex-current/                         ← 2026-10-02 카탈로그 스냅샷(234개 항목)
     │   ├── plugins/                           ← 플러그인 제공 스킬 (25개 플러그인)
     │   └── standalone/                        ← 독립 항목 (49개 폴더)
-    └── codex-export/                          ← 업로드한 skills.zip 해제본(16개 스킬 폴더)
+    ├── codex-export/                          ← 업로드한 skills.zip 해제본(16개 스킬 폴더)
+    └── claude-upload/                         ← claude.ai 업로드용 스킬 ZIP 18개
 ```
 
 각 배포 폴더의 `SHA256SUMS.txt`는 ZIP의 무결성 확인용 해시입니다. 압축 해제 폴더는 ZIP 내용과 바이트 단위로 같으며, 설치·실행은 ZIP을 받아도 되고 해제 폴더를 그대로 써도 됩니다.
@@ -235,6 +237,7 @@ flowchart LR
 | [`CATALOG.json`](SKILL모음/CATALOG.json) | 스킬 이름·설명·원 패키지 경로·저장 경로 색인 | JSON |
 
 - **monitoring-automation의 11개 스킬**: 모니터링 자동화 설계 · 증분 웹 수집 · 원문/버전 이력 보존 · 근거 연결 AI 분석 · CLI AI 연동 · 근거 PPT 보고서 · 보고서 이미지 최적화 · Outlook 보고서 발송 · 로컬 운영 화면과 예약 실행 · 통계와 Excel 내보내기 · Windows 자동화 배포·검증. 실행 스크립트 6개(Python 표준 라이브러리 중심, 이미지 최적화는 Pillow, Excel은 openpyxl 필요)가 포함됩니다.
+- **Claude 등록**: 검토 후 쓸 만한 19개(evidence-gate, evidence-driven-debugging, mermaid-workflow-diagram, visual-skills, suno-v6, novelai-v5, github-deep-search, interview-me, monitoring-automation 11개)를 [`.claude/skills/`](.claude/skills/)에 등록했고, claude.ai용 ZIP은 [`SKILL모음/claude-upload/`](SKILL모음/claude-upload/)에 있습니다. 선정 이유와 조건은 [`.claude/skills/README.md`](.claude/skills/README.md)를 보세요.
 - **현재 상태**: README 기준으로 11개 스킬은 제작 시 41개 동작 검사와 가상 자료 시나리오를 확인했으나, **Windows·Office·실제 메일 발송까지의 종단 간 검증은 아닙니다.** `codex-current`·`codex-export`는 파일을 찾아보기 위한 정리본이며 호환성·동작을 새로 검증한 자료가 아닙니다.
 
 ---

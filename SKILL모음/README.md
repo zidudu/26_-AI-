@@ -2,6 +2,8 @@
 
 Codex에서 확인한 스킬 자료와 사용자가 올린 `skills.zip`의 압축 해제본을 한곳에서 찾아볼 수 있도록 정리한 보관 모음입니다. 스킬별 안내와 리소스를 원본 폴더 구조에 가깝게 보존했습니다. 이 저장소에 보관했다는 뜻은 Codex에 새로 설치하거나 활성화했다는 뜻은 아닙니다.
 
+> ✅ **Claude에 등록한 스킬 19개**는 저장소 루트의 [`.claude/skills/`](../.claude/skills/)에, claude.ai 업로드용 ZIP은 [`claude-upload/`](claude-upload/)에 있습니다. 선정 기준은 [등록 스킬 안내](../.claude/skills/README.md)를 보세요.
+
 > 🗺️ **스킬별 노드 그림과 설명 표는 [스킬 지도(SKILL_MAP.md)](SKILL_MAP.md)에서 볼 수 있습니다.**
 
 ## 구성 한눈에 보기
