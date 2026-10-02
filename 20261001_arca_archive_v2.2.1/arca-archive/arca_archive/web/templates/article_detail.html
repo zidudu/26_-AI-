@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "_bookmarks.html" import bookmark_button, media_buttons %}
+{% from "_comment_status.html" import comment_status %}
+{% block title %}{{ article.title or article.id }} - arca-archive{% endblock %}
+{% block content %}
+<h1>{{ article.title or '(제목 없음)' }}</h1>
+{{ bookmark_button('article', article.id, article.bookmarked, '글') }}
+<p class="small">
+  <a href="{{ article.url }}" target="_blank" rel="noopener">{{ article.url }}</a> · 채널 {{ channel.slug if channel }}{% if article.remote_id and article.remote_id|string != article.id|string %} · 원격 ID {{ article.remote_id }}{% endif %} · 카테고리 {{ article.category or '-' }}
+  {% if badges %}· 배지 {{ badges|join(', ') }}{% endif %}<br>
+  작성자 {{ article.author or '-' }}{% if article.author_type %} ({{ article.author_type }}){% endif %} · 작성 {{ article.created_at|kst }}
+  {% if article.edited_at %}· 수정 {{ article.edited_at|kst }}{% endif %} · 조회 {{ article.view_count }} · 추천 {{ article.like_count }} · 비추천 {{ article.dislike_count }} · 댓글 {{ article.comment_count }}<br>
+  상태 <b>{{ article.state }}</b>{% if article.state_code %} {{ article.state_code }}: {{ article.state_message }}{% endif %}
+  · 발견 {{ article.discovered_at|kst }} · 수집 {{ article.collected_at|kst }} · 마지막 확인 {{ article.last_checked_at|kst }}
+  · 시도 {{ article.attempts }} · 본문 변경 {{ article.revision_count }}회
+  {% if article.raw_html_path %}· <a href="/articles/{{ article.id }}/raw">원본 HTML</a>{% endif %}
+</p>
+<form method="post" action="/articles/{{ article.id }}/requeue" class="inline"><button>다시 수집 대기열에 넣기</button></form>
+
+<h2>본문</h2>
+{% if reader_html %}<div class="archive-reader">{{ reader_html|safe }}</div>{% else %}<div class="body-text">{{ article.body_text or '(본문 없음)' }}</div>{% endif %}
+
+<h2>미디어 ({{ media|length }})</h2>
+<div class="grid">
+{% for m in media %}
+  <div class="item">
+    {% if m.local_url and m.state == 'downloaded' %}
+      <a href="{{ m.local_url }}" data-viewer data-kind="{{ m|displaykind }}" data-title="#{{ m.seq }} {{ article.title }}" data-article="/articles/{{ article.id }}" data-media-id="{{ m.id }}" data-article-id="{{ article.id }}">
+      {% if m|displaykind == 'video' %}<video src="{{ m.local_url }}" preload="metadata" {% if m.kind == 'gif' %}loop muted{% endif %}></video>
+      {% else %}<img src="{{ m.local_url }}" alt="">{% endif %}</a>
+    {% endif %}
+    #{{ m.seq }} {{ m.kind }} · {{ m.state }}{% if m.state_code %} ({{ m.state_code }}){% endif %}{% if m.state == 'downloaded' %} · {% if m.is_original == 1 %}원본{% elif m.is_original == 0 %}변환본{% if m.original_unavailable %}(원본 요청 실패){% endif %}{% endif %}{% endif %}{% if m|fileext %} · {{ m|fileext }}{% endif %}<br>
+    {% if m.width %}{{ m.width }}x{{ m.height }} · {% endif %}{% if m.file_size %}{{ (m.file_size / 1024)|round(1) }} KB{% endif %}<br>
+    <span class="muted">{{ m.source_key[-48:] }}</span>
+    {% if m.local_url %}<br><a href="{{ m.local_url }}" target="_blank">파일 열기</a>{% endif %}
+    {{ media_buttons(m) }}
+  </div>
+{% endfor %}
+</div>
+
+<h2>댓글 ({{ comments|length }}개 보관 · 원문 표시 {{ article.comment_count if article.comment_count is not none else '미확인' }})</h2>
+{% if comment_fetch %}
+<div class="comment-issue">
+  <p>{{ comment_status(comment_fetch) }}</p>
+  <p class="small">{{ comment_fetch.checked_at|kst }} 기준 · {{ comment_fetch.saved_count }}개 저장 / 응답 표시 {{ comment_fetch.expected_count }}개<br>기존 보관 댓글을 포함한 전체 개수는 위 제목에 표시됩니다.</p>
+  {% if comment_fetch.state != 'complete' %}
+  <p class="small">재시도 가능 시각 {{ comment_fetch.next_retry_at|kst_short }} · 활성 채널의 다음 수집에서 재확인합니다.</p>
+  <form method="post" action="/articles/{{ article.id }}/comments/retry"><button>댓글 재시도 예약</button></form>
+  {% endif %}
+</div>
+{% endif %}
+<table>
+<tr><th>ID</th><th>상위</th><th>작성자</th><th>시각</th><th>내용</th></tr>
+{% for c in comments %}
+<tr><td>{{ c.id }}</td><td>{{ c.parent_id or '' }}</td><td>{{ c.author or '' }}</td><td>{{ c.created_at|kst }}</td><td class="small">{{ c.body_text or ('(삭제됨)' if c.is_deleted else '(텍스트 없음/아카콘)') }}</td></tr>
+{% endfor %}
+</table>
+
+{% if revisions %}
+<h2>이전 본문 ({{ revisions|length }})</h2>
+{% for r in revisions %}
+<p class="small">{{ r.captured_at|kst }} · {{ r.title }}</p>
+<div class="body-text small">{{ r.body_text }}</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -2,7 +2,7 @@
 
 Ollama 모델로 일반 대화, 두 모델 비교, 로컬 문서 질문을 할 수 있는 Windows용 로컬 웹 앱입니다.
 
-[공유 ZIP 다운로드](./local-ai-workbench-share-2026-10-01.zip?raw=true) · [Google Drive ZIP](https://drive.google.com/file/d/18ch4bXqSxtWzNchGN25XuMI8im41afgs/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt)
+[공유 ZIP 다운로드](./local-ai-workbench-share-2026-10-01.zip?raw=true) · [압축 해제된 소스](./local-ai-workbench/) · [Google Drive ZIP](https://drive.google.com/file/d/18ch4bXqSxtWzNchGN25XuMI8im41afgs/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt)
 
 ## 실제 실행 화면
 

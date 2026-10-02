@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}실행 #{{ run.id }} - arca-archive{% endblock %}
+{% block content %}
+<h1>실행 #{{ run.id }} · {{ run.channel_slug }} · {{ run.status }} {% if run.code %}({{ run.code }}){% endif %}</h1>
+<p>{{ run.message or '' }}</p>
+<p class="small">트리거 {{ run.trigger }} · fetcher {{ run.fetcher or '-' }} · 단계 {{ run.stage }} · 시작 {{ run.started_at|kst }} · 종료 {{ run.finished_at|kst }}</p>
+<div class="run-summary">
+  <p><strong>이번 실행</strong> · 글 {{ run.stats.get('collected', 0) }}개 수집 · 미디어 {{ run.stats.get('media_downloaded', 0) }}개 저장 · 댓글 {{ run.stats.get('comments_saved', 0) }}개 저장</p>
+  <p>실패 글 {{ run.stats.get('failed', 0) + run.stats.get('errors', 0) }}개 · 실패/만료 미디어 {{ run.stats.get('media_failed', 0) + run.stats.get('media_expired', 0) }}개 · 댓글 미완료 글 {{ run.stats.get('comments_incomplete', 0) }}개</p>
+  <p>다음 실행으로 이월: 글 {{ run.stats.get('collect_deferred', 0) }}개 · 미디어 {{ run.stats.get('media_deferred', 0) }}개</p>
+  <p>채널 미디어 미완료: 시작 {{ run.stats.get('unfinished_before', '미측정') }}개 → {% if run.status == 'running' or run.stats.get('unfinished_after') is none %}종료 후 집계{% else %}종료 {{ run.stats.unfinished_after }}개{% endif %}</p>
+  <p class="small muted">실행 중인 화면은 새로고침하면 갱신됩니다. 미완료는 다운로드 대기·실패 등을 포함하며, 다운로드 불가능 판정은 아닙니다.</p>
+</div>
+<details><summary>상세 통계 보기</summary><pre class="small">{{ run.stats|tojson_ko }}</pre></details>
+<h2>이벤트 <span class="small">
+  <a href="/runs/{{ run.id }}">전체</a> · <a href="/runs/{{ run.id }}?level=warning">warning</a> · <a href="/runs/{{ run.id }}?level=error">error</a></span></h2>
+<table>
+<tr><th>시각</th><th>수준</th><th>이벤트</th><th>게시글</th><th>내용</th></tr>
+{% for e in events %}
+<tr class="{{ 'error' if e.level == 'error' }}">
+  <td>{{ e.at|kst }}</td><td>{{ e.level }}</td><td>{{ e.event }}</td>
+  <td>{% if e.article_id %}<a href="/articles/{{ e.article_id }}">{{ e.article_id }}</a>{% endif %}</td>
+  <td class="small">{% for k, v in e.data.items() %}{{ k }}={{ v }} {% endfor %}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

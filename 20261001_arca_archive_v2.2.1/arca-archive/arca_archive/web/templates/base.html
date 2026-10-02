@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}arca-archive{% endblock %}</title>
+<link rel="stylesheet" href="/static/app.css?v={{ version }}">
+</head>
+<body>
+<header>
+  <strong>arca-archive {{ version }}</strong>
+  <nav>
+    <a href="/" class="{{ 'active' if nav == 'index' }}">상태</a>
+    <a href="/channels" class="{{ 'active' if nav in ('channels', 'channel_edit') }}">채널</a>
+    <a href="/runs" class="{{ 'active' if nav in ('runs', 'run_detail') }}">실행 기록</a>
+    <a href="/articles" class="{{ 'active' if nav in ('articles', 'article_detail') }}">게시글</a>
+    <a href="/media" class="{{ 'active' if nav == 'media' }}">미디어</a>
+    <a href="/bookmarks" class="{{ 'active' if nav == 'bookmarks' }}">북마크</a>
+    <a href="/backlog" class="{{ 'active' if nav == 'backlog' }}">대기 진단</a>
+    <a href="/errors" class="{{ 'active' if nav == 'errors' }}">오류</a>
+    <a href="/session" class="{{ 'active' if nav == 'session' }}">브라우저 세션</a>
+    <a href="/settings" class="{{ 'active' if nav == 'settings' }}">설정</a>
+  </nav>
+  <span class="muted small">세션: {% if status.session.logged_in %}로그인됨{% elif status.session.logged_in is sameas false %}비로그인{% else %}미확인{% endif %}
+    · 스케줄러: {{ '켜짐' if status.scheduler_enabled else '꺼짐' }}</span>
+</header>
+<main>
+<div id="live-status" class="status {{ 'stopping' if status.stopping else ('running' if status.running else 'idle') }}">
+  <div class="status-head">{% if status.stopping %}■ 중지 중 — {{ status.current.channel_slug }}{% elif status.running and status.current %}● 실행 중 — {{ status.current.channel_slug }}{% else %}○ 대기 중{% endif %}</div>
+  <div class="status-detail"></div>
+</div>
+{% if message %}<div class="msg">{{ message }}</div>{% endif %}
+{% block content %}{% endblock %}
+</main>
+<noscript><p class="msg">북마크 추가·해제와 이미지 확대는 JavaScript를 켜야 사용할 수 있습니다.</p></noscript>
+<div id="bookmark-notice" class="bookmark-notice" role="status" aria-live="polite" hidden></div>
+<script src="/static/bookmarks.js?v={{ version }}"></script>
+<script src="/static/app.js?v={{ version }}"></script>
+</body>
+</html>

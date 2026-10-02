@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from "_bookmarks.html" import bookmark_button %}
+{% block title %}북마크 - arca-archive{% endblock %}
+{% block content %}
+<h1>북마크</h1>
+<p class="muted">마음에 드는 이미지와 글을 모아 보세요. 글을 북마크하면 본문의 모든 이미지·미디어가 각각 표시됩니다.</p>
+<form method="get" action="/bookmarks" class="bookmark-filters">
+  <label>저장 대상<select name="kind" aria-label="저장 대상"><option value="">글 + 미디어</option><option value="article" {% if kind == 'article' %}selected{% endif %}>글만</option><option value="media" {% if kind == 'media' %}selected{% endif %}>미디어만</option></select></label>
+  <label>미디어 종류<select name="media_kind" aria-label="미디어 종류"><option value="">전체 종류</option>{% for k,label in [('image','이미지'),('gif','GIF'),('video','동영상'),('emoticon','아카콘'),('external','외부 미디어')] %}<option value="{{ k }}" {% if media_kind == k %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+  <label>채널<select name="channel_id" aria-label="채널"><option value="">전체 채널</option>{% for c in channels %}<option value="{{ c.id }}" {% if channel_id == c.id %}selected{% endif %}>{{ c.name or c.slug }} · {{ site_labels[c.site] }}</option>{% endfor %}</select></label>
+  <label class="bookmark-search">검색<input type="search" name="q" value="{{ q }}" placeholder="제목·본문·작성자" aria-label="검색"></label>
+  <label>정렬<select name="sort" aria-label="정렬"><option value="newest" {% if sort == 'newest' %}selected{% endif %}>최근 북마크순</option><option value="oldest" {% if sort == 'oldest' %}selected{% endif %}>오래된 북마크순</option></select></label>
+  <button>필터 적용</button><a href="/bookmarks">초기화</a>
+</form>
+<p class="small muted">종류 필터는 글 안의 각 미디어에도 적용됩니다. 미수집 파일은 수집이 완료되면 이미지가 표시됩니다.</p>
+<section id="bookmark-results" aria-label="북마크 목록">
+<p class="bookmark-count" role="status">표시 항목 {{ total }}개 · {{ pager.page }}/{{ pager.pages }} 페이지</p>
+{% if rows %}
+<div class="bookmark-grid">
+{% for m in rows %}
+  <article class="bookmark-card" data-saved-kind="{{ m.bookmark_kind }}" data-saved-id="{{ m.target_id }}">
+    {% if m.local_url and m.state == 'downloaded' %}
+      <a class="bookmark-thumb" href="{{ m.local_url }}" data-viewer data-kind="{{ m|displaykind }}" data-title="#{{ m.seq }} {{ m.article_title or m.article_id }}" data-article="/articles/{{ m.article_id }}" data-media-id="{{ m.media_id }}" data-article-id="{{ m.article_id }}" aria-label="{{ m.article_title or '북마크' }} 미디어 {{ m.seq }} 크게 보기">
+      {% if m|displaykind == 'video' %}<video src="{{ m.local_url }}#t=0.001" preload="metadata" muted playsinline></video><span class="bookmark-video-badge">▶ {{ 'GIF' if m.kind == 'gif' else '동영상' }}</span>
+      {% else %}<img src="{{ m.local_url }}" alt="{{ m.article_title or '북마크 이미지' }}" loading="lazy">{% endif %}</a>
+    {% else %}
+      <a class="bookmark-thumb bookmark-placeholder" href="/articles/{{ m.article_id }}"><span>{{ '미디어 미수집 / 파일 없음' if m.media_id else '텍스트 글' }}</span><span class="small">{{ m.excerpt or '글 보기' }}</span></a>
+    {% endif %}
+    <div class="bookmark-card-body">
+      <div class="bookmark-meta"><span class="bookmark-badge">{{ '글 북마크' if m.bookmark_kind == 'article' else ('이미지' if m.kind in ('image','gif','emoticon') else '미디어') }}</span>{% if m.bookmark_kind == 'article' and m.media_id %}<span>#{{ m.seq }}</span>{% endif %}<span>{{ m.channel_slug }}</span></div>
+      <a class="bookmark-title" href="/articles/{{ m.article_id }}">{{ m.article_title or '(제목 없음)' }}</a>
+      <div class="small muted">{{ m.bookmarked_at|kst_short }} 북마크{% if m.author %} · {{ m.author }}{% endif %}</div>
+      <div class="bookmark-actions">
+        {% if m.media_id %}{{ bookmark_button('media', m.media_id, m.media_bookmarked, '이미지' if m.kind in ('image','gif','emoticon') else '미디어') }}{% endif %}
+        {{ bookmark_button('article', m.article_id, m.article_bookmarked, '글') }}
+      </div>
+    </div>
+  </article>
+{% endfor %}
+</div>
+{% else %}
+<div class="bookmark-empty">{% if kind or media_kind or channel_id or q %}<p>조건에 맞는 북마크가 없습니다.</p><a href="/bookmarks">필터 초기화</a>{% else %}<p>아직 북마크가 없습니다.</p><p><a href="/media">미디어</a>나 <a href="/articles">게시글</a>에서 ☆ 북마크를 눌러 추가하세요.</p>{% endif %}</div>
+{% endif %}
+<nav class="pager bookmark-pager" aria-label="북마크 페이지 이동">
+  {% if pager.prev %}<a href="{{ pager.url(pager.prev) }}">‹ 이전</a>{% endif %}
+  {% for n in pager.numbers() %}{% if n is none %}<span class="muted">…</span>{% elif n == pager.page %}<b aria-current="page">{{ n }}</b>{% else %}<a href="{{ pager.url(n) }}">{{ n }}</a>{% endif %}{% endfor %}
+  {% if pager.next %}<a href="{{ pager.url(pager.next) }}">다음 ›</a>{% endif %}
+</nav>
+</section>
+{% endblock %}

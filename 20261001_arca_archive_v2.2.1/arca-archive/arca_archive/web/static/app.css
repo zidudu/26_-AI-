@@ -1,0 +1,112 @@
+/* 개발용 최소 스타일. 장식 요소 없이 가독성만 확보합니다. */
+body { font: 14px/1.5 system-ui, "Malgun Gothic", sans-serif; margin: 0; color: #222; background: #fff; }
+header { border-bottom: 1px solid #ccc; padding: 8px 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+header nav a { margin-right: 12px; color: #1a3d8f; text-decoration: none; }
+header nav a.active { font-weight: bold; text-decoration: underline; }
+main { padding: 12px 16px; }
+h1 { font-size: 18px; margin: 8px 0 12px; }
+h2 { font-size: 15px; margin: 18px 0 8px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ddd; padding: 4px 6px; text-align: left; vertical-align: top; font-size: 13px; }
+th { background: #f3f3f3; }
+tr.error td { background: #fff3f3; }
+.status { padding: 8px 12px; border: 1px solid #bbb; border-left-width: 6px; background: #fafafa; margin-bottom: 12px; }
+.status .status-head { font-size: 16px; font-weight: bold; }
+.status .status-detail { font-size: 13px; color: #444; margin-top: 2px; }
+.status.idle { border-left-color: #999; }
+.status.running { border-left-color: #1a7f37; background: #f2faf4; }
+.status.running .status-head { color: #1a7f37; }
+.status.stopping { border-left-color: #b45309; background: #fff7ed; }
+.status.stopping .status-head { color: #b45309; }
+.msg { padding: 6px 10px; border: 1px solid #8a8; background: #f4fff4; margin-bottom: 12px; }
+.muted { color: #777; }
+form.inline { display: inline; }
+label { display: inline-block; min-width: 160px; }
+.row { margin: 4px 0; }
+input[type=text], input[type=number], select { padding: 3px 5px; }
+button { padding: 3px 10px; cursor: pointer; }
+textarea { width: 100%; font: 12px/1.4 monospace; }
+.grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.grid .item { width: 180px; border: 1px solid #ddd; padding: 4px; font-size: 12px; }
+.grid img, .grid video { max-width: 170px; max-height: 170px; display: block; }
+.body-text { white-space: pre-wrap; border: 1px solid #ddd; padding: 8px; background: #fafafa; }
+.pager a, .pager b, .pager span { margin-right: 6px; }
+.pager b { padding: 0 4px; border: 1px solid #999; }
+code { background: #f0f0f0; padding: 0 3px; }
+.small { font-size: 12px; }
+td.state-failed { color: #a00; font-weight: bold; }
+td.state-partial { color: #a60; }
+
+/* 화면 안 미디어 뷰어 */
+.grid a[data-viewer] { cursor: zoom-in; display: block; }
+#viewer { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: none; z-index: 1000; flex-direction: column; }
+#viewer.open { display: flex; }
+#viewer .viewer-bar { color: #ddd; font-size: 13px; padding: 8px 12px; display: flex; gap: 12px; align-items: center; }
+#viewer .viewer-bar a { color: #9cf; }
+#viewer .viewer-bar .spacer { flex: 1; }
+#viewer .viewer-bar button { background: #333; color: #eee; border: 1px solid #666; }
+#viewer .viewer-stage { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; position: relative; }
+#viewer .viewer-stage img, #viewer .viewer-stage video { max-width: 96vw; max-height: 88vh; object-fit: contain; background: #000; }
+#viewer .viewer-nav { position: absolute; top: 0; bottom: 0; width: 18%; display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 40px; cursor: pointer; user-select: none; opacity: 0.35; }
+#viewer .viewer-nav:hover { opacity: 0.9; }
+#viewer .viewer-nav.prev { left: 0; } #viewer .viewer-nav.next { right: 0; }
+
+.archive-reader { max-width: 960px; line-height: 1.8; overflow-wrap: anywhere; padding: 20px; background: #fff; color: #20242b; border: 1px solid #d9dfe7; border-radius: 8px; }
+.archive-reader img, .archive-reader video { max-width: 100%; max-height: 80vh; height: auto; display: block; margin: 14px auto; }
+.archive-reader pre { overflow-x: auto; white-space: pre-wrap; }
+.archive-reader blockquote { border-left: 3px solid #8298bb; padding-left: 16px; margin-left: 0; }
+@media (max-width: 700px) { header { flex-wrap: wrap; } header nav { display: flex; flex-wrap: wrap; } main { padding: 12px; } form { flex-wrap: wrap; } table { display: block; overflow-x: auto; } .archive-reader { padding: 12px; } }
+
+/* 글과 개별 파일을 각각 북마크합니다. */
+.bookmark-actions { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.bookmark-button { border: 1px solid #c6cdd8; border-radius: 5px; background: #fff; color: #34405a; font: inherit; font-size: 12px; padding: 5px 8px; white-space: nowrap; }
+.bookmark-button[aria-pressed=true] { background: #fff3cc; border-color: #ba8814; color: #674800; }
+.bookmark-button:disabled { cursor: wait; opacity: .55; }
+.bookmark-button:focus-visible, .bookmark-thumb:focus-visible { outline: 3px solid #3068be; outline-offset: 2px; }
+.bookmark-filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; padding: 14px; border: 1px solid #dce1e9; border-radius: 8px; background: #f8f9fc; }
+.bookmark-filters label { display: flex; flex-direction: column; min-width: 100px; gap: 5px; color: #465169; font-size: 12px; }
+.bookmark-filters select, .bookmark-filters input { box-sizing: border-box; max-width: 100%; height: 34px; border: 1px solid #bbc4d2; border-radius: 4px; padding: 5px 8px; background: #fff; font: inherit; color: #222; }
+.bookmark-filters .bookmark-search { flex: 1; min-width: 180px; }
+.bookmark-filters button { height: 34px; background: #244a86; color: #fff; border: 0; border-radius: 4px; }
+.bookmark-filters > a { padding: 7px 0; }
+.bookmark-count { font-weight: 600; color: #465169; }
+.bookmark-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.bookmark-card { min-width: 0; overflow: hidden; border: 1px solid #dce1e9; border-radius: 8px; background: #fff; }
+.bookmark-thumb { position: relative; display: flex; height: 220px; align-items: center; justify-content: center; background: #f1f3f7; cursor: zoom-in; text-decoration: none; }
+.bookmark-thumb img, .bookmark-thumb video { display: block; max-width: 100%; max-height: 100%; object-fit: contain; }
+.bookmark-placeholder { padding: 20px; box-sizing: border-box; flex-direction: column; gap: 12px; cursor: pointer; color: #59647b; }
+.bookmark-placeholder .small { overflow: hidden; max-height: 120px; overflow-wrap: anywhere; }
+.bookmark-card-body { padding: 12px; }
+.bookmark-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: #61708a; font-size: 12px; overflow-wrap: anywhere; }
+.bookmark-badge { flex-shrink: 0; background: #eaf0fb; color: #244a86; border-radius: 4px; padding: 2px 7px; }
+.bookmark-title { display: block; margin: 8px 0; color: #1c3157; font-weight: 600; overflow-wrap: anywhere; text-decoration: none; }
+.bookmark-title:hover { text-decoration: underline; }
+.bookmark-video-badge { position: absolute; right: 8px; bottom: 8px; color: white; background: #24344bd9; padding: 2px 7px; border-radius: 4px; font-size: 12px; }
+.bookmark-empty { padding: 50px 20px; text-align: center; border: 1px dashed #c6cdd8; border-radius: 8px; background: #fafbfc; }
+.bookmark-pager { margin: 20px 0; }
+.bookmark-notice { position: fixed; bottom: 20px; right: 20px; max-width: min(460px, calc(100vw - 64px)); padding: 12px 16px; background: #203856; color: #fff; border-radius: 8px; box-shadow: 0 3px 12px #0003; z-index: 1100; }
+.bookmark-notice.error { background: #8b2525; }
+#viewer .viewer-bar { flex-wrap: wrap; }
+#viewer .viewer-title { max-width: 40vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#viewer .bookmark-button[aria-pressed=true] { background: #5d480e; border-color: #f4c655; color: #fff0b8; }
+#viewer .viewer-nav { border: 0; background: transparent; }
+#viewer .viewer-nav:disabled { opacity: .1; cursor: default; }
+#viewer .viewer-content { height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center; }
+#viewer .viewer-stage img, #viewer .viewer-stage video { max-height: 100%; }
+@media (max-width: 600px) {
+  .bookmark-filters { padding: 10px; gap: 8px; }
+  .bookmark-filters label { flex: 1 1 calc(50% - 8px); min-width: 0; }
+  .bookmark-filters .bookmark-search { flex-basis: 100%; min-width: 0; }
+  .bookmark-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .bookmark-thumb { height: 160px; }
+  .bookmark-card-body { padding: 8px; }
+  .bookmark-placeholder { padding: 10px; }
+  .bookmark-title { font-size: 13px; }
+  .bookmark-actions .bookmark-button { font-size: 11px; padding: 6px; }
+  #viewer .viewer-bar { gap: 8px; }
+  #viewer .viewer-title { max-width: calc(100vw - 90px); }
+  #viewer .viewer-bar .spacer { flex-basis: 100%; }
+}
+/* 댓글 복구와 실행 요약은 좁은 화면에서도 본문 폭 안에서 표시합니다. */
+.comment-issue, .run-summary { border: 1px solid #425067; border-radius: 6px; padding: 12px 16px; margin: 12px 0; overflow-wrap: anywhere; }

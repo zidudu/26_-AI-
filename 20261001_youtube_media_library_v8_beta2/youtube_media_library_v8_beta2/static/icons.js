@@ -1,0 +1,27 @@
+const paths = {
+  play: '<path d="m9 5 12 7-12 7z"/>',
+  library: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+  star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>',
+  video: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/>',
+  audio: '<path d="M8 17V5l12-2v12M8 9l12-2"/><ellipse cx="5" cy="18" rx="3" ry="3"/><ellipse cx="17" cy="16" rx="3" ry="3"/>',
+  text: '<path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8M8 16h8"/>',
+  tag: '<path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7" cy="7" r="1"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  close: '<path d="m6 6 12 12M18 6 6 18"/>',
+  folder: '<path d="M3 6V4h6l2 3h10v13H3z"/>',
+  link: '<path d="m10 14 4-4M9 15l-2 2a3 3 0 0 1-4-4l4-4a3 3 0 0 1 4 0m2 0 2-2a3 3 0 0 1 4 4l-4 4a3 3 0 0 1-4 0"/>',
+  search: '<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',
+  clipboard: '<path d="M9 5H5v16h14V5h-4"/><rect x="9" y="2" width="6" height="5" rx="1"/>',
+  copy: '<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/>',
+  arrow: '<path d="M4 12h16m-6-6 6 6-6 6"/>',
+  external: '<path d="M14 3h7v7m0-7L11 13M10 5H4v16h16v-6"/>',
+  refresh: '<path d="M21 8v-5l-3 3A8 8 0 1 0 20 17M21 8h-5"/>',
+  download: '<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',
+  queue: '<path d="M8 6h13M8 12h13M8 18h13M3 6h1M3 12h1M3 18h1"/>',
+  chevron: '<path d="m8 5 7 7-7 7"/>',
+  settings: '<path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="16" cy="17" r="3"/>',
+  check: '<path d="m4 12 5 5L20 6"/>',
+  edit: '<path d="m4 16-1 5 5-1L20 8l-4-4zM14 6l4 4"/>',
+};
+export function icon(name) { return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${paths[name] || paths.text}</svg>`; }
+export function paintIcons(root = document) { root.querySelectorAll('[data-icon]').forEach(x => x.innerHTML = icon(x.dataset.icon)); }

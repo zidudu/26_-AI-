@@ -1,0 +1,10 @@
+{% macro bookmark_button(kind, target_id, saved, label) -%}
+<button type="button" class="bookmark-button" data-bookmark-kind="{{ kind }}" data-bookmark-id="{{ target_id }}" data-bookmark-label="{{ label }}" aria-pressed="{{ 'true' if saved else 'false' }}" aria-label="{{ label }} 북마크 {{ '해제' if saved else '추가' }}" title="{{ label }} 북마크 {{ '해제' if saved else '추가' }}">{{ '★' if saved else '☆' }} {{ label }} 북마크</button>
+{%- endmacro %}
+
+{% macro media_buttons(m) -%}
+<div class="bookmark-actions">
+  {{ bookmark_button('media', m.id, m.media_bookmarked, '이미지' if m.kind in ('image', 'gif', 'emoticon') else '미디어') }}
+  {{ bookmark_button('article', m.article_id, m.article_bookmarked, '글') }}
+</div>
+{%- endmacro %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}채널 - arca-archive{% endblock %}
+{% block content %}
+<h1>수집 대상 채널</h1>
+<table>
+<tr><th>사이트</th><th>slug</th><th>이름</th><th>자동 실행</th><th>모드</th><th>주기(분)</th><th>첫 실행 페이지</th><th>실행당 최대 페이지</th><th>카테고리</th><th>게시글</th><th>동작</th></tr>
+{% for c in channel_rows %}
+<tr>
+  <td>{{ site_labels.get(c.site,c.site) }}</td>
+  <td><a href="{{ channel_urls[c.id] }}" target="_blank" rel="noopener">{{ c.slug }}</a></td>
+  <td>{{ c.name or '' }}</td><td>{% if c.enabled %}자동{% else %}<span class="muted">일시중지</span>{% endif %} <form method="post" action="/channels/{{ c.id }}/toggle" class="inline"><button>{{ '일시중지' if c.enabled else '재개' }}</button></form></td>
+  <td>{{ c.fetch_mode }}{% if c.requires_browser %} (브라우저 필요){% endif %}</td>
+  <td>{{ c.interval_minutes }}</td><td>{{ c.initial_pages }}</td><td>{{ c.max_pages_per_run }}</td><td>{{ c.category or '전체' }}</td>
+  <td class="small">{% for k, v in c.counts.items() %}{{ k }} {{ v }} {% endfor %}</td>
+  <td><a href="/channels/{{ c.id }}">수정</a>
+      <form method="post" action="/channels/{{ c.id }}/run" class="inline"><button>지금 실행</button></form>
+      <form method="post" action="/channels/{{ c.id }}/delete" class="inline" onsubmit="return confirm('채널과 수집 데이터 기록을 삭제합니다. 파일은 남습니다. 계속할까요?')"><button>삭제</button></form></td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>채널 추가</h2>
+<form method="post" action="/channels">
+  <div class="row"><label>사이트</label>
+    <select name="site">{% for s in sites %}<option value="{{ s.key }}">{{ s.label }}</option>{% endfor %}</select>
+    <span class="small muted">네이버 카페는 로그인 세션(브라우저 세션 메뉴에서 네이버 로그인)이 있어야 본문을 읽습니다.</span></div>
+  <div class="row"><label>채널·카페·갤러리 주소</label><input type="text" name="slug" placeholder="ailove 또는 사이트의 채널 주소" size="48" required></div>
+  <div class="row"><label>가져오기 모드</label>
+    <select name="fetch_mode"><option value="auto">auto (HTTP → 필요 시 브라우저)</option><option value="browser">browser (로그인 세션 사용)</option><option value="http">http (공개 채널만)</option></select></div>
+  <div class="row"><label>실행 주기(분)</label><input type="number" name="interval_minutes" value="60" min="1"></div>
+  <button>추가</button>
+</form>
+{% endblock %}

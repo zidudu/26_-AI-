@@ -1,6 +1,6 @@
 # Pin Archive 1.1.0 — Pinterest 보드 반복 수집
 
-[배포 ZIP 다운로드](./Pin_Archive_1.1.0_recurring_boards.zip?raw=true) · [Google Drive 다운로드](https://drive.google.com/file/d/1N6PkLCDsbqhlbrY12HuTibgtE9cYl-Qy/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt)
+[배포 ZIP 다운로드](./Pin_Archive_1.1.0_recurring_boards.zip?raw=true) · [Google Drive 다운로드](https://drive.google.com/file/d/1N6PkLCDsbqhlbrY12HuTibgtE9cYl-Qy/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt) · [압축 해제된 소스](./pinterest_reference_v1/)
 
 기존 1.0.1의 로컬 이미지 라이브러리, ChatGPT MCP 갤러리, Pinterest 일반 Chrome 로그인 기능을 포함합니다. Pinterest 보드 URL과 저장할 로컬 보드를 등록하면 서버가 켜져 있는 동안 설정한 간격으로 반복 수집합니다. 반복 수집용 Chrome은 로그인된 전용 프로필을 사용하며 브라우저 창을 표시하지 않습니다. 서버 관리 창과 수동 로그인 창은 별개입니다.
 

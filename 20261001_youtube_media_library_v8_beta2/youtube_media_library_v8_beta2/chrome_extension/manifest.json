@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Media Library 연결",
+  "version": "1.1.0",
+  "description": "현재 탭 또는 직접 입력한 YouTube 링크를 PC의 수집 창으로 보냅니다.",
+  "permissions": ["activeTab"],
+  "action": {
+    "default_title": "YouTube Media Library로 보내기",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon-16.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}

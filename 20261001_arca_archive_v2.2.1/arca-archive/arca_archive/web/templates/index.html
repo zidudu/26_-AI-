@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}상태 - arca-archive{% endblock %}
+{% block content %}
+<form method="post" action="/stop" class="inline"><button id="stop-btn" {% if not status.running or status.stopping %}disabled{% endif %}>{{ '중지 중…' if status.stopping else '실행 중지' }}</button></form>
+<form method="post" action="/scheduler" class="inline">
+  <input type="hidden" name="enabled" value="{{ 'off' if status.scheduler_enabled else 'on' }}">
+  <button>스케줄러 {{ '끄기' if status.scheduler_enabled else '켜기' }}</button>
+</form>
+{% if status.queue %}<p class="small">대기열: {% for q in status.queue %}{{ q.channel_slug }} ({{ q.trigger }}) {% endfor %}</p>{% endif %}
+{% if status.original_endpoint and status.original_endpoint.active %}
+<p class="msg">원본 미디어 서버(ac-o.arca.live)에 연결되지 않아 {{ status.original_endpoint.until|kst_short }}까지 변환본만 받습니다. 그동안 받은 변환본은 복구 후 재확인 단계에서 원본으로 교체됩니다.</p>
+{% endif %}
+{% if status.session.logged_in is sameas false %}
+<p class="msg">브라우저 세션이 로그인되어 있지 않습니다. 로그인이 필요한 채널은 <a href="/session">브라우저 세션</a>에서 로그인하세요.</p>
+{% endif %}
+
+<h2>채널</h2>
+<table>
+<tr><th>사이트</th><th>slug</th><th>이름</th><th>자동 실행</th><th>모드</th><th>주기(분)</th><th>마지막 실행</th><th>다음 실행</th><th>게시글 상태</th><th>미디어 상태</th><th>동작</th></tr>
+{% for c in channel_rows %}
+<tr>
+  <td class="small">{{ site_labels.get(c.site,c.site) }}</td>
+  <td><a href="/channels/{{ c.id }}">{{ c.slug }}</a></td>
+  <td>{{ c.name or '' }}</td>
+  <td>{% if c.enabled %}자동{% else %}<span class="muted">일시중지</span>{% endif %} <form method="post" action="/channels/{{ c.id }}/toggle" class="inline"><button>{{ '일시중지' if c.enabled else '재개' }}</button></form></td>
+  <td>{{ c.fetch_mode }}{% if c.requires_browser %} (브라우저 필요){% endif %}</td>
+  <td>{{ c.interval_minutes }}</td>
+  <td>{{ c.last_run_at|kst_short }}{% if c.last_error_code %} <span class="muted">{{ c.last_error_code }}</span>{% endif %}</td>
+  <td>{% if status.current and status.current.channel_id == c.id %}실행 중{% elif not c.enabled %}<span class="muted">일시중지</span>{% else %}{{ c.next_run_at|kst_short }}{% endif %}</td>
+  <td class="small">{% for k, v in c.counts.items() %}{{ k }} {{ v }} {% endfor %}</td>
+  <td class="small">{% for k, v in c.media_counts.items() %}{{ k }} {{ v }} {% endfor %}· {{ c.media_mb }} MB</td>
+  <td><form method="post" action="/channels/{{ c.id }}/run" class="inline"><button>지금 실행</button></form>
+      <a href="/articles?channel_id={{ c.id }}">글 보기</a></td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>최근 실행</h2>
+<table>
+<tr><th>#</th><th>채널</th><th>트리거</th><th>상태</th><th>코드</th><th>시작</th><th>종료</th><th>신규</th><th>수집</th><th>갱신</th><th>실패</th><th>미디어</th></tr>
+{% for r in runs %}
+<tr>
+  <td><a href="/runs/{{ r.id }}">{{ r.id }}</a></td><td>{{ r.channel_slug }}</td><td>{{ r.trigger }}</td><td class="{{ 'state-failed' if r.status == 'failed' else ('state-partial' if r.status == 'partial' else '') }}">{{ r.status }}</td>
+  <td>{{ r.code or '' }}</td><td>{{ r.started_at|kst_short }}</td><td>{{ r.finished_at|kst_short }}</td>
+  <td>{{ r.stats.discovered_new }}</td><td>{{ r.stats.collected }}</td><td>{{ r.stats.updated }}</td>
+  <td>{{ r.stats.failed }}{% if r.stats.errors %}/{{ r.stats.errors }}{% endif %}</td>
+  <td>{{ r.stats.media_downloaded }}/{{ r.stats.media_targets }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>최근 실패 항목</h2>
+<table>
+<tr><th>종류</th><th>대상</th><th>상태</th><th>코드</th><th>메시지</th><th>시도</th><th>다음 재시도</th></tr>
+{% for a in errors.articles %}
+<tr><td>게시글</td><td><a href="/articles/{{ a.id }}">{{ a.id }}</a> {{ a.title or '' }}</td><td>{{ a.state }}</td><td>{{ a.state_code }}</td><td>{{ a.state_message }}</td><td>{{ a.attempts }}</td><td>{{ a.next_retry_at|kst_short }}</td></tr>
+{% endfor %}
+{% for m in errors.media %}
+<tr><td>미디어</td><td><a href="/articles/{{ m.article_id }}">{{ m.article_id }}</a> {{ m.kind }} {{ m.source_key[-40:] }}</td><td>{{ m.state }}</td><td>{{ m.state_code }}</td><td>{{ m.state_message }}</td><td>{{ m.attempts }}</td><td>{{ m.next_retry_at|kst_short }}</td></tr>
+{% endfor %}
+</table>
+<p class="small muted">누적 게시글: {% for k, v in totals.articles.items() %}{{ k }} {{ v }}{{ ", " if not loop.last }}{% endfor %} · 누적 미디어: {% for k, v in totals.media.items() %}{{ k }} {{ v }}{{ ", " if not loop.last }}{% endfor %} · 미디어 용량 {{ totals.media_mb }} MB · DB {{ totals.db_mb }} MB</p>
+{% endblock %}

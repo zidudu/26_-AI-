@@ -1,0 +1,4 @@
+{% macro comment_status(c) -%}
+{{ {'complete':'확인 완료','pending':'확인 대기','incomplete':'일부 미완료','error':'자동 재시도 한도 도달'}.get(c.state, c.state) }}
+{% if c.code %} · {{ {'LEGACY_UNVERIFIED':'이전 수집의 댓글 개수 확인 필요','RETRY_REQUESTED':'재시도 예약됨','IN_PROGRESS':'수집 시작됨 / 중단 시 다음 수집에서 재확인','INTERRUPTED':'수집 중지됨','TIME_BUDGET':'시간 제한으로 이월','PAGE_LIMIT':'댓글 페이지 제한 도달','NO_PROGRESS':'다음 댓글 페이지에서 새 항목 없음','INVALID_ROWS':'일부 댓글 형식 확인 필요','COMMENTS_FORMAT':'댓글 응답 형식 오류','COUNT_MISMATCH':'댓글 개수 확인 필요'}.get(c.code, c.code) }}{% endif %}
+{%- endmacro %}

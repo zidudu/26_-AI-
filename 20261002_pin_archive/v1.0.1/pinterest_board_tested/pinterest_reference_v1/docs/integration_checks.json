@@ -1,0 +1,54 @@
+[
+  {
+    "name": "stdio_handshake",
+    "pass": true
+  },
+  {
+    "name": "stdio_tools_list",
+    "pass": true
+  },
+  {
+    "name": "mcp_search_real_library",
+    "pass": true
+  },
+  {
+    "name": "mcp_actual_decodable_pixels",
+    "pass": true
+  },
+  {
+    "name": "mcp_thumbnail_matches_api",
+    "pass": true
+  },
+  {
+    "name": "mcp_missing_image_error",
+    "pass": true
+  },
+  {
+    "name": "mcp_clean_exit",
+    "pass": true
+  },
+  {
+    "name": "crawler_cli_first_import",
+    "pass": true
+  },
+  {
+    "name": "crawler_cli_second_dedup",
+    "pass": true
+  },
+  {
+    "name": "crawler_cli_preserved_source",
+    "pass": true
+  },
+  {
+    "name": "crawler_cli_path_escape_rejected",
+    "pass": true
+  },
+  {
+    "name": "collector_dom_uses_actual_best_srcset",
+    "pass": true
+  },
+  {
+    "name": "collector_dom_preserves_pin_and_title",
+    "pass": true
+  }
+]

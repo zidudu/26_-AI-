@@ -1,6 +1,6 @@
 # Pin Archive 1.2.0 — 키워드 자동 수집과 원본 확대
 
-[배포 ZIP 다운로드](./Pin_Archive_1.2.0_keyword_automation.zip?raw=true) · [Google Drive 다운로드](https://drive.google.com/file/d/1-no93iBzgPPwnpEVFQjKnmUdbPdBTN1C/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt)
+[배포 ZIP 다운로드](./Pin_Archive_1.2.0_keyword_automation.zip?raw=true) · [Google Drive 다운로드](https://drive.google.com/file/d/1-no93iBzgPPwnpEVFQjKnmUdbPdBTN1C/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt) · [압축 해제된 소스](./pinterest_reference_v1/)
 
 Pinterest 보드와 검색 키워드를 각각 반복 수집원으로 등록하고, 실행 간격·탐색 상한·상세/이미지 상한·실행 시간 상한을 설정할 수 있습니다. 미완료 항목이 있으면 최대 15분 뒤 후속 실행을 예약합니다. 상세 페이지에서 제목·설명·연결 사이트·이미지 주소를 기록하고 변경 이력을 남깁니다. 동영상 핀은 대표 이미지만 `동영상 썸네일`로 구분해 저장합니다. 라이브러리의 **원본 확대 보기**에서 저장된 이미지를 화면 맞춤과 단계별 배율로 볼 수 있습니다.
 

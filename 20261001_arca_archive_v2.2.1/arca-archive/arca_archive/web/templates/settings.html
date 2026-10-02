@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}설정 - arca-archive{% endblock %}
+{% block content %}
+<h1>설정</h1>
+<p class="small">파일: <code>{{ settings.config_path }}</code>. JSON을 수정해 저장합니다. <code>server</code>, <code>data_dir</code>, 브라우저 프로필 경로는 서버 재시작 후 적용됩니다.</p>
+<form method="post" action="/settings">
+  <textarea name="settings_json" rows="40">{{ settings_json }}</textarea>
+  <div class="row"><button>저장</button></div>
+</form>
+<h2>데이터 관리</h2>
+<form method="post" action="/backup" class="inline"><button>DB 백업 만들기</button></form>
+<span class="small muted">→ <code>data/backups/</code>. 실행 중에도 안전합니다. 미디어(<code>data/media</code>)·원본(<code>data/raw</code>) 폴더는 함께 복사해 보관하세요.</span>
+<p class="small">내보내기(JSONL, 글·미디어 파일 경로·댓글 포함):
+{% for c in channels %}<a href="/api/export/articles.jsonl?channel_id={{ c.id }}">{{ c.slug }}</a> {% endfor %}
+<a href="/api/export/articles.jsonl">전체</a></p>
+<h2>항목 설명</h2>
+<table>
+<tr><th>항목</th><th>의미</th></tr>
+<tr><td>http.page_delay_seconds / page_delay_jitter_seconds</td><td>페이지 요청 사이 최소 대기와 무작위 추가 대기</td></tr>
+<tr><td>http.media_delay_seconds</td><td>미디어 요청 사이 대기</td></tr>
+<tr><td>browser.channel / headless</td><td>사용할 브라우저(chrome 권장)와 창 표시 여부. 로그인 창은 항상 보이는 창으로 열립니다.</td></tr>
+<tr><td>browser.profile_dir</td><td>로그인 세션이 저장되는 전용 프로필 폴더</td></tr>
+<tr><td>media.request_original</td><td>원본(type=orig) 우선 다운로드. 실패하면 변환본을 받습니다.</td></tr>
+<tr><td>media.include_emoticons</td><td>아카콘(이모티콘)도 미디어로 저장할지</td></tr>
+<tr><td>media.backlog_time_budget_by_channel / backlog_files_per_article_by_channel</td><td>채널 slug별 대기 작업 시간(분)과 글당 파일 상한. 없는 채널은 공통 기본값을 사용합니다.</td></tr>
+<tr><td>retry.max_attempts / base_delay_minutes / max_delay_minutes</td><td>항목별 재시도 횟수와 지수 백오프 대기</td></tr>
+<tr><td>crawl.max_articles_per_run</td><td>한 실행에서 본문을 여는 최대 글 수</td></tr>
+<tr><td>crawl.recheck_days / recheck_interval_hours / max_rechecks_per_run</td><td>최근 글 수정·삭제 재확인 범위와 빈도</td></tr>
+<tr><td>crawl.keep_raw_html</td><td>게시글 원본 HTML을 gzip으로 보관</td></tr>
+<tr><td>scheduler_enabled</td><td>서버 시작 시 스케줄러 기본 상태</td></tr>
+</table>
+{% endblock %}

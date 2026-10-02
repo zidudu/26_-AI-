@@ -1,0 +1,17 @@
+.venv/
+data/
+output/
+config/
+logs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.tmp
+*.token
+*.pem
+*.key
+backups/
+.playwright-cli/
+dist/
+.env
+.env.*

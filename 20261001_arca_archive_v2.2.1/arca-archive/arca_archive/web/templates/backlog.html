@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}대기 진단 - arca-archive{% endblock %}
+{% block content %}
+<h1>미디어 대기 진단</h1>
+<p>미완료 미디어 <b>{{ report.all_unfinished }}</b>개 · {{ report.at|kst }} 기준입니다. 글 수가 아닙니다. 아래 분류는 저장된 상태이며, 다운로드 가능 여부는 실제 요청 결과로 확인합니다.</p>
+<form method="get">
+<select name="channel_id" aria-label="채널"><option value="">전체 채널</option>{% for c in channels %}<option value="{{ c.id }}" {% if channel_id == c.id %}selected{% endif %}>{{ c.slug }}</option>{% endfor %}</select>
+<select name="reason" aria-label="대기 이유"><option value="">전체 이유</option>{% for key,label in reasons.items() %}<option value="{{ key }}" {% if reason == key %}selected{% endif %}>{{ label }} ({{ report.counts.get(key,0) }})</option>{% endfor %}</select><button>조회</button></form>
+<div class="grid">{% for key,n in report.counts.items() %}<div class="item"><a href="/backlog?reason={{ key }}{% if channel_id %}&channel_id={{ channel_id }}{% endif %}">{{ reasons[key] }}</a><br><strong>{{ n }}개</strong></div>{% endfor %}</div>
+<p>대기 작업은 신규 글 목록을 탐색하지 않고 기존 글의 미수집 파일을 처리합니다. HTTP 451은 우회하지 않고 원문 접근 제한 기록으로 분리하며, 확인 시각이 되면 다시 검사합니다. 자동 수집이 꺼진 채널도 아래 수동 버튼으로 실행할 수 있습니다.</p>
+{% for c in channels %}{% if not channel_id or channel_id == c.id %}<form method="post" action="/channels/{{ c.id }}/backlog" class="inline"><button>{{ c.slug }} 대기 처리</button></form>{% endif %}{% endfor %}
+<table><tr><th>미디어</th><th>글</th><th>채널</th><th>처리 조건</th><th>오류 코드</th><th>기록된 실패</th><th>다음 시각</th></tr>
+{% for m in report.rows %}<tr><td>{{ m.id }} · {{ m.kind }}</td><td><a href="/articles/{{ m.article_id }}">{{ m.title or m.article_id }}</a></td><td>{{ m.channel_slug }}</td><td>{{ reasons[m.reason] }}</td><td>{{ m.state_code or m.article_state_code or '-' }}</td><td>{{ m.attempts }}</td><td>{{ (m.next_retry_at or m.article_next_retry_at)|kst }}</td></tr>{% endfor %}</table>
+<p class="pager">{{ report.total }}개 · {{ pager.page }}/{{ pager.pages }} 페이지 {% if pager.prev %}<a href="{{ pager.url(pager.prev) }}">이전</a>{% endif %} {% if pager.next %}<a href="{{ pager.url(pager.next) }}">다음</a>{% endif %}</p>
+{% endblock %}
