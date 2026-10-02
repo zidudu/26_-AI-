@@ -1,0 +1,4 @@
+interface:
+  display_name: "ELI5"
+  short_description: "Explain complex code and concepts with visual HTML."
+  default_prompt: "Use $eli5 to explain this topic in Korean with a visual HTML page."

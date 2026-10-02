@@ -1,0 +1,20 @@
+interface:
+  display_name: evidence driven debugging
+  short_description: '실제 실행 증거를 바탕으로 오류 원인을 단계적으로 추적하는 디버깅 스킬.
+
+    오류 원인 분석, 재현 테스트, 로그·입력·출력 비교, API 전달 내용 확인,
+
+    AI 분석 결과 검증, "추측하지 말고 테스트해", "검증 명령어 줘" 요청에 사용한다.
+
+    대상 환경에 접근할 수 있으면 직접 검사하고, 접근할 수 없으면 사용자가 실행할
+
+    최소 명령을 제공한다. 실제 결과에 따라 가설을 갱신하고 다음 검사를 결정한다.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

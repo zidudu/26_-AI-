@@ -1,0 +1,14 @@
+interface:
+  display_name: 이미지·영상·모션그래픽 제작
+  short_description: 사진·일러스트·동영상 클립과 음악을 편집해 완성 영상을 제작합니다
+  default_prompt: $procedural-motion-video 스킬로 지정한 폴더의 이미지와 영상 클립을 골라 자막과 음악이 있는 짧은
+    영상을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,13 @@
+interface:
+  display_name: 모니터링 통계와 Excel 내보내기
+  short_description: 문서 수와 키워드 매칭 수를 구분해 필터가 명확한 Excel을 만듭니다.
+  default_prompt: $export-monitoring-analytics 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

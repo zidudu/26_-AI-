@@ -1,0 +1,13 @@
+interface:
+  display_name: 증분 웹 수집과 로그인 관리
+  short_description: 기간·커서·중복·요청 속도를 관리하며 반복 웹 수집을 구성합니다.
+  default_prompt: $collect-incremental-web 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

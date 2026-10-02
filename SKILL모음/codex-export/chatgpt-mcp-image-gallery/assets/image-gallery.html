@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { margin: 0; padding: 14px; color: light-dark(#222, #eee); background: light-dark(#fff, #202020); }
+    h1 { margin: 0 0 12px; font-size: 16px; }
+    #gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    figure { margin: 0; overflow: hidden; border: 1px solid light-dark(#ddd, #444); border-radius: 9px; }
+    img { display: block; width: 100%; max-height: 420px; object-fit: contain; background: light-dark(#f7f7f7, #111); }
+    figcaption { padding: 8px 10px; font-size: 12px; line-height: 1.4; overflow-wrap: anywhere; }
+    #status { margin: 8px 0; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>이미지 갤러리</h1>
+  <div id="status" role="status">이미지를 불러오는 중입니다…</div>
+  <div id="gallery" aria-label="이미지 갤러리"></div>
+  <script>
+    const gallery = document.getElementById("gallery");
+    const status = document.getElementById("status");
+
+    function blocksFrom(value) {
+      if (Array.isArray(value)) return value;
+      for (const candidate of [value, value?.result, value?.call_tool_result,
+                                value?.mcp_tool_result, value?.toolResult]) {
+        if (Array.isArray(candidate?.content)) return candidate.content;
+      }
+      return [];
+    }
+
+    function render(value) {
+      const blocks = blocksFrom(value);
+      if (!blocks.length) return;
+      gallery.replaceChildren();
+      let label = "";
+      let count = 0;
+      for (const block of blocks) {
+        if (block?.type === "text") {
+          label = String(block.text || "").slice(0, 500);
+          continue;
+        }
+        if (block?.type !== "image" || !block.data ||
+            !/^image\/(jpeg|png|webp)$/.test(block.mimeType || "")) continue;
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+        img.src = `data:${block.mimeType};base64,${block.data}`;
+        img.alt = label || `이미지 ${count + 1}`;
+        const caption = document.createElement("figcaption");
+        caption.textContent = label;
+        figure.append(img, caption);
+        gallery.append(figure);
+        count++;
+      }
+      status.textContent = count ? `${count}장 표시 중` : (label || "표시 가능한 이미지가 없습니다.");
+    }
+
+    window.addEventListener("message", event => {
+      if (event.source !== window.parent || event.data?.jsonrpc !== "2.0") return;
+      if (event.data.method === "ui/notifications/tool-result") render(event.data.params);
+    });
+    render(window.openai?.toolResponseMetadata);
+    render(window.openai?.toolOutput);
+  </script>
+</body>
+</html>

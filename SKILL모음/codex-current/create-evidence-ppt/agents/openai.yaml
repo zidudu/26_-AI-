@@ -1,0 +1,13 @@
+interface:
+  display_name: 원문 근거가 담긴 PPT 보고서
+  short_description: 원문 캡처·분석·발표자 노트를 연결하고 보고서를 재생성합니다.
+  default_prompt: $create-evidence-ppt 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

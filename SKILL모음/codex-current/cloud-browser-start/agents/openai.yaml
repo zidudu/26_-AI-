@@ -1,0 +1,14 @@
+interface:
+  display_name: 클라우드 브라우저 시작·연결 검증
+  short_description: 실행 도구 발견부터 브라우저 연결과 실제 접속 검증까지 수행합니다
+  default_prompt: $cloud-browser-start 스킬로 클라우드 브라우저를 시작하고 요청한 사이트의 실제 접속 상태를 확인해
+    주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

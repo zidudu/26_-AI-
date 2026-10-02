@@ -1,0 +1,15 @@
+interface:
+  display_name: search images
+  short_description: Search the web for relevant images and display them directly
+    in chat. Use when the user asks to find, show, collect, or visually reference
+    images. Search intensity controls how broadly and repeatedly to search; when unspecified,
+    use the default intensity.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

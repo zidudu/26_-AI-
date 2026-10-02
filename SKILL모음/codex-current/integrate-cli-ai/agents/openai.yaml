@@ -1,0 +1,13 @@
+interface:
+  display_name: CLI AI 실행 연동
+  short_description: CLI 인증·프로세스·시간 제한·구조화 응답을 안정적으로 연결합니다.
+  default_prompt: $integrate-cli-ai 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

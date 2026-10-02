@@ -1,0 +1,18 @@
+interface:
+  display_name: novelai v5 image production
+  short_description: 'NovelAI Diffusion V5 기준으로 이미지 요구를 분석하고, 프레임·해상도·가시성·구도·캐릭터별
+    위치·자연어·태그·텍스트 렌더링·UC·설정값·편집 루프를 상황에 맞게 설계하는 실전 이미지 제작 스킬.
+
+    캐릭터 디자인/재현, 장면/배경, 다중 캐릭터, 포스터·만화·이미지 내 텍스트, Alpha Transparency, Image2Image,
+    Inpaint, Enhance, 결과 진단 및 반복 수정에 사용한다.
+
+    고정 프롬프트나 고정 설정값을 강제하지 않고, NovelAI V5의 현재 기능과 검증된 실전 노하우를 구분해 판단한다.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

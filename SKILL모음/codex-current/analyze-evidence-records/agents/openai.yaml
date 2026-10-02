@@ -1,0 +1,13 @@
+interface:
+  display_name: 근거가 연결된 AI 분석
+  short_description: 원문 해시와 인용 근거를 확인해 구조화된 AI 분석을 검증합니다.
+  default_prompt: $analyze-evidence-records 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

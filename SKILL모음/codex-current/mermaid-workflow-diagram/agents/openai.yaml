@@ -1,0 +1,13 @@
+interface:
+  display_name: Mermaid 워크플로우 다이어그램
+  short_description: 워크플로우와 에이전트 구조를 바로 렌더링되는 Mermaid로 표현합니다
+  default_prompt: $mermaid-workflow-diagram 스킬을 사용해 이 구조를 바로 보이는 워크플로우 다이어그램으로 그려주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

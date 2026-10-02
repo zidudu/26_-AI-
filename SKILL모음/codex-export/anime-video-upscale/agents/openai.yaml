@@ -1,0 +1,4 @@
+interface:
+  display_name: "애니메이션 AI 업스케일"
+  short_description: "로컬 GPU로 애니메이션 영상을 선명하게 확대하고 검증합니다"
+  default_prompt: "$anime-video-upscale로 이 영상을 원본 보존 후 AI 업스케일하고 전후 비교까지 만들어 주세요."

@@ -1,0 +1,14 @@
+interface:
+  display_name: 웹 크롤링·본문 수집
+  short_description: 웹사이트와 블로그의 목록·본문을 수집하고 중복·누락을 검증합니다
+  default_prompt: $crawl-web-content를 사용해 지정한 사이트에서 요청한 범위의 글과 본문을 수집하고 중복·누락을 확인해
+    주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

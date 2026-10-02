@@ -1,0 +1,14 @@
+interface:
+  display_name: 웹 동작 분석·자동화
+  short_description: 실제 화면·이벤트·통신을 분석해 웹 반복 업무와 자동화 오류 해결
+  default_prompt: $analyze-web-workflow로 이 사이트의 실제 동작을 분석하고, 요청한 반복 업무 자동화 또는 오류 수정을
+    진행해 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

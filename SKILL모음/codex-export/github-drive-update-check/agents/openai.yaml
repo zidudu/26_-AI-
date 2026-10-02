@@ -1,0 +1,4 @@
+interface:
+  display_name: "깃헙·구드 업로드 및 확인"
+  short_description: "현재 프로젝트를 ZIP·구조도·실제 캡처와 함께 공유 배포"
+  default_prompt: "$github-drive-update-check 스킬로 현재 작업한 프로젝트를 깃헙과 구드에 공유용 ZIP으로 업로드하고 로컬 ZIP도 남겨 주세요."

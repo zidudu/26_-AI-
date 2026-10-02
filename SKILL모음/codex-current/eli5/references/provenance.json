@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/anthropics/claude-plugins-community",
+  "commit": "a727be1c7bd6064419b6f60d71993a19198adc17",
+  "retrieved_at": "2026-10-02",
+  "adaptation": "ChatGPT/Codex wrapper; bundled upstream source retained"
+}

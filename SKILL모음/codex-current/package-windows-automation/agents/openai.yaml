@@ -1,0 +1,13 @@
+interface:
+  display_name: Windows 자동화 배포와 검증
+  short_description: 실행·설치·검증 경로를 정리하고 민감정보 없는 배포본을 만듭니다.
+  default_prompt: $package-windows-automation 스킬로 이 업무에 필요한 결과물을 만들어 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

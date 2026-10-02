@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visual Skills"
+  short_description: "Visualize code, changes, specs and comprehension quizzes."
+  default_prompt: "Use $visual-skills to create a Korean visual atlas of this project."

@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/scottyroges/visual-skills",
+  "commit": "af89b5019c1b2af301c9ea40af8c844cecac56b0",
+  "retrieved_at": "2026-10-02",
+  "adaptation": "ChatGPT/Codex wrapper; bundled upstream source retained",
+  "d2": {
+    "version": "0.9.0",
+    "url": "https://github.com/d2lang/d2/releases/download/v0.9.0/d2-v0.9.0-linux-amd64.tar.gz",
+    "sha256": "5669ddc46b99e942cc96078f4a4e36d5e62103348f4c05179ede27802fdd87a9"
+  }
+}

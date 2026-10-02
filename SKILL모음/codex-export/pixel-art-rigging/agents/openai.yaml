@@ -1,0 +1,4 @@
+interface:
+  display_name: "도트 일러스트 리깅"
+  short_description: "도트 캐릭터 파츠와 본으로 반복 모션을 만들고 GIF·Aseprite로 출력"
+  default_prompt: "$pixel-art-rigging 스킬로 제공한 도트 캐릭터의 파츠와 관절을 확인하고, 자연스러운 반복 애니메이션과 편집 가능한 원본을 만들어 주세요."

@@ -1,0 +1,13 @@
+interface:
+  display_name: 검증 우선 수집
+  short_description: 외부 자료의 근거와 재현성을 확인해 채택 후보를 선별합니다.
+  default_prompt: $evidence-gate를 사용해 이 자료의 검증 상태를 확인하고 채택 여부를 추천해 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

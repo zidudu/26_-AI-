@@ -1,0 +1,13 @@
+interface:
+  display_name: 천재적 사고 공식화
+  short_description: 원문의 사고 공식 10개로 두 사고법을 혼합해 분석하고 아이디어 도출
+  default_prompt: $genius-thinking-formula 스킬로 이 주제를 분석하고 아이디어를 제안해 주세요.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

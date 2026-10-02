@@ -1,0 +1,4 @@
+interface:
+  display_name: "Understand Anything"
+  short_description: "Analyze code into a searchable interactive knowledge graph."
+  default_prompt: "Use $understand-anything to analyze this project in Korean."

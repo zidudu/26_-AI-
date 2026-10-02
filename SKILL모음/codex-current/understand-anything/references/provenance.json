@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/Egonex-AI/Understand-Anything",
+  "commit": "b05cc3b20990afca537b4fc0a49b4d7fbdc65bb0",
+  "retrieved_at": "2026-10-02",
+  "adaptation": "ChatGPT/Codex wrapper; bundled upstream source retained"
+}

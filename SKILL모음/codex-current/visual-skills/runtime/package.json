@@ -1,0 +1,47 @@
+{
+  "name": "visual-skills",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottyroges/visual-skills.git"
+  },
+  "bin": {
+    "visual-doc": "bin/doc.ts",
+    "visual-recap": "bin/recap.ts",
+    "visual-spec": "bin/spec.ts",
+    "visual-atlas": "bin/atlas.ts",
+    "visual-quiz": "bin/quiz.ts"
+  },
+  "scripts": {
+    "doc": "tsx bin/doc.ts",
+    "recap": "tsx bin/recap.ts",
+    "spec": "tsx bin/spec.ts",
+    "atlas": "tsx bin/atlas.ts",
+    "quiz": "tsx bin/quiz.ts",
+    "setup:excalidraw": "node scripts/setup-excalidraw.mjs",
+    "skills:install": "tsx scripts/install-skills.ts",
+    "atlas:check": "node .visual/atlas/atlas-check.mjs",
+    "prepare": "git config core.hooksPath .githooks",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "marked": "^14.1.0",
+    "sanitize-html": "^2.17.5",
+    "shiki": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/sanitize-html": "^2.16.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.4"
+  }
+}

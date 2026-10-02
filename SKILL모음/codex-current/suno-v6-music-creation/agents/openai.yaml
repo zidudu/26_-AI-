@@ -1,0 +1,11 @@
+interface:
+  display_name: suno v6 music creation
+  short_description: 'SUNO v6 음악 제작과 기존 곡 수정을 돕는다. 게임 BGM, 캐릭터 테마,
+
+    보컬곡, Style Prompt, Lyrics, 설정값, Cover, Remix, Extend,
+
+    부분 편집, Remaster 요청에 사용한다. 입력 길이를 확인하고,
+
+    공식 정보와 실제 제작 결과에 따라 유연하게 판단한다.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
