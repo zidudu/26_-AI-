@@ -1,6 +1,6 @@
 # 26_-AI- · 26_잡다한AI제작
 
-AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows용 로컬 프로그램 5종** 과 **스킬 모음 1종**이 올라와 있습니다. 각 프로그램은 **배포용 ZIP**과 함께 **ZIP을 그대로 푼 소스 폴더**를 두어, 내려받지 않고도 GitHub에서 코드를 바로 볼 수 있습니다.
+AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows용 로컬 프로그램 5종**, **스킬 모음 1종**, **브라우저 게임 1종**이 올라와 있습니다. 각 프로그램은 **배포용 ZIP**과 함께 **ZIP을 그대로 푼 소스 폴더**를 두어, 내려받지 않고도 GitHub에서 코드를 바로 볼 수 있습니다(브라우저 게임은 ZIP 없이 HTML 파일 하나입니다).
 
 > 이 문서는 2026-10-02 기준으로 각 폴더의 README, 배포 ZIP 안의 소스·설정·변경 기록을 직접 열어 확인한 내용만 정리했습니다. 각 프로그램의 "실제 사용 환경에서 검증된 범위"는 해당 프로젝트 README의 기록을 따랐습니다. 이 저장소에서 직접 실행한 오프라인 점검 결과는 [6. 점검 결과](#6-점검-결과-2026-10-02)에 따로 정리했습니다.
 
@@ -24,6 +24,7 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 | 2026-10-01 | [로컬 AI 작업대](20261001_local_ai_workbench_v0.1/) | Ollama 모델로 대화·두 모델 비교·로컬 문서 질문(RAG) | 0.1 | 배포 ZIP + 압축 해제된 소스 | React 19, Vite, FastAPI, Ollama, SQLite |
 | 2026-10-01 | [YouTube Media Library](20261001_youtube_media_library_v8_beta2/) | YouTube 영상·음원·자막 수집, 태그·검색·재생 관리 | V8 beta.2 | 배포 ZIP + 압축 해제된 소스 | Python, FastAPI, yt-dlp, FFmpeg, Chrome 확장, MCP |
 | 2026-10-02 | [Pin Archive](20261002_pin_archive/) | Pinterest·로컬 이미지 시각 레퍼런스 라이브러리 (1.0.1 → 1.1.0 → 1.2.0 배포본을 한 폴더에 보관) | 1.2.0 (최신) | 배포 ZIP + 압축 해제된 소스 | Python, FastAPI, SQLite(FTS5), Playwright, MCP |
+| 2026-10-02 | [Drop Stack (테트리스)](20261002_tetris/) | 브라우저에서 바로 하는 테트리스 방식 블록 퍼즐(SRS 회전·7-bag·홀드·T-스핀) | — | 단일 HTML 파일 | HTML, CSS, JavaScript(Canvas) |
 | 2026-10-02 | [SKILL모음](SKILL모음/) | Codex 스킬 보관 모음(자동화 스킬 11개 + 카탈로그 스냅샷 + 업로드 ZIP 해제본) | — | 폴더·문서 모음 | Markdown(`SKILL.md`), 일부 Python 스크립트 |
 
 등록일은 폴더명 접두어(`YYYYMMDD`)와 git 최초 커밋 날짜가 일치하는 값입니다.
@@ -87,6 +88,10 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 │   └── v1.2.0/                                ← ZIP 1종 + pinterest_reference_v1/ (최신)
 │       └── pinterest_reference_v1/            ← app/ · web/ · tests/ · docs/ · seed/ · mcp_bridge.py
 │
+├── 20261002_tetris/                           ← Drop Stack (테트리스 방식 블록 퍼즐)
+│   ├── README.md
+│   └── index.html                             ← 게임 전체(한 파일, 브라우저로 열면 실행)
+│
 └── SKILL모음/                                 ← Codex 스킬 보관 모음
     ├── README.md · CATALOG.json · CATALOG_SHA256SUMS.txt
     ├── monitoring-automation/                 ← 모니터링·업무 자동화 스킬 11개 + ZIP
@@ -140,7 +145,7 @@ flowchart LR
 이 밖에 확인된 **공통 구현 방식**(서로 연결된 것은 아님):
 
 - 자동차 동호회 모니터링과 arca-archive는 모두 **Playwright + Chrome 전용 프로필**로 로그인 세션을 쓰고 **SQLite**에 이력을 저장합니다. arca-archive는 네이버 카페도 지원하지만, 문서상 자동차 동호회 모니터링과 코드를 공유한다는 기록은 없습니다.
-- 모든 프로그램이 `127.0.0.1`(내 PC)에서만 동작하는 로컬 웹 앱이고, 데이터(DB·미디어·로그인 프로필)는 배포 ZIP에 포함하지 않습니다.
+- Drop Stack을 제외한 모든 프로그램이 `127.0.0.1`(내 PC)에서만 동작하는 로컬 웹 앱이고, 데이터(DB·미디어·로그인 프로필)는 배포 ZIP에 포함하지 않습니다.
 
 ---
 
@@ -237,15 +242,29 @@ flowchart LR
 - **monitoring-automation의 11개 스킬**: 모니터링 자동화 설계 · 증분 웹 수집 · 원문/버전 이력 보존 · 근거 연결 AI 분석 · CLI AI 연동 · 근거 PPT 보고서 · 보고서 이미지 최적화 · Outlook 보고서 발송 · 로컬 운영 화면과 예약 실행 · 통계와 Excel 내보내기 · Windows 자동화 배포·검증. 실행 스크립트 6개(Python 표준 라이브러리 중심, 이미지 최적화는 Pillow, Excel은 openpyxl 필요)가 포함됩니다.
 - **현재 상태**: README 기준으로 11개 스킬은 제작 시 41개 동작 검사와 가상 자료 시나리오를 확인했으나, **Windows·Office·실제 메일 발송까지의 종단 간 검증은 아닙니다.** `codex-current`·`codex-export`는 파일을 찾아보기 위한 정리본이며 호환성·동작을 새로 검증한 자료가 아닙니다.
 
+### 4.7 Drop Stack (테트리스 방식 블록 퍼즐)
+
+📁 [`20261002_tetris/`](20261002_tetris/) · [프로젝트 README](20261002_tetris/README.md)
+
+- **목적**: 설치 없이 브라우저로 여는 **테트리스 방식 블록 퍼즐**. 이름은 상표를 피해 Drop Stack으로 지었습니다.
+- **주요 기능**
+  - 현대 가이드라인 규칙: SRS 회전·월킥, 7-bag, 홀드, 고스트, 다음 블록 5개, 고정 지연 0.5초(이동·회전 초기화 최대 15회), DAS 167ms·ARR 33ms
+  - 점수: 줄 삭제·T-스핀(3-코너 판정, 미니 구분)·백투백·콤보·퍼펙트 클리어, 10줄마다 레벨 상승, 시작 레벨 1~15 선택
+  - 기록 패널(시간·초당 블록 수 PPS·4줄 비율·최대 콤보·블록 분포), 최고 점수 브라우저 저장
+  - 키보드 조작, 휴대폰 터치 버튼과 판 제스처(탭 회전·끌기 이동·튕기기 드롭/홀드), 화면 크기에 맞춘 판 크기 자동 조절
+- **기술 스택**: HTML, CSS, JavaScript(Canvas 2D), 외부 의존은 Google Fonts뿐(없으면 시스템 글꼴로 동작)
+- **실행**: `index.html`을 브라우저로 열기
+- **현재 상태**: 2026-10-02 Playwright(Chromium) 자동 검사 27개 통과(데스크톱 조작, T-스핀 더블 1,202점 시나리오, 휴대폰 에뮬레이션). **실제 휴대폰·Safari·Firefox 실기 확인은 하지 않았습니다.** 효과음·180도 회전·온라인 순위는 없습니다.
+
 ---
 
 ## 5. 공통 사항과 주의점
 
-- **실행 환경**: 모든 프로그램이 Windows 사용을 전제로 합니다(BAT·PowerShell 스크립트, Office COM 등). Pin Archive만 `setup.sh`·`start.sh`로 macOS/Linux 실행 방법도 제공합니다.
+- **실행 환경**: Drop Stack을 제외한 모든 프로그램이 Windows 사용을 전제로 합니다(BAT·PowerShell 스크립트, Office COM 등). Pin Archive만 `setup.sh`·`start.sh`로 macOS/Linux 실행 방법도 제공합니다. Drop Stack은 서버 없이 브라우저만 있으면 운영체제와 관계없이 실행됩니다.
 - **로컬 전용**: 웹 서버는 `127.0.0.1`에서 동작합니다. 외부 공개용 서비스가 아닙니다.
 - **기본 포트가 겹칩니다**: 자동차 동호회 모니터링·arca-archive는 `8766`, YouTube Media Library·Pin Archive는 `8765`를 기본으로 씁니다. 여러 개를 동시에 켤 때는 포트를 확인하세요(Pin Archive는 사용 중이면 자동으로 다음 포트를 고릅니다).
 - **개인 데이터는 저장소에 없습니다**: 수집한 DB·미디어·로그·로그인 세션·API 키는 배포본에 포함하지 않았다고 각 README가 밝히고 있습니다. 업데이트할 때는 사용 중인 `data/` 폴더를 보존하세요.
-- **무결성 확인**: 각 배포 폴더의 `SHA256SUMS.txt`로 ZIP 해시를 확인할 수 있습니다.
+- **무결성 확인**: 각 배포 폴더의 `SHA256SUMS.txt`로 ZIP 해시를 확인할 수 있습니다(Drop Stack은 ZIP 배포본이 없어 해당 없음).
 - **수집 대상 이용 권한**: 웹 수집 도구들은 접근·이용 권한이 있는 자료에만 쓰도록 안내하고 있습니다. 각 서비스의 약관과 저작권은 사용자가 확인해야 합니다.
 - **개별 README 우선**: 설치·사용법과 검증 범위의 세부 내용은 각 프로젝트 README(및 ZIP 안의 `docs/`)가 기준입니다.
 
