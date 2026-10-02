@@ -1,0 +1,419 @@
+{
+  "name": "YouTube Media Library V8 beta.2 Sharing Package",
+  "version": "8.0.4-beta.2",
+  "build": "2026-10-01",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 143,
+      "sha256": "5d21ad71caa48ad52dc1deca29d958f2eec0017e52150ea938aac56e5731ab0e"
+    },
+    {
+      "path": "01_setup_beta.bat",
+      "bytes": 366,
+      "sha256": "7a8b56c86f67d369b79ce0e43e09739cf7b3842e9b98bcece3c13b9452a2e037"
+    },
+    {
+      "path": "02_connect_tailscale.bat",
+      "bytes": 366,
+      "sha256": "35af0d258c58f6a192688e408cc150054423383c7505c1ebd963e7c06c103e62"
+    },
+    {
+      "path": "03_install_autostart.bat",
+      "bytes": 315,
+      "sha256": "5d7d771c5770226cdfd562527e6ea927e184a18fd1635a8a140d8d9ac94e392d"
+    },
+    {
+      "path": "04_status.bat",
+      "bytes": 384,
+      "sha256": "88c2cda60a396ead6557b7f2369674fb63e09209014592b42b6b6a9be568c9a5"
+    },
+    {
+      "path": "05_connect_private_fast.bat",
+      "bytes": 320,
+      "sha256": "25a55b0e5df00c8a9bd4d18882e55a80c87204eb963b69eb4d355b96f70c1a71"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 3410,
+      "sha256": "1f37f4708d38dcd24bf52bfc4469795a7985c93fa27b555946775bfb86420a6d"
+    },
+    {
+      "path": "EXTENDING.md",
+      "bytes": 2531,
+      "sha256": "14470ba5684cc9d8767b6a4b28b047b40cde8257bbe9de0886078f6ab29d781f"
+    },
+    {
+      "path": "OPTIONAL_logon_only.bat",
+      "bytes": 328,
+      "sha256": "c4cba187b67b976fb6409daad481122ae9197200ad9220d90004f6aed34201e2"
+    },
+    {
+      "path": "OPTIONAL_remove_private_fast.bat",
+      "bytes": 329,
+      "sha256": "62696e1d557eec9824f3360336a8da2f46337f5d59c3abe42c662a27a564b87d"
+    },
+    {
+      "path": "OPTIONAL_run_cloudflare.bat",
+      "bytes": 389,
+      "sha256": "634d7b01b5c200013dcd799a62a3a5745e828423dab59bb97c6a42a6f37e296d"
+    },
+    {
+      "path": "OPTIONAL_setup_cloudflare.bat",
+      "bytes": 379,
+      "sha256": "c30780c2d45feb71854d3b16ca66b0ec76ca9edac0bc37a7e4392954d6565446"
+    },
+    {
+      "path": "OPTIONAL_stop_cloudflare.bat",
+      "bytes": 396,
+      "sha256": "e1189a8acce2e3332635de80c6b1fb351ebca0aee476cfd502475ca7281e3004"
+    },
+    {
+      "path": "README.md",
+      "bytes": 13725,
+      "sha256": "4db526a06501029c8484a7463a51d3be2a6bf5777d0f83ea8445a572b4f30c97"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 5353,
+      "sha256": "2458e182e4d1e4bb58f3a288165fad4566905e342a3f0157b47e0d576eaed375"
+    },
+    {
+      "path": "SHARE_START.md",
+      "bytes": 2531,
+      "sha256": "2e48fdbf3c7766b83ec166c43f9b5155c5df40cbc1258082b232d2fbf2326271"
+    },
+    {
+      "path": "TESTING.md",
+      "bytes": 11016,
+      "sha256": "a205f9fc00226d240cef37ae64b19fba3615601026e1d933639645a39369d36e"
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "bytes": 3564,
+      "sha256": "b0fc7d1092df8bf21cef2180a2e41608f77c59d7f6eab7c2d21e4c11858d5518"
+    },
+    {
+      "path": "ai_plugin/README.md",
+      "bytes": 3763,
+      "sha256": "626b35385aee3a53c5d014793175656be37492c11d6f92151c295cb5231aeff5"
+    },
+    {
+      "path": "ai_plugin/install_claude_desktop.py",
+      "bytes": 2396,
+      "sha256": "fea42f15f0155b48aed746a1cd2ce408d0c96af7c3ff2f285fbf71ba0eae74dd"
+    },
+    {
+      "path": "ai_plugin/library_backend.py",
+      "bytes": 5136,
+      "sha256": "72df376fded0282bf45127baf8d1e172a991ecc722c7a9a6ed07fb8b49cf0484"
+    },
+    {
+      "path": "ai_plugin/mcp_server.py",
+      "bytes": 2394,
+      "sha256": "af4d5ad052d6ea12e95de17977257a7c20951fea15c398179d8b9cffe56ad234"
+    },
+    {
+      "path": "ai_plugin/requirements.txt",
+      "bytes": 11,
+      "sha256": "01c771571873832ab0a9b1814fe45ca6d3b8cae24425c2c60102663ea5e11b70"
+    },
+    {
+      "path": "ai_plugin/smoke_test.py",
+      "bytes": 2415,
+      "sha256": "2a884d5163d9961bf7b906509a85e073b2d6b802d24507762e0fbe88585bf1fe"
+    },
+    {
+      "path": "app.py",
+      "bytes": 18124,
+      "sha256": "2060c2323c27af0853f28963dfab39d5be1c58037fb84af730337cc61d29005b"
+    },
+    {
+      "path": "chrome_extension/README.md",
+      "bytes": 1731,
+      "sha256": "6626c9cb34fd32bf2b0c75a0363ad633a63314e513cf5e81de059ab5f61df90e"
+    },
+    {
+      "path": "chrome_extension/icon-128.png",
+      "bytes": 3858,
+      "sha256": "60173f81ccda807862838cd8dd4f901140b65c399898a0391b65546d04cffdae"
+    },
+    {
+      "path": "chrome_extension/icon-16.png",
+      "bytes": 620,
+      "sha256": "c1f31260502ba92368521920c8be8f1325154db90df17224950a340e4f54ad6f"
+    },
+    {
+      "path": "chrome_extension/icon-48.png",
+      "bytes": 1647,
+      "sha256": "a8cebc14df0895a873289cd83943a049d8e30f5c9f6184f779b7e4fef8db38e3"
+    },
+    {
+      "path": "chrome_extension/manifest.json",
+      "bytes": 551,
+      "sha256": "95a5daf2f9b2665db2315909130cff22b173f1a5fee89a7516cceb2046a43d29"
+    },
+    {
+      "path": "chrome_extension/popup.css",
+      "bytes": 2020,
+      "sha256": "0465f581dce86123468915f83c57c8101301cf173636be28d52432f2e0decb12"
+    },
+    {
+      "path": "chrome_extension/popup.html",
+      "bytes": 1603,
+      "sha256": "bc66026f4fd91b63f80c764b9aff112102ffcfac0c23444985f49533ee9851fc"
+    },
+    {
+      "path": "chrome_extension/popup.js",
+      "bytes": 3009,
+      "sha256": "ab35afa0ea19353e0d76869eac5c067bac8b5eba3d6e708b6797dd80bf879b8e"
+    },
+    {
+      "path": "configure_beta.py",
+      "bytes": 9113,
+      "sha256": "c0c3c43ecd8a0af57981f26c734c60facd51ce5201992d770396b3f3ff115b0d"
+    },
+    {
+      "path": "connect_private_fast.py",
+      "bytes": 4942,
+      "sha256": "d919838ff6ff25729b3266d0f79d29edd5adfffe718b68570164766a6d5c1969"
+    },
+    {
+      "path": "connect_remote.py",
+      "bytes": 7860,
+      "sha256": "46b89250f5902e98c1aa9db0fa672c53d136c1bca5765b561cce2607f54db2ad"
+    },
+    {
+      "path": "diagnose.py",
+      "bytes": 2376,
+      "sha256": "3718a640d0dc4996efc5a9c66b08c8a00c61133e67cab81830cce3449c653cd3"
+    },
+    {
+      "path": "folder_dialog.py",
+      "bytes": 461,
+      "sha256": "36479c7046d61dc6619f8b481ff26919f4e5bdb78036ce5dae6dd51b6f777ba7"
+    },
+    {
+      "path": "launcher.py",
+      "bytes": 6801,
+      "sha256": "cc225a2f1233f06dbb429e8649882784b20aa722840ccb441547c96fa68315a5"
+    },
+    {
+      "path": "prepare_env.py",
+      "bytes": 1877,
+      "sha256": "d6e0f7892a8309ec983a0b3e57e54e1ee4cd1e595dde1c4c4bb536c7e832c338"
+    },
+    {
+      "path": "pytest.ini",
+      "bytes": 52,
+      "sha256": "4551307f5b1a58adb7ec215d513089ba670b1737b81ada5a5863afe796d67343"
+    },
+    {
+      "path": "remove_autostart.bat",
+      "bytes": 314,
+      "sha256": "ff03b310b539991b0d4e82b4d58fa51dd413e9dfb754a1b8743b1ef08ee00a0c"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 49,
+      "sha256": "c23feb58b6f9cab899b3e457b6cad56158f5315b366cd0f7a210feef72af395b"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 168,
+      "sha256": "284815b8c6229c08c8a51b02d1d21f9d1283034bf533ca983787298c8b3f5385"
+    },
+    {
+      "path": "run_v8.bat",
+      "bytes": 106,
+      "sha256": "00b53af2f45f6456fa64a50f861411d20003e0f8acb9f03b76aacdb5a223bb7c"
+    },
+    {
+      "path": "run_v8_beta.bat",
+      "bytes": 514,
+      "sha256": "45a905d72f8f858ad85e8d39b699510dc92bdbdf434c059a62f247893c32291c"
+    },
+    {
+      "path": "scripts/build_share_zip.py",
+      "bytes": 3527,
+      "sha256": "cb900e0fea229f8c3c1d0951a4fa333cd801f5b5c6775e39fffb67b35aed54b1"
+    },
+    {
+      "path": "scripts/ensure_env.bat",
+      "bytes": 555,
+      "sha256": "c7fcba248c1f6ddd22a137c1de2c03e2ca41db5a8d0e7e77db28cca0bcfa84bf"
+    },
+    {
+      "path": "scripts/install_autostart.ps1",
+      "bytes": 4279,
+      "sha256": "62f42b80911487fd713a827e17fb27d75a8d454c6821d8df9a278e8e6e16143c"
+    },
+    {
+      "path": "scripts/remove_autostart.ps1",
+      "bytes": 999,
+      "sha256": "3d7f67dcd200cdf4ab5404f9e4323cf0390b6825443c3d673de660ef1f69d409"
+    },
+    {
+      "path": "scripts/start_background.ps1",
+      "bytes": 458,
+      "sha256": "b4e50588623dd0e7ce306eb8d8ece2da3e72bc1d080b8415ffe2187155522085"
+    },
+    {
+      "path": "start_background.bat",
+      "bytes": 314,
+      "sha256": "2b7a62b359874527a57590464ab8be5233ae6d1d8b47f473948aaa9c4b72f364"
+    },
+    {
+      "path": "static/app.js",
+      "bytes": 51432,
+      "sha256": "770334d6631940058564c469a7647d792607bdc415ed13a5d19caad34275596c"
+    },
+    {
+      "path": "static/favicon.svg",
+      "bytes": 173,
+      "sha256": "09c1295a8a94646c6673b22db845b12ec6f5eeeae10fd965ce4ad8a4cae3391b"
+    },
+    {
+      "path": "static/icons.js",
+      "bytes": 2103,
+      "sha256": "527172875a6e98c42e2c4e97ea7b0bbfc962f3b01056c123b9685c3addb572df"
+    },
+    {
+      "path": "static/index.html",
+      "bytes": 19514,
+      "sha256": "705de5dcb5a2ec1e3678a03bc5daccc3fe4777344fb2b8bd152c557029cfed7e"
+    },
+    {
+      "path": "static/login.css",
+      "bytes": 3261,
+      "sha256": "17378eec6273345283b97ffc5cb987928317b985d27adde0bdf57203e8858140"
+    },
+    {
+      "path": "static/login.html",
+      "bytes": 2115,
+      "sha256": "5f57099b006bc8e9e80bc5a6083c517722ad6b49f0e6b543224d213cf17807a8"
+    },
+    {
+      "path": "static/login.js",
+      "bytes": 1553,
+      "sha256": "aa97b77aed7b269c480087e38b34666c8fa004d7c32cf28ff61a2a663acf9c48"
+    },
+    {
+      "path": "static/styles.css",
+      "bytes": 36317,
+      "sha256": "7aaffeb80d14c7d6e2c0be01037dd487b4e406f650dfe20211a8119fe89ac8db"
+    },
+    {
+      "path": "stop_beta.py",
+      "bytes": 1026,
+      "sha256": "87679cf64cad1983258cdaf7df100bcf930124a027f2307d595a1dfdcd7f9160"
+    },
+    {
+      "path": "stop_v8_beta.bat",
+      "bytes": 385,
+      "sha256": "136dd0b769798df310bad0474e29778eda682401cca57f6e86e7d91dab94a6ef"
+    },
+    {
+      "path": "tests/beta_helpers.py",
+      "bytes": 1002,
+      "sha256": "95fed0a773ab625d24baef2a5da586524ae8350a57a906217ec793256480da43"
+    },
+    {
+      "path": "tests/test_beta_launcher.py",
+      "bytes": 4415,
+      "sha256": "e2bc1088db6b9eeeff28c297bf813a1fa696461f51cbe3bd99c0dd933573ac84"
+    },
+    {
+      "path": "tests/test_v8.py",
+      "bytes": 13422,
+      "sha256": "1be5b6fecff6b64ff0cc7c49cd3a6b1b0661bbf37c771a025789eea28af35d0c"
+    },
+    {
+      "path": "tests/test_v8_beta.py",
+      "bytes": 9676,
+      "sha256": "776f5b9054f04c381e322c8bec7f09858a1ba6184c25d8091743104bc3a607f3"
+    },
+    {
+      "path": "tests/test_v8_beta1.py",
+      "bytes": 3105,
+      "sha256": "ea3d5d271452608fa100949a9a5c78db1dfa8fafe3748396fe28811294d1685f"
+    },
+    {
+      "path": "tests/test_v8_beta2.py",
+      "bytes": 12998,
+      "sha256": "21d15ad09a0860282eba35233ca45a193b17b3f420d9d63f20ad8871ec60ebdb"
+    },
+    {
+      "path": "tunnel_runner.py",
+      "bytes": 4740,
+      "sha256": "cf88765f28fc14693faee38a74df4295884a5d0bb2e50e82c84f2e843de6d022"
+    },
+    {
+      "path": "update_engines.bat",
+      "bytes": 564,
+      "sha256": "cd0ee4de148d24598bceccfc874b69f0b5a3c5619e9e4bd3fce97bd344678483"
+    },
+    {
+      "path": "yme/__init__.py",
+      "bytes": 82,
+      "sha256": "e335d13fca8281e1fd9ea9020e86d65e89ac508af398c35b9bf2e9d6201dd096"
+    },
+    {
+      "path": "yme/engine.py",
+      "bytes": 26919,
+      "sha256": "8d9b17c9ed31d6413a0d71854066b9733188a2c7f4cdd2868c9cd195582a3feb"
+    },
+    {
+      "path": "yme/events.py",
+      "bytes": 2492,
+      "sha256": "a53b659503170910881a0e5740e6ba261cca095c3f6c19aafaad85a48bca9e21"
+    },
+    {
+      "path": "yme/library.py",
+      "bytes": 20117,
+      "sha256": "41b48c652dac8b7e712909e48f96125fb79ae08f9c225be0c77262080582f164"
+    },
+    {
+      "path": "yme/performance.py",
+      "bytes": 8752,
+      "sha256": "fd35247fd02cca83c79623425c47c874be4d0c8efe081df0df2db455771f8562"
+    },
+    {
+      "path": "yme/remote_security.py",
+      "bytes": 20443,
+      "sha256": "5b8b93a561b74702d3c0d30dcfe1ee8109a262bbcd302e557589812dd90aeedd"
+    },
+    {
+      "path": "yme/tasks.py",
+      "bytes": 9006,
+      "sha256": "ea2f801eec21b8e770de546a1f3797c623da0b2d940f504cbcfd678efd3a98be"
+    },
+    {
+      "path": "yme/windows_job.py",
+      "bytes": 2183,
+      "sha256": "645163a016fe5be93419b88c4f4c4b183318eb0f4987bc74b9d40bbab5307eee"
+    },
+    {
+      "path": "yme/worker.py",
+      "bytes": 3362,
+      "sha256": "3e0ce9efa2c391861d2631f47381e09d9ba3d985d436e3b3ab9de865a64b3f7d"
+    }
+  ],
+  "excluded": [
+    ".git",
+    ".playwright-cli",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__",
+    "backups",
+    "config",
+    "data",
+    "dist",
+    "logs",
+    "output",
+    "credentials",
+    "API keys",
+    "media",
+    "third-party executables"
+  ]
+}

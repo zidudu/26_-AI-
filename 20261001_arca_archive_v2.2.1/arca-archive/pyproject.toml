@@ -1,0 +1,25 @@
+[project]
+name = "arca-archive"
+version = "2.2.1"
+description = "아카라이브 채널 게시글·미디어 증분 수집/보관 시스템"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.28",
+  "lxml>=5",
+  "playwright==1.62.0",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "jinja2>=3.1",
+  "pydantic>=2.7",
+  "python-multipart",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+include = ["arca_archive*"]

@@ -8,4 +8,6 @@ Pinterest와 로컬 이미지를 메타데이터와 함께 보관·검색하는 
 | 1.1.0 | [`v1.1.0/`](v1.1.0/) | Pinterest 보드 반복 수집 |
 | 1.0.1 | [`v1.0.1/`](v1.0.1/) | 안정화본과 패치 ZIP 3종(ChatGPT 갤러리·Pinterest 로그인 수정·보드 수집 검증) |
 
-각 버전 폴더의 `README.md`에 설치·검증 범위가, `SHA256SUMS.txt`에 ZIP 해시가 있습니다.
+각 버전 폴더의 `README.md`에 설치·검증 범위가, `SHA256SUMS.txt`에 ZIP 해시가 있습니다. ZIP은 모두 같은 폴더에 풀어 두었습니다(1.1.0·1.2.0은 `pinterest_reference_v1/`, 1.0.1은 ZIP별 하위 폴더). 코드를 볼 때는 [1.2.0 소스](v1.2.0/pinterest_reference_v1/)부터 보면 됩니다.
+
+2026-10-02 이 저장소에서 각 버전의 오프라인 테스트를 다시 실행한 결과(Linux·Python 3.11): 1.2.0 **104개**, 1.1.0 **99개**, 1.0.1 stabilized **88개**·chatgpt_gallery **91개**·pinterest_login_fix **92개**·pinterest_board_tested **92개** 모두 통과.

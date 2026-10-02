@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "_bookmarks.html" import media_buttons %}
+{% block title %}미디어 - arca-archive{% endblock %}
+{% block content %}
+<h1>미디어 ({{ total }})</h1>
+<form method="get" action="/media">
+  <select name="channel_id"><option value="">전체 채널</option>{% for c in channels %}<option value="{{ c.id }}" {% if channel_id == c.id %}selected{% endif %}>{{ c.slug }}</option>{% endfor %}</select>
+  <select name="kind"><option value="">전체 종류</option>{% for k in ['image', 'gif', 'video', 'emoticon', 'external'] %}<option value="{{ k }}" {% if kind == k %}selected{% endif %}>{{ k }}</option>{% endfor %}</select>
+  <select name="state"><option value="">전체 상태</option>{% for s in states %}<option value="{{ s }}" {% if state == s %}selected{% endif %}>{{ s }}</option>{% endfor %}</select>
+  <button>필터</button>
+  <span class="small muted">상태별: {% for k, v in counts.items() %}{{ k }} {{ v }} {% endfor %}</span>
+  <a href="/backlog{% if channel_id %}?channel_id={{ channel_id }}{% endif %}">대기 원인 보기</a>
+</form>
+<div class="grid">
+{% for m in rows %}
+  <div class="item">
+    {% if m.local_url and m.state == 'downloaded' %}
+      <a href="{{ m.local_url }}" data-viewer data-kind="{{ m|displaykind }}" data-title="{{ m.article_title or m.article_id }}" data-article="/articles/{{ m.article_id }}" data-media-id="{{ m.id }}" data-article-id="{{ m.article_id }}">
+      {% if m|displaykind == 'video' %}<video src="{{ m.local_url }}" preload="metadata" {% if m.kind == 'gif' %}loop muted{% endif %}></video>
+      {% else %}<img src="{{ m.local_url }}" alt="" loading="lazy">{% endif %}</a>
+    {% else %}<div class="muted">(파일 없음: {{ m.state }})</div>{% endif %}
+    <a href="/articles/{{ m.article_id }}">{{ m.article_title or m.article_id }}</a><br>
+    <b>{{ m.channel_slug }}</b> · {{ m.kind }} · {{ m.state }}{% if m.state_code %} ({{ m.state_code }}){% endif %}{% if m.state == 'downloaded' %} · {% if m.is_original == 1 %}원본{% elif m.is_original == 0 %}변환본{% if m.original_unavailable %}(원본 요청 실패){% endif %}{% endif %}{% endif %}{% if m|fileext %} · {{ m|fileext }}{% endif %}{% if m.file_size %} · {{ (m.file_size / 1024)|round(0)|int }} KB{% endif %}
+    {{ media_buttons(m) }}
+  </div>
+{% endfor %}
+</div>
+<p class="pager">
+  <span class="muted">{{ pager.total }}개 · {{ pager.page }}/{{ pager.pages }} 페이지</span>
+  {% if pager.prev %}<a href="{{ pager.url(pager.prev) }}">‹ 이전</a>{% else %}<span class="muted">‹ 이전</span>{% endif %}
+  {% for n in pager.numbers() %}{% if n is none %}<span class="muted">…</span>{% elif n == pager.page %}<b>{{ n }}</b>{% else %}<a href="{{ pager.url(n) }}">{{ n }}</a>{% endif %}{% endfor %}
+  {% if pager.next %}<a href="{{ pager.url(pager.next) }}">다음 ›</a>{% else %}<span class="muted">다음 ›</span>{% endif %}
+  <form method="get" action="{{ pager.path }}" class="inline pager-jump">
+    {% for k, v in pager.params.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+    <input type="number" name="page" min="1" max="{{ pager.pages }}" value="{{ pager.page }}" style="width:5em"> <button>이동</button>
+  </form>
+</p>
+{% endblock %}

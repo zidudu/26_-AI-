@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}실행 기록 - arca-archive{% endblock %}
+{% block content %}
+<h1>실행 기록</h1>
+<table>
+<tr><th>#</th><th>채널</th><th>트리거</th><th>fetcher</th><th>상태</th><th>코드</th><th>메시지</th><th>시작</th><th>종료</th><th>목록p</th><th>신규</th><th>수집</th><th>갱신</th><th>삭제</th><th>실패/오류</th><th>미디어</th><th>재확인</th></tr>
+{% for r in runs %}
+<tr>
+  <td><a href="/runs/{{ r.id }}">{{ r.id }}</a></td><td>{{ r.channel_slug }}</td><td>{{ r.trigger }}</td><td>{{ r.fetcher or '' }}</td>
+  <td class="{{ 'state-failed' if r.status == 'failed' else ('state-partial' if r.status == 'partial' else '') }}">{{ r.status }}</td><td>{{ r.code or '' }}</td><td class="small">{{ r.message or '' }}</td>
+  <td>{{ r.started_at|kst_short }}</td><td>{{ r.finished_at|kst_short }}</td>
+  <td>{{ r.stats.pages_scanned }}</td><td>{{ r.stats.discovered_new }}</td><td>{{ r.stats.collected }}</td><td>{{ r.stats.updated }}</td><td>{{ r.stats.deleted }}</td>
+  <td>{{ r.stats.failed }}/{{ r.stats.errors }}</td><td>{{ r.stats.media_downloaded }}/{{ r.stats.media_targets }}{% if r.stats.media_failed %} 실패 {{ r.stats.media_failed }}{% endif %}{% if r.stats.media_expired %} 만료 {{ r.stats.media_expired }}{% endif %}</td>
+  <td>{{ r.stats.rechecked }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}채널 {{ channel.slug }} - arca-archive{% endblock %}
+{% block content %}
+<h1>채널 설정: {{ channel.slug }} {% if channel.name %}({{ channel.name }}){% endif %}</h1>
+<form method="post" action="/channels/{{ channel.id }}">
+  <div class="row"><label>표시 이름</label><input type="text" name="name" value="{{ channel.name or '' }}"></div>
+  <div class="row"><label>활성</label><input type="checkbox" name="enabled" {% if channel.enabled %}checked{% endif %}></div>
+  <div class="row"><label>가져오기 모드</label>
+    <select name="fetch_mode">
+      {% for m in ['auto', 'browser', 'http'] %}<option value="{{ m }}" {% if channel.fetch_mode == m %}selected{% endif %}>{{ m }}</option>{% endfor %}
+    </select>
+    {% if channel.requires_browser %}<span class="small">현재 브라우저 필요로 표시됨 <input type="checkbox" name="reset_browser_flag"> 표시 해제</span>{% endif %}
+  </div>
+  <div class="row"><label>실행 주기(분)</label><input type="number" name="interval_minutes" value="{{ channel.interval_minutes }}" min="1"></div>
+  <div class="row"><label>첫 실행 목록 페이지 수</label><input type="number" name="initial_pages" value="{{ channel.initial_pages }}" min="1"></div>
+  <div class="row"><label>실행당 최대 목록 페이지</label><input type="number" name="max_pages_per_run" value="{{ channel.max_pages_per_run }}" min="1"></div>
+  <div class="row"><label>카테고리 파라미터</label><input type="text" name="category" value="{{ channel.category or '' }}" placeholder="비우면 전체"></div>
+  <div class="row"><label>미디어 수집</label><input type="checkbox" name="collect_media" {% if channel.collect_media %}checked{% endif %}></div>
+  <div class="row"><label>댓글 수집</label><input type="checkbox" name="collect_comments" {% if channel.collect_comments %}checked{% endif %}></div>
+  <div class="row"><label>공지 글 포함</label><input type="checkbox" name="include_notices" {% if channel.include_notices %}checked{% endif %}></div>
+  <div class="row"><label>수정/삭제 재확인 기간(일)</label><input type="number" name="recheck_days" value="{{ channel.recheck_days }}" min="0"></div>
+  <button>저장</button>
+</form>
+<p class="small muted">마지막 최대 글 ID: {{ channel.last_max_article_id }} · 마지막 실행: {{ channel.last_run_at|kst }} · 다음 실행: {{ channel.next_run_at|kst }} · 게시글 상태: {{ counts }}</p>
+<form method="post" action="/channels/{{ channel.id }}/run" class="inline"><button>지금 실행</button></form>
+<a href="/articles?channel_id={{ channel.id }}">게시글 보기</a>
+<h2>과거 글 더 가져오기</h2>
+<p class="small">목록을 지정한 페이지 수까지 훑어 아직 없는 과거 글을 등록하고 수집합니다(페이지당 약 50개). 아는 글이 나와도 멈추지 않습니다.
+{% if channel.backfill_pages %}<b>예약됨: {{ channel.backfill_pages }}페이지</b>{% endif %}</p>
+<form method="post" action="/channels/{{ channel.id }}/backfill" class="inline">
+  <input type="number" name="pages" value="10" min="1" max="500"> 페이지 <button>가져오기 예약 후 실행</button>
+</form>
+
+<h2>이 채널의 최근 실행</h2>
+<table>
+<tr><th>#</th><th>상태</th><th>코드</th><th>시작</th><th>종료</th><th>신규</th><th>수집</th><th>실패</th><th>미디어</th></tr>
+{% for r in runs %}
+<tr><td><a href="/runs/{{ r.id }}">{{ r.id }}</a></td><td>{{ r.status }}</td><td>{{ r.code or '' }}</td><td>{{ r.started_at|kst_short }}</td><td>{{ r.finished_at|kst_short }}</td>
+<td>{{ r.stats.discovered_new }}</td><td>{{ r.stats.collected }}</td><td>{{ r.stats.failed }}</td><td>{{ r.stats.media_downloaded }}/{{ r.stats.media_targets }}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}

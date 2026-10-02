@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/
+!data/.gitkeep
+config/settings.json
+*.log
+.partial_*
+dist/

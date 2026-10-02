@@ -1,0 +1,66 @@
+{
+  "data_dir": "data",
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8766
+  },
+  "http": {
+    "timeout_seconds": 30,
+    "page_delay_seconds": 2.0,
+    "page_delay_jitter_seconds": 1.0,
+    "media_delay_seconds": 0.4,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "max_consecutive_network_errors": 5
+  },
+  "browser": {
+    "channel": "chrome",
+    "headless": true,
+    "profile_dir": "data/browser_profile",
+    "navigation_timeout_seconds": 45,
+    "challenge_wait_seconds": 25,
+    "viewport_width": 1365,
+    "viewport_height": 900
+  },
+  "media": {
+    "allowed_hosts": [
+      "ac.arca.live",
+      "ac.namu.la",
+      "ac2.namu.la",
+      "ac-p1.namu.la",
+      "ac-p2.namu.la",
+      "ac-o.namu.la"
+    ],
+    "max_file_mb": 300,
+    "request_original": true,
+    "include_emoticons": true,
+    "max_files_per_article_per_run": 80,
+    "run_time_budget_minutes": 40,
+    "backlog_interval_minutes": 15,
+    "backlog_time_budget_minutes": 10,
+    "backlog_files_per_article": 8,
+    "backlog_time_budget_by_channel": {},
+    "backlog_files_per_article_by_channel": {},
+    "max_download_seconds": 600
+  },
+  "retry": {
+    "max_attempts": 4,
+    "base_delay_minutes": 10,
+    "max_delay_minutes": 360
+  },
+  "crawl": {
+    "default_interval_minutes": 60,
+    "default_initial_pages": 2,
+    "default_max_pages_per_run": 20,
+    "max_articles_per_run": 200,
+    "recheck_days": 3,
+    "recheck_interval_hours": 24,
+    "max_rechecks_per_run": 30,
+    "collect_comments": true,
+    "keep_raw_html": true,
+    "max_comment_pages_per_article": 10
+  },
+  "scheduler_enabled": true,
+  "seed_channels": [
+    "ailove"
+  ]
+}

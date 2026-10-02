@@ -1,8 +1,8 @@
 # 26_-AI- · 26_잡다한AI제작
 
-AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows용 로컬 프로그램 5종** 과 **스킬 모음 1종**이 올라와 있으며, 대부분 소스가 풀린 폴더가 아니라 **배포용 ZIP + 안내 문서(README)** 형태로 보관되어 있습니다.
+AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows용 로컬 프로그램 5종** 과 **스킬 모음 1종**이 올라와 있습니다. 각 프로그램은 **배포용 ZIP**과 함께 **ZIP을 그대로 푼 소스 폴더**를 두어, 내려받지 않고도 GitHub에서 코드를 바로 볼 수 있습니다.
 
-> 이 문서는 2026-10-02 기준으로 각 폴더의 README, 배포 ZIP 안의 소스·설정·변경 기록을 직접 열어 확인한 내용만 정리했습니다. 각 프로그램이 "실제로 검증된 범위"는 해당 프로젝트 README의 기록을 그대로 따랐고, 이 문서를 쓰면서 프로그램을 새로 실행해 검증한 것은 아닙니다.
+> 이 문서는 2026-10-02 기준으로 각 폴더의 README, 배포 ZIP 안의 소스·설정·변경 기록을 직접 열어 확인한 내용만 정리했습니다. 각 프로그램의 "실제 사용 환경에서 검증된 범위"는 해당 프로젝트 README의 기록을 따랐습니다. 이 저장소에서 직접 실행한 오프라인 점검 결과는 [6. 점검 결과](#6-점검-결과-2026-10-02)에 따로 정리했습니다.
 
 ## 목차
 
@@ -11,6 +11,7 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 3. [프로젝트 간 관계](#3-프로젝트-간-관계)
 4. [프로젝트별 상세](#4-프로젝트별-상세)
 5. [공통 사항과 주의점](#5-공통-사항과-주의점)
+6. [점검 결과 (2026-10-02)](#6-점검-결과-2026-10-02)
 
 ---
 
@@ -19,10 +20,10 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 | 등록일 | 프로젝트 | 한 줄 요약 | 버전 | 형태 | 주요 기술 |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-01 | [자동차 동호회 모니터링](20261001_cafe_monitoring_v1.0/) | 네이버 카페 게시글 수집 → AI 분석 → PPT 보고서 → Outlook 발송 | 1.0 (내부 10.0.0) | 배포 ZIP + 압축 해제된 소스 | Python, SQLite, Playwright, Codex CLI/OpenAI API, PowerPoint·Outlook COM |
-| 2026-10-01 | [arca-archive](20261001_arca_archive_v2.2.1/) | 아카라이브·디시인사이드·네이버 카페 게시글/미디어 로컬 보관 | 2.2.1 | 배포 ZIP | Python, FastAPI, SQLite, httpx, Playwright |
-| 2026-10-01 | [로컬 AI 작업대](20261001_local_ai_workbench_v0.1/) | Ollama 모델로 대화·두 모델 비교·로컬 문서 질문(RAG) | 0.1 | 배포 ZIP | React 19, Vite, FastAPI, Ollama, SQLite |
-| 2026-10-01 | [YouTube Media Library](20261001_youtube_media_library_v8_beta2/) | YouTube 영상·음원·자막 수집, 태그·검색·재생 관리 | V8 beta.2 | 배포 ZIP | Python, FastAPI, yt-dlp, FFmpeg, Chrome 확장, MCP |
-| 2026-10-02 | [Pin Archive](20261002_pin_archive/) | Pinterest·로컬 이미지 시각 레퍼런스 라이브러리 (1.0.1 → 1.1.0 → 1.2.0 배포본을 한 폴더에 보관) | 1.2.0 (최신) | 배포 ZIP | Python, FastAPI, SQLite(FTS5), Playwright, MCP |
+| 2026-10-01 | [arca-archive](20261001_arca_archive_v2.2.1/) | 아카라이브·디시인사이드·네이버 카페 게시글/미디어 로컬 보관 | 2.2.1 | 배포 ZIP + 압축 해제된 소스 | Python, FastAPI, SQLite, httpx, Playwright |
+| 2026-10-01 | [로컬 AI 작업대](20261001_local_ai_workbench_v0.1/) | Ollama 모델로 대화·두 모델 비교·로컬 문서 질문(RAG) | 0.1 | 배포 ZIP + 압축 해제된 소스 | React 19, Vite, FastAPI, Ollama, SQLite |
+| 2026-10-01 | [YouTube Media Library](20261001_youtube_media_library_v8_beta2/) | YouTube 영상·음원·자막 수집, 태그·검색·재생 관리 | V8 beta.2 | 배포 ZIP + 압축 해제된 소스 | Python, FastAPI, yt-dlp, FFmpeg, Chrome 확장, MCP |
+| 2026-10-02 | [Pin Archive](20261002_pin_archive/) | Pinterest·로컬 이미지 시각 레퍼런스 라이브러리 (1.0.1 → 1.1.0 → 1.2.0 배포본을 한 폴더에 보관) | 1.2.0 (최신) | 배포 ZIP + 압축 해제된 소스 | Python, FastAPI, SQLite(FTS5), Playwright, MCP |
 | 2026-10-02 | [SKILL모음](SKILL모음/) | Codex 스킬 보관 모음(자동화 스킬 11개 + 카탈로그 스냅샷 + 업로드 ZIP 해제본) | — | 폴더·문서 모음 | Markdown(`SKILL.md`), 일부 Python 스크립트 |
 
 등록일은 폴더명 접두어(`YYYYMMDD`)와 git 최초 커밋 날짜가 일치하는 값입니다.
@@ -31,7 +32,7 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 
 ## 2. 저장소 구조
 
-배포 ZIP 안의 파일은 트리에 펼치지 않고 요약해 두었습니다. `SKILL모음/codex-current/`처럼 파일이 매우 많은 폴더는 하위를 생략했습니다.
+압축 해제된 소스 폴더는 주요 하위 폴더만 표시했습니다. `SKILL모음/codex-current/`처럼 파일이 매우 많은 폴더는 하위를 생략했습니다.
 
 ```text
 26_-AI-/
@@ -51,24 +52,40 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 │
 ├── 20261001_arca_archive_v2.2.1/              ← arca-archive 2.2.1
 │   ├── README.md · SHA256SUMS.txt
+│   ├── arca-archive/                          ← 배포 ZIP을 그대로 푼 소스(89개 파일)
+│   │   ├── install.bat · start.bat · login.bat
+│   │   ├── arca_archive/                      ← fetch · parsers · pipeline · sites · web
+│   │   ├── config/ · docs/ · scripts/
 │   ├── releases/arca-archive-2.2.1-share-20261002.zip
 │   └── screenshots/                           ← 가상 데이터 화면 8장
 │
 ├── 20261001_local_ai_workbench_v0.1/          ← 로컬 AI 작업대 0.1
 │   ├── README.md · SHA256SUMS.txt
-│   └── local-ai-workbench-share-2026-10-01.zip
+│   ├── local-ai-workbench/                    ← 배포 ZIP을 그대로 푼 소스(20개 파일)
+│   │   ├── start.ps1 · stop.ps1
+│   │   ├── backend/                           ← FastAPI · 색인 · Ollama 클라이언트
+│   │   ├── frontend/                          ← React + Vite
+│   │   └── examples/
+│   ├── local-ai-workbench-share-2026-10-01.zip
+│   └── screenshots/                           ← 실행 화면 4장
 │
 ├── 20261001_youtube_media_library_v8_beta2/   ← YouTube Media Library V8 beta.2
 │   ├── README.md · SHA256SUMS.txt
+│   ├── youtube_media_library_v8_beta2/        ← 배포 ZIP을 그대로 푼 소스(80개 파일)
+│   │   ├── 01_setup_beta.bat · run_v8.bat · launcher.py · app.py
+│   │   ├── yme/                               ← 작업·수집·라이브러리·보안
+│   │   ├── static/ · chrome_extension/ · ai_plugin/ · tests/
 │   ├── youtube_media_library_v8_beta2_share_20261001.zip
 │   └── screenshots/                           ← 실행 화면 5장
 │
 ├── 20261002_pin_archive/                      ← Pin Archive (버전별 배포본을 한 폴더에 모음)
 │   ├── README.md                              ← 버전 안내
-│   ├── v1.0.1/                                ← ZIP 4종
-│   ├── v1.1.0/                                ← ZIP 1종
-│   └── v1.2.0/                                ← ZIP 1종 (최신)
-│       └── (각 버전 폴더: README.md · SHA256SUMS.txt · *.zip)
+│   ├── v1.0.1/                                ← ZIP 4종 + 같은 이름의 해제 폴더 4개
+│   │   ├── stabilized/ · chatgpt_gallery/ · pinterest_login_fix/ · pinterest_board_tested/
+│   │   │   └── pinterest_reference_v1/        ← 각 ZIP을 푼 소스
+│   ├── v1.1.0/                                ← ZIP 1종 + pinterest_reference_v1/
+│   └── v1.2.0/                                ← ZIP 1종 + pinterest_reference_v1/ (최신)
+│       └── pinterest_reference_v1/            ← app/ · web/ · tests/ · docs/ · seed/ · mcp_bridge.py
 │
 └── SKILL모음/                                 ← Codex 스킬 보관 모음
     ├── README.md · CATALOG.json · CATALOG_SHA256SUMS.txt
@@ -79,7 +96,7 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
     └── codex-export/                          ← 업로드한 skills.zip 해제본(16개 스킬 폴더)
 ```
 
-각 배포 폴더의 `SHA256SUMS.txt`는 ZIP의 무결성 확인용 해시입니다.
+각 배포 폴더의 `SHA256SUMS.txt`는 ZIP의 무결성 확인용 해시입니다. 압축 해제 폴더는 ZIP 내용과 바이트 단위로 같으며, 설치·실행은 ZIP을 받아도 되고 해제 폴더를 그대로 써도 됩니다.
 
 ---
 
@@ -231,3 +248,36 @@ flowchart LR
 - **무결성 확인**: 각 배포 폴더의 `SHA256SUMS.txt`로 ZIP 해시를 확인할 수 있습니다.
 - **수집 대상 이용 권한**: 웹 수집 도구들은 접근·이용 권한이 있는 자료에만 쓰도록 안내하고 있습니다. 각 서비스의 약관과 저작권은 사용자가 확인해야 합니다.
 - **개별 README 우선**: 설치·사용법과 검증 범위의 세부 내용은 각 프로젝트 README(및 ZIP 안의 `docs/`)가 기준입니다.
+
+---
+
+## 6. 점검 결과 (2026-10-02)
+
+배포 ZIP을 모두 풀어 둔 뒤, 이 저장소에서 직접 실행한 점검입니다. 환경은 **Linux · Python 3.11 · Node.js 22**이며, **실제 로그인·수집·AI 호출·Office/Outlook 연동은 실행하지 않았습니다**(각 프로젝트 테스트가 쓰는 테스트 대역 기준). Windows 실사용 검증은 각 프로젝트 README의 기록을 보세요.
+
+### 6.1 프로젝트별 결과
+
+| 프로젝트 | ZIP 해시·CRC | ZIP ↔ 해제 폴더 | 테스트 | 기타 점검 |
+| --- | --- | --- | --- | --- |
+| 자동차 동호회 모니터링 1.0 | ✅ 일치 | ✅ `package_manifest.json` 355개 해시 일치 | ✅ Python 75개 중 74 통과·1 건너뜀(Windows DPAPI), JS 계약 검사 통과 | — |
+| arca-archive 2.2.1 | ✅ 일치 | ✅ 89개 파일 | ⚠️ 배포본에 테스트 코드 없음(README에 제외 명시) | ✅ 모든 모듈 import, CLI `--help` 정상 |
+| 로컬 AI 작업대 0.1 | ✅ 일치 | ✅ 20개 파일 | ⚠️ 배포본에 테스트 코드 없음 | ✅ `/api/health` 응답(Ollama 미연결 상태), ✅ 프런트엔드 `vite build` 성공 |
+| YouTube Media Library V8 beta.2 | ✅ 일치 | ✅ `PACKAGE_MANIFEST.json` 79개 해시 일치 | ✅ 81개 통과 (README의 Windows 기록: 76 통과·5 건너뜀) | — |
+| Pin Archive 1.2.0 | ✅ 일치 | ✅ 68개 파일 | ✅ 104개 통과 (README 기록과 동일) | — |
+| Pin Archive 1.1.0 | ✅ 일치 | ✅ 68개 파일 | ✅ 99개 통과 (README 기록과 동일) | — |
+| Pin Archive 1.0.1 (4종) | ✅ 일치 | ✅ 65~66개 파일 | ✅ stabilized 88 · chatgpt_gallery 91 · login_fix 92 · board_tested 92 통과 | — |
+| SKILL모음 | ✅ `monitoring-skills-11` ZIP 일치 | ✅ 스킬 50개 파일 일치 | — | ✅ `CATALOG_SHA256SUMS.txt` 2,326개 일치 |
+
+공통으로 Python 파일 전체 구문 검사, JS 구문 검사(`node --check`), JSON 파싱, 문서 109개의 상대 링크 검사를 했고 오류는 0건이었습니다. API 키·토큰·개인 키 형태의 문자열도 찾지 못했습니다.
+
+### 6.2 발견한 문제와 조치
+
+| 구분 | 내용 | 조치 |
+| --- | --- | --- |
+| 🔧 수정함 | `SKILL모음/monitoring-automation/SHA256SUMS.txt`의 `README.md` 해시가 실제 파일과 달랐습니다(README에 다이어그램을 추가하면서 생긴 불일치). | 해당 줄의 해시를 갱신해 52개 항목 모두 일치 |
+| ⚠️ 참고 | Pin Archive 1.0.1은 ZIP이 4종이고, 차이는 `mcp_bridge.py`·`collector.py`·`web/`·테스트 등 일부 파일뿐입니다. 같은 프로그램이 4벌 들어 있어 헷갈릴 수 있습니다. | 그대로 보관. 1.0.1 안에서는 `pinterest_board_tested`가 가장 최신이며, 새로 쓴다면 **1.2.0**을 권장 |
+| ⚠️ 참고 | 기본 포트 중복: 동호회 모니터링·arca-archive가 `8766`, YouTube Media Library·Pin Archive가 `8765`. | 동시 실행 시 포트 확인 필요(Pin Archive만 빈 포트 자동 선택) |
+| ⚠️ 참고 | arca-archive·로컬 AI 작업대는 배포본에 자동 테스트가 없어, 이번 점검은 import·실행 확인 수준입니다. | — |
+| ⚠️ 참고 | YouTube Media Library의 `yt-dlp`는 버전이 고정되어 있지 않습니다. 설치 시점에 따라 동작이 달라질 수 있습니다(사이트 변경 대응을 위해 의도한 것으로 보이나 문서에 이유는 없음). | — |
+| ⚠️ 참고 | `SKILL모음/codex-current/standalone/`의 모니터링 스킬 11개는 `monitoring-automation/`과 같은 내용의 사본입니다. | 카탈로그 스냅샷 보존을 위해 유지 |
+

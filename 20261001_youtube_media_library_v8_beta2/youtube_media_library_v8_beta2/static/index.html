@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Media · V8 beta.2</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="stylesheet" href="/static/styles.css?v=8beta2-ux8">
+  <script type="module" src="/static/app.js?v=8beta2-ux8"></script>
+</head>
+<body>
+<div class="app">
+  <aside id="app-sidebar" class="sidebar" aria-label="라이브러리 필터">
+    <div class="brand"><span class="brand-mark" data-icon="play"></span><div>YouTube Media<span class="brand-sub">Library <span>V8 β</span></span></div></div>
+    <div class="nav-label">보관함</div>
+    <nav id="main-nav">
+      <button class="nav-item active" data-filter="all"><span data-icon="library"></span>전체 자료<span id="all-count" class="count">0</span></button>
+      <button class="nav-item" data-filter="favorite"><span data-icon="star"></span>즐겨찾기</button>
+      <button class="nav-item" data-filter="video"><span data-icon="video"></span>영상</button>
+      <button class="nav-item" data-filter="audio"><span data-icon="audio"></span>음원</button>
+      <button class="nav-item" data-filter="transcript"><span data-icon="text"></span>자막</button>
+      <button class="nav-item" data-filter="untagged"><span data-icon="tag"></span>태그 미지정</button>
+    </nav>
+    <div class="nav-label tag-heading">내 태그<button id="manage-tags" class="icon-btn" aria-label="태그 관리" title="태그 관리"><span data-icon="plus"></span></button></div>
+    <div id="tag-filters" class="tag-filters"><p class="sidebar-hint">태그를 만들어<br>자료를 분류해 보세요.</p></div>
+    <div class="sidebar-foot"><button id="system-button"><span class="dot"></span><span id="server-status">서버 연결 중</span><span data-icon="settings"></span></button><p>파일과 태그는 서버 PC에 저장됩니다.</p></div>
+  </aside>
+  <main class="main"><div id="mobile-connection" class="mobile-connection" hidden><span class="dot"></span><span id="mobile-mode-label">개인 서버에 연결됨</span><button id="mobile-system" class="text-btn">연결 정보</button></div>
+    <header class="topbar"><div class="topbar-title"><button id="toggle-sidebar" class="icon-btn sidebar-toggle" type="button" aria-controls="app-sidebar" aria-expanded="true" aria-label="왼쪽 사이드바 접기" title="왼쪽 사이드바 접기">☰</button><h1 id="page-title">전체 자료</h1><span id="header-count" class="subtle">라이브러리</span></div><div class="top-actions"><button id="connect-mobile" class="button"><span data-icon="link"></span>서버 연결</button><button id="import-button" class="button"><span data-icon="folder"></span>기존 폴더 가져오기</button><button id="add-button" class="button primary"><span data-icon="plus"></span>URL 추가</button></div></header>
+    <section class="quickbar" aria-label="빠른 URL 입력">
+      <button id="toggle-quick" class="section-toggle" type="button" aria-controls="quickbar-body" aria-expanded="true" aria-label="빠른 URL 입력 접기">⌃</button>
+      <div id="quickbar-body" class="quickbar-body"><span data-icon="link" class="quick-icon"></span><textarea id="quick-url" rows="1" spellcheck="false" aria-label="빠른 YouTube URL 입력" placeholder="복사한 YouTube URL을 여기에 붙여넣으세요"></textarea>
+      <button id="quick-paste" class="button subtle-btn"><span data-icon="clipboard"></span>붙여넣기</button><button id="quick-add" class="button primary">수집 설정<span data-icon="arrow"></span></button></div>
+    </section>
+    <section class="toolbar"><label class="searchbox"><span data-icon="search"></span><input id="search" type="search" placeholder="제목, 채널, 자막에서 검색" aria-label="라이브러리 검색"><kbd>/</kbd></label><select id="sort" aria-label="정렬"><option value="new">최근 자료순</option><option value="old">오래된 자료순</option><option value="title">제목순</option></select><button id="rescan" class="icon-btn" title="등록 폴더 다시 읽기" aria-label="등록 폴더 다시 읽기"><span data-icon="refresh"></span></button></section>
+    <section id="mobile-filters" class="mobile-filters" aria-label="모바일 필터">
+      <button class="mobile-filter active" data-mobile-filter="all">전체</button><button class="mobile-filter" data-mobile-filter="favorite">★ 즐겨찾기</button><button class="mobile-filter" data-mobile-filter="video">영상</button><button class="mobile-filter" data-mobile-filter="audio">음원</button><button class="mobile-filter" data-mobile-filter="transcript">자막</button><button class="mobile-filter" data-mobile-filter="untagged">태그 없음</button><button id="mobile-tags" class="mobile-filter"># 태그</button>
+    </section>
+    <div class="body-area">
+      <section id="collection-anchor" class="collection" aria-label="저장된 자료 목록"><div class="collection-heading"><span id="list-count">자료 0개</span><div class="heading-actions"><button id="reset-filters" class="text-btn" hidden>필터 해제</button><button id="toggle-collection" class="section-toggle" type="button" aria-controls="collection-body" aria-expanded="true" aria-label="자료 목록 접기">⌃</button></div></div><div id="collection-body"><div id="active-tags" class="active-tags"></div><div id="items" class="items" role="list"></div><button id="load-more" class="button load-more" hidden>더 보기</button></div></section>
+      <div id="collection-resizer" class="collection-resizer" role="separator" aria-orientation="vertical" aria-label="자료 목록 너비 조절" aria-controls="collection-anchor" aria-valuemin="220" aria-valuenow="330" tabindex="0" title="드래그하거나 ← → 키로 목록 너비 조절 · 두 번 클릭하여 초기화"></div>
+      <section id="detail" class="detail" aria-label="선택한 자료 보기">
+        <div id="detail-empty" class="detail-empty"><span data-icon="library"></span><h2>영상과 자막을 한곳에서</h2><p>URL을 추가하거나 기존 결과 폴더를 가져오세요.<br>목록에서 자료를 선택하면 이곳에 표시됩니다.</p><button id="empty-import" class="button">기존 V7 결과 가져오기<span data-icon="arrow"></span></button></div>
+        <div id="detail-content" class="detail-content" hidden>
+          <div class="detail-top"><button id="mobile-back-list" class="icon-btn mobile-back" aria-label="자료 목록으로">←</button><div class="detail-title-wrap"><h2 id="detail-title"></h2><p id="detail-meta" class="subtle"></p></div><button id="toggle-wide-player" class="text-btn" type="button" aria-pressed="false">큰 화면</button><button id="favorite" class="icon-btn" aria-label="즐겨찾기" title="즐겨찾기"><span data-icon="star"></span></button><button id="open-folder" class="icon-btn" aria-label="탐색기에서 폴더 열기" title="탐색기에서 폴더 열기"><span data-icon="folder"></span></button></div>
+          <div class="item-tag-row"><span data-icon="tag"></span><div id="item-tags" class="item-tags"></div><input id="tag-input" list="tag-suggestions" placeholder="태그 입력" aria-label="이 자료에 태그 추가" maxlength="40"><datalist id="tag-suggestions"></datalist><button id="add-item-tag" class="button small" type="button">태그 추가</button></div>
+          <div id="download-shortcuts" class="download-shortcuts" aria-label="저장된 파일 바로 다운로드"></div>
+          <div class="workspace">
+            <div class="media-column">
+              <div class="panel-toolbar"><div id="media-tabs" class="tabs"><button data-media="video" class="active">영상</button><button data-media="audio">음원</button></div><div class="panel-actions"><a id="source-link" class="text-btn external" target="_blank" rel="noopener noreferrer">원본<span data-icon="external"></span></a><button id="toggle-media" class="section-toggle" type="button" aria-controls="media-body" aria-expanded="true" aria-label="재생 영역 접기">⌃</button></div></div>
+              <div id="media-body" class="media-body"><label class="playback-choice">재생 품질<select id="playback-quality" aria-label="재생 품질"><option value="auto">자동 · 모바일/외부는 720p</option><option value="mobile720">모바일 720p · 낮은 용량</option><option value="mobile480">절약 480p · 느린 연결</option><option value="original">원본 · 높은 용량</option><option value="compatibility">이전 호환본 / 원본</option></select></label><div class="player-stage"><video id="video-player" controls playsinline preload="none" hidden></video><div id="audio-stage" class="audio-stage" hidden><span data-icon="audio"></span><p>분리된 음원</p><audio id="audio-player" controls preload="none"></audio></div><div id="no-media" class="no-media"><span data-icon="video"></span><p>이 항목에는 미디어 파일이 없습니다.</p></div><button id="start-playback" class="button primary play-overlay" type="button" hidden>▶ 재생</button></div>
+              <p id="buffer-status" class="notice" hidden>버퍼링 중입니다. 절약 480p를 선택하거나 개인 연결(:8443)을 사용해 보세요.</p><div id="remote-media-notice" class="notice" hidden><strong>영상은 개인 접속 주소에서 재생하세요.</strong><p>이 Cloudflare 주소는 URL 등록·자막·태그 관리용입니다.</p><a id="private-media-link" class="text-btn" target="_blank" rel="noopener noreferrer">개인 접속 주소 열기</a></div><p id="media-filename" class="filename"></p><div id="playback-warning" class="notice" hidden>브라우저가 이 파일의 코덱을 지원하지 않을 수 있습니다. 기본 플레이어로 열거나 아래에서 재생 호환본을 만들어 주세요.</div>
+              <div class="media-actions"><a id="media-download" class="button small" download><span data-icon="download"></span>파일 다운로드</a><a id="original-download" class="button small" download hidden>원본 다운로드</a><button id="native-open" class="button small"><span data-icon="external"></span>기본 앱으로 열기</button></div>
+              <button id="make-preview" class="text-btn preview-btn"><span data-icon="refresh"></span>브라우저 재생 호환본 만들기</button><p id="preview-notice" class="micro" hidden>720p H.264/AAC 재생본 · 원본 파일은 그대로 유지됩니다.</p></div>
+            </div>
+            <div class="side-column">
+              <details class="files-details" open><summary>저장된 파일 <span id="file-count"></span></summary><div id="file-list" class="file-list"></div></details>
+              <div class="text-column">
+                <div class="panel-toolbar"><div id="text-tabs" class="tabs"><button data-text="timestamp" class="active">타임스탬프</button><button data-text="transcript">원문</button><button data-text="metadata">정보</button></div><div class="panel-actions"><button id="copy-text" class="icon-btn" aria-label="표시된 텍스트 복사" title="텍스트 복사"><span data-icon="copy"></span></button><button id="toggle-text" class="section-toggle" type="button" aria-controls="text-body" aria-expanded="true" aria-label="자막 영역 접기">⌃</button></div></div>
+                <div id="text-body" class="text-body"><div class="text-tools"><label class="small-search"><span data-icon="search"></span><input id="text-search" placeholder="자막에서 찾기" aria-label="자막에서 찾기"></label><label class="follow"><input id="follow-time" type="checkbox">재생 따라가기</label></div>
+                <div id="text-view" class="text-view" tabindex="0"></div><div class="text-foot"><span id="text-status">시간을 누르면 해당 위치로 이동합니다.</span><button id="text-native" class="text-btn">TXT 열기</button></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <button id="queue-button" class="queue-bar"><span data-icon="queue"></span><span id="queue-status">작업 대기열</span><span id="queue-count" class="queue-count">0</span><div class="queue-progress"><i id="queue-progress"></i></div><span class="queue-open">내역 보기<span data-icon="chevron"></span></span></button>
+  </main>
+</div>
+<nav id="mobile-nav" class="mobile-nav" aria-label="모바일 빠른 이동"><button data-mobile-go="library">자료</button><button data-mobile-go="viewer">보기</button><button data-mobile-go="add">URL 추가</button><button data-mobile-go="queue">작업</button></nav>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<dialog id="add-dialog" class="dialog"><form id="add-form"><div class="dialog-header"><div><h2>URL 수집</h2><p>한 줄에 하나씩. 일반 영상과 재생목록을 함께 넣을 수 있습니다.</p></div><button class="icon-btn" data-close type="button" aria-label="닫기"><span data-icon="close"></span></button></div><div class="dialog-body">
+  <label class="field-label" for="urls">YouTube URL</label><textarea id="urls" class="url-input" rows="4" placeholder="https://youtu.be/…&#10;https://www.youtube.com/playlist?list=…" spellcheck="false" required aria-describedby="url-shortcuts"></textarea><div class="input-caption"><span id="url-validation">여러 링크를 붙여넣을 수 있습니다.</span><button type="button" id="dialog-paste" class="text-btn"><span data-icon="clipboard"></span>클립보드에서 붙여넣기</button></div><p id="url-shortcuts" class="micro">Enter: 대기열에 추가 · Shift+Enter: 줄바꿈</p>
+  <div class="form-grid"><label>저장 항목<select id="mode"><option value="all">영상 + 음원 + 자막</option><option value="video_subtitles">영상 + 자막</option><option value="audio_subtitles">음원 + 자막</option><option value="subtitles">자막만</option><option value="video">영상만</option><option value="audio">음원만</option></select></label><label>영상 품질<select id="quality"><option value="720">720p 이하</option><option value="1080" selected>1080p 이하</option><option value="1440">1440p 이하</option><option value="2160">2160p 이하 · 4K</option><option value="best">최고 화질</option></select></label><label>음원 형식<select id="audio-format"><option value="m4a">M4A</option><option value="mp3">MP3</option><option value="wav">WAV</option><option value="flac">FLAC</option><option value="opus">OPUS</option></select></label><label>자막 언어<select id="subtitle-policy"><option value="auto">한국어 → 영어 → 일본어 → 기타</option><option value="ko">한국어만</option><option value="en">영어만</option><option value="ja">일본어만</option><option value="first">첫 번째 사용 가능 자막</option><option value="custom">언어 코드 직접 입력</option></select></label><label id="custom-language-wrap" hidden>언어 코드<input id="custom-language" placeholder="예: fr, en-US" maxlength="25"></label><label>재생목록 최대 영상 수<input id="playlist-limit" type="number" min="1" max="1000" value="100"></label><label>공통 태그<input id="batch-tags" placeholder="예: AI 공부, 강의" maxlength="250"></label></div>
+  <label class="checkbox-line"><input type="checkbox" id="thumbnail" checked>썸네일도 저장</label><label class="checkbox-line"><input type="checkbox" id="auto-mobile" checked>영상 다운로드 후 모바일 720p 재생본도 생성 (추가 시간·공간 사용)</label><p class="micro">원문은 AI로 수정하지 않습니다. 재생목록 전체 수집은 /playlist?list=… 링크를 사용해 주세요. 다운로드할 권한이 있는 콘텐츠에 사용하세요.</p>
+</div><div class="dialog-footer"><span class="micro">설정은 이 브라우저에 저장됩니다.</span><button type="button" data-close class="button">취소</button><button type="submit" id="submit-download" class="button primary"><span data-icon="download"></span>대기열에 추가</button></div></form></dialog>
+
+<dialog id="import-dialog" class="dialog compact"><form id="import-form"><div class="dialog-header"><div><h2>기존 결과 가져오기</h2><p>V1~V7 결과를 다시 다운로드하지 않고 등록합니다.</p></div><button class="icon-btn" data-close type="button" aria-label="닫기"><span data-icon="close"></span></button></div><div class="dialog-body"><label class="field-label" for="import-path">결과 폴더 경로</label><div class="path-row"><input id="import-path" placeholder="C:\Users\…\youtube_media_extractor_v7\output" required><button id="choose-folder" type="button" class="button"><span data-icon="folder"></span>찾기</button></div><label class="field-label" for="import-tags">공통 태그 <span class="subtle">선택</span></label><input id="import-tags" placeholder="예: 이전 수집, 강의"><div class="notice">원본 파일은 복사·이동·삭제하지 않습니다. 선택한 폴더와 하위 폴더를 읽어 목록에 등록합니다. 가져온 뒤에도 원본 폴더를 유지해 주세요.</div></div><div class="dialog-footer"><button type="button" class="button" data-close>취소</button><button class="button primary" type="submit">가져오기</button></div></form></dialog>
+
+
+<dialog id="mobile-tags-dialog" class="dialog compact mobile-tags-dialog"><div class="dialog-header"><div><h2>태그 필터</h2><p>여러 태그를 선택하면 모두 포함한 자료만 표시합니다.</p></div><button class="icon-btn" data-close aria-label="닫기"><span data-icon="close"></span></button></div><div class="dialog-body"><div id="mobile-tag-filters" class="mobile-tag-grid"></div><button id="mobile-tag-reset" class="button" type="button">태그 필터 해제</button><button id="mobile-manage-tags" class="button" type="button">태그 관리</button></div></dialog>
+<dialog id="tags-dialog" class="dialog compact"><div class="dialog-header"><div><h2>태그 관리</h2><p>이름을 직접 정하고, 여러 자료에 함께 붙일 수 있습니다.</p></div><button class="icon-btn" data-close aria-label="닫기"><span data-icon="close"></span></button></div><div class="dialog-body"><form id="tag-create-form" class="path-row"><input id="new-tag" maxlength="40" placeholder="새 태그 이름" required><button class="button primary">만들기</button></form><div id="tag-manager" class="tag-manager"></div><p class="micro">태그를 삭제해도 영상·음원·TXT 파일은 삭제되지 않습니다.</p></div></dialog>
+
+<dialog id="queue-dialog" class="dialog queue-dialog"><div class="dialog-header"><div><h2>작업 대기열</h2><p>브라우저를 닫아도 서버가 켜져 있으면 수집은 계속됩니다.</p></div><button class="icon-btn" data-close aria-label="닫기"><span data-icon="close"></span></button></div><div id="queue-jobs" class="dialog-body queue-jobs"></div></dialog>
+
+<dialog id="system-dialog" class="dialog compact"><div class="dialog-header"><div><h2>저장소와 실행 환경</h2><p>접속 주소와 계정, 저장 공간을 확인합니다.</p></div><button class="icon-btn" data-close aria-label="닫기"><span data-icon="close"></span></button></div><div id="system-content" class="dialog-body"></div><div class="dialog-footer"><button id="logout-all" type="button" class="button">모든 기기 로그아웃</button><button id="logout" type="button" class="button primary">로그아웃</button></div></dialog>
+</body>
+</html>

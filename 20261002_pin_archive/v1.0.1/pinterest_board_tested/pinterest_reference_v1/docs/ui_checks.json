@@ -1,0 +1,137 @@
+{
+  "harness": "local-source render + HTTP proxy to real local server; direct browser navigation blocked by admin policy",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    {
+      "name": "page_identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24_real_seed_cards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "images_decoded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop_no_horizontal_overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "category_filter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "board_created_in_real_database",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "file_import_shows_real_counts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "korean_search_matches_uploaded_tag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "metadata_and_favorite_persisted",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "collection_membership_saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "export_contains_real_image_and_metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "empty_search_state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "missing_semantic_not_fake_success",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "hybrid_fallback_disclosed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "settings_saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "help_view",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "jobs_empty_honest",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "permission_required_before_collection",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop_visible_images_all_decoded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile_no_horizontal_overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile_collection_button_in_viewport",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile_detail_fits_viewport",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "console_no_app_exceptions",
+      "pass": true,
+      "detail": "[]"
+    }
+  ],
+  "page_errors": [],
+  "console_logs": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 409 (Conflict)"
+    }
+  ]
+}

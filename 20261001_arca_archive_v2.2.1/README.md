@@ -5,6 +5,7 @@
 ## 다운로드
 
 - [공유 ZIP](releases/arca-archive-2.2.1-share-20261002.zip)
+- [압축 해제된 소스 `arca-archive/`](arca-archive/) — ZIP 내용 그대로(89개 파일). 내려받지 않고 코드를 볼 때 사용하세요.
 - [SHA-256 검사값](SHA256SUMS.txt)
 - ZIP을 풀고 `install.bat`를 실행한 뒤 `start.bat`로 서버를 시작합니다. Python 3.11 이상과 Chrome이 필요합니다.
 

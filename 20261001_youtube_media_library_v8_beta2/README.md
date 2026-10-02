@@ -2,7 +2,7 @@
 
 Windows에서 YouTube 영상·음원·자막을 수집하고 태그·검색·재생으로 관리하는 로컬 웹 프로그램입니다.
 
-[공유 ZIP 다운로드](./youtube_media_library_v8_beta2_share_20261001.zip?raw=true) · [구글 드라이브](https://drive.google.com/file/d/137JBAKkslnAyF3WR0fbidHYgGM0LLibW/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt)
+[공유 ZIP 다운로드](./youtube_media_library_v8_beta2_share_20261001.zip?raw=true) · [압축 해제된 소스](./youtube_media_library_v8_beta2/) · [구글 드라이브](https://drive.google.com/file/d/137JBAKkslnAyF3WR0fbidHYgGM0LLibW/view?usp=drivesdk) · [SHA-256](./SHA256SUMS.txt)
 
 
 ## 실제 실행 화면

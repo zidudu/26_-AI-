@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from "_comment_status.html" import comment_status %}
+{% block title %}오류 - arca-archive{% endblock %}
+{% block content %}
+<h1>오류 및 실패 항목</h1>
+<p class="small">아래 게시글·미디어는 현재 미해결 항목입니다. 재시도 가능 시각이 지난 실패 글과 만료·실패 미디어는 해당 채널 실행 시 우선 처리합니다. 일시중지된 채널은 자동으로 실행되지 않습니다.</p>
+<form method="post" action="/errors/requeue" class="inline"><input type="hidden" name="target" value="articles"><button>실패/오류/차단 게시글 모두 다시 대기열에</button></form>
+<form method="post" action="/errors/requeue" class="inline"><input type="hidden" name="target" value="media"><button>실패/만료 미디어 모두 다시 대기열에</button></form>
+
+<h2>게시글 ({{ failed.articles|length }})</h2>
+<table>
+<tr><th>ID</th><th>채널</th><th>제목</th><th>상태</th><th>코드</th><th>메시지</th><th>시도</th><th>재시도 가능 시각</th><th>마지막 확인</th></tr>
+{% for a in failed.articles %}
+<tr class="error"><td><a href="/articles/{{ a.id }}">{{ a.id }}</a></td><td>{{ a.channel_slug }}</td><td>{{ a.title or '' }}</td><td>{{ '재시도 대기' if a.state_code == 'RETRY_REQUESTED' else a.state }}</td><td>{{ a.state_code }}</td><td class="small">{{ a.state_message }}</td><td>{{ a.attempts }}</td><td>{{ a.next_retry_at|kst_short }}</td><td>{{ a.last_checked_at|kst_short }}</td></tr>
+{% endfor %}
+</table>
+
+<h2>미디어 ({{ failed.media|length }})</h2>
+<table>
+<tr><th>ID</th><th>게시글</th><th>종류</th><th>상태</th><th>코드</th><th>메시지</th><th>시도</th><th>재시도 가능 시각</th></tr>
+{% for m in failed.media %}
+<tr class="error"><td>{{ m.id }}</td><td><a href="/articles/{{ m.article_id }}">{{ m.article_id }}</a> {{ m.article_title or '' }}</td><td>{{ m.kind }}</td><td>{{ m.state }}</td><td>{{ m.state_code }}</td><td class="small">{{ m.state_message }}</td><td>{{ m.attempts }}</td><td>{{ m.next_retry_at|kst_short }}</td></tr>
+{% endfor %}
+</table>
+
+<section id="comment-errors">
+<h2>댓글 확인 대기 / 미완료 ({{ comment_failures|length }})</h2>
+<p class="small">댓글의 마지막 확인 결과입니다. 본문과 이미지는 계속 보관됩니다. 재시도 가능 시각이 지나면 다음 채널 수집에서 재확인하며, 중지된 채널 또는 댓글 수집이 꺼진 채널은 자동 처리하지 않습니다. 최대 200개를 표시합니다.</p>
+{% for c in comment_failures %}
+<div class="comment-issue">
+  <a href="/articles/{{ c.article_id }}">{{ c.title or c.article_id }}</a> <span class="small muted">{{ c.channel_slug }}</span>
+  <p>{{ comment_status(c) }}</p>
+  <p class="small">마지막 확인: {{ c.saved_count }}개 저장 / 응답 표시 {{ c.expected_count }}개 · 실패 {{ c.attempts }}회<br>
+    확인 시각 {{ c.checked_at|kst_short }} · 재시도 가능 시각 {{ c.next_retry_at|kst_short }}
+    {% if not c.enabled or not c.collect_comments %}<br><strong>채널 또는 댓글 수집이 꺼져 있습니다.</strong>{% endif %}</p>
+  <form method="post" action="/articles/{{ c.article_id }}/comments/retry"><button>댓글 재시도 예약</button></form>
+</div>
+{% else %}<p class="muted">현재 기록된 미완료 댓글 항목이 없습니다.</p>{% endfor %}
+</section>
+
+<h2>최근 경고/오류 이벤트</h2>
+<p class="small">과거 기록이며 복구가 끝난 항목도 남습니다. 현재 미해결 건수는 위 목록을 확인하세요.</p>
+<table>
+<tr><th>시각</th><th>실행</th><th>수준</th><th>이벤트</th><th>게시글</th><th>내용</th></tr>
+{% for e in events %}
+<tr class="{{ 'error' if e.level == 'error' }}"><td>{{ e.at|kst }}</td><td><a href="/runs/{{ e.run_id }}">{{ e.run_id }}</a></td><td>{{ e.level }}</td><td>{{ e.event }}</td>
+<td>{% if e.article_id %}<a href="/articles/{{ e.article_id }}">{{ e.article_id }}</a>{% endif %}</td><td class="small">{% for k, v in e.data.items() %}{{ k }}={{ v }} {% endfor %}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,29 @@
+:root{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#f5f7fa;background:#131720}
+*{box-sizing:border-box}
+body{width:330px;margin:0}
+main{padding:17px}
+header{display:flex;align-items:center;gap:10px;margin-bottom:19px}
+header strong,header small{display:block}
+header strong{font-size:15px;letter-spacing:.1px}
+header small{font-size:11px;color:#a9b2c4;margin-top:2px}
+.mark{display:grid;place-items:center;width:35px;height:35px;border-radius:11px;background:#f04848;color:white;font-size:15px}
+.current{min-height:112px;padding:13px 14px;margin-bottom:13px;border:1px solid #30394a;border-radius:12px;background:#1b2230}
+.eyebrow{font-size:11px;color:#9caac0}
+h1{font-size:14px;line-height:1.4;margin:7px 0 5px;max-height:40px;overflow:hidden;overflow-wrap:anywhere}
+p{margin:0}
+#page-message{font-size:11px;line-height:1.5;color:#aeb9cb}
+button{width:100%;min-height:39px;border-radius:9px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+button.primary{background:#ef4747;color:#fff;border:1px solid #ef4747}
+button.primary:hover:not(:disabled){background:#d93636}
+button.primary:disabled{background:#5b3840;border-color:#5b3840;color:#c6a8ad;cursor:not-allowed}
+button.secondary{margin-top:8px;background:#252e3e;color:#f5f7fa;border:1px solid #3a465a}
+button.secondary:hover{background:#303b4e}
+.manual{margin-top:14px;padding-top:14px;border-top:1px solid #30394a}
+.manual label{display:block;font-size:12px;font-weight:700;margin-bottom:4px}
+.manual p{font-size:11px;line-height:1.5;color:#aeb9cb;margin-bottom:9px}
+.manual input{width:100%;height:38px;padding:8px 10px;border:1px solid #3a465a;border-radius:9px;background:#1b2230;color:#f5f7fa;font:inherit;font-size:12px;outline-offset:2px}
+.manual input::placeholder{color:#8e9bad}
+.manual input:focus{border-color:#ef4747;outline:1px solid #ef4747}
+.manual button{margin-top:8px}
+.note{font-size:11px;line-height:1.5;color:#9eabbd;margin-top:13px}
+.error{font-size:11px;line-height:1.5;color:#ff9c9c;margin-top:9px}

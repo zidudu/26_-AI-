@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "_bookmarks.html" import bookmark_button %}
+{% block title %}게시글 - arca-archive{% endblock %}
+{% block content %}
+<h1>수집 게시글 ({{ total }})</h1>
+<form method="get" action="/articles">
+  <select name="channel_id"><option value="">전체 채널</option>{% for c in channels %}<option value="{{ c.id }}" {% if channel_id == c.id %}selected{% endif %}>{{ c.slug }}</option>{% endfor %}</select>
+  <select name="state"><option value="">전체 상태</option>{% for s in states %}<option value="{{ s }}" {% if state == s %}selected{% endif %}>{{ s }}</option>{% endfor %}</select>
+  <select name="site" aria-label="사이트"><option value="">전체 사이트</option>{% for s in sites %}<option value="{{ s.key }}" {% if site == s.key %}selected{% endif %}>{{ s.label }}</option>{% endfor %}</select>
+  <select name="scope" aria-label="검색 범위">{% for key,label in [('all','제목·본문·작성자·댓글'),('title','제목'),('body','본문'),('author','작성자'),('comments','댓글')] %}<option value="{{ key }}" {% if scope == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+  <input type="text" name="q" value="{{ q }}" placeholder="보관된 내용 검색" aria-label="검색어">
+  <label>작성일 <input type="date" name="date_from" value="{{ date_from }}"> ~ <input type="date" name="date_to" value="{{ date_to }}"></label>
+  <select name="media_state" aria-label="미디어 상태"><option value="">모든 미디어 상태</option><option value="downloaded" {% if media_state == 'downloaded' %}selected{% endif %}>저장 파일 있음</option><option value="unfinished" {% if media_state == 'unfinished' %}selected{% endif %}>미수집 파일 있음</option></select>
+  <button>검색</button>
+</form>
+<table>
+<tr><th>북마크</th><th>ID</th><th>채널</th><th>카테고리</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회</th><th>추천</th><th>댓글</th><th>미디어</th><th>상태</th><th>수집</th></tr>
+{% for a in rows %}
+<tr class="{{ 'error' if a.state in ('failed', 'error') }}">
+  <td>{{ bookmark_button('article', a.id, a.bookmarked, '글') }}</td>
+  <td><a href="/articles/{{ a.id }}">{{ a.id }}</a></td><td>{{ a.channel_slug }}</td><td>{{ a.category or '' }}</td>
+  <td><a href="/articles/{{ a.id }}">{{ a.title or '(제목 없음)' }}</a>{% if a.is_notice %} <span class="muted small">[공지]</span>{% endif %}</td>
+  <td>{{ a.author or '' }}</td><td>{{ a.created_at|kst_short }}</td><td>{{ a.view_count if a.view_count is not none else '' }}</td>
+  <td>{{ a.like_count if a.like_count is not none else '' }}</td><td>{{ a.comment_count if a.comment_count is not none else '' }}</td>
+  <td>{{ a.media_done }}/{{ a.media_total }}</td>
+  <td>{{ a.state }}{% if a.state_code %} <span class="muted small">{{ a.state_code }}</span>{% endif %}</td>
+  <td>{{ a.collected_at|kst_short }}</td>
+</tr>
+{% endfor %}
+</table>
+<p class="pager">
+  <span class="muted">{{ pager.total }}개 · {{ pager.page }}/{{ pager.pages }} 페이지</span>
+  {% if pager.prev %}<a href="{{ pager.url(pager.prev) }}">‹ 이전</a>{% else %}<span class="muted">‹ 이전</span>{% endif %}
+  {% for n in pager.numbers() %}{% if n is none %}<span class="muted">…</span>{% elif n == pager.page %}<b>{{ n }}</b>{% else %}<a href="{{ pager.url(n) }}">{{ n }}</a>{% endif %}{% endfor %}
+  {% if pager.next %}<a href="{{ pager.url(pager.next) }}">다음 ›</a>{% else %}<span class="muted">다음 ›</span>{% endif %}
+  <form method="get" action="{{ pager.path }}" class="inline pager-jump">
+    {% for k, v in pager.params.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+    <input type="number" name="page" min="1" max="{{ pager.pages }}" value="{{ pager.page }}" style="width:5em"> <button>이동</button>
+  </form>
+</p>
+{% endblock %}
