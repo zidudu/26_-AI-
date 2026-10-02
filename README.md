@@ -208,7 +208,7 @@ flowchart LR
 📁 [`SKILL모음/`](SKILL모음/) · [모음 README](SKILL모음/README.md)
 
 - **목적**: Codex에서 확인한 스킬 자료와 사용자가 올린 `skills.zip`의 해제본을 한곳에 보관. README에 "보관했다는 것이 Codex에 설치·활성화했다는 뜻은 아니다"라고 명시되어 있습니다.
-- **구성**
+- **구성** — 스킬별 노드 그림·설명은 [`SKILL_MAP.md`](SKILL모음/SKILL_MAP.md) 참고
 
 | 폴더 | 내용 | 규모(직접 확인) |
 | --- | --- | --- |

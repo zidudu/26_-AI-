@@ -2,6 +2,8 @@
 
 Codex에서 확인한 스킬 자료와 사용자가 올린 `skills.zip`의 압축 해제본을 한곳에서 찾아볼 수 있도록 정리한 보관 모음입니다. 스킬별 안내와 리소스를 원본 폴더 구조에 가깝게 보존했습니다. 이 저장소에 보관했다는 뜻은 Codex에 새로 설치하거나 활성화했다는 뜻은 아닙니다.
 
+> 🗺️ **스킬별 노드 그림과 설명 표는 [스킬 지도(SKILL_MAP.md)](SKILL_MAP.md)에서 볼 수 있습니다.**
+
 ## 한눈에 보기
 
 | 위치 | 내용 | 규모 |
@@ -9,6 +11,7 @@ Codex에서 확인한 스킬 자료와 사용자가 올린 `skills.zip`의 압�
 | [`monitoring-automation/`](monitoring-automation/) | 기존에 보관하던 모니터링·자동화 스킬 묶음. 기존 파일을 그대로 유지했습니다. | 11개 스킬 |
 | [`codex-current/`](codex-current/) | 2026-10-02에 현재 세션의 스킬 카탈로그에서 수집한 스냅샷. 각 항목의 전체 폴더와 함께 복사했고, `plugins/`(플러그인별)와 `standalone/`(단독 항목)으로 나눠 두었습니다. | 카탈로그 234개 항목, `SKILL.md` 파일 249개 |
 | [`codex-export/`](codex-export/) | 이번 대화에서 받은 `skills.zip`을 풀어 둔 자료. `SKILL.md`가 있는 개별 스킬 폴더를 모두 보존했습니다. | 16개 스킬 폴더 |
+| [`SKILL_MAP.md`](SKILL_MAP.md) | 스킬 이름·한 줄 설명을 노드 그림(Mermaid)과 표로 정리한 색인 | 마크다운 |
 | [`CATALOG.json`](CATALOG.json) | 현재 카탈로그 항목의 표시 이름, 설명, 원래 패키지 경로, 이 모음 안의 경로와 ZIP 스킬 폴더 목록 | JSON 색인 |
 | [`CATALOG_SHA256SUMS.txt`](CATALOG_SHA256SUMS.txt) | `codex-current/`, `codex-export/`, `CATALOG.json` 파일의 무결성 확인용 SHA-256 목록 | 파일별 해시 |
 
