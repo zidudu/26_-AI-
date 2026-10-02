@@ -4,6 +4,26 @@ Codex에서 확인한 스킬 자료와 사용자가 올린 `skills.zip`의 압�
 
 > 🗺️ **스킬별 노드 그림과 설명 표는 [스킬 지도(SKILL_MAP.md)](SKILL_MAP.md)에서 볼 수 있습니다.**
 
+## 구성 한눈에 보기
+
+```mermaid
+flowchart TB
+    ROOT["SKILL모음"]
+    ROOT --> MA["monitoring-automation<br/>자동화 스킬 11개"]
+    ROOT --> EXP["codex-export<br/>업로드 skills.zip 해제본 16개"]
+    ROOT --> CUR["codex-current<br/>카탈로그 스냅샷 234개 항목"]
+    ROOT --> IDX["색인<br/>CATALOG.json · CATALOG_SHA256SUMS.txt · SKILL_MAP.md"]
+
+    EXP --> EG["일반 스킬 11개"]
+    EXP --> ES["system 5개"]
+    CUR --> PL["plugins/<br/>플러그인 25개"]
+    CUR --> SA["standalone/<br/>독립 항목 49개 폴더"]
+
+    SA -. "11개는 내용이 동일한 사본" .- MA
+    IDX -. "경로·설명·해시" .-> CUR
+    IDX -. "해시" .-> EXP
+```
+
 ## 한눈에 보기
 
 | 위치 | 내용 | 규모 |

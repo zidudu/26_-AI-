@@ -8,6 +8,25 @@
 
 각 스킬은 **독립 폴더**로 제공합니다. 아래 목록에서 지침을 바로 읽고, 폴더 안의 참고자료와 실행 스크립트를 확인할 수 있습니다.
 
+## 스킬 관계
+
+`build-monitoring-pipeline`이 전체 흐름을 설계하고, 영역별 작업은 나머지 10개 스킬로 넘깁니다(해당 스킬의 `SKILL.md` "Route specialist work" 표 기준). 나머지 스킬은 각각 단독으로도 쓸 수 있습니다.
+
+```mermaid
+flowchart LR
+    B["build-monitoring-pipeline<br/>전체 단계·계약 설계"]
+    B --> C["collect-incremental-web<br/>기간·세션·요청 속도"]
+    B --> P["preserve-versioned-records<br/>원문 버전·이관·백업"]
+    B --> A["analyze-evidence-records<br/>근거 연결·분석 캐시"]
+    B --> I["integrate-cli-ai<br/>CLI 공급자 어댑터"]
+    B --> R["create-evidence-ppt<br/>근거 슬라이드·노트"]
+    B --> O["optimize-report-images<br/>배치 크기 기반 이미지"]
+    B --> D["deliver-outlook-reports<br/>발송 의도·불확실 상태"]
+    B --> L["build-local-automation-console<br/>로컬 API·작업자·예약"]
+    B --> E["export-monitoring-analytics<br/>집계·Excel"]
+    B --> K["package-windows-automation<br/>배포·문서"]
+```
+
 ## 스킬 목록
 
 현재 11개 스킬을 제공합니다.
