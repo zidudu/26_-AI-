@@ -1,6 +1,6 @@
 # 26_-AI- · 26_잡다한AI제작
 
-AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows용 로컬 프로그램 5종(7개 배포 폴더)** 과 **스킬 모음 1종**이 올라와 있으며, 대부분 소스가 풀린 폴더가 아니라 **배포용 ZIP + 안내 문서(README)** 형태로 보관되어 있습니다.
+AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows용 로컬 프로그램 5종** 과 **스킬 모음 1종**이 올라와 있으며, 대부분 소스가 풀린 폴더가 아니라 **배포용 ZIP + 안내 문서(README)** 형태로 보관되어 있습니다.
 
 > 이 문서는 2026-10-02 기준으로 각 폴더의 README, 배포 ZIP 안의 소스·설정·변경 기록을 직접 열어 확인한 내용만 정리했습니다. 각 프로그램이 "실제로 검증된 범위"는 해당 프로젝트 README의 기록을 그대로 따랐고, 이 문서를 쓰면서 프로그램을 새로 실행해 검증한 것은 아닙니다.
 
@@ -22,9 +22,7 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 | 2026-10-01 | [arca-archive](20261001_arca_archive_v2.2.1/) | 아카라이브·디시인사이드·네이버 카페 게시글/미디어 로컬 보관 | 2.2.1 | 배포 ZIP | Python, FastAPI, SQLite, httpx, Playwright |
 | 2026-10-01 | [로컬 AI 작업대](20261001_local_ai_workbench_v0.1/) | Ollama 모델로 대화·두 모델 비교·로컬 문서 질문(RAG) | 0.1 | 배포 ZIP | React 19, Vite, FastAPI, Ollama, SQLite |
 | 2026-10-01 | [YouTube Media Library](20261001_youtube_media_library_v8_beta2/) | YouTube 영상·음원·자막 수집, 태그·검색·재생 관리 | V8 beta.2 | 배포 ZIP | Python, FastAPI, yt-dlp, FFmpeg, Chrome 확장, MCP |
-| 2026-10-02 | [Pin Archive 1.2.0](20261002_pin_archive_v1.2.0/) | Pinterest·로컬 이미지 시각 레퍼런스 라이브러리(최신판) | 1.2.0 | 배포 ZIP | Python, FastAPI, SQLite(FTS5), Playwright, MCP |
-| 2026-10-02 | [Pin Archive 1.1.0](20261002_pin_archive_v1.1.0/) | 보드 반복 수집이 추가된 이전 배포본 | 1.1.0 | 배포 ZIP | 위와 동일 |
-| 2026-10-02 | [Pin Archive 1.0.1](20261002_pin_archive_v1.0.1/) | 안정화본과 패치 ZIP 3종(갤러리·로그인·보드 수집) | 1.0.1 | 배포 ZIP 4종 | 위와 동일 |
+| 2026-10-02 | [Pin Archive](20261002_pin_archive/) | Pinterest·로컬 이미지 시각 레퍼런스 라이브러리 (1.0.1 → 1.1.0 → 1.2.0 배포본을 한 폴더에 보관) | 1.2.0 (최신) | 배포 ZIP | Python, FastAPI, SQLite(FTS5), Playwright, MCP |
 | 2026-10-02 | [SKILL모음](SKILL모음/) | Codex 스킬 보관 모음(자동화 스킬 11개 + 카탈로그 스냅샷 + 업로드 ZIP 해제본) | — | 폴더·문서 모음 | Markdown(`SKILL.md`), 일부 Python 스크립트 |
 
 등록일은 폴더명 접두어(`YYYYMMDD`)와 git 최초 커밋 날짜가 일치하는 값입니다.
@@ -65,10 +63,12 @@ AI로 이것저것 만들어 보는 저장소입니다. 지금까지 **Windows�
 │   ├── youtube_media_library_v8_beta2_share_20261001.zip
 │   └── screenshots/                           ← 실행 화면 5장
 │
-├── 20261002_pin_archive_v1.0.1/               ← Pin Archive 1.0.1 (ZIP 4종)
-├── 20261002_pin_archive_v1.1.0/               ← Pin Archive 1.1.0 (ZIP 1종)
-├── 20261002_pin_archive_v1.2.0/               ← Pin Archive 1.2.0 (ZIP 1종, 최신)
-│   └── (각 폴더: README.md · SHA256SUMS.txt · *.zip)
+├── 20261002_pin_archive/                      ← Pin Archive (버전별 배포본을 한 폴더에 모음)
+│   ├── README.md                              ← 버전 안내
+│   ├── v1.0.1/                                ← ZIP 4종
+│   ├── v1.1.0/                                ← ZIP 1종
+│   └── v1.2.0/                                ← ZIP 1종 (최신)
+│       └── (각 버전 폴더: README.md · SHA256SUMS.txt · *.zip)
 │
 └── SKILL모음/                                 ← Codex 스킬 보관 모음
     ├── README.md · CATALOG.json · CATALOG_SHA256SUMS.txt
@@ -181,7 +181,7 @@ flowchart LR
 
 ### 4.5 Pin Archive (1.0.1 → 1.1.0 → 1.2.0)
 
-📁 [`1.2.0`](20261002_pin_archive_v1.2.0/) · [`1.1.0`](20261002_pin_archive_v1.1.0/) · [`1.0.1`](20261002_pin_archive_v1.0.1/)
+📁 [`20261002_pin_archive/`](20261002_pin_archive/) — [`v1.2.0`](20261002_pin_archive/v1.2.0/) · [`v1.1.0`](20261002_pin_archive/v1.1.0/) · [`v1.0.1`](20261002_pin_archive/v1.0.1/)
 
 - **목적**: Pinterest와 로컬 이미지를 메타데이터와 함께 보관·검색하는 **개인용 시각 레퍼런스 라이브러리**. AI가 읽기 전용 MCP로 이미지 후보를 검색하고 실제 썸네일을 읽을 수 있습니다.
 - **주요 기능(1.2.0 기준)**
