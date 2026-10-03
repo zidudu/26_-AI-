@@ -1,0 +1,2840 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>로컬 서버 관리 · Operations Console</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 계기판형 운영 콘솔. 평평한 패널, 고정폭 숫자, LED형 상태 표시. 포인트 색은 코발트 하나. */
+:root{
+  --bg:#eceef2;--panel:#ffffff;--subtle:#f6f7f9;--sunken:#e6e9ee;
+  --line:#dadee5;--line2:#bdc4ce;
+  --text:#13161b;--text2:#3c4450;--muted:#6a7382;
+  --accent:#2b54c9;--accent-ink:#ffffff;--accent-soft:#e7ecfb;
+  --green:#14783a;--green-bg:#e3f2e8;
+  --yellow:#8f5d00;--yellow-bg:#fbf0d3;
+  --red:#bb2a20;--red-bg:#fbe6e3;
+  --blue:#2b54c9;
+  --sans:"IBM Plex Sans KR",Pretendard,"Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b0d10;--panel:#14171b;--subtle:#191c21;--sunken:#0f1114;
+    --line:#252a31;--line2:#363d47;
+    --text:#e6e8eb;--text2:#b1b8c2;--muted:#848d99;
+    --accent:#86a2ff;--accent-ink:#0a0f1f;--accent-soft:#1b2440;
+    --green:#5cc985;--green-bg:#132a1b;--yellow:#e5b450;--yellow-bg:#30260f;--red:#f17a70;--red-bg:#341917;--blue:#86a2ff;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b0d10;--panel:#14171b;--subtle:#191c21;--sunken:#0f1114;
+  --line:#252a31;--line2:#363d47;
+  --text:#e6e8eb;--text2:#b1b8c2;--muted:#848d99;
+  --accent:#86a2ff;--accent-ink:#0a0f1f;--accent-soft:#1b2440;
+  --green:#5cc985;--green-bg:#132a1b;--yellow:#e5b450;--yellow-bg:#30260f;--red:#f17a70;--red-bg:#341917;--blue:#86a2ff;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app{width:min(1280px,100% - 40px);margin:0 auto;padding:0 0 56px}
+
+/* ---------- common ---------- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;min-width:0}
+.section{margin-top:28px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.section-title{display:flex;flex-direction:column;gap:1px;margin-bottom:12px}
+.section-head .section-title{margin-bottom:0}
+.section-title h2{margin:0;font-size:16px;font-weight:600;letter-spacing:-.01em}
+.section-title span{color:var(--muted);font-size:12px}
+
+/* buttons: 평평한 키캡. 아래 1px 그림자로 누를 수 있음을 표시 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:30px;padding:0 12px;
+  border:1px solid var(--line2);border-radius:6px;background:var(--panel);color:var(--text);
+  box-shadow:0 1px 0 var(--line);font-size:12.5px;font-weight:500;white-space:nowrap;
+  transition:background .12s,border-color .12s,color .12s}
+.btn:hover{background:var(--subtle);border-color:var(--muted)}
+.btn:active{transform:translateY(1px);box-shadow:none}
+.btn:disabled{color:var(--muted);background:var(--subtle);border-color:var(--line);box-shadow:none;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:0 1px 0 color-mix(in srgb,var(--accent) 60%,#000)}
+.btn.primary:hover{background:color-mix(in srgb,var(--accent) 88%,#000);border-color:transparent}
+.btn.warn{color:var(--yellow)}
+.btn.warn:hover{background:var(--yellow-bg);border-color:var(--yellow)}
+.btn.danger{color:#fff;background:var(--red);border-color:var(--red);box-shadow:none}
+.btn.ghost{border-color:transparent;background:transparent;box-shadow:none;color:var(--accent);padding:0 8px}
+.btn.ghost:hover{background:var(--accent-soft)}
+
+/* badge: 고정폭 대문자 + LED */
+.badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;
+  background:var(--green-bg);color:var(--green);font:600 11px/1 var(--mono);letter-spacing:.02em;white-space:nowrap}
+.badge::before{content:"";width:6px;height:6px;border-radius:1px;background:currentColor}
+.badge.warn{background:var(--yellow-bg);color:var(--yellow)}
+.badge.secondary{background:var(--sunken);color:var(--muted)}
+.badge.secondary::before{display:none}
+.badge.error{background:var(--red-bg);color:var(--red)}
+.ok{color:var(--green);font-weight:600}
+.small{color:var(--muted);font-size:12px}
+.actions{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+
+/* ---------- header: 상단 바 ---------- */
+.header{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  margin:0 0 24px;padding:18px 0;border-bottom:1px solid var(--line);background:var(--panel);box-shadow:0 0 0 100vmax var(--panel);clip-path:inset(0 -100vmax)}
+.brand small{display:inline-block;color:var(--muted);font:500 11px/1 var(--mono);letter-spacing:.06em;
+  padding:4px 7px;border:1px solid var(--line);border-radius:4px;background:var(--subtle)}
+.brand h1{margin:8px 0 2px;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.brand p{margin:0;color:var(--muted);font-size:13px}
+.status-row{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--subtle)}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;color:var(--text2);font-size:12px;white-space:nowrap}
+.chip+.chip{border-left:1px solid var(--line)}
+.dot{width:7px;height:7px;border-radius:1px;background:var(--green);flex:none}
+.dot.blue{background:var(--blue)}.dot.yellow{background:var(--yellow)}.dot.red{background:var(--red)}
+
+/* ---------- overview ---------- */
+.overview{display:grid;grid-template-columns:1.45fr 1fr;gap:16px}
+.primary-card,.monitor-card{padding:20px}
+.primary-top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.kicker{color:var(--accent);font:600 11px/1 var(--mono);letter-spacing:.08em}
+.primary-card h2{margin:8px 0 6px;font-size:19px;font-weight:700;letter-spacing:-.02em}
+.primary-card p{margin:0;color:var(--text2);font-size:13px;line-height:1.65;max-width:62ch}
+
+/* 경로: 노드 사이를 얇은 선으로 연결 */
+.route-flow{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;align-items:center;margin-top:18px}
+.route-node{padding:12px 14px;border:1px solid var(--line);border-radius:6px;background:var(--subtle);min-width:0;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.route-node:nth-child(3){background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.route-node strong{font-size:14px;font-weight:600}
+.route-node small{margin-top:3px;color:var(--muted);font-size:12px;line-height:1.5}
+.route-arrow{position:relative;height:1px;background:var(--line2);font-size:0}
+.route-arrow::after{content:"";position:absolute;right:0;top:-3px;border:3.5px solid transparent;border-left:5px solid var(--line2);border-right:0}
+.primary-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.mini-metrics{display:flex;flex-wrap:wrap;gap:0}
+.mini-metrics span{color:var(--muted);font-size:12px;padding:0 18px}
+.mini-metrics span:first-child{padding-left:0}
+.mini-metrics span+span{border-left:1px solid var(--line)}
+.mini-metrics b{display:block;margin-top:1px;color:var(--text);font:600 15px/1.3 var(--mono)}
+
+/* monitor */
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.kpi{padding:12px 14px}
+.kpi:nth-child(even){border-left:1px solid var(--line)}
+.kpi:nth-child(n+3){border-top:1px solid var(--line)}
+.kpi .label{color:var(--muted);font-size:12px}
+.kpi strong{display:block;margin-top:2px;font:600 22px/1.25 var(--mono);letter-spacing:-.02em}
+.kpi .sub{color:var(--muted);font-size:11px}
+/* 상태 페이지식 가동 막대: 높이 동일, 색으로만 상태 표현 */
+.timeline{height:28px;margin-top:16px;display:grid;grid-template-columns:repeat(24,1fr);align-items:stretch;gap:3px}
+.hour{height:100%!important;border-radius:2px;background:var(--green);opacity:.75;transition:opacity .1s}
+.hour:hover{opacity:1}
+.hour.recovery{background:var(--yellow);opacity:1}
+.hour.error{background:var(--red);opacity:1}
+.monitor-card .small{font-family:var(--mono);font-size:11px}
+
+/* incident */
+.incident{display:none;margin-top:16px;padding:12px 16px;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;border-color:var(--red);background:var(--red-bg)}
+.incident.show{display:grid}
+.incident .icon{width:28px;height:28px;display:grid;place-items:center;border-radius:4px;background:var(--red);color:#fff;font-size:14px}
+.incident strong{display:block;color:var(--red)}
+.incident p{margin:2px 0 0;color:var(--text2);font-size:12px}
+
+/* ---------- web servers ---------- */
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.service-card{padding:0;display:flex;flex-direction:column;overflow:hidden}
+.service-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 16px 14px}
+.service-title{display:flex;align-items:center;gap:12px;min-width:0}
+.iconbox{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:6px;background:var(--text);color:var(--panel);font:700 14px/1 var(--mono)}
+.service-card h3{margin:0;font-size:14px;font-weight:600;letter-spacing:.02em}
+.service-sub{color:var(--muted);font-size:12px}
+.service-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--subtle)}
+.metric{padding:9px 16px;min-width:0}
+.metric+.metric{border-left:1px solid var(--line)}
+.metric span{display:block;color:var(--muted);font:500 10px/1.4 var(--mono);letter-spacing:.08em}
+.metric b{display:block;margin-top:1px;font:600 13px/1.4 var(--mono)}
+/* 제어: 사이트 열기 | [시작·일시중지·재시작] 세그먼트 | 상세 */
+.control-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:12px 16px}
+.control-row .btn:nth-child(2),.control-row .btn:nth-child(3),.control-row .btn:nth-child(4){border-radius:0;box-shadow:none}
+.control-row .btn:nth-child(2){border-radius:6px 0 0 6px;margin-left:4px}
+.control-row .btn:nth-child(3),.control-row .btn:nth-child(4){margin-left:-7px}
+.control-row .btn:nth-child(4){border-radius:0 6px 6px 0}
+.control-row .btn:nth-child(5){margin-left:auto;border-color:transparent;background:transparent;box-shadow:none;color:var(--accent)}
+.control-row .btn:nth-child(5):hover{background:var(--accent-soft)}
+
+/* ---------- router components ---------- */
+.router-components{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.component{padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-content:start}
+.component h4{margin:0 0 2px;font-size:13.5px;font-weight:600}
+.component p{margin:0;color:var(--muted);font:12px/1.5 var(--mono)}
+.component .actions{grid-column:1/-1;margin-top:10px;gap:0}
+.component .actions .btn{border-radius:0;margin-left:-1px;box-shadow:none}
+.component .actions .btn:first-child{border-radius:6px 0 0 6px;margin-left:0}
+.component .actions .btn:nth-child(3){border-radius:0 6px 6px 0}
+.component .actions .btn:last-child{margin-left:auto;border-color:transparent;background:transparent;color:var(--accent);border-radius:6px}
+.component .actions .btn:last-child:hover{background:var(--accent-soft)}
+
+/* ---------- AI providers ---------- */
+.providers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.provider{padding:16px;display:flex;flex-direction:column;gap:12px}
+.provider-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.provider h3{margin:0;font-size:15px;font-weight:600}
+.provider-lines{display:grid;margin:0;border-top:1px solid var(--line)}
+.provider-line{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+.provider-line .key{color:var(--muted);font:500 11px/1.8 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.provider-note{color:var(--text2);font-size:12px;line-height:1.55}
+.provider-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:auto}
+.provider-actions .btn:nth-child(n+3){height:26px;border-color:transparent;background:transparent;box-shadow:none;color:var(--accent);font-size:12px}
+.provider-actions .btn:nth-child(n+3):hover{background:var(--accent-soft)}
+
+/* ---------- YME write ---------- */
+.write-band{padding:14px 18px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;
+  background:repeating-linear-gradient(-45deg,var(--panel) 0 10px,var(--subtle) 10px 20px)}
+.write-band h3{margin:0 0 2px;font-size:14px;font-weight:600}
+.write-band p{margin:0;color:var(--text2);font-size:12.5px}
+
+/* ---------- fallback ---------- */
+details.card{overflow:hidden}
+summary{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;list-style:none;cursor:pointer;font-size:14px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+summary:hover{background:var(--subtle)}
+summary .small{font-weight:400}
+details[open] summary{border-bottom:1px solid var(--line)}
+.fallback-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.fallback-item{padding:14px 18px;display:grid;grid-template-columns:1fr auto;gap:8px;border-bottom:1px solid var(--line)}
+.fallback-item:nth-child(odd){border-right:1px solid var(--line)}
+.fallback-item:nth-last-child(-n+2){border-bottom:0}
+.fallback-item h4{margin:0 0 2px;font-size:13.5px;font-weight:600}
+.fallback-item p{margin:0;color:var(--muted);font-size:12px}
+.fallback-item .actions{grid-column:1/-1;margin-top:6px}
+
+/* ---------- operations ---------- */
+.bottom-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+.operations,.events-card{padding:18px}
+.ops-grid{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.op{padding:12px 14px}
+.op:nth-child(even){border-left:1px solid var(--line)}
+.op:nth-child(n+3){border-top:1px solid var(--line)}
+.op strong{display:block;font-size:13px;font-weight:600}
+.op p{margin:2px 0 0;color:var(--muted);font-size:12px}
+/* 이벤트 로그: 터미널식 목록 */
+.events{display:grid;margin:0;padding:6px 0;border-radius:6px;background:var(--sunken);font-family:var(--mono)}
+.event{padding:6px 12px;display:grid;grid-template-columns:44px 84px 1fr;gap:8px;font-size:12px;align-items:baseline}
+.event:hover{background:var(--subtle)}
+.event .time{color:var(--muted)}
+.event .type{font-weight:600;font-size:11px;letter-spacing:.04em}
+.event>div:last-child{font-family:var(--sans);color:var(--text2)}
+.type-ok{color:var(--green)}.type-recovery{color:var(--yellow)}.type-error{color:var(--red)}
+
+.statusbar{margin-top:28px;padding:10px 14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  border-radius:6px;background:var(--sunken);color:var(--muted);font:12px/1.5 var(--mono)}
+.footer{margin-top:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font:11px/1.5 var(--mono)}
+
+/* ---------- overlays ---------- */
+.toast{position:fixed;right:20px;bottom:20px;max-width:380px;padding:10px 14px;z-index:30;border-radius:6px;
+  background:var(--text);color:var(--panel);font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.18);
+  opacity:0;transform:translateY(6px);transition:opacity .15s,transform .15s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:20;background:rgba(10,12,16,.5)}
+.modal-backdrop.show{display:flex}
+.modal{width:min(520px,100%);padding:22px;border-color:var(--line2);box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.modal h3{margin:0 0 10px;font-size:16px;font-weight:600}
+.modal p{color:var(--text2);margin:0 0 10px}
+.code{margin-top:6px;padding:14px;border-radius:6px;background:var(--sunken);color:var(--text);font:12px/1.75 var(--mono);white-space:pre-wrap;overflow:auto}
+.drawer-back{position:fixed;inset:0;z-index:20;background:rgba(10,12,16,.4);opacity:0;pointer-events:none;transition:opacity .15s}
+.drawer-back.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:-480px;width:min(440px,92vw);height:100%;padding:20px;overflow:auto;z-index:21;
+  background:var(--panel);border-left:1px solid var(--line2);box-shadow:-12px 0 32px rgba(0,0,0,.15);transition:right .2s}
+.drawer.show{right:0}
+.drawer h2{margin:16px 0 10px;font-size:16px;font-weight:600}
+
+/* ---------- responsive ---------- */
+/* theme switch */
+.head-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:6px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:transparent;height:28px;padding:0 11px;font-size:12px;color:var(--text2)}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button:hover{background:var(--subtle)}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--panel)}
+@media(max-width:720px){.head-right{align-items:flex-start}}
+@media(max-width:1100px){
+  .overview,.bottom-grid{grid-template-columns:1fr}
+  .service-grid,.router-components{grid-template-columns:1fr}
+  .providers{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:720px){
+  .app{width:calc(100% - 32px)}
+  .header{margin:0 0 20px;padding:16px 0}
+  .status-row{border:0;background:none;gap:6px}
+  .chip{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:4px 9px}
+  .chip+.chip{border-left:1px solid var(--line)}
+  .providers,.fallback-grid,.ops-grid{grid-template-columns:1fr}
+  .op:nth-child(even){border-left:0}
+  .op+.op{border-top:1px solid var(--line)}
+  .fallback-item:nth-child(odd){border-right:0}
+  .fallback-item:nth-last-child(2){border-bottom:1px solid var(--line)}
+  .route-flow{grid-template-columns:1fr}
+  .route-arrow{width:1px;height:16px;justify-self:center}
+  .route-arrow::after{right:auto;top:auto;bottom:0;left:-3px;border:3.5px solid transparent;border-top:5px solid var(--line2);border-bottom:0}
+  .service-metrics{grid-template-columns:repeat(2,1fr)}
+  .metric:nth-child(3){border-left:0}
+  .metric:nth-child(n+3){border-top:1px solid var(--line)}
+  .mini-metrics span{padding:0 12px}
+  .write-band,.incident{grid-template-columns:1fr}
+  .event{grid-template-columns:44px 1fr}
+  .event>div:last-child{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+
+<header class="header">
+
+  <div class="brand">
+
+    <small>
+      ARCHIVE SERVERS · OPERATIONS CONSOLE
+    </small>
+
+    <h1>
+      로컬 서버 관리
+    </h1>
+
+    <p>
+      모니터링 · Primary/Fallback · 자동 복구 · 수동 제어를
+      한 화면에서 관리합니다.
+    </p>
+
+  </div>
+
+
+  <div class="head-right">
+
+  <div class="seg" id="themeSeg" role="group" aria-label="테마">
+    <button data-theme-set="system" aria-pressed="true">시스템</button>
+    <button data-theme-set="light" aria-pressed="false">라이트</button>
+    <button data-theme-set="dark" aria-pressed="false">다크</button>
+  </div>
+
+  <div class="status-row">
+
+    <span class="chip">
+      <span class="dot"></span>
+      전체 정상 13/13
+    </span>
+
+    <span class="chip">
+      <span class="dot"></span>
+      Primary 정상
+    </span>
+
+    <span class="chip">
+      <span class="dot"></span>
+      Fallback Ready
+    </span>
+
+    <span class="chip">
+      <span class="dot"></span>
+      자동 복구 정상
+    </span>
+
+    <span class="chip">
+      <span class="dot blue"></span>
+      24시간 관측 중
+    </span>
+
+  </div>
+
+</div>
+
+</header>
+
+
+
+<!-- =====================================================
+     PRIMARY + MONITORING
+===================================================== -->
+
+<section class="overview">
+
+
+  <article class="primary-card card">
+
+    <div class="primary-top">
+
+      <div>
+
+        <div class="kicker">
+          PRIMARY READ
+        </div>
+
+        <h2>
+          공통 Router · 운영 Primary
+        </h2>
+
+        <p>
+          ChatGPT · Claude · Grok · Gemini의 읽기 요청을
+          공통 Router에서 처리합니다.
+          <br>
+          문제가 생기면 기존 개별 연결을
+          Fallback으로 사용할 수 있습니다.
+        </p>
+
+      </div>
+
+      <span class="badge">
+        정상 실행
+      </span>
+
+    </div>
+
+
+    <div class="route-flow">
+
+      <div class="route-node">
+
+        <strong>
+          AI Providers
+        </strong>
+
+        <small>
+          ChatGPT · Claude
+          <br>
+          Grok · Gemini
+        </small>
+
+      </div>
+
+
+      <div class="route-arrow">
+        →
+      </div>
+
+
+      <div class="route-node">
+
+        <strong>
+          Archive Router
+        </strong>
+
+        <small>
+          <span class="ok">
+            Primary Read
+          </span>
+          <br>
+          8790 · 읽기 전용
+        </small>
+
+      </div>
+
+
+      <div class="route-arrow">
+        →
+      </div>
+
+
+      <div class="route-node">
+
+        <strong>
+          Archive Services
+        </strong>
+
+        <small>
+          ARCA · PIN · YME
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="primary-foot">
+
+      <div class="mini-metrics">
+
+        <span>
+          도구
+          <b>17개</b>
+        </span>
+
+        <span>
+          리소스
+          <b>4개</b>
+        </span>
+
+        <span>
+          최근 Health
+          <b>3초 전</b>
+        </span>
+
+        <span>
+          복구
+          <b>0 / 5</b>
+        </span>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="btn"
+          onclick="openDrawer('router')">
+          상세
+        </button>
+
+        <button
+          class="btn warn"
+          onclick="controlService('Router','pause')">
+          일시중지
+        </button>
+
+        <button
+          class="btn"
+          onclick="controlService('Router','restart')">
+          재시작
+        </button>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+
+  <article class="monitor-card card">
+
+    <div class="section-title">
+
+      <h2>
+        운영 상태
+      </h2>
+
+      <span>
+        Live Monitoring
+      </span>
+
+    </div>
+
+
+    <div class="kpi-grid">
+
+      <div class="kpi">
+
+        <div class="label">
+          현재 Uptime
+        </div>
+
+        <strong>
+          7h 42m
+        </strong>
+
+        <div class="sub">
+          마지막 재기동 이후
+        </div>
+
+      </div>
+
+
+      <div class="kpi">
+
+        <div class="label">
+          평균 Router 응답
+        </div>
+
+        <strong>
+          82 ms
+        </strong>
+
+        <div class="sub">
+          최근 60회
+        </div>
+
+      </div>
+
+
+      <div class="kpi">
+
+        <div class="label">
+          최근 24h 복구
+        </div>
+
+        <strong style="color:var(--yellow)">
+          2
+        </strong>
+
+        <div class="sub">
+          자동 복구 성공
+        </div>
+
+      </div>
+
+
+      <div class="kpi">
+
+        <div class="label">
+          마지막 Fallback 시험
+        </div>
+
+        <strong class="ok">
+          PASS
+        </strong>
+
+        <div class="sub">
+          Primary 정지 → 복구
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="timeline"
+      id="timeline">
+    </div>
+
+
+    <div
+      class="small"
+      style="
+        display:flex;
+        justify-content:space-between;
+        margin-top:5px;
+      ">
+
+      <span>24시간 전</span>
+      <span>12시간 전</span>
+      <span>현재</span>
+
+    </div>
+
+  </article>
+
+</section>
+
+
+
+<!-- =====================================================
+     INCIDENT
+===================================================== -->
+
+<section
+  class="incident card"
+  id="incident">
+
+  <div class="icon">
+    ⚠
+  </div>
+
+  <div>
+
+    <strong id="incidentTitle">
+      장애 감지
+    </strong>
+
+    <p id="incidentText">
+      서비스 상태에 문제가 있습니다.
+    </p>
+
+  </div>
+
+  <div class="actions">
+
+    <button
+      class="btn danger"
+      onclick="controlService('Incident','restart')">
+      수동 재시작
+    </button>
+
+    <button
+      class="btn"
+      onclick="openDrawer('incident')">
+      로그 보기
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WEB SERVERS
+===================================================== -->
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+
+      <h2>
+        웹 서버 · 직접 제어
+      </h2>
+
+      <span>
+        사이트 접근과 장애 대응을 같은 카드에서 수행
+      </span>
+
+    </div>
+
+    <button
+      class="btn ghost"
+      onclick="refreshAll()">
+
+      전체 상태 새로고침 ↻
+
+    </button>
+
+  </div>
+
+
+  <div class="service-grid">
+
+
+    <!-- ARCA -->
+
+    <article class="service-card card">
+
+      <div class="service-head">
+
+        <div class="service-title">
+
+          <div class="iconbox">
+            A
+          </div>
+
+          <div>
+
+            <h3>
+              ARCA ARCHIVE
+            </h3>
+
+            <div class="service-sub">
+              문서 · 댓글 · 이미지 아카이브
+            </div>
+
+          </div>
+
+        </div>
+
+        <span class="badge">
+          정상 실행
+        </span>
+
+      </div>
+
+
+      <div class="service-metrics">
+
+        <div class="metric">
+          <span>PORT</span>
+          <b>8766</b>
+        </div>
+
+        <div class="metric">
+          <span>PID</span>
+          <b>29444</b>
+        </div>
+
+        <div class="metric">
+          <span>LATENCY</span>
+          <b>42 ms</b>
+        </div>
+
+        <div class="metric">
+          <span>RECOVERY</span>
+          <b>0 / 5</b>
+        </div>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <button
+          class="btn primary"
+          onclick="openSite('arca')">
+          사이트 열기 ↗
+        </button>
+
+        <button
+          class="btn"
+          disabled>
+          시작/재개
+        </button>
+
+        <button
+          class="btn warn"
+          onclick="controlService('ARCA','pause')">
+          일시중지
+        </button>
+
+        <button
+          class="btn"
+          onclick="controlService('ARCA','restart')">
+          재시작
+        </button>
+
+        <button
+          class="btn"
+          onclick="openDrawer('arca')">
+          상세/로그
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- PIN -->
+
+    <article class="service-card card">
+
+      <div class="service-head">
+
+        <div class="service-title">
+
+          <div class="iconbox">
+            P
+          </div>
+
+          <div>
+
+            <h3>
+              PIN ARCHIVE
+            </h3>
+
+            <div class="service-sub">
+              이미지 레퍼런스 라이브러리
+            </div>
+
+          </div>
+
+        </div>
+
+        <span class="badge">
+          정상 실행
+        </span>
+
+      </div>
+
+
+      <div class="service-metrics">
+
+        <div class="metric">
+          <span>PORT</span>
+          <b>8767</b>
+        </div>
+
+        <div class="metric">
+          <span>PID</span>
+          <b>30244</b>
+        </div>
+
+        <div class="metric">
+          <span>LATENCY</span>
+          <b>66 ms</b>
+        </div>
+
+        <div class="metric">
+          <span>RECOVERY</span>
+          <b>0 / 5</b>
+        </div>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <button
+          class="btn primary"
+          onclick="openSite('pin')">
+          사이트 열기 ↗
+        </button>
+
+        <button
+          class="btn"
+          disabled>
+          시작/재개
+        </button>
+
+        <button
+          class="btn warn"
+          onclick="controlService('PIN','pause')">
+          일시중지
+        </button>
+
+        <button
+          class="btn"
+          onclick="controlService('PIN','restart')">
+          재시작
+        </button>
+
+        <button
+          class="btn"
+          onclick="openDrawer('pin')">
+          상세/로그
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- YME -->
+
+    <article class="service-card card">
+
+      <div class="service-head">
+
+        <div class="service-title">
+
+          <div class="iconbox">
+            Y
+          </div>
+
+          <div>
+
+            <h3>
+              YOUTUBE MEDIA
+            </h3>
+
+            <div class="service-sub">
+              YouTube 영상 · 자막 · 태그
+            </div>
+
+          </div>
+
+        </div>
+
+        <span class="badge">
+          정상 실행
+        </span>
+
+      </div>
+
+
+      <div class="service-metrics">
+
+        <div class="metric">
+          <span>PORT</span>
+          <b>8765</b>
+        </div>
+
+        <div class="metric">
+          <span>PID</span>
+          <b>21312</b>
+        </div>
+
+        <div class="metric">
+          <span>LATENCY</span>
+          <b>91 ms</b>
+        </div>
+
+        <div class="metric">
+          <span>RECOVERY</span>
+          <b>1 / 5</b>
+        </div>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <button
+          class="btn primary"
+          onclick="openSite('yme')">
+          사이트 열기 ↗
+        </button>
+
+        <button
+          class="btn"
+          disabled>
+          시작/재개
+        </button>
+
+        <button
+          class="btn warn"
+          onclick="controlService('YME','pause')">
+          일시중지
+        </button>
+
+        <button
+          class="btn"
+          onclick="controlService('YME','restart')">
+          재시작
+        </button>
+
+        <button
+          class="btn"
+          onclick="openDrawer('yme')">
+          상세/로그
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ROUTER INTERNAL
+===================================================== -->
+
+<section class="section">
+
+  <div class="section-title">
+
+    <h2>
+      통합 Router 구성요소
+    </h2>
+
+    <span>
+      Primary 내부 프로세스 직접 제어
+    </span>
+
+  </div>
+
+
+  <div class="router-components">
+
+
+    <div class="component card">
+
+      <div>
+
+        <h4>
+          Router · ARCA worker
+        </h4>
+
+        <p>
+          8788 · ARCA 연결 담당 · 자동 복구 적용
+        </p>
+
+      </div>
+
+      <span class="badge">
+        정상
+      </span>
+
+      <div class="actions">
+
+        <button class="btn" disabled>
+          시작/재개
+        </button>
+
+        <button
+          class="btn warn"
+          onclick="controlService('ARCA worker','pause')">
+          일시중지
+        </button>
+
+        <button
+          class="btn"
+          onclick="controlService('ARCA worker','restart')">
+          재시작
+        </button>
+
+        <button
+          class="btn"
+          onclick="openDrawer('worker')">
+          상세
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="component card">
+
+      <div>
+
+        <h4>
+          공통 Router · 읽기 전용
+        </h4>
+
+        <p>
+          8790 · 17 tools · 4 resources · Primary
+        </p>
+
+      </div>
+
+      <span class="badge">
+        정상
+      </span>
+
+      <div class="actions">
+
+        <button class="btn" disabled>
+          시작/재개
+        </button>
+
+        <button
+          class="btn warn"
+          onclick="controlService('Router','pause')">
+          일시중지
+        </button>
+
+        <button
+          class="btn"
+          onclick="controlService('Router','restart')">
+          재시작
+        </button>
+
+        <button
+          class="btn"
+          onclick="openDrawer('router')">
+          상세
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="component card">
+
+      <div>
+
+        <h4>
+          Router · ChatGPT 전용 터널
+        </h4>
+
+        <p>
+          ChatGPT의 Primary Router 접속 경로
+        </p>
+
+      </div>
+
+      <span class="badge">
+        정상
+      </span>
+
+      <div class="actions">
+
+        <button class="btn" disabled>
+          시작/재개
+        </button>
+
+        <button
+          class="btn warn"
+          onclick="controlService('Router GPT Tunnel','pause')">
+          일시중지
+        </button>
+
+        <button
+          class="btn"
+          onclick="controlService('Router GPT Tunnel','restart')">
+          재시작
+        </button>
+
+        <button
+          class="btn"
+          onclick="openDrawer('tunnel')">
+          상세
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AI CONNECTIONS
+===================================================== -->
+
+<section class="section">
+
+  <div class="section-title">
+
+    <h2>
+      AI Connections
+    </h2>
+
+    <span>
+      Provider별 Primary / Fallback / 검증 상태
+    </span>
+
+  </div>
+
+
+  <div class="providers">
+
+
+    <div class="provider card">
+
+      <div class="provider-top">
+
+        <h3>
+          ChatGPT
+        </h3>
+
+        <span class="badge">
+          정상
+        </span>
+
+      </div>
+
+      <div class="provider-lines">
+
+        <div class="provider-line">
+          <span class="key">Primary</span>
+          <span>Archive Router</span>
+        </div>
+
+        <div class="provider-line">
+          <span class="key">Fallback</span>
+          <span>GPT 기존 3개 터널</span>
+        </div>
+
+      </div>
+
+      <div class="provider-note">
+        Primary / Fallback / 갤러리 전체 검증 완료
+      </div>
+
+      <div class="provider-actions">
+
+        <button
+          class="btn"
+          onclick="copyGuide('ChatGPT')">
+          새 대화 안내
+        </button>
+
+        <button
+          class="btn"
+          onclick="testProvider('ChatGPT')">
+          연결 테스트
+        </button>
+
+        <button
+          class="btn"
+          onclick="openDrawer('chatgpt')">
+          Primary 상세
+        </button>
+
+        <button
+          class="btn"
+          onclick="openLegacy()">
+          Fallback
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="provider card">
+
+      <div class="provider-top">
+
+        <h3>
+          Claude
+        </h3>
+
+        <span class="badge">
+          정상
+        </span>
+
+      </div>
+
+      <div class="provider-lines">
+
+        <div class="provider-line">
+          <span class="key">Primary</span>
+          <span>Archive Router</span>
+        </div>
+
+        <div class="provider-line">
+          <span class="key">Fallback</span>
+          <span>기존 Claude MCP</span>
+        </div>
+
+      </div>
+
+      <div class="provider-note">
+        Primary / Fallback / 갤러리 검증 완료
+      </div>
+
+      <div class="provider-actions">
+
+        <button class="btn"
+          onclick="copyGuide('Claude')">
+          새 대화 안내
+        </button>
+
+        <button class="btn"
+          onclick="testProvider('Claude')">
+          연결 테스트
+        </button>
+
+        <button class="btn"
+          onclick="openDrawer('claude')">
+          Primary 상세
+        </button>
+
+        <button class="btn"
+          onclick="openLegacy()">
+          Fallback
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="provider card">
+
+      <div class="provider-top">
+
+        <h3>
+          Grok
+        </h3>
+
+        <span class="badge">
+          정상
+        </span>
+
+      </div>
+
+      <div class="provider-lines">
+
+        <div class="provider-line">
+          <span class="key">Primary</span>
+          <span>Archive Router</span>
+        </div>
+
+        <div class="provider-line">
+          <span class="key">Fallback</span>
+          <span>Legacy Gateway</span>
+        </div>
+
+      </div>
+
+      <div class="provider-note">
+        읽기 · 이미지 · Fallback 검증 완료
+      </div>
+
+      <div class="provider-actions">
+
+        <button class="btn"
+          onclick="copyGuide('Grok')">
+          새 대화 안내
+        </button>
+
+        <button class="btn"
+          onclick="testProvider('Grok')">
+          연결 테스트
+        </button>
+
+        <button class="btn"
+          onclick="openDrawer('grok')">
+          Primary 상세
+        </button>
+
+        <button class="btn"
+          onclick="openLegacy()">
+          Fallback
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="provider card">
+
+      <div class="provider-top">
+
+        <h3>
+          Gemini
+        </h3>
+
+        <span class="badge warn">
+          Gallery UI Issue
+        </span>
+
+      </div>
+
+      <div class="provider-lines">
+
+        <div class="provider-line">
+          <span class="key">Primary</span>
+          <span>Archive Router</span>
+        </div>
+
+        <div class="provider-line">
+          <span class="key">Fallback</span>
+          <span>Legacy Gateway</span>
+        </div>
+
+      </div>
+
+      <div class="provider-note">
+        읽기·이미지 호출 정상.
+        인터랙티브 갤러리만 Known Issue
+      </div>
+
+      <div class="provider-actions">
+
+        <button class="btn"
+          onclick="copyGuide('Gemini')">
+          새 대화 안내
+        </button>
+
+        <button class="btn"
+          onclick="testProvider('Gemini')">
+          연결 테스트
+        </button>
+
+        <button class="btn"
+          onclick="openDrawer('gemini')">
+          Primary 상세
+        </button>
+
+        <button class="btn"
+          onclick="openLegacy()">
+          Fallback
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     YME WRITE
+===================================================== -->
+
+<section class="section">
+
+  <div class="write-band card">
+
+    
+
+    <div>
+
+      <h3>
+        YME Write · 별도 쓰기 경로
+      </h3>
+
+      <p>
+        공통 Router는 읽기 전용입니다.
+        URL 추가 등 쓰기 작업은 기존 YME 전용 경로를 유지합니다.
+      </p>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn"
+        onclick="openDrawer('write')">
+        쓰기 경로 상세
+      </button>
+
+      <button
+        class="btn primary"
+        onclick="copyWriteGuide()">
+        쓰기 안내 복사
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FALLBACK
+===================================================== -->
+
+<section class="section">
+
+  <details
+    class="card"
+    id="legacyDetails">
+
+    <summary>
+
+      <span>
+        Fallback / Legacy Connections
+        <span class="badge secondary">
+          비상 복구용
+        </span>
+      </span>
+
+      <span class="small">
+        필요 시 펼쳐서 직접 제어 ▼
+      </span>
+
+    </summary>
+
+
+    <div class="fallback-grid">
+
+
+      <div class="fallback-item">
+
+        <div>
+
+          <h4>
+            ARCA · GPT Fallback
+          </h4>
+
+          <p>
+            기존 ARCA 전용 터널
+          </p>
+
+        </div>
+
+        <span class="badge">
+          Ready
+        </span>
+
+        <div class="actions">
+
+          <button
+            class="btn warn"
+            onclick="controlService('ARCA GPT Fallback','pause')">
+            일시중지
+          </button>
+
+          <button
+            class="btn"
+            onclick="controlService('ARCA GPT Fallback','restart')">
+            재시작
+          </button>
+
+          <button
+            class="btn"
+            onclick="openDrawer('fallback-arca')">
+            상세
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="fallback-item">
+
+        <div>
+
+          <h4>
+            PIN · GPT Fallback
+          </h4>
+
+          <p>
+            기존 PIN 전용 터널
+          </p>
+
+        </div>
+
+        <span class="badge">
+          Ready
+        </span>
+
+        <div class="actions">
+
+          <button
+            class="btn warn"
+            onclick="controlService('PIN GPT Fallback','pause')">
+            일시중지
+          </button>
+
+          <button
+            class="btn"
+            onclick="controlService('PIN GPT Fallback','restart')">
+            재시작
+          </button>
+
+          <button
+            class="btn"
+            onclick="openDrawer('fallback-pin')">
+            상세
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="fallback-item">
+
+        <div>
+
+          <h4>
+            YME · GPT Fallback + Write
+          </h4>
+
+          <p>
+            기존 YME 터널 · 쓰기 경로 유지
+          </p>
+
+        </div>
+
+        <span class="badge">
+          Ready
+        </span>
+
+        <div class="actions">
+
+          <button
+            class="btn warn"
+            onclick="controlService('YME GPT Fallback','pause')">
+            일시중지
+          </button>
+
+          <button
+            class="btn"
+            onclick="controlService('YME GPT Fallback','restart')">
+            재시작
+          </button>
+
+          <button
+            class="btn"
+            onclick="openDrawer('fallback-yme')">
+            상세
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="fallback-item">
+
+        <div>
+
+          <h4>
+            Provider Legacy
+          </h4>
+
+          <p>
+            Claude · Grok · Gemini 기존 연결
+          </p>
+
+        </div>
+
+        <span class="badge">
+          Ready
+        </span>
+
+        <div class="actions">
+
+          <button
+            class="btn"
+            onclick="openDrawer('fallback-provider')">
+            연결 목록
+          </button>
+
+          <button
+            class="btn"
+            onclick="testFallback()">
+            Fallback 시험
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </details>
+
+</section>
+
+
+
+<!-- =====================================================
+     OPERATIONS
+===================================================== -->
+
+<section class="section">
+
+  <div class="bottom-grid">
+
+
+    <div class="operations card">
+
+      <div class="section-head">
+
+        <div class="section-title">
+
+          <h2>
+            운영 / 자동복구
+          </h2>
+
+          <span>
+            Lifecycle Control
+          </span>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            class="btn"
+            onclick="openDrawer('watcher')">
+            Watcher 상세
+          </button>
+
+          <button
+            class="btn"
+            onclick="openDrawer('audit')">
+            감사 로그
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="ops-grid">
+
+        <div class="op">
+
+          <strong>
+            Watcher
+          </strong>
+
+          <p>
+            <span class="ok">
+              정상
+            </span>
+            · 매분 실행
+          </p>
+
+        </div>
+
+
+        <div class="op">
+
+          <strong>
+            자동 시작
+          </strong>
+
+          <p>
+            Windows 로그인 트리거
+          </p>
+
+        </div>
+
+
+        <div class="op">
+
+          <strong>
+            자동 복구
+          </strong>
+
+          <p>
+            10분 내 최대 5회
+          </p>
+
+        </div>
+
+
+        <div class="op">
+
+          <strong>
+            Pause Intent
+          </strong>
+
+          <p>
+            재부팅/재로그인 후 유지
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="events-card card">
+
+      <div class="section-title">
+
+        <h2>
+          최근 이벤트
+        </h2>
+
+        <span>
+          Recovery / Operator
+        </span>
+
+      </div>
+
+
+      <div
+        class="events"
+        id="eventList">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<div class="statusbar">
+
+  <span>
+    프로토타입 · 사이트 열기는 실제 로컬 URL 사용 /
+    서버 제어는 UI 시뮬레이션
+  </span>
+
+  <span id="lastRefresh">
+    마지막 갱신: 방금
+  </span>
+
+</div>
+
+
+<footer class="footer">
+
+  <span>
+    Archive Servers · Operations Console Draft
+  </span>
+
+  <span>
+    Observe → Diagnose → Act → Verify
+  </span>
+
+</footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+  class="modal-backdrop"
+  id="modalBackdrop">
+
+  <div class="modal card">
+
+    <h3 id="modalTitle">
+      확인
+    </h3>
+
+    <div id="modalBody">
+    </div>
+
+
+    <div
+      class="actions"
+      style="
+        margin-top:14px;
+        justify-content:flex-end;
+      ">
+
+      <button
+        class="btn"
+        id="modalCancel">
+        취소
+      </button>
+
+      <button
+        class="btn primary"
+        id="modalConfirm">
+        실행
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DRAWER
+===================================================== -->
+
+<div
+  class="drawer-back"
+  id="drawerBack"
+  onclick="closeDrawer()">
+</div>
+
+
+<aside
+  class="drawer"
+  id="drawer">
+
+  <button
+    class="btn"
+    onclick="closeDrawer()">
+    닫기
+  </button>
+
+  <h2 id="drawerTitle">
+    상세
+  </h2>
+
+  <div id="drawerBody">
+  </div>
+
+</aside>
+
+
+
+<script>
+
+/* =========================================================
+   REAL LOCAL WEB URLs
+========================================================= */
+
+const SITE_URLS = {
+
+  arca:
+    "http://127.0.0.1:8766",
+
+  pin:
+    "http://127.0.0.1:8767",
+
+  yme:
+    "http://127.0.0.1:8765"
+
+};
+
+
+/* =========================================================
+   DETAIL DATA
+========================================================= */
+
+const details = {
+
+  router:[
+    "Archive Router",
+`Port        8790
+Mode        READ ONLY
+Health      healthy
+Tools       17
+Resources   4
+Recovery    0 / 5
+Fallback    ready
+Last check  3 sec ago`
+  ],
+
+  arca:[
+    "ARCA ARCHIVE",
+`Port        8766
+Health      healthy
+PID         29444
+Latency     42 ms
+Recovery    0 / 5
+Last check  2 sec ago`
+  ],
+
+  pin:[
+    "PIN ARCHIVE",
+`Port        8767
+Health      healthy
+PID         30244
+Latency     66 ms
+Recovery    0 / 5
+Last check  2 sec ago`
+  ],
+
+  yme:[
+    "YOUTUBE MEDIA",
+`Port        8765
+Health      healthy
+PID         21312
+Latency     91 ms
+Recovery    1 / 5
+
+Router Read
+ENABLED
+
+Legacy Write
+ENABLED`
+  ],
+
+  worker:[
+    "Router · ARCA Worker",
+`Port        8788
+Health      healthy
+Recovery    enabled
+
+Purpose
+ARCA adapter worker`
+  ],
+
+  tunnel:[
+    "Router · ChatGPT 전용 터널",
+`Status      ready
+Primary     Archive Router
+
+Existing GPT fallback
+PRESERVED`
+  ],
+
+  chatgpt:[
+    "ChatGPT Primary",
+`Primary     Archive Router
+Fallback    GPT 3 legacy tunnels
+Gallery     verified
+Read        verified`
+  ],
+
+  claude:[
+    "Claude Primary",
+`Primary     Archive Router
+Fallback    legacy Claude MCP
+Gallery     verified`
+  ],
+
+  grok:[
+    "Grok Primary",
+`Primary     Archive Router
+Fallback    legacy gateway
+Gallery     verified`
+  ],
+
+  gemini:[
+    "Gemini Primary",
+`Primary     Archive Router
+Fallback    legacy gateway
+Read        verified
+Image       verified
+
+Gallery UI
+KNOWN ISSUE`
+  ],
+
+  write:[
+    "YME Write",
+`Router
+READ ONLY
+
+Write Path
+Legacy YME Connector
+
+Purpose
+URL add / collection write path`
+  ],
+
+  watcher:[
+    "Router Watcher",
+`Trigger
+Windows Login
++
+Every Minute
+
+Recovery
+Max 5 / 10 min
+
+Pause Intent
+Persistent
+
+Duplicate
+IgnoreNew`
+  ],
+
+  audit:[
+    "최근 감사 로그",
+`02:27 Full shutdown confirmed
+02:28 Full restart requested
+02:29 13 / 13 services healthy
+02:31 Primary read PASS
+02:32 Fallback read PASS
+02:33 Router write BLOCKED`
+  ],
+
+  incident:[
+    "장애 상세",
+`예시 장애 상태입니다.
+
+실제 운영 연결 시:
+
+- 마지막 정상 시각
+- 복구 횟수
+- 다음 재시도 시간
+- stderr
+- 최근 요청
+- Fallback 상태
+
+를 표시합니다.`
+  ],
+
+  "fallback-arca":[
+    "ARCA GPT Fallback",
+`Role      Fallback
+Status    Ready
+Primary   Archive Router`
+  ],
+
+  "fallback-pin":[
+    "PIN GPT Fallback",
+`Role      Fallback
+Status    Ready
+Primary   Archive Router`
+  ],
+
+  "fallback-yme":[
+    "YME GPT Fallback + Write",
+`Role
+Fallback + Write
+
+Status
+Ready
+
+Primary
+Archive Router (Read)`
+  ],
+
+  "fallback-provider":[
+    "Provider Legacy Connections",
+`Claude Legacy MCP
+Grok Legacy Gateway
+Gemini Legacy Gateway
+
+All preserved as fallback paths.`
+  ]
+
+};
+
+
+/* =========================================================
+   EVENT HISTORY
+========================================================= */
+
+const events = [
+
+  [
+    "02:35",
+    "OK",
+    "type-ok",
+    "13개 서비스 전체 정상"
+  ],
+
+  [
+    "02:29",
+    "OPERATOR",
+    "type-ok",
+    "전체 종료 → 재기동 시험 통과"
+  ],
+
+  [
+    "02:18",
+    "RECOVERY",
+    "type-recovery",
+    "Archive Router 자동 복구 · 7.6초"
+  ],
+
+  [
+    "02:12",
+    "RECOVERY",
+    "type-recovery",
+    "ARCA worker 자동 복구 · 4.1초"
+  ],
+
+  [
+    "01:58",
+    "OK",
+    "type-ok",
+    "Primary / Fallback 검증 완료"
+  ]
+
+];
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const toastEl =
+  document.getElementById("toast");
+
+const modalBackdrop =
+  document.getElementById(
+    "modalBackdrop"
+  );
+
+const modalTitle =
+  document.getElementById(
+    "modalTitle"
+  );
+
+const modalBody =
+  document.getElementById(
+    "modalBody"
+  );
+
+const modalCancel =
+  document.getElementById(
+    "modalCancel"
+  );
+
+const modalConfirm =
+  document.getElementById(
+    "modalConfirm"
+  );
+
+const drawer =
+  document.getElementById(
+    "drawer"
+  );
+
+const drawerBack =
+  document.getElementById(
+    "drawerBack"
+  );
+
+const drawerTitle =
+  document.getElementById(
+    "drawerTitle"
+  );
+
+const drawerBody =
+  document.getElementById(
+    "drawerBody"
+  );
+
+let pendingAction = null;
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(message){
+
+  toastEl.textContent =
+    message;
+
+  toastEl.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      () =>
+        toastEl.classList.remove(
+          "show"
+        ),
+      2200
+    );
+
+}
+
+
+/* =========================================================
+   SITE OPEN
+========================================================= */
+
+function openSite(name){
+
+  window.open(
+    SITE_URLS[name],
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+/* =========================================================
+   CONFIRM MODAL
+========================================================= */
+
+function showConfirm(
+  title,
+  html,
+  callback
+){
+
+  modalTitle.textContent =
+    title;
+
+  modalBody.innerHTML =
+    html;
+
+  pendingAction =
+    callback;
+
+  modalBackdrop
+    .classList
+    .add("show");
+
+}
+
+
+function closeModal(){
+
+  modalBackdrop
+    .classList
+    .remove("show");
+
+  pendingAction = null;
+
+}
+
+
+modalCancel.onclick =
+  closeModal;
+
+
+modalBackdrop.onclick =
+  event => {
+
+    if(
+      event.target ===
+      modalBackdrop
+    ){
+
+      closeModal();
+
+    }
+
+  };
+
+
+modalConfirm.onclick =
+  () => {
+
+    if(pendingAction){
+
+      pendingAction();
+
+    }
+
+    closeModal();
+
+  };
+
+
+/* =========================================================
+   SERVER CONTROL
+========================================================= */
+
+function controlService(
+  service,
+  action
+){
+
+  const labels = {
+
+    pause:
+      "일시중지",
+
+    restart:
+      "재시작",
+
+    start:
+      "시작/재개"
+
+  };
+
+
+  const label =
+    labels[action] ||
+    action;
+
+
+  showConfirm(
+
+    `${service} · ${label}`,
+
+    `
+      <p>
+        <strong>${service}</strong>에
+        <strong>${label}</strong> 작업을
+        실행합니다.
+      </p>
+
+      <p class="small">
+        현재 HTML은 구조 프로토타입이라
+        실제 Supervisor API는 호출하지 않습니다.
+      </p>
+    `,
+
+    () => {
+
+      toast(
+        `${service}: ${label} 요청`
+      );
+
+      addEvent(
+        "방금",
+        "OPERATOR",
+        "type-ok",
+        `${service} ${label} 요청`
+      );
+
+    }
+
+  );
+
+}
+
+
+/* =========================================================
+   DRAWER
+========================================================= */
+
+function escapeHtml(text){
+
+  return text.replace(
+
+    /[&<>"']/g,
+
+    char => ({
+
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+
+    }[char])
+
+  );
+
+}
+
+
+function openDrawer(key){
+
+  const data =
+    details[key];
+
+  if(!data){
+    return;
+  }
+
+  drawerTitle.textContent =
+    data[0];
+
+  drawerBody.innerHTML =
+    `
+      <div class="code">
+${escapeHtml(data[1])}
+      </div>
+    `;
+
+  drawer.classList.add(
+    "show"
+  );
+
+  drawerBack.classList.add(
+    "show"
+  );
+
+}
+
+
+function closeDrawer(){
+
+  drawer.classList.remove(
+    "show"
+  );
+
+  drawerBack.classList.remove(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   FALLBACK
+========================================================= */
+
+function openLegacy(){
+
+  const details =
+    document.getElementById(
+      "legacyDetails"
+    );
+
+  details.open = true;
+
+  details.scrollIntoView({
+
+    behavior:
+      "smooth",
+
+    block:
+      "center"
+
+  });
+
+}
+
+
+function testFallback(){
+
+  toast(
+    "Fallback 읽기 시험 예시"
+  );
+
+  addEvent(
+
+    "방금",
+
+    "OK",
+
+    "type-ok",
+
+    "Fallback 연결 시험 PASS"
+
+  );
+
+}
+
+
+/* =========================================================
+   PROVIDER TEST
+========================================================= */
+
+function testProvider(
+  name
+){
+
+  toast(
+    `${name} Primary 연결 테스트`
+  );
+
+  addEvent(
+
+    "방금",
+
+    "OK",
+
+    "type-ok",
+
+    `${name} Primary test PASS`
+
+  );
+
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+async function copyGuide(
+  provider
+){
+
+  const text =
+
+`${provider}에서 Archive Router — Primary Read를 사용해
+ARCA/PIN/YME 저장 자료를 조회해 주세요.
+문제가 있으면 기존 Fallback 연결을 사용해 주세요.`;
+
+
+  try{
+
+    await navigator
+      .clipboard
+      .writeText(text);
+
+    toast(
+      `${provider} 안내 복사 완료`
+    );
+
+  }
+  catch{
+
+    toast(
+      "클립보드 권한이 없습니다."
+    );
+
+  }
+
+}
+
+
+async function copyWriteGuide(){
+
+  const text =
+`YME 쓰기 작업은 공통 Router가 아니라
+기존 YME 쓰기 연결을 사용해 주세요.`;
+
+
+  try{
+
+    await navigator
+      .clipboard
+      .writeText(text);
+
+    toast(
+      "YME 쓰기 안내 복사 완료"
+    );
+
+  }
+  catch{
+
+    toast(
+      "클립보드 권한이 없습니다."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+function refreshAll(){
+
+  const el =
+    document.getElementById(
+      "lastRefresh"
+    );
+
+  el.textContent =
+    "마지막 갱신: " +
+    new Date()
+      .toLocaleTimeString(
+        "ko-KR"
+      );
+
+  toast(
+    "전체 상태를 갱신했습니다."
+  );
+
+}
+
+
+/* =========================================================
+   EVENT LOG
+========================================================= */
+
+function addEvent(
+  time,
+  type,
+  css,
+  text
+){
+
+  events.unshift([
+    time,
+    type,
+    css,
+    text
+  ]);
+
+  if(
+    events.length > 7
+  ){
+
+    events.pop();
+
+  }
+
+  renderEvents();
+
+}
+
+
+function renderEvents(){
+
+  const root =
+    document.getElementById(
+      "eventList"
+    );
+
+  root.innerHTML = "";
+
+
+  events.forEach(
+    item => {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+      row.className =
+        "event";
+
+      row.innerHTML =
+`
+<div class="time">
+  ${item[0]}
+</div>
+
+<div class="type ${item[2]}">
+  ${item[1]}
+</div>
+
+<div>
+  ${item[3]}
+</div>
+`;
+
+      root.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+function renderTimeline(){
+
+  const root =
+    document.getElementById(
+      "timeline"
+    );
+
+  root.innerHTML = "";
+
+
+  for(
+    let i=0;
+    i<24;
+    i++
+  ){
+
+    const block =
+      document.createElement(
+        "div"
+      );
+
+    block.className =
+      "hour";
+
+    block.style.height =
+      (
+        12 +
+        ((i*7)%22)
+      ) +
+      "px";
+
+
+    if(
+      i===17 ||
+      i===18
+    ){
+
+      block
+        .classList
+        .add(
+          "recovery"
+        );
+
+    }
+
+
+    block.title =
+      `${23-i}시간 전`;
+
+    root.appendChild(
+      block
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal();closeDrawer();}});
+
+renderTimeline();
+
+renderEvents();
+
+</script>
+
+
+<script>
+/* theme: 시스템 / 라이트 / 다크 */
+function applyTheme(mode){
+  const root = document.documentElement;
+  if(mode === "system"){ root.removeAttribute("data-theme"); }
+  else { root.setAttribute("data-theme", mode); }
+  document.querySelectorAll("#themeSeg button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.themeSet === mode)));
+  try{ localStorage.setItem("console-theme", mode); }catch{}
+}
+document.querySelectorAll("#themeSeg button").forEach(b =>
+  b.addEventListener("click", () => applyTheme(b.dataset.themeSet)));
+let savedTheme = null;
+try{ savedTheme = localStorage.getItem("console-theme"); }catch{}
+applyTheme(savedTheme || "system");
+</script>
+
+</body>
+</html>
